@@ -169,6 +169,15 @@ h1.hero-title em { font-style: italic; font-weight: 500; color: var(--accent); d
 @keyframes fadeOnly { to { opacity: 1; } }
 @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
 
+/* Copy toast */
+.copy-toast {
+  position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px);
+  background: var(--ink); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px;
+  font-weight: 500; padding: 12px 20px; border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+  opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; z-index: 999;
+}
+.copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
 @media (max-width: 560px) {
   .quiz-grid, .nav-grid.two { grid-template-columns: 1fr; }
   .countdown-card { gap: 1rem; }

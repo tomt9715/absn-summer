@@ -5,8 +5,72 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ABSN Summer — Study Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="shared/hub.css">
+<style>
+  .nextup {
+    margin-top: 2rem; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.6rem 1.8rem; box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap;
+    opacity: 0; transform: translateY(16px); animation: rise 0.7s ease 0.4s forwards;
+  }
+  .nextup-num { font-family: 'Fraunces', serif; font-size: 4.2rem; font-weight: 600; color: var(--accent); line-height: 0.9; font-variant-numeric: tabular-nums; }
+  .nextup-body { display: flex; flex-direction: column; gap: 3px; }
+  .nextup-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-mute); }
+  .nextup-exam { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 500; color: var(--ink); }
+  .nextup-date { font-size: 14px; color: var(--ink-soft); }
+  .nextup-cta { margin-left: auto; align-self: center; }
+  .nextup-cta a { display: inline-flex; align-items: center; gap: 7px; padding: 11px 18px; background: var(--accent); color: #fff; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.15s; }
+  .nextup-cta a:hover { background: var(--accent-deep); transform: translateY(-1px); }
+
+
+  .timeline-wrap { margin-top: 2.8rem; opacity: 0; transform: translateY(16px); animation: rise 0.6s ease 0.7s forwards; }
+  .timeline-title { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 500; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .timeline-legend { display: flex; gap: 14px; margin-left: auto; font-size: 12px; font-weight: 400; }
+  .legend-item { display: inline-flex; align-items: center; gap: 5px; color: var(--ink-mute); }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+  .legend-dot.ms { background: var(--accent); }
+  .legend-dot.ps { background: var(--teal); }
+
+  .timeline { display: flex; gap: 10px; overflow-x: auto; padding-top: 12px; padding-bottom: 8px; scrollbar-width: thin; }
+  .tl-item {
+    flex: 1; min-width: 110px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 11px; padding: 0.9rem 1rem; position: relative;
+    border-top: 3px solid var(--border-strong); transition: all 0.15s; cursor: pointer;
+  }
+  .tl-item:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
+  .tl-item.selected { border-color: var(--ink-soft); }
+  .tl-item.ms { border-top-color: var(--accent); }
+  .tl-item.ps { border-top-color: var(--teal); }
+  .tl-item.next { box-shadow: 0 4px 14px rgba(181,72,46,0.12); border-color: var(--accent); }
+  .tl-course { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-mute); }
+  .tl-exam { font-size: 15px; font-weight: 600; color: var(--ink); margin: 3px 0 6px; }
+  .tl-date { font-size: 13px; color: var(--ink-soft); }
+  .tl-next-tag { position: absolute; top: -10px; left: 10px; font-family: 'JetBrains Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; background: var(--accent); color: #fff; padding: 3px 8px; border-radius: 5px; z-index: 2; box-shadow: 0 2px 6px rgba(181,72,46,0.2); }
+  .tl-days { display: inline-block; margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 2px 8px; border-radius: 5px; }
+  .tl-days.ms { background: var(--accent-soft); color: var(--accent); }
+  .tl-days.ps { background: var(--teal-soft); color: var(--teal); }
+  .tl-days.past { background: var(--surface2); color: var(--ink-mute); border: 1px solid var(--border); }
+
+  /* Detail panel */
+  .tl-detail { margin-top: 14px; }
+  .tl-detail-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.3rem 1.5rem; animation: fadeIn 0.25s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+  .tl-detail-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .tl-detail-title { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 500; color: var(--ink); }
+  .tl-detail-meta { font-size: 13px; color: var(--ink-mute); }
+  .tl-topics { display: flex; flex-direction: column; gap: 8px; }
+  .tl-topic { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink-soft); }
+  .tl-topic .tdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .tl-topic.ms .tdot { background: var(--accent); }
+  .tl-topic.ps .tdot { background: var(--teal); }
+  .tl-detail-empty { font-size: 15px; color: var(--ink-mute); font-style: italic; }
+  .tl-detail-cta { margin-top: 1.1rem; }
+  .tl-detail-cta a { display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; background: var(--accent); color: #fff; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.15s; }
+  .tl-detail-cta a:hover { background: var(--accent-deep); transform: translateY(-1px); }
+</style>
 </head>
 <body>
 <div class="accent-band"></div>
@@ -15,10 +79,23 @@
     <div class="hero-inner">
       <span class="eyebrow">Summer Semester · Manhattanville</span>
       <h1 class="hero-title">ABSN Summer <em>Study Hub</em></h1>
+      <div class="nextup" id="nextup"></div>
     </div>
   </header>
 
   <div id="courses"></div>
+
+  <div class="timeline-wrap">
+    <div class="timeline-title">
+      Semester at a glance
+      <span class="timeline-legend">
+        <span class="legend-item"><span class="legend-dot ms"></span>MedSurg II</span>
+        <span class="legend-item"><span class="legend-dot ps"></span>Psych</span>
+      </span>
+    </div>
+    <div class="timeline" id="timeline"></div>
+    <div class="tl-detail" id="tl-detail"></div>
+  </div>
 
   <div class="donation-footer">
     <div class="msg"><strong>Made this to help us all pass</strong> — if it helped, a tip is always appreciated.</div>
@@ -30,23 +107,137 @@
 </div>
 
 <script>
-  // ── Courses ──
-  const COURSES = [
-    { name: "MedSurg II", desc: "Dysrhythmias, Vision & Hearing, and more", href: "medsurg2/index.html", ready: true },
-    { name: "Psychiatric Nursing", desc: "Building out as the semester goes", href: "psych/index.html", ready: true }
+  const SCHEDULE = [
+    { course: "MedSurg II", short: "ms", exam: "Exam 1", date: "2026-06-16", label: "June 16", href: "medsurg2/exam1/index.html", ready: true, topics: ["Dysrhythmias", "Vision & Hearing", "Fluid & Electrolytes"] },
+    { course: "Psych",      short: "ps", exam: "Exam 1", date: "2026-06-16", label: "June 16", href: null, ready: false, topics: [] },
+    { course: "MedSurg II", short: "ms", exam: "Exam 2", date: "2026-07-07", label: "July 7",  href: null, ready: false, topics: [] },
+    { course: "Psych",      short: "ps", exam: "Exam 2", date: "2026-07-07", label: "July 7",  href: null, ready: false, topics: [] },
+    { course: "Psych",      short: "ps", exam: "Exam 3", date: "2026-07-21", label: "July 21", href: null, ready: false, topics: [] },
+    { course: "MedSurg II", short: "ms", exam: "Exam 3", date: "2026-07-28", label: "July 28", href: null, ready: false, topics: [] },
+    { course: "MedSurg II", short: "ms", exam: "Final",  date: "2026-08-11", label: "Aug 11",  href: null, ready: false, topics: [] },
+    { course: "Psych",      short: "ps", exam: "Final",  date: "2026-08-11", label: "Aug 11",  href: null, ready: false, topics: [] }
   ];
 
-  const wrap = document.getElementById('courses');
-  let html = '<div class="nav-grid two">';
-  COURSES.forEach(c => {
-    html += `<a class="quiz-card" href="${c.href}">
-      <div class="qc-top"><span class="qc-type">Course</span></div>
-      <div class="qc-name">${c.name}</div>
-      <div class="qc-desc">${c.desc}</div>
-    </a>`;
-  });
-  html += '</div>';
-  wrap.innerHTML = html;
+  const COURSES = [
+    { name: "MedSurg II", short: "ms", desc: "Tap to see exams and study hubs", href: "medsurg2/index.html" },
+    { name: "Psychiatric Nursing", short: "ps", desc: "Tap to see exams and study hubs", href: "psych/index.html" }
+  ];
+
+  function dDate(s) { const p = s.split('-').map(Number); return new Date(p[0], p[1]-1, p[2]); }
+  function daysFromToday(s) {
+    const now = new Date();
+    const d0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.round((dDate(s) - d0) / 86400000);
+  }
+
+  (function () {
+    const sorted = SCHEDULE.slice().sort((a,b) => dDate(a.date) - dDate(b.date));
+    const upcoming = sorted.filter(e => daysFromToday(e.date) >= 0);
+    const el = document.getElementById('nextup');
+    if (upcoming.length === 0) {
+      el.innerHTML = '<div class="nextup-body"><span class="nextup-exam">Summer semester complete</span><span class="nextup-date">Nice work getting through it all.</span></div>';
+      return;
+    }
+    const soonest = daysFromToday(upcoming[0].date);
+    const sameDay = upcoming.filter(e => daysFromToday(e.date) === soonest);
+    const names = sameDay.map(e => e.course + ' ' + e.exam).join(' + ');
+    const dateLabel = sameDay[0].label;
+    let numTxt = soonest, sub = soonest + (soonest === 1 ? ' day away' : ' days away');
+    if (soonest === 0) { numTxt = '0'; sub = "it's today"; }
+    else if (soonest === 1) { numTxt = '1'; sub = 'tomorrow'; }
+    const ctaTarget = sameDay.find(e => e.ready) || sameDay[0];
+    const ctaHref = ctaTarget.ready ? ctaTarget.href : (ctaTarget.short === 'ms' ? 'medsurg2/index.html' : 'psych/index.html');
+    const ctaLabel = ctaTarget.ready ? 'Start studying' : 'View course';
+    el.innerHTML =
+      '<div class="nextup-num">' + numTxt + '</div>' +
+      '<div class="nextup-body">' +
+        '<span class="nextup-label">Next exam' + (sub === "it's today" ? '' : ' · ' + sub) + '</span>' +
+        '<span class="nextup-exam">' + names + '</span>' +
+        '<span class="nextup-date">' + dateLabel + ', 2026</span>' +
+      '</div>' +
+      '<div class="nextup-cta"><a href="' + ctaHref + '">' + ctaLabel + ' →</a></div>';
+  })();
+
+
+  (function () {
+    const wrap = document.getElementById('courses');
+    let html = '<div class="nav-grid two">';
+    COURSES.forEach(c => {
+      const courseExams = SCHEDULE.filter(e => e.short === c.short);
+      const readyCount = courseExams.filter(e => e.ready).length;
+      const upcoming = courseExams.filter(e => daysFromToday(e.date) >= 0).sort((a,b)=>dDate(a.date)-dDate(b.date));
+      const nextLabel = upcoming.length ? 'Next: ' + upcoming[0].exam + ' · ' + upcoming[0].label : 'Semester complete';
+      html += '<a class="quiz-card" href="' + c.href + '">' +
+        '<div class="qc-top"><span class="qc-type">Course</span><span class="score-badge ' + (readyCount?'done':'fresh') + '">' + readyCount + ' ready</span></div>' +
+        '<div class="qc-name">' + c.name + '</div>' +
+        '<div class="qc-desc">' + c.desc + '</div>' +
+        '<div class="qc-bottom" style="margin-top:0.9rem;"><span class="qc-count">' + nextLabel + '</span></div>' +
+      '</a>';
+    });
+    html += '</div>';
+    wrap.innerHTML = html;
+  })();
+
+  (function () {
+    const sorted = SCHEDULE.slice().sort((a,b) => dDate(a.date) - dDate(b.date));
+    const upcoming = sorted.filter(e => daysFromToday(e.date) >= 0);
+    const nextDate = upcoming.length ? upcoming[0].date : null;
+    const tl = document.getElementById('timeline');
+    const detail = document.getElementById('tl-detail');
+
+    tl.innerHTML = sorted.map((e, i) => {
+      const isNext = e.date === nextDate;
+      const days = daysFromToday(e.date);
+      let chip;
+      if (days > 1) chip = '<span class="tl-days ' + e.short + '">' + days + ' days</span>';
+      else if (days === 1) chip = '<span class="tl-days ' + e.short + '">tomorrow</span>';
+      else if (days === 0) chip = '<span class="tl-days ' + e.short + '">today</span>';
+      else chip = '<span class="tl-days past">done</span>';
+      return '<div class="tl-item ' + e.short + ' ' + (isNext?'next':'') + '" data-i="' + i + '" onclick="__showDetail(' + i + ')">' +
+        (isNext ? '<span class="tl-next-tag">Next</span>' : '') +
+        '<div class="tl-course">' + e.course + '</div>' +
+        '<div class="tl-exam">' + e.exam + '</div>' +
+        '<div class="tl-date">' + e.label + '</div>' +
+        chip +
+      '</div>';
+    }).join('');
+
+    window.__SORTED = sorted;
+    window.__showDetail = function (i) {
+      const e = sorted[i];
+      document.querySelectorAll('.tl-item').forEach(c => c.classList.remove('selected'));
+      const card = document.querySelector('.tl-item[data-i="' + i + '"]');
+      if (card) card.classList.add('selected');
+
+      let body;
+      if (e.topics && e.topics.length) {
+        body = '<div class="tl-topics">' + e.topics.map(t =>
+          '<div class="tl-topic ' + e.short + '"><span class="tdot"></span>' + t + '</div>'
+        ).join('') + '</div>';
+      } else {
+        body = '<div class="tl-detail-empty">Topics not posted yet — check back closer to the date.</div>';
+      }
+
+      let cta = '';
+      if (e.ready && e.href) {
+        cta = '<div class="tl-detail-cta"><a href="' + e.href + '">Open study hub →</a></div>';
+      } else {
+        const courseHref = e.short === 'ms' ? 'medsurg2/index.html' : 'psych/index.html';
+        cta = '<div class="tl-detail-cta"><a href="' + courseHref + '" style="background:var(--surface);color:var(--ink-soft);border:1px solid var(--border-strong);">View course →</a></div>';
+      }
+
+      detail.innerHTML =
+        '<div class="tl-detail-card">' +
+          '<div class="tl-detail-head">' +
+            '<span class="tl-detail-title">' + e.course + ' · ' + e.exam + '</span>' +
+            '<span class="tl-detail-meta">' + e.label + ', 2026</span>' +
+          '</div>' +
+          body + cta +
+        '</div>';
+      detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+  })();
 </script>
+<script src="shared/footer.js"></script>
 </body>
 </html>
