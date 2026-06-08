@@ -61,7 +61,7 @@
   </div>
 
   <div class="donation-footer">
-    <div class="msg"><strong>Built this to help us all pass.</strong><br>Took a fair few hours to put together — if it helped your studying, a few bucks is always appreciated.</div>
+    <div class="msg"><strong>Made this to help us all pass</strong> — if it helped, a tip is always appreciated.</div>
     <div class="donation-links">
       <a href="https://venmo.com/Tom_Thomas" target="_blank" rel="noopener" class="donate-btn venmo"><img src="../../shared/assets/venmo.png" alt="Venmo"></a>
       <a href="#" class="donate-btn zelle"><img src="../../shared/assets/zelle.png" alt="Zelle"><span class="znum">(914) 646-0456</span></a>
@@ -80,16 +80,16 @@
         name: "Dysrhythmias",
         count: "57 questions",
         quizzes: [
-          { type: "Knowledge Check", icon: "fa-regular fa-book-open", name: "Know it cold", count: "37 questions", href: "dysrhythmias-kc.html", key: "ms2_e1_dysr_kc" },
-          { type: "Deep Drill",     icon: "fa-solid fa-stethoscope", name: "Apply it",     count: "20 questions", href: "dysrhythmias-dd.html", key: "ms2_e1_dysr_dd" }
+          { type: "Knowledge Check", name: "Know it cold", count: "37 questions", href: "dysrhythmias-kc.html", key: "ms2_e1_dysr_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "20 questions", href: "dysrhythmias-dd.html", key: "ms2_e1_dysr_dd" }
         ]
       },
       {
         name: "Vision & Hearing",
         count: "coming soon",
         quizzes: [
-          { type: "Knowledge Check", icon: "fa-regular fa-book-open", name: "Know it cold", count: "building next", href: null, key: "ms2_e1_vh_kc" },
-          { type: "Deep Drill",     icon: "fa-solid fa-stethoscope", name: "Apply it",     count: "building next", href: null, key: "ms2_e1_vh_dd" }
+          { type: "Knowledge Check", name: "Know it cold", count: "building next", href: null, key: "ms2_e1_vh_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "building next", href: null, key: "ms2_e1_vh_dd" }
         ]
       }
     ]
@@ -123,7 +123,7 @@
         const cls = q.href ? 'quiz-card' : 'quiz-card sim-locked';
         const href = q.href || '#';
         html += `<a class="${cls}" href="${href}">
-          <div class="qc-top"><span class="qc-type">${q.type}</span><span class="qc-icon"><i class="${q.icon}"></i></span></div>
+          <div class="qc-top"><span class="qc-type">${q.type}</span></div>
           <div class="qc-name">${q.name}</div>
           <div class="qc-bottom"><span class="qc-count">${q.count}</span>${badge}</div>
         </a>`;

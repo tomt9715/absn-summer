@@ -21,7 +21,7 @@
   <div id="courses"></div>
 
   <div class="donation-footer">
-    <div class="msg"><strong>Built this to help us all pass.</strong><br>Took a fair few hours to put together — if it helped your studying, a few bucks is always appreciated.</div>
+    <div class="msg"><strong>Made this to help us all pass</strong> — if it helped, a tip is always appreciated.</div>
     <div class="donation-links">
       <a href="https://venmo.com/Tom_Thomas" target="_blank" rel="noopener" class="donate-btn venmo"><img src="shared/assets/venmo.png" alt="Venmo"></a>
       <a href="#" class="donate-btn zelle"><img src="shared/assets/zelle.png" alt="Zelle"><span class="znum">(914) 646-0456</span></a>
@@ -32,15 +32,15 @@
 <script>
   // ── Courses ──
   const COURSES = [
-    { name: "MedSurg II", desc: "Dysrhythmias, Vision & Hearing, and more", icon: "fa-solid fa-heart-pulse", href: "medsurg2/index.html", ready: true },
-    { name: "Psychiatric Nursing", desc: "Building out as the semester goes", icon: "fa-solid fa-brain", href: "psych/index.html", ready: true }
+    { name: "MedSurg II", desc: "Dysrhythmias, Vision & Hearing, and more", href: "medsurg2/index.html", ready: true },
+    { name: "Psychiatric Nursing", desc: "Building out as the semester goes", href: "psych/index.html", ready: true }
   ];
 
   const wrap = document.getElementById('courses');
   let html = '<div class="nav-grid two">';
   COURSES.forEach(c => {
     html += `<a class="quiz-card" href="${c.href}">
-      <div class="qc-top"><span class="qc-type">Course</span><span class="qc-icon"><i class="${c.icon}"></i></span></div>
+      <div class="qc-top"><span class="qc-type">Course</span></div>
       <div class="qc-name">${c.name}</div>
       <div class="qc-desc">${c.desc}</div>
     </a>`;
