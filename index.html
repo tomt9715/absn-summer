@@ -10,14 +10,18 @@
   .nextup {
     margin-top: 2rem; background: var(--surface); border: 1px solid var(--border);
     border-radius: 16px; padding: 1.6rem 1.8rem; box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-    display: flex; flex-direction: column; gap: 1.2rem;
+    display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap;
     opacity: 0; transform: translateY(16px); animation: rise 0.7s ease 0.4s forwards;
   }
-  .nextup-row { display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap; }
-  .nextup-multi .nextup-row + .nextup-row { padding-top: 1.2rem; border-top: 1px solid var(--border); }
-  .nextup-num { font-family: 'Fraunces', serif; font-size: 4.2rem; font-weight: 600; color: var(--accent); line-height: 0.9; font-variant-numeric: tabular-nums; min-width: 1.2ch; }
-  .nextup-body { display: flex; flex-direction: column; gap: 3px; }
-  .nextup-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-mute); }
+  .nextup-numcol { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; flex-shrink: 0; }
+  .nextup-num { font-family: 'Fraunces', serif; font-size: 4.6rem; font-weight: 600; color: var(--accent); line-height: 0.85; font-variant-numeric: tabular-nums; }
+  .nextup-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-mute); max-width: 120px; line-height: 1.4; }
+  .nextup-rows { flex: 1; display: flex; flex-direction: column; gap: 0; min-width: 240px; }
+  .nextup-row { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; padding: 0.9rem 0; }
+  .nextup-multi .nextup-row + .nextup-row { border-top: 1px solid var(--border); }
+  .nextup-rows .nextup-row:first-child { padding-top: 0; }
+  .nextup-rows .nextup-row:last-child { padding-bottom: 0; }
+  .nextup-body { display: flex; flex-direction: column; gap: 2px; }
   .nextup-exam { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 500; color: var(--ink); }
   .nextup-date { font-size: 14px; color: var(--ink-soft); }
   .nextup-cta { margin-left: auto; align-self: center; }
@@ -148,14 +152,12 @@
     else if (soonest === 1) { numTxt = '1'; sub = 'tomorrow'; }
     const dateLabel = sameDay[0].label;
 
-    // one banner row per exam sharing the soonest date
-    function bannerRow(e, showNum) {
+    // one exam row (no number — the shared number sits in its own column)
+    function examRow(e) {
       const ctaHref = e.ready && e.href ? e.href : (e.short === 'ms' ? 'medsurg2/index.html' : 'psych/index.html');
       const ctaLabel = e.ready ? 'Start studying' : 'View course';
       return '<div class="nextup-row">' +
-        '<div class="nextup-num">' + (showNum ? numTxt : '') + '</div>' +
         '<div class="nextup-body">' +
-          '<span class="nextup-label">Next exam' + (sub === "it's today" ? '' : ' · ' + sub) + '</span>' +
           '<span class="nextup-exam">' + e.course + ' ' + e.exam + '</span>' +
           '<span class="nextup-date">' + dateLabel + ', 2026</span>' +
         '</div>' +
@@ -163,7 +165,12 @@
       '</div>';
     }
 
-    el.innerHTML = sameDay.map((e, i) => bannerRow(e, i === 0)).join('');
+    el.innerHTML =
+      '<div class="nextup-numcol">' +
+        '<div class="nextup-num">' + numTxt + '</div>' +
+        '<div class="nextup-label">Next exam' + (sub === "it's today" ? '' : ' · ' + sub) + '</div>' +
+      '</div>' +
+      '<div class="nextup-rows">' + sameDay.map(examRow).join('') + '</div>';
     if (sameDay.length > 1) el.classList.add('nextup-multi');
   })();
 
