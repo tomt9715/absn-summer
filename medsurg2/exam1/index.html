@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedSurg II — Exam 1 Study Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../../shared/hub.css">
+</head>
+<body>
+<div class="accent-band"></div>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-inner">
+      <a href="../index.html" class="hub-back">← MedSurg II exams</a>
+      <span class="eyebrow">MedSurg II · Manhattanville</span>
+      <h1 class="hero-title">Exam 1 <em>Study Hub</em></h1>
+
+      <div class="countdown-card">
+        <div class="countdown-num" id="cd-num">—</div>
+        <div class="countdown-meta">
+          <span class="countdown-label">Days until exam</span>
+          <span class="countdown-date" id="cd-date">Monday, June 16</span>
+          <span class="countdown-sub" id="cd-sub">&nbsp;</span>
+        </div>
+        <div class="countdown-divider"></div>
+        <div class="progress-overview">
+          <div class="ring-wrap">
+            <svg width="76" height="76" viewBox="0 0 76 76">
+              <circle class="ring-bg" cx="38" cy="38" r="32"></circle>
+              <circle class="ring-fg" id="ring" cx="38" cy="38" r="32" stroke-dasharray="201" stroke-dashoffset="201"></circle>
+            </svg>
+            <div class="ring-label"><span class="ring-pct" id="ring-pct">0%</span></div>
+          </div>
+          <span class="ring-cap">of quizzes attempted</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="topics"></div>
+
+  <a class="sim-card sim-locked" href="#" id="sim-card">
+    <div class="sim-left">
+      <span class="qc-type">Exam Simulator</span>
+      <div class="sim-name">Full mixed simulator</div>
+      <span class="sim-sub">All topics shuffled together · timed run-through</span>
+    </div>
+    <span class="sim-lock-note">unlocks once both topics are built</span>
+  </a>
+
+  <div class="howto">
+    <h3>How to get the most out of this</h3>
+    <ul>
+      <li><span class="dot">→</span><span>Start with the <strong>Knowledge Check</strong> to drill the facts, then hit the <strong>Deep Drill</strong> for the clinical scenarios you'll actually see on the exam.</span></li>
+      <li><span class="dot">→</span><span>Questions and answer choices <strong>reshuffle every time</strong> — so you're learning the material, not memorizing where the answer sits.</span></li>
+      <li><span class="dot">→</span><span>Retake as many times as you want — your best score is saved.</span></li>
+    </ul>
+  </div>
+
+  <div class="donation-footer">
+    <div class="msg"><strong>Built this to help us all pass.</strong><br>Took a fair few hours to put together — if it helped your studying, a few bucks is always appreciated.</div>
+    <div class="donation-links">
+      <a href="https://venmo.com/Tom_Thomas" target="_blank" rel="noopener" class="donate-btn venmo"><img src="../../shared/assets/venmo.png" alt="Venmo"></a>
+      <a href="#" class="donate-btn zelle"><img src="../../shared/assets/zelle.png" alt="Zelle"><span class="znum">(914) 646-0456</span></a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ── EXAM CONFIG — edit this block to add topics/quizzes ──
+  const EXAM = {
+    date: "2026-06-16",      // YYYY-MM-DD
+    dateLabel: "Monday, June 16",
+    topics: [
+      {
+        name: "Dysrhythmias",
+        count: "57 questions",
+        quizzes: [
+          { type: "Knowledge Check", icon: "fa-regular fa-book-open", name: "Know it cold", count: "37 questions", href: "dysrhythmias-kc.html", key: "ms2_e1_dysr_kc" },
+          { type: "Deep Drill",     icon: "fa-solid fa-stethoscope", name: "Apply it",     count: "20 questions", href: "dysrhythmias-dd.html", key: "ms2_e1_dysr_dd" }
+        ]
+      },
+      {
+        name: "Vision & Hearing",
+        count: "coming soon",
+        quizzes: [
+          { type: "Knowledge Check", icon: "fa-regular fa-book-open", name: "Know it cold", count: "building next", href: null, key: "ms2_e1_vh_kc" },
+          { type: "Deep Drill",     icon: "fa-solid fa-stethoscope", name: "Apply it",     count: "building next", href: null, key: "ms2_e1_vh_dd" }
+        ]
+      }
+    ]
+  };
+
+  // ── Render topics ──
+  (function () {
+    const wrap = document.getElementById('topics');
+    let attempted = 0, total = 0;
+    let html = '';
+    EXAM.topics.forEach((topic, ti) => {
+      html += `<section class="section">
+        <div class="section-head">
+          <span class="section-num">${ti + 1}</span>
+          <span class="section-name">${topic.name}</span>
+          <span class="section-count">${topic.count}</span>
+        </div>
+        <div class="quiz-grid">`;
+      topic.quizzes.forEach(q => {
+        total++;
+        let badge = '<span class="score-badge fresh">Not started</span>';
+        if (!q.href) badge = '<span class="score-badge fresh">Soon</span>';
+        else {
+          let best = null;
+          try { const v = localStorage.getItem(q.key + '_best'); if (v !== null) best = parseInt(v, 10); } catch (e) {}
+          if (best !== null && !isNaN(best)) {
+            attempted++;
+            badge = `<span class="score-badge ${best >= 77 ? 'done' : 'partial'}">Best ${best}%</span>`;
+          }
+        }
+        const cls = q.href ? 'quiz-card' : 'quiz-card sim-locked';
+        const href = q.href || '#';
+        html += `<a class="${cls}" href="${href}">
+          <div class="qc-top"><span class="qc-type">${q.type}</span><span class="qc-icon"><i class="${q.icon}"></i></span></div>
+          <div class="qc-name">${q.name}</div>
+          <div class="qc-bottom"><span class="qc-count">${q.count}</span>${badge}</div>
+        </a>`;
+      });
+      html += `</div></section>`;
+    });
+    wrap.innerHTML = html;
+
+    // progress ring
+    const pct = total ? Math.round((attempted / total) * 100) : 0;
+    const circ = 201;
+    document.getElementById('ring-pct').textContent = pct + '%';
+    setTimeout(() => { document.getElementById('ring').style.strokeDashoffset = circ - (circ * pct / 100); }, 200);
+  })();
+
+  // ── Countdown ──
+  (function () {
+    const parts = EXAM.date.split('-').map(Number);
+    const exam = new Date(parts[0], parts[1] - 1, parts[2]);
+    const now = new Date();
+    const d0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const diff = Math.round((exam - d0) / 86400000);
+    document.getElementById('cd-date').textContent = EXAM.dateLabel;
+    const numEl = document.getElementById('cd-num'), subEl = document.getElementById('cd-sub');
+    if (diff > 1) { numEl.textContent = diff; subEl.textContent = diff + ' days to lock it in'; }
+    else if (diff === 1) { numEl.textContent = '1'; subEl.textContent = 'tomorrow — you got this'; }
+    else if (diff === 0) { numEl.textContent = '0'; subEl.textContent = "it's today — go crush it"; }
+    else { numEl.textContent = '✓'; subEl.textContent = 'exam day has passed'; }
+  })();
+</script>
+</body>
+</html>

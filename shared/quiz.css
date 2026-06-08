@@ -1,0 +1,167 @@
+/* ============================================
+   ABSN Summer — Shared Quiz Styles
+   Single source of truth for all quiz pages.
+   ============================================ */
+:root {
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --surface2: #fbfaf7;
+  --border: #e4e0d6;
+  --border-strong: #d4cfc2;
+  --ink: #232020;
+  --ink-soft: #4f4a43;
+  --ink-mute: #847d71;
+  --accent: #b5482e;
+  --accent-deep: #9c3c25;
+  --accent-soft: #f3e0d9;
+  --gold: #b08534;
+  --gold-soft: #f6ecd6;
+  --teal: #2f6f6b;
+  --teal-soft: #dcebe9;
+  --correct: #2f7d4f;
+  --correct-soft: #ddf0e2;
+  --correct-border: #b9ddc4;
+  --wrong: #b5482e;
+  --wrong-soft: #f6e2dc;
+  --wrong-border: #e6c0b4;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+  font-size: 17px;
+  line-height: 1.5;
+}
+.wrap { max-width: 720px; margin: 0 auto; }
+
+/* Header */
+.top-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+.back-link {
+  font-size: 14px; color: var(--ink-mute); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 7px 13px; border: 1px solid var(--border); border-radius: 7px;
+  background: var(--surface); transition: all 0.15s;
+}
+.back-link:hover { border-color: var(--accent); color: var(--accent); }
+
+.quiz-title-row { margin-bottom: 1.5rem; }
+.quiz-type-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent);
+  background: var(--accent-soft); padding: 4px 11px; border-radius: 5px;
+  display: inline-block; margin-bottom: 0.8rem;
+}
+h1 {
+  font-family: 'Fraunces', serif; font-size: 2.1rem; font-weight: 500;
+  color: var(--ink); line-height: 1.1; letter-spacing: -0.01em;
+}
+.quiz-sub { font-size: 15px; color: var(--ink-mute); margin-top: 0.5rem; }
+
+/* Progress */
+.progress-row { display: flex; align-items: center; gap: 14px; margin-bottom: 1.6rem; }
+.progress-track { flex: 1; height: 7px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0%; background: var(--accent); border-radius: 4px; transition: width 0.3s ease; }
+.progress-label { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-mute); white-space: nowrap; }
+.score-pill { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--teal); background: var(--teal-soft); padding: 3px 10px; border-radius: 5px; white-space: nowrap; }
+
+/* Question card */
+.question-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px; margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.q-meta { display: flex; align-items: center; gap: 9px; margin-bottom: 16px; }
+.q-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-mute); }
+.q-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 3px 9px;
+  border-radius: 4px; text-transform: uppercase; letter-spacing: 0.04em;
+  background: var(--teal-soft); color: var(--teal);
+}
+.q-stem { font-size: 18px; line-height: 1.6; color: var(--ink); margin-bottom: 22px; font-weight: 500; }
+
+.options { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: flex; align-items: flex-start; gap: 13px;
+  padding: 15px 17px; border: 1px solid var(--border-strong);
+  border-radius: 9px; cursor: pointer; background: var(--surface2);
+  transition: all 0.12s; text-align: left; width: 100%;
+  font-family: 'DM Sans', sans-serif;
+}
+.opt:hover:not([disabled]) { border-color: var(--accent); background: var(--accent-soft); }
+.opt-letter { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-mute); min-width: 18px; margin-top: 1px; font-weight: 600; }
+.opt-text { font-size: 16px; color: var(--ink); line-height: 1.5; }
+.opt[disabled] { cursor: default; }
+.opt.correct { border-color: var(--correct); background: var(--correct-soft); }
+.opt.correct .opt-letter { color: var(--correct); }
+.opt.correct .opt-text { color: var(--correct); font-weight: 600; }
+.opt.wrong { border-color: var(--wrong); background: var(--wrong-soft); }
+.opt.wrong .opt-letter { color: var(--wrong); }
+.opt.wrong .opt-text { color: var(--wrong); }
+.opt.dimmed { opacity: 0.4; }
+
+.rationale {
+  margin-top: 16px; padding: 16px 18px; border-radius: 9px;
+  font-size: 15px; line-height: 1.65; animation: fadeIn 0.2s ease;
+}
+.rationale.r-correct { background: var(--correct-soft); border: 1px solid var(--correct-border); color: var(--ink-soft); }
+.rationale.r-wrong { background: var(--wrong-soft); border: 1px solid var(--wrong-border); color: var(--ink-soft); }
+.rationale .verdict { font-weight: 700; display: block; margin-bottom: 6px; font-size: 15px; }
+.rationale.r-correct .verdict { color: var(--correct); }
+.rationale.r-wrong .verdict { color: var(--wrong); }
+.rationale strong { color: var(--ink); font-weight: 600; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+.next-btn {
+  display: block; margin-top: 16px; padding: 13px 24px;
+  background: var(--accent); color: #fff; border: none; border-radius: 8px;
+  font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; animation: fadeIn 0.2s ease;
+}
+.next-btn:hover { background: var(--accent-deep); transform: translateY(-1px); }
+
+/* Results */
+.results-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 32px; text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.score-big { font-family: 'Fraunces', serif; font-size: 4.5rem; font-weight: 600; line-height: 1; margin-bottom: 6px; }
+.score-big.pass { color: var(--correct); }
+.score-big.fail { color: var(--accent); }
+.score-sub { font-size: 16px; color: var(--ink-mute); margin-bottom: 8px; }
+.score-msg { font-size: 15px; color: var(--ink-soft); margin-bottom: 24px; }
+
+.results-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 22px; flex-wrap: wrap; }
+.r-tab {
+  padding: 9px 18px; border-radius: 7px; font-size: 14px; font-weight: 600;
+  cursor: pointer; border: 1px solid var(--border-strong); background: var(--surface);
+  color: var(--ink-soft); transition: all 0.12s; font-family: 'DM Sans', sans-serif;
+}
+.r-tab:hover { border-color: var(--accent); }
+.r-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.review-list { text-align: left; }
+.review-item { padding: 17px; border: 1px solid var(--border); border-radius: 9px; margin-bottom: 10px; background: var(--surface2); }
+.ri-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; }
+.ri-result { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 2px 8px; border-radius: 4px; }
+.ri-result.correct { background: var(--correct-soft); color: var(--correct); }
+.ri-result.wrong { background: var(--wrong-soft); color: var(--wrong); }
+.review-item-q { font-size: 15px; color: var(--ink); margin-bottom: 11px; line-height: 1.55; font-weight: 500; }
+.review-item-ans { font-size: 14px; display: flex; flex-direction: column; gap: 5px; }
+.ri-yours { color: var(--wrong); }
+.ri-correct-ans { color: var(--correct); }
+.ri-rationale { font-size: 14px; color: var(--ink-soft); margin-top: 10px; padding-top: 11px; border-top: 1px solid var(--border); line-height: 1.6; }
+.empty-msg { padding: 30px; color: var(--ink-mute); font-size: 15px; }
+
+.results-actions { display: flex; gap: 10px; justify-content: center; margin-top: 8px; }
+.action-btn {
+  padding: 12px 24px; border-radius: 8px; font-size: 15px; font-weight: 600;
+  cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; transition: all 0.15s; text-decoration: none;
+}
+.action-btn.primary { background: var(--accent); color: #fff; }
+.action-btn.primary:hover { background: var(--accent-deep); }
+.action-btn.ghost { background: var(--surface); color: var(--ink-soft); border: 1px solid var(--border-strong); }
+.action-btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
