@@ -3,257 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ABSN Summer — Study Hub</title>
+<title>Psych — Exam 1 Study Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared/hub.css">
-<style>
-  .nextup {
-    margin-top: 2rem; background: var(--surface); border: 1px solid var(--border);
-    border-radius: 16px; padding: 1.6rem 1.8rem; box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-    display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap;
-    opacity: 0; transform: translateY(16px); animation: rise 0.7s ease 0.4s forwards;
-  }
-  .nextup-numcol { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; flex-shrink: 0; }
-  .nextup-num { font-family: 'Fraunces', serif; font-size: 4.6rem; font-weight: 600; color: var(--accent); line-height: 0.85; font-variant-numeric: tabular-nums; }
-  .nextup-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-mute); max-width: 120px; line-height: 1.4; }
-  .nextup-rows { flex: 1; display: flex; flex-direction: column; gap: 0; min-width: 240px; }
-  .nextup-row { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; padding: 0.9rem 0; }
-  .nextup-multi .nextup-row + .nextup-row { border-top: 1px solid var(--border); }
-  .nextup-rows .nextup-row:first-child { padding-top: 0; }
-  .nextup-rows .nextup-row:last-child { padding-bottom: 0; }
-  .nextup-body { display: flex; flex-direction: column; gap: 2px; }
-  .nextup-exam { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 500; color: var(--ink); }
-  .nextup-date { font-size: 14px; color: var(--ink-soft); }
-  .nextup-cta { margin-left: auto; align-self: center; }
-  .nextup-cta a { display: inline-flex; align-items: center; gap: 7px; padding: 11px 18px; background: var(--accent); color: #fff; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.15s; }
-  .nextup-cta a:hover { background: var(--accent-deep); transform: translateY(-1px); }
-
-
-  .timeline-wrap { margin-top: 2.8rem; opacity: 0; transform: translateY(16px); animation: rise 0.6s ease 0.7s forwards; }
-  .timeline-title { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 500; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .timeline-legend { display: flex; gap: 14px; margin-left: auto; font-size: 12px; font-weight: 400; }
-  .legend-item { display: inline-flex; align-items: center; gap: 5px; color: var(--ink-mute); }
-  .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
-  .legend-dot.ms { background: var(--accent); }
-  .legend-dot.ps { background: var(--teal); }
-
-  .timeline { display: flex; gap: 10px; overflow-x: auto; padding-top: 12px; padding-bottom: 8px; scrollbar-width: thin; }
-  .tl-item {
-    flex: 1; min-width: 110px; background: var(--surface); border: 1px solid var(--border);
-    border-radius: 11px; padding: 0.9rem 1rem; position: relative;
-    border-top: 3px solid var(--border-strong); transition: all 0.15s; cursor: pointer;
-  }
-  .tl-item:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
-  .tl-item.selected { border-color: var(--ink-soft); }
-  .tl-item.ms { border-top-color: var(--accent); }
-  .tl-item.ps { border-top-color: var(--teal); }
-  .tl-item.next { box-shadow: 0 4px 14px rgba(181,72,46,0.12); border-color: var(--accent); }
-  .tl-course { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-mute); }
-  .tl-exam { font-size: 15px; font-weight: 600; color: var(--ink); margin: 3px 0 6px; }
-  .tl-date { font-size: 13px; color: var(--ink-soft); }
-  .tl-next-tag { position: absolute; top: -10px; left: 10px; font-family: 'JetBrains Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; background: var(--accent); color: #fff; padding: 3px 8px; border-radius: 5px; z-index: 2; box-shadow: 0 2px 6px rgba(181,72,46,0.2); }
-  .tl-days { display: inline-block; margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 2px 8px; border-radius: 5px; }
-  .tl-days.ms { background: var(--accent-soft); color: var(--accent); }
-  .tl-days.ps { background: var(--teal-soft); color: var(--teal); }
-  .tl-days.past { background: var(--surface2); color: var(--ink-mute); border: 1px solid var(--border); }
-
-  /* Detail panel */
-  .tl-detail { margin-top: 14px; }
-  .tl-detail-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-    padding: 1.3rem 1.5rem; animation: fadeIn 0.25s ease;
-  }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-  .tl-detail-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap; }
-  .tl-detail-title { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 500; color: var(--ink); }
-  .tl-detail-meta { font-size: 13px; color: var(--ink-mute); }
-  .tl-topics { display: flex; flex-direction: column; gap: 8px; }
-  .tl-topic { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink-soft); }
-  .tl-topic .tdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-  .tl-topic.ms .tdot { background: var(--accent); }
-  .tl-topic.ps .tdot { background: var(--teal); }
-  .tl-detail-empty { font-size: 15px; color: var(--ink-mute); font-style: italic; }
-  .tl-detail-cta { margin-top: 1.1rem; }
-  .tl-detail-cta a { display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; background: var(--accent); color: #fff; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.15s; }
-  .tl-detail-cta a:hover { background: var(--accent-deep); transform: translateY(-1px); }
-</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../../shared/hub.css">
 </head>
 <body>
 <div class="accent-band"></div>
 <div class="wrap">
+
   <header class="hero">
     <div class="hero-inner">
-      <span class="eyebrow">Summer Semester · Manhattanville</span>
-      <h1 class="hero-title">ABSN Summer <em>Study Hub</em></h1>
-      <div class="nextup" id="nextup"></div>
+      <a href="../index.html" class="hub-back">← Psych exams</a>
+      <span class="eyebrow">Psychiatric Nursing · Manhattanville</span>
+      <h1 class="hero-title">Exam 1 <em>Study Hub</em></h1>
+
+      <div class="countdown-card">
+        <div class="countdown-num" id="cd-num">—</div>
+        <div class="countdown-meta">
+          <span class="countdown-label">Days until exam</span>
+          <span class="countdown-date" id="cd-date">Monday, June 16</span>
+          <span class="countdown-sub" id="cd-sub">&nbsp;</span>
+        </div>
+        <div class="countdown-divider"></div>
+        <div class="progress-overview">
+          <div class="ring-wrap">
+            <svg width="76" height="76" viewBox="0 0 76 76">
+              <circle class="ring-bg" cx="38" cy="38" r="32"></circle>
+              <circle class="ring-fg" id="ring" cx="38" cy="38" r="32" stroke-dasharray="201" stroke-dashoffset="201"></circle>
+            </svg>
+            <div class="ring-label"><span class="ring-pct" id="ring-pct">0%</span></div>
+          </div>
+          <span class="ring-cap">of quizzes attempted</span>
+        </div>
+      </div>
     </div>
   </header>
 
-  <div id="courses"></div>
+  <div id="topics"></div>
 
-  <div class="timeline-wrap">
-    <div class="timeline-title">
-      Semester at a glance
-      <span class="timeline-legend">
-        <span class="legend-item"><span class="legend-dot ms"></span>MedSurg II</span>
-        <span class="legend-item"><span class="legend-dot ps"></span>Psych</span>
-      </span>
+  <a class="sim-card sim-locked" href="#" id="sim-card">
+    <div class="sim-left">
+      <span class="qc-type">Exam Simulator</span>
+      <div class="sim-name">Full 50-question simulator</div>
+      <span class="sim-sub">All clusters shuffled · mirrors the real blueprint</span>
     </div>
-    <div class="timeline" id="timeline"></div>
-    <div class="tl-detail" id="tl-detail"></div>
+    <span class="sim-lock-note">unlocks once all clusters are built</span>
+  </a>
+
+  <div class="howto">
+    <h3>How to get the most out of this</h3>
+    <ul>
+      <li><span class="dot">→</span><span>The five clusters map to the professor's blueprint. Heaviest on the exam: <strong>Therapeutic Communication (11)</strong> and <strong>MSE (10)</strong>.</span></li>
+      <li><span class="dot">→</span><span>Start with the <strong>Knowledge Check</strong> to drill facts, then hit the <strong>Deep Drill</strong> for the clinical scenarios.</span></li>
+      <li><span class="dot">→</span><span>Questions and answer choices <strong>reshuffle every time</strong> — so you're learning the material, not memorizing where the answer sits.</span></li>
+      <li><span class="dot">→</span><span>Retake as many times as you want — your best score is saved.</span></li>
+    </ul>
   </div>
 
   <div class="donation-footer">
     <div class="msg"><strong>Made this to help us all pass</strong> — if it helped, a tip is always appreciated.</div>
     <div class="donation-links">
-      <a href="https://venmo.com/Tom_Thomas" target="_blank" rel="noopener" class="donate-btn venmo"><img src="shared/assets/venmo.png" alt="Venmo"></a>
-      <a href="#" class="donate-btn zelle"><img src="shared/assets/zelle.png" alt="Zelle"><span class="znum">(914) 646-0456</span></a>
+      <a href="https://venmo.com/Tom_Thomas" target="_blank" rel="noopener" class="donate-btn venmo"><img src="../../shared/assets/venmo.png" alt="Venmo"></a>
+      <a href="#" class="donate-btn zelle"><img src="../../shared/assets/zelle.png" alt="Zelle"><span class="znum">(914) 646-0456</span></a>
     </div>
   </div>
+
 </div>
 
 <script>
-  const SCHEDULE = [
-    { course: "MedSurg II", short: "ms", exam: "Exam 1", date: "2026-06-16", label: "June 16", href: "medsurg2/exam1/index.html", ready: true, topics: ["Dysrhythmias", "Vision & Hearing", "Fluid & Electrolytes"] },
-    { course: "Psych",      short: "ps", exam: "Exam 1", date: "2026-06-16", label: "June 16", href: "psych/exam1/index.html", ready: true, topics: ["Theories & Defense Mechanisms", "Mental Status Exam", "Therapeutic Communication", "Legal & Ethical", "Treatment Settings", "Foundations & Psychopharm"] },
-    { course: "MedSurg II", short: "ms", exam: "Exam 2", date: "2026-07-07", label: "July 7",  href: null, ready: false, topics: [] },
-    { course: "Psych",      short: "ps", exam: "Exam 2", date: "2026-07-07", label: "July 7",  href: null, ready: false, topics: [] },
-    { course: "Psych",      short: "ps", exam: "Exam 3", date: "2026-07-21", label: "July 21", href: null, ready: false, topics: [] },
-    { course: "MedSurg II", short: "ms", exam: "Exam 3", date: "2026-07-28", label: "July 28", href: null, ready: false, topics: [] },
-    { course: "MedSurg II", short: "ms", exam: "Final",  date: "2026-08-11", label: "Aug 11",  href: null, ready: false, topics: [] },
-    { course: "Psych",      short: "ps", exam: "Final",  date: "2026-08-11", label: "Aug 11",  href: null, ready: false, topics: [] }
-  ];
+  const EXAM = {
+    date: "2026-06-16",
+    dateLabel: "Monday, June 16",
+    topics: [
+      {
+        name: "Theories & Defense Mechanisms",
+        count: "46 questions",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "31 questions", href: "theories-kc.html", key: "ps_e1_theories_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "15 questions", href: "theories-dd.html", key: "ps_e1_theories_dd" }
+        ]
+      },
+      {
+        name: "Mental Status Exam",
+        count: "39 questions",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "24 questions", href: "mse-kc.html", key: "ps_e1_mse_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "15 questions", href: "mse-dd.html", key: "ps_e1_mse_dd" }
+        ]
+      },
+      {
+        name: "Therapeutic Communication & Relationships",
+        count: "36 questions",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "21 questions", href: "comm-kc.html", key: "ps_e1_comm_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "15 questions", href: "comm-dd.html", key: "ps_e1_comm_dd" }
+        ]
+      },
+      {
+        name: "Legal, Ethical & Treatment Settings",
+        count: "31 questions",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "16 questions", href: "legal-kc.html", key: "ps_e1_legal_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "15 questions", href: "legal-dd.html", key: "ps_e1_legal_dd" }
+        ]
+      },
+      {
+        name: "Foundations & Psychopharm",
+        count: "coming soon",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "building", href: null, key: "ps_e1_found_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "building", href: null, key: "ps_e1_found_dd" }
+        ]
+      }
+    ]
+  };
 
-  const COURSES = [
-    { name: "MedSurg II", short: "ms", desc: "Tap to see exams and study hubs", href: "medsurg2/index.html" },
-    { name: "Psychiatric Nursing", short: "ps", desc: "Tap to see exams and study hubs", href: "psych/index.html" }
-  ];
+  (function () {
+    const wrap = document.getElementById('topics');
+    let attempted = 0, total = 0, html = '';
+    EXAM.topics.forEach((topic, ti) => {
+      html += '<section class="section"><div class="section-head"><span class="section-num">' + (ti+1) + '</span><span class="section-name">' + topic.name + '</span><span class="section-count">' + topic.count + '</span></div><div class="quiz-grid">';
+      topic.quizzes.forEach(q => {
+        total++;
+        let badge = '<span class="score-badge fresh">Soon</span>';
+        if (q.href) {
+          let best = null;
+          try { const v = localStorage.getItem(q.key + '_best'); if (v !== null) best = parseInt(v, 10); } catch (e) {}
+          if (best !== null && !isNaN(best)) { attempted++; badge = '<span class="score-badge ' + (best>=77?'done':'partial') + '">Best ' + best + '%</span>'; }
+          else badge = '<span class="score-badge fresh">Not started</span>';
+        }
+        const cls = q.href ? 'quiz-card' : 'quiz-card sim-locked';
+        html += '<a class="' + cls + '" href="' + (q.href||'#') + '"><div class="qc-top"><span class="qc-type">' + q.type + '</span></div><div class="qc-name">' + q.name + '</div><div class="qc-bottom"><span class="qc-count">' + q.count + '</span>' + badge + '</div></a>';
+      });
+      html += '</div></section>';
+    });
+    wrap.innerHTML = html;
+    const pct = total ? Math.round((attempted/total)*100) : 0;
+    document.getElementById('ring-pct').textContent = pct + '%';
+    setTimeout(() => { document.getElementById('ring').style.strokeDashoffset = 201 - (201*pct/100); }, 200);
+  })();
 
-  function dDate(s) { const p = s.split('-').map(Number); return new Date(p[0], p[1]-1, p[2]); }
-  function daysFromToday(s) {
+  (function () {
+    const parts = EXAM.date.split('-').map(Number);
+    const exam = new Date(parts[0], parts[1]-1, parts[2]);
     const now = new Date();
     const d0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    return Math.round((dDate(s) - d0) / 86400000);
-  }
-
-  (function () {
-    const sorted = SCHEDULE.slice().sort((a,b) => dDate(a.date) - dDate(b.date));
-    const upcoming = sorted.filter(e => daysFromToday(e.date) >= 0);
-    const el = document.getElementById('nextup');
-    if (upcoming.length === 0) {
-      el.innerHTML = '<div class="nextup-body"><span class="nextup-exam">Summer semester complete</span><span class="nextup-date">Nice work getting through it all.</span></div>';
-      return;
-    }
-    const soonest = daysFromToday(upcoming[0].date);
-    const sameDay = upcoming.filter(e => daysFromToday(e.date) === soonest);
-
-    let numTxt = soonest, sub = soonest + (soonest === 1 ? ' day away' : ' days away');
-    if (soonest === 0) { numTxt = '0'; sub = "it's today"; }
-    else if (soonest === 1) { numTxt = '1'; sub = 'tomorrow'; }
-    const dateLabel = sameDay[0].label;
-
-    // one exam row (no number — the shared number sits in its own column)
-    function examRow(e) {
-      const ctaHref = e.ready && e.href ? e.href : (e.short === 'ms' ? 'medsurg2/index.html' : 'psych/index.html');
-      const ctaLabel = e.ready ? 'Start studying' : 'View course';
-      return '<div class="nextup-row">' +
-        '<div class="nextup-body">' +
-          '<span class="nextup-exam">' + e.course + ' ' + e.exam + '</span>' +
-          '<span class="nextup-date">' + dateLabel + ', 2026</span>' +
-        '</div>' +
-        '<div class="nextup-cta"><a href="' + ctaHref + '">' + ctaLabel + ' →</a></div>' +
-      '</div>';
-    }
-
-    el.innerHTML =
-      '<div class="nextup-numcol">' +
-        '<div class="nextup-num">' + numTxt + '</div>' +
-        '<div class="nextup-label">Next exam' + (sub === "it's today" ? '' : ' · ' + sub) + '</div>' +
-      '</div>' +
-      '<div class="nextup-rows">' + sameDay.map(examRow).join('') + '</div>';
-    if (sameDay.length > 1) el.classList.add('nextup-multi');
-  })();
-
-
-  (function () {
-    const wrap = document.getElementById('courses');
-    let html = '<div class="nav-grid two">';
-    COURSES.forEach(c => {
-      const courseExams = SCHEDULE.filter(e => e.short === c.short);
-      const readyCount = courseExams.filter(e => e.ready).length;
-      const upcoming = courseExams.filter(e => daysFromToday(e.date) >= 0).sort((a,b)=>dDate(a.date)-dDate(b.date));
-      const nextLabel = upcoming.length ? 'Next: ' + upcoming[0].exam + ' · ' + upcoming[0].label : 'Semester complete';
-      html += '<a class="quiz-card" href="' + c.href + '">' +
-        '<div class="qc-top"><span class="qc-type">Course</span><span class="score-badge ' + (readyCount?'done':'fresh') + '">' + readyCount + ' ready</span></div>' +
-        '<div class="qc-name">' + c.name + '</div>' +
-        '<div class="qc-desc">' + c.desc + '</div>' +
-        '<div class="qc-bottom" style="margin-top:0.9rem;"><span class="qc-count">' + nextLabel + '</span></div>' +
-      '</a>';
-    });
-    html += '</div>';
-    wrap.innerHTML = html;
-  })();
-
-  (function () {
-    const sorted = SCHEDULE.slice().sort((a,b) => dDate(a.date) - dDate(b.date));
-    const upcoming = sorted.filter(e => daysFromToday(e.date) >= 0);
-    const nextDate = upcoming.length ? upcoming[0].date : null;
-    const tl = document.getElementById('timeline');
-    const detail = document.getElementById('tl-detail');
-
-    tl.innerHTML = sorted.map((e, i) => {
-      const isNext = e.date === nextDate;
-      const days = daysFromToday(e.date);
-      let chip;
-      if (days > 1) chip = '<span class="tl-days ' + e.short + '">' + days + ' days</span>';
-      else if (days === 1) chip = '<span class="tl-days ' + e.short + '">tomorrow</span>';
-      else if (days === 0) chip = '<span class="tl-days ' + e.short + '">today</span>';
-      else chip = '<span class="tl-days past">done</span>';
-      return '<div class="tl-item ' + e.short + ' ' + (isNext?'next':'') + '" data-i="' + i + '" onclick="__showDetail(' + i + ')">' +
-        (isNext ? '<span class="tl-next-tag">Next</span>' : '') +
-        '<div class="tl-course">' + e.course + '</div>' +
-        '<div class="tl-exam">' + e.exam + '</div>' +
-        '<div class="tl-date">' + e.label + '</div>' +
-        chip +
-      '</div>';
-    }).join('');
-
-    window.__SORTED = sorted;
-    window.__showDetail = function (i) {
-      const e = sorted[i];
-      document.querySelectorAll('.tl-item').forEach(c => c.classList.remove('selected'));
-      const card = document.querySelector('.tl-item[data-i="' + i + '"]');
-      if (card) card.classList.add('selected');
-
-      let body;
-      if (e.topics && e.topics.length) {
-        body = '<div class="tl-topics">' + e.topics.map(t =>
-          '<div class="tl-topic ' + e.short + '"><span class="tdot"></span>' + t + '</div>'
-        ).join('') + '</div>';
-      } else {
-        body = '<div class="tl-detail-empty">Topics not posted yet — check back closer to the date.</div>';
-      }
-
-      let cta = '';
-      if (e.ready && e.href) {
-        cta = '<div class="tl-detail-cta"><a href="' + e.href + '">Open study hub →</a></div>';
-      } else {
-        const courseHref = e.short === 'ms' ? 'medsurg2/index.html' : 'psych/index.html';
-        cta = '<div class="tl-detail-cta"><a href="' + courseHref + '" style="background:var(--surface);color:var(--ink-soft);border:1px solid var(--border-strong);">View course →</a></div>';
-      }
-
-      detail.innerHTML =
-        '<div class="tl-detail-card">' +
-          '<div class="tl-detail-head">' +
-            '<span class="tl-detail-title">' + e.course + ' · ' + e.exam + '</span>' +
-            '<span class="tl-detail-meta">' + e.label + ', 2026</span>' +
-          '</div>' +
-          body + cta +
-        '</div>';
-      detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    };
+    const diff = Math.round((exam - d0)/86400000);
+    document.getElementById('cd-date').textContent = EXAM.dateLabel;
+    const numEl = document.getElementById('cd-num'), subEl = document.getElementById('cd-sub');
+    if (diff > 1) { numEl.textContent = diff; subEl.textContent = diff + ' days to lock it in'; }
+    else if (diff === 1) { numEl.textContent = '1'; subEl.textContent = 'tomorrow — you got this'; }
+    else if (diff === 0) { numEl.textContent = '0'; subEl.textContent = "it's today — go crush it"; }
+    else { numEl.textContent = '✓'; subEl.textContent = 'exam day has passed'; }
   })();
 </script>
-<script src="shared/footer.js"></script>
+<script src="../../shared/footer.js"></script>
 </body>
 </html>
