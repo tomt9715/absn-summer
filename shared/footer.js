@@ -43,7 +43,7 @@
   function copyZelle(e) {
     e.preventDefault();
     const num = ZELLE_NUMBER;
-    const done = () => showToast('Zelle number copied — paste it in your bank app');
+    const done = () => showToast('Copied!');
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(num).then(done).catch(() => fallbackCopy(num, done));
     } else {
