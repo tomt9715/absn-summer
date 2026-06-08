@@ -10,10 +10,12 @@
   .nextup {
     margin-top: 2rem; background: var(--surface); border: 1px solid var(--border);
     border-radius: 16px; padding: 1.6rem 1.8rem; box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-    display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap;
+    display: flex; flex-direction: column; gap: 1.2rem;
     opacity: 0; transform: translateY(16px); animation: rise 0.7s ease 0.4s forwards;
   }
-  .nextup-num { font-family: 'Fraunces', serif; font-size: 4.2rem; font-weight: 600; color: var(--accent); line-height: 0.9; font-variant-numeric: tabular-nums; }
+  .nextup-row { display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap; }
+  .nextup-multi .nextup-row + .nextup-row { padding-top: 1.2rem; border-top: 1px solid var(--border); }
+  .nextup-num { font-family: 'Fraunces', serif; font-size: 4.2rem; font-weight: 600; color: var(--accent); line-height: 0.9; font-variant-numeric: tabular-nums; min-width: 1.2ch; }
   .nextup-body { display: flex; flex-direction: column; gap: 3px; }
   .nextup-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-mute); }
   .nextup-exam { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 500; color: var(--ink); }
@@ -109,7 +111,7 @@
 <script>
   const SCHEDULE = [
     { course: "MedSurg II", short: "ms", exam: "Exam 1", date: "2026-06-16", label: "June 16", href: "medsurg2/exam1/index.html", ready: true, topics: ["Dysrhythmias", "Vision & Hearing", "Fluid & Electrolytes"] },
-    { course: "Psych",      short: "ps", exam: "Exam 1", date: "2026-06-16", label: "June 16", href: null, ready: false, topics: [] },
+    { course: "Psych",      short: "ps", exam: "Exam 1", date: "2026-06-16", label: "June 16", href: "psych/exam1/index.html", ready: true, topics: ["Theories & Defense Mechanisms", "Mental Status Exam", "Therapeutic Communication", "Legal & Ethical", "Treatment Settings", "Foundations & Psychopharm"] },
     { course: "MedSurg II", short: "ms", exam: "Exam 2", date: "2026-07-07", label: "July 7",  href: null, ready: false, topics: [] },
     { course: "Psych",      short: "ps", exam: "Exam 2", date: "2026-07-07", label: "July 7",  href: null, ready: false, topics: [] },
     { course: "Psych",      short: "ps", exam: "Exam 3", date: "2026-07-21", label: "July 21", href: null, ready: false, topics: [] },
@@ -140,22 +142,29 @@
     }
     const soonest = daysFromToday(upcoming[0].date);
     const sameDay = upcoming.filter(e => daysFromToday(e.date) === soonest);
-    const names = sameDay.map(e => e.course + ' ' + e.exam).join(' + ');
-    const dateLabel = sameDay[0].label;
+
     let numTxt = soonest, sub = soonest + (soonest === 1 ? ' day away' : ' days away');
     if (soonest === 0) { numTxt = '0'; sub = "it's today"; }
     else if (soonest === 1) { numTxt = '1'; sub = 'tomorrow'; }
-    const ctaTarget = sameDay.find(e => e.ready) || sameDay[0];
-    const ctaHref = ctaTarget.ready ? ctaTarget.href : (ctaTarget.short === 'ms' ? 'medsurg2/index.html' : 'psych/index.html');
-    const ctaLabel = ctaTarget.ready ? 'Start studying' : 'View course';
-    el.innerHTML =
-      '<div class="nextup-num">' + numTxt + '</div>' +
-      '<div class="nextup-body">' +
-        '<span class="nextup-label">Next exam' + (sub === "it's today" ? '' : ' · ' + sub) + '</span>' +
-        '<span class="nextup-exam">' + names + '</span>' +
-        '<span class="nextup-date">' + dateLabel + ', 2026</span>' +
-      '</div>' +
-      '<div class="nextup-cta"><a href="' + ctaHref + '">' + ctaLabel + ' →</a></div>';
+    const dateLabel = sameDay[0].label;
+
+    // one banner row per exam sharing the soonest date
+    function bannerRow(e, showNum) {
+      const ctaHref = e.ready && e.href ? e.href : (e.short === 'ms' ? 'medsurg2/index.html' : 'psych/index.html');
+      const ctaLabel = e.ready ? 'Start studying' : 'View course';
+      return '<div class="nextup-row">' +
+        '<div class="nextup-num">' + (showNum ? numTxt : '') + '</div>' +
+        '<div class="nextup-body">' +
+          '<span class="nextup-label">Next exam' + (sub === "it's today" ? '' : ' · ' + sub) + '</span>' +
+          '<span class="nextup-exam">' + e.course + ' ' + e.exam + '</span>' +
+          '<span class="nextup-date">' + dateLabel + ', 2026</span>' +
+        '</div>' +
+        '<div class="nextup-cta"><a href="' + ctaHref + '">' + ctaLabel + ' →</a></div>' +
+      '</div>';
+    }
+
+    el.innerHTML = sameDay.map((e, i) => bannerRow(e, i === 0)).join('');
+    if (sameDay.length > 1) el.classList.add('nextup-multi');
   })();
 
 
