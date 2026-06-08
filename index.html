@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABSN Summer — Study Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="shared/hub.css">
+</head>
+<body>
+<div class="accent-band"></div>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">Summer Semester · Manhattanville</span>
+      <h1 class="hero-title">ABSN Summer <em>Study Hub</em></h1>
+    </div>
+  </header>
+
+  <div id="courses"></div>
+
+  <div class="donation-footer">
+    <div class="msg"><strong>Built this to help us all pass.</strong><br>Took a fair few hours to put together — if it helped your studying, a few bucks is always appreciated.</div>
+    <div class="donation-links">
+      <a href="https://venmo.com/Tom_Thomas" target="_blank" rel="noopener" class="donate-btn venmo"><img src="shared/assets/venmo.png" alt="Venmo"></a>
+      <a href="#" class="donate-btn zelle"><img src="shared/assets/zelle.png" alt="Zelle"><span class="znum">(914) 646-0456</span></a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── Courses ──
+  const COURSES = [
+    { name: "MedSurg II", desc: "Dysrhythmias, Vision & Hearing, and more", icon: "fa-solid fa-heart-pulse", href: "medsurg2/index.html", ready: true },
+    { name: "Psychiatric Nursing", desc: "Building out as the semester goes", icon: "fa-solid fa-brain", href: "psych/index.html", ready: true }
+  ];
+
+  const wrap = document.getElementById('courses');
+  let html = '<div class="nav-grid two">';
+  COURSES.forEach(c => {
+    html += `<a class="quiz-card" href="${c.href}">
+      <div class="qc-top"><span class="qc-type">Course</span><span class="qc-icon"><i class="${c.icon}"></i></span></div>
+      <div class="qc-name">${c.name}</div>
+      <div class="qc-desc">${c.desc}</div>
+    </a>`;
+  });
+  html += '</div>';
+  wrap.innerHTML = html;
+</script>
+</body>
+</html>
