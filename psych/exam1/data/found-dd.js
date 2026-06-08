@@ -72,12 +72,6 @@ window.QUESTIONS = [
     rationale: "The correct pairings are gamma-aminobutyric acid (GABA) with benzodiazepines, serotonin with selective serotonin reuptake inhibitors (SSRIs), and dopamine with antipsychotics. Acetylcholine pairs with cholinesterase inhibitors/smoking-cessation agents and glutamate with memantine."
   },
   {
-    stem: "A nurse is caring for multiple clients. Using Maslow, which finding requires the most immediate attention?",
-    options: ["A client who is not drinking fluids and is becoming dehydrated", "A client who feels they don't fit in with the unit group", "A client who feels they have not achieved enough in life", "A client working toward personal growth goals"],
-    correct: 0,
-    rationale: "Dehydration from not drinking fluids is a physiological need — the top priority on Maslow's hierarchy. The other findings reflect belonging, esteem, and self-actualization, which are lower priorities."
-  },
-  {
     stem: "A client with anxiety is prescribed lorazepam (Ativan). The nurse explains it works by doing what?",
     options: ["Enhancing gamma-aminobutyric acid (GABA), the brain's inhibitory 'brake pedal,' to promote calm", "Blocking dopamine to reduce hallucinations", "Raising acetylcholine (ACh) to improve memory", "Increasing glutamate to boost alertness"],
     correct: 0,

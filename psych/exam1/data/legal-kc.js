@@ -94,5 +94,35 @@ window.QUESTIONS = [
     options: ["They can usually request discharge, since voluntary clients retain the right to leave unless they meet involuntary criteria", "They can never leave once admitted", "They must stay until the provider says treatment is complete", "They can only leave if a family member signs them out"],
     correct: 0,
     rationale: "Voluntary clients generally retain the right to request discharge and leave, unless an assessment shows they now meet involuntary hold criteria (imminent danger to self or others). Admission alone does not remove that right."
+  },
+  {
+    stem: "Under the Duty to Warn (Tarasoff principle), when must a clinician break confidentiality?",
+    options: ["When a client makes a serious, realistic threat against a specific, identifiable victim", "Whenever a client expresses any anger toward someone", "Any time a family member requests information", "Only after the client has already harmed someone"],
+    correct: 0,
+    rationale: "The Tarasoff/Duty to Warn principle requires breaking confidentiality when a client makes a serious, realistic, imminent threat against a specific, identifiable victim. Vague anger or a delusional, non-specific threat does not meet the threshold."
+  },
+  {
+    stem: "Which set of conditions must be met to trigger the Duty to Warn (Tarasoff)?",
+    options: ["A threatening statement, a specific identifiable victim, a serious and realistic threat, and imminent risk", "Any statement of frustration about another person", "A delusional threat with no identifiable target", "A client's refusal to take medication"],
+    correct: 0,
+    rationale: "Duty to Warn requires all of these: the client makes a threatening statement, the victim is specific and identifiable, the threat is serious and realistic (not a delusion), and the risk of harm is imminent."
+  },
+  {
+    stem: "What are the four elements required to prove malpractice?",
+    options: ["Duty, breach of duty, causation, and injury", "Assault, battery, negligence, and fidelity", "Autonomy, beneficence, justice, and veracity", "Duty, consent, documentation, and discharge"],
+    correct: 0,
+    rationale: "Malpractice (professional negligence causing harm) requires four elements: a duty (nurse-client relationship established), a breach of that duty (failure to meet the standard of care), causation (the breach directly caused harm), and injury (the client suffered actual harm)."
+  },
+  {
+    stem: "What is the difference between negligence and malpractice?",
+    options: ["Malpractice is professional negligence by a licensed provider that causes harm; negligence is the general failure to act as a reasonable person would", "They are identical terms", "Negligence only applies to physicians; malpractice only to nurses", "Malpractice is always intentional; negligence is always accidental"],
+    correct: 0,
+    rationale: "Negligence is failing to act as a reasonably prudent person would. Malpractice is professional negligence — a licensed professional failing to meet the standard of care and causing harm. A medication error is an example of an unintentional tort for which the nurse is still accountable."
+  },
+  {
+    stem: "A nurse makes a medication error that is an honest, unintended mistake. How is this best classified?",
+    options: ["An unintentional tort, for which the nurse is still legally accountable", "An intentional tort like battery", "False imprisonment", "Not the nurse's responsibility since it was accidental"],
+    correct: 0,
+    rationale: "An unintended mistake such as a medication error is an unintentional tort. Even though it was not deliberate, the nurse remains legally accountable for the harm caused."
   }
 ];

@@ -124,5 +124,41 @@ window.QUESTIONS = [
     options: ["Deflection or dismissal, such as 'You're upsetting the group. Leave now.'", "Reflecting the client's feelings back to them", "Using open-ended statements", "Sitting in supportive silence"],
     correct: 0,
     rationale: "Deflection/dismissal ('You're upsetting the group, leave now') is non-therapeutic and rejecting. Reflection, open-ended statements, and supportive silence are all therapeutic techniques."
+  },
+  {
+    stem: "According to Peplau, what are the three phases of the nurse–client relationship in order?",
+    options: ["Orientation → Working → Termination", "Working → Orientation → Termination", "Termination → Orientation → Working", "Orientation → Termination → Working"],
+    correct: 0,
+    rationale: "Peplau described the nurse-client relationship in three phases: orientation (build trust, set boundaries), working (explore issues, problem-solve), and termination (summarize progress, prepare for independence)."
+  },
+  {
+    stem: "During which phase of Peplau's nurse–client relationship does the nurse build trust, clarify roles, and set boundaries?",
+    options: ["Orientation phase", "Working phase", "Termination phase", "Evaluation phase"],
+    correct: 0,
+    rationale: "The orientation phase is when the nurse builds trust, clarifies roles, sets boundaries, and establishes the contract. The working phase is where issues are explored and the termination phase prepares the client for independence."
+  },
+  {
+    stem: "In Peplau's framework, which activities occur during the working phase?",
+    options: ["Exploring issues, expressing feelings, and promoting problem-solving and behavior change", "Building initial trust and setting the contract", "Summarizing progress and preparing for discharge", "Introducing the nurse and explaining roles"],
+    correct: 0,
+    rationale: "The working phase is where the client explores issues, expresses feelings, and works on problem-solving, behavior change, and self-esteem. Trust-building belongs to orientation, and summarizing progress belongs to termination."
+  },
+  {
+    stem: "During the termination phase of Peplau's nurse–client relationship, what is the nurse's focus?",
+    options: ["Summarizing progress, evaluating goals, and preparing the client for independence", "Establishing the initial contract and trust", "First exploring the client's core issues", "Setting boundaries for the first time"],
+    correct: 0,
+    rationale: "The termination phase focuses on summarizing progress, evaluating whether goals were met, and preparing the client for independence. Trust-building and boundary-setting happen earlier, in orientation."
+  },
+  {
+    stem: "Which qualities form the foundation of a therapeutic nurse–client relationship?",
+    options: ["Trust, empathy, respect, boundaries, and self-awareness", "Sympathy, friendship, and shared personal stories", "Authority, control, and emotional distance", "Advice-giving and problem-solving for the client"],
+    correct: 0,
+    rationale: "A therapeutic relationship is built on trust, empathy (understanding/validating, not pity), respect, professional boundaries, and the nurse's self-awareness of their own values and beliefs."
+  },
+  {
+    stem: "Under what circumstances may a nurse share otherwise confidential client information?",
+    options: ["Threat of harm to self or others, suspected abuse, written consent, or court order", "Whenever a family member asks about the client", "Any time the nurse believes it would help", "Only with verbal permission from another nurse"],
+    correct: 0,
+    rationale: "Confidentiality may be broken only for specific reasons: threat of harm to self or others, suspected child/elder/dependent abuse, written client consent, or a court order/legal requirement."
   }
 ];

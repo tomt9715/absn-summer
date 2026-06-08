@@ -138,6 +138,8 @@ h1.hero-title em { font-style: italic; font-weight: 500; color: var(--accent); d
 .sim-name { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 500; color: var(--ink); margin: 3px 0; }
 .sim-sub { font-size: 14px; color: var(--ink-soft); }
 .sim-arrow { font-size: 1.6rem; color: var(--accent); flex-shrink: 0; }
+.sim-go { flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; padding: 11px 20px; border-radius: 9px; font-weight: 600; font-size: 15px; transition: background 0.15s; }
+.sim-card:hover .sim-go { background: var(--accent-deep); }
 .sim-locked { opacity: 0.6; cursor: default; pointer-events: none; }
 .sim-lock-note { font-size: 13px; color: var(--ink-mute); font-style: italic; }
 

@@ -6,12 +6,6 @@ window.QUESTIONS = [
     rationale: "Physiological needs — food, water, sleep, hygiene — are always the highest priority in Maslow's hierarchy because they are required for survival. Safety comes next, followed by love/belonging, esteem, and self-actualization."
   },
   {
-    stem: "Using Maslow's hierarchy, which client problem should the nurse address FIRST?",
-    options: ["A client who refuses to eat or bathe", "A client who feels lonely and isolated", "A client struggling with low self-worth", "A client wanting to reach their full potential"],
-    correct: 0,
-    rationale: "Refusing to eat or bathe is a physiological need — the highest priority on Maslow's hierarchy. Loneliness (love/belonging), low self-worth (esteem), and reaching potential (self-actualization) are all lower priorities."
-  },
-  {
     stem: "What is the correct order of Maslow's hierarchy from lowest (most basic) to highest?",
     options: ["Physiological → Safety → Love/Belonging → Esteem → Self-actualization", "Safety → Physiological → Esteem → Love/Belonging → Self-actualization", "Love/Belonging → Physiological → Safety → Self-actualization → Esteem", "Esteem → Safety → Physiological → Love/Belonging → Self-actualization"],
     correct: 0,
@@ -142,5 +136,77 @@ window.QUESTIONS = [
     options: ["Gamma-aminobutyric acid (GABA) → benzodiazepine (lorazepam/Ativan)", "Serotonin → antipsychotic (risperidone/Risperdal)", "Dopamine → selective serotonin reuptake inhibitor (escitalopram/Lexapro)", "Acetylcholine → benzodiazepine (lorazepam/Ativan)"],
     correct: 0,
     rationale: "Gamma-aminobutyric acid (GABA) pairs with benzodiazepines (lorazepam/Ativan). Serotonin pairs with selective serotonin reuptake inhibitors (SSRIs), dopamine with antipsychotics, and acetylcholine with smoking-cessation/cholinesterase agents."
+  },
+  {
+    stem: "How is mental health best described?",
+    options: ["A state of well-being in which a person can cope with stress, work, and contribute to society", "The complete absence of any stress or sadness", "A fixed trait a person either has or does not have", "A diagnosable disturbance in mood or thinking"],
+    correct: 0,
+    rationale: "Mental health is a state of well-being in which a person can realize their potential, cope with normal stress, work productively, and contribute to their community. It is not the absence of all stress, and it exists on a continuum rather than being fixed."
+  },
+  {
+    stem: "What is true about the mental health–mental illness continuum?",
+    options: ["People can move back and forth along it over time", "Once someone develops mental illness, they cannot move back toward wellness", "It only applies to people with a formal diagnosis", "Everyone stays at a fixed point on it for life"],
+    correct: 0,
+    rationale: "Mental health exists on a continuum from wellness through distress to severe impairment, and people can move back and forth along it over time depending on circumstances and support."
+  },
+  {
+    stem: "A client worries they had a 'nervous breakdown.' How should the nurse understand this term?",
+    options: ["It is a nonspecific lay term, not an actual diagnosis", "It is a formal Diagnostic and Statistical Manual of Mental Disorders (DSM-5) diagnosis", "It describes a permanent loss of function", "It is the medical term for psychosis"],
+    correct: 0,
+    rationale: "'Nervous breakdown' is a nonspecific lay term, not a real diagnosis. Labeling people with mental illness as 'broken' contributes to stigma, which the nurse should help counter."
+  },
+  {
+    stem: "Which brain structure is responsible for the fight-or-flight response, and may contribute to anxiety when overactive?",
+    options: ["The amygdala", "The frontal lobe", "The cerebellum", "The brainstem"],
+    correct: 0,
+    rationale: "The amygdala drives the fight-or-flight response; an overactive amygdala (from trauma or genetics) is linked to anxiety. The frontal lobe governs personality, emotions, and decision-making."
+  },
+  {
+    stem: "Which brain region governs personality, emotional regulation, and decision-making?",
+    options: ["The frontal lobe", "The amygdala", "The occipital lobe", "The medulla"],
+    correct: 0,
+    rationale: "The frontal lobe is responsible for personality, emotions, and decision-making. The amygdala handles the fight-or-flight response."
+  },
+  {
+    stem: "Who is recognized as the first psychiatric nurse in the United States?",
+    options: ["Linda Richards", "Dorothea Dix", "Hildegard Peplau", "Emil Kraepelin"],
+    correct: 0,
+    rationale: "Linda Richards is recognized as the first US psychiatric nurse. Dorothea Dix advocated for moral treatment and state hospitals, Peplau developed the nurse-client relationship theory, and Kraepelin classified mental disorders."
+  },
+  {
+    stem: "Which historical figure advocated for moral treatment and the establishment of state psychiatric hospitals?",
+    options: ["Dorothea Dix", "Linda Richards", "Hildegard Peplau", "Philippe Pinel"],
+    correct: 0,
+    rationale: "Dorothea Dix championed moral treatment and advocated for state hospitals for people with mental illness. Linda Richards was the first US psychiatric nurse; Pinel promoted the asylum as a safe refuge."
+  },
+  {
+    stem: "Which nursing theorist is known for developing the theory of the nurse–client therapeutic relationship and levels of anxiety?",
+    options: ["Hildegard Peplau", "Dorothea Dix", "Linda Richards", "Emil Kraepelin"],
+    correct: 0,
+    rationale: "Hildegard Peplau developed the theory of the nurse-client therapeutic relationship and described levels of anxiety. Her phases (orientation, working, termination) structure the therapeutic relationship."
+  },
+  {
+    stem: "What was the main effect of the Community Mental Health Act of 1963?",
+    options: ["It promoted deinstitutionalization, moving patients into community settings", "It required all patients to be hospitalized long-term", "It eliminated insurance coverage for mental illness", "It created the Diagnostic and Statistical Manual of Mental Disorders (DSM-5)"],
+    correct: 0,
+    rationale: "The Community Mental Health Act of 1963 promoted deinstitutionalization, shifting care from large institutions into community-based settings. Mental Health Parity laws later required equal insurance coverage for mental and physical illness."
+  },
+  {
+    stem: "What is the purpose of Mental Health Parity laws?",
+    options: ["To require equal insurance coverage for mental and physical illnesses", "To require involuntary admission for all psychiatric patients", "To define diagnostic criteria for disorders", "To eliminate community mental health centers"],
+    correct: 0,
+    rationale: "Mental Health Parity laws require insurers to cover mental illness on equal terms with physical illness. Diagnostic criteria come from the Diagnostic and Statistical Manual of Mental Disorders (DSM-5), a separate reference."
+  },
+  {
+    stem: "Which of the following does the Diagnostic and Statistical Manual of Mental Disorders (DSM-5) contain?",
+    options: ["Diagnostic criteria, disorder descriptions, and symptom duration", "Nursing interventions for each disorder", "Detailed treatment and care plans", "Medication dosing protocols"],
+    correct: 0,
+    rationale: "The Diagnostic and Statistical Manual of Mental Disorders (DSM-5) provides diagnostic criteria, disorder descriptions, and the expected duration of symptoms. It does NOT include nursing interventions or treatment plans, which come from other sources."
+  },
+  {
+    stem: "A nursing student asks what the Diagnostic and Statistical Manual of Mental Disorders (DSM-5) does NOT provide. Which is the correct answer?",
+    options: ["Nursing interventions and treatment plans", "Diagnostic criteria for disorders", "Descriptions of signs and symptoms", "The expected longevity of symptoms"],
+    correct: 0,
+    rationale: "The Diagnostic and Statistical Manual of Mental Disorders (DSM-5) is a diagnostic reference — it gives criteria, descriptions, and symptom duration but does NOT include nursing interventions or treatment/care plans."
   }
 ];

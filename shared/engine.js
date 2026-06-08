@@ -25,7 +25,11 @@
   let deck = [], idx = 0, correctCount = 0, answered = false, results = [], activeTab = 'full';
 
   function buildDeck() {
-    deck = shuffle(QUESTIONS).map(q => {
+    let pool = shuffle(QUESTIONS);
+    if (cfg.maxQuestions && cfg.maxQuestions > 0 && pool.length > cfg.maxQuestions) {
+      pool = pool.slice(0, cfg.maxQuestions);
+    }
+    deck = pool.map(q => {
       const optionObjs = q.options.map((text, i) => ({ text, isCorrect: i === q.correct }));
       return { stem: q.stem, rationale: q.rationale, opts: shuffle(optionObjs) };
     });
