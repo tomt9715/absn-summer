@@ -157,6 +157,28 @@ h1 {
 .empty-msg { padding: 30px; color: var(--ink-mute); font-size: 15px; }
 
 .results-actions { display: flex; gap: 10px; justify-content: center; margin-top: 8px; }
+
+/* Results tip jar */
+.results-tip {
+  margin-top: 1.8rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+  text-align: center;
+}
+.tip-msg { font-size: 15px; color: var(--ink-soft); margin-bottom: 0.9rem; }
+.tip-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.tip-btn {
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer;
+  padding: 11px 18px; border-radius: 9px; border: none; transition: transform 0.12s, box-shadow 0.12s;
+}
+.tip-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
+.tip-btn.venmo { background: #3d95ce; color: #fff; }
+.tip-btn.zelle { background: #6d1ed4; color: #fff; }
+.copy-toast {
+  position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px);
+  background: var(--ink); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px;
+  font-weight: 500; padding: 12px 20px; border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+  opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; z-index: 999;
+}
+.copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .action-btn {
   padding: 12px 24px; border-radius: 8px; font-size: 15px; font-weight: 600;
   cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; transition: all 0.15s; text-decoration: none;
