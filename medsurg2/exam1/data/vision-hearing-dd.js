@@ -33,7 +33,7 @@ window.QUESTIONS = [
     stem: "A patient with age-related macular degeneration calls to say straight lines on their Amsler grid suddenly look wavy. What should the nurse advise?",
     options: ["Come in to be evaluated right away, as this can signal progression", "This is expected with age and needs no action", "Increase dietary salt to reduce the distortion", "Cover the affected eye and recheck in two weeks"],
     correct: 0,
-    rationale: "New or worsening wavy distortion on the Amsler grid signals AMD progression and should be reported and evaluated promptly. It is not a normal age change to dismiss."
+    rationale: "New or worsening wavy distortion on the Amsler grid signals age-related macular degeneration (AMD) progression and should be reported and evaluated promptly. It is not a normal age change to dismiss."
   },
   {
     stem: "The nurse is teaching a patient to self-administer eye drops. Which action by the patient indicates correct technique?",
@@ -54,10 +54,10 @@ window.QUESTIONS = [
     rationale: "Pre-operatively the patient is kept supine with the head immobilized; post-operatively the patient is positioned prone to push pressure toward the front of the eye, with head and eye movement restricted."
   },
   {
-    stem: "A patient asks the nurse to explain the difference between the vision loss in glaucoma versus AMD. Which explanation is accurate?",
-    options: ["Glaucoma takes peripheral vision first; AMD takes central vision while peripheral is preserved", "Glaucoma takes central vision; AMD takes peripheral vision", "Both conditions cause a sudden painless curtain over the vision", "Both cause cloudy vision with halos and faded colors"],
+    stem: "A patient asks the nurse to explain the difference between the vision loss in glaucoma versus age-related macular degeneration (AMD). Which explanation is accurate?",
+    options: ["Glaucoma takes peripheral vision first; age-related macular degeneration (AMD) takes central vision while peripheral is preserved", "Glaucoma takes central vision; age-related macular degeneration (AMD) takes peripheral vision", "Both conditions cause a sudden painless curtain over the vision", "Both cause cloudy vision with halos and faded colors"],
     correct: 0,
-    rationale: "Glaucoma causes peripheral (side) vision loss first, progressing to tunnel vision, while AMD causes central vision loss with peripheral vision preserved. The curtain is retinal detachment and the cloudy/halos picture is cataracts."
+    rationale: "Glaucoma causes peripheral (side) vision loss first, progressing to tunnel vision, while age-related macular degeneration (AMD) causes central vision loss with peripheral vision preserved. The curtain is retinal detachment and the cloudy/halos picture is cataracts."
   },
   {
     stem: "A patient on IV gentamicin reports new ringing in the ears. What is the nurse's priority action?",
@@ -85,9 +85,9 @@ window.QUESTIONS = [
   },
   {
     stem: "A patient reports brief, intense spinning that occurs only when they roll over or tip their head back. Which condition does the nurse suspect, and what is the priority intervention?",
-    options: ["BPPV; fall precautions", "Ototoxicity; stop all medications", "Conjunctivitis; frequent handwashing", "Cataracts; prepare for surgery"],
+    options: ["benign paroxysmal positional vertigo (BPPV); fall precautions", "Ototoxicity; stop all medications", "Conjunctivitis; frequent handwashing", "Cataracts; prepare for surgery"],
     correct: 0,
-    rationale: "Brief incapacitating vertigo triggered by head position changes is characteristic of BPPV. Fall precautions are the priority nursing intervention. The Dix-Hallpike diagnoses it and the Epley maneuver treats it."
+    rationale: "Brief incapacitating vertigo triggered by head position changes is characteristic of benign paroxysmal positional vertigo (BPPV). Fall precautions are the priority nursing intervention. The Dix-Hallpike diagnoses it and the Epley maneuver treats it."
   },
   {
     stem: "A patient is diagnosed with external otitis (swimmer's ear). Which discharge instruction is most appropriate?",
@@ -118,5 +118,35 @@ window.QUESTIONS = [
     options: ["It keeps the medication from draining into the nose and being absorbed by the body", "It helps spread the drop across the whole eye", "It holds the eyelid open longer", "It prevents the eye from watering"],
     correct: 0,
     rationale: "Applying pressure at the puncta (inner canthus) blocks the drop from draining through the nasolacrimal duct into the nose, which prevents systemic absorption and keeps the medication working locally in the eye."
+  },
+  {
+    stem: "A patient newly diagnosed with glaucoma says, 'My eye pressure was 26 mmHg — is that bad?' How should the nurse respond?",
+    options: ["Yes, normal intraocular pressure (IOP) is 10–21 mmHg; elevated pressure can damage your optic nerve over time if untreated", "No, 26 mmHg is within normal range and no treatment is needed", "Only pressures above 50 mmHg are concerning", "Intraocular pressure (IOP) only matters during acute attacks"],
+    correct: 0,
+    rationale: "Normal intraocular pressure (IOP) is 10–21 mmHg, so 26 mmHg is elevated and places the optic nerve at risk. The nurse should explain this clearly and reinforce the importance of adherence to prescribed eye drops to keep intraocular pressure (IOP) controlled and prevent irreversible vision loss."
+  },
+  {
+    stem: "A patient with glaucoma is prescribed both a prostaglandin analog and a beta blocker eye drop. They ask why they need two drops. What is the nurse's best explanation?",
+    options: ["They work by different mechanisms — the prostaglandin increases aqueous humor outflow while the beta blocker decreases production — giving better intraocular pressure (IOP) control together", "One drop is for daytime and one is for nighttime only", "Both drops do the same thing — it is simply a backup in case one fails", "The beta blocker is for pain and the prostaglandin is for infection"],
+    correct: 0,
+    rationale: "Prostaglandin analogs lower intraocular pressure (IOP) by increasing aqueous humor outflow; beta blockers lower intraocular pressure (IOP) by decreasing production. Using both together attacks two different pathways and often achieves better pressure control than either alone."
+  },
+  {
+    stem: "An older adult patient reports that straight lines on their Amsler grid look wavy and their central vision is blurred. Their peripheral vision is intact. Which condition does the nurse suspect and what is the priority action?",
+    options: ["Age-related macular degeneration (AMD); refer the patient for urgent evaluation as this may indicate progression", "Glaucoma; reassure the patient that peripheral vision is preserved", "Retinal detachment; prepare the patient for emergency surgery today", "Cataracts; schedule elective surgery at the patient's convenience"],
+    correct: 0,
+    rationale: "Wavy Amsler grid lines plus central vision blurring with intact peripheral vision is the classic presentation of age-related macular degeneration (AMD). New or worsening distortion requires urgent evaluation — it can signal transition to wet age-related macular degeneration (AMD), which needs prompt treatment to slow progression."
+  },
+  {
+    stem: "A patient undergoes photodynamic therapy with verteporfin for wet age-related macular degeneration (AMD). What is the most important discharge instruction?",
+    options: ["Avoid sunlight and bright light exposure for 5 days after the procedure", "Keep the eye patched and lie prone for 2 weeks", "Take a high-sodium diet to support healing", "Resume all activities immediately, including driving"],
+    correct: 0,
+    rationale: "After verteporfin photodynamic therapy, the patient must avoid sunlight and bright light for 5 days because verteporfin remains in the body and sunlight can activate it, causing serious skin burns or eye damage. This is a critical and specific safety teaching for wet age-related macular degeneration (AMD) treatment."
+  },
+  {
+    stem: "Two days after cataract surgery, a patient calls reporting they sneezed hard several times and now have increased redness and pain in the operative eye. What is the nurse's priority action?",
+    options: ["Instruct the patient to contact the provider immediately, as these are warning signs of a post-operative complication", "Reassure the patient that sneezing is expected and redness is normal", "Tell the patient to apply a warm compress and call back in 24 hours", "Advise the patient to increase their dose of acetaminophen"],
+    correct: 0,
+    rationale: "Forceful sneezing raises intraocular pressure (IOP) and can disrupt the cataract surgical repair. Increasing redness and pain are warning signs of a post-operative complication and require immediate provider contact. Mild discomfort manageable with acetaminophen is expected; escalating pain is not."
   }
 ];

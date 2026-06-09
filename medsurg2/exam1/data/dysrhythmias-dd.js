@@ -3,13 +3,13 @@ window.QUESTIONS = [
     stem: "A patient with atrial fibrillation has a BP of 78/44, is confused, and reports chest pain. After the rapid IV beta-blocker fails to control the rate, what does the nurse anticipate next?",
     options: ["Synchronized cardioversion", "Immediate defibrillation", "Vagal maneuvers", "Continue monitoring only"],
     correct: 0,
-    rationale: "This patient is unstable (low BP, altered LOC, chest pain). For unstable A-fib that doesn't respond to IV rate-control meds, synchronized cardioversion is the next step. Defibrillation is for pulseless rhythms, not A-fib with a pulse."
+    rationale: "This patient is unstable (low BP, altered level of consciousness (LOC), chest pain). For unstable A-fib that doesn't respond to IV rate-control meds, synchronized cardioversion is the next step. Defibrillation is for pulseless rhythms, not A-fib with a pulse."
   },
   {
     stem: "The nurse is caring for four patients. Which one should be assessed FIRST?",
     options: ["A patient in ventricular tachycardia who is unresponsive with no pulse", "A patient in sinus bradycardia at 56 bpm who feels fine", "A patient with controlled A-fib at 78 bpm on a beta blocker", "A patient with occasional PVCs once a day"],
     correct: 0,
-    rationale: "Pulseless V-tach is a medical emergency requiring immediate defibrillation and CPR — assess first. The asymptomatic bradycardia, rate-controlled A-fib, and infrequent PVCs are all stable and lower priority."
+    rationale: "Pulseless V-tach is a medical emergency requiring immediate defibrillation and cardiopulmonary resuscitation (CPR) — assess first. The asymptomatic bradycardia, rate-controlled A-fib, and infrequent PVCs are all stable and lower priority."
   },
   {
     stem: "A patient who had a cardioversion for A-fib is being discharged. Which statement indicates a need for further teaching?",
@@ -27,7 +27,7 @@ window.QUESTIONS = [
     stem: "A nurse finds a patient collapsed on the floor. After calling for help, what is the next action?",
     options: ["Check the carotid pulse", "Obtain a 12-lead EKG", "Administer Atropine", "Apply supplemental oxygen"],
     correct: 0,
-    rationale: "After calling for help, check the carotid (neck) pulse. If the patient is pulseless, begin CPR. Getting an EKG or giving meds comes after establishing whether the patient has a pulse."
+    rationale: "After calling for help, check the carotid (neck) pulse. If the patient is pulseless, begin cardiopulmonary resuscitation (CPR). Getting an EKG or giving meds comes after establishing whether the patient has a pulse."
   },
   {
     stem: "A patient in V-tach suddenly loses consciousness and has no palpable pulse. What is the immediate priority?",
@@ -51,7 +51,7 @@ window.QUESTIONS = [
     stem: "A patient is in A-fib with rapid ventricular response (HR 148) but maintains a stable BP and is alert. What does the nurse anticipate as first-line treatment?",
     options: ["IV beta-blocker to slow the ventricular rate", "Immediate defibrillation", "Transcutaneous pacing", "Atropine 0.5 mg IV push"],
     correct: 0,
-    rationale: "A-fib with RVR (HR over 100) in a stable patient is treated with an IV beta-blocker to slow the rate. Defibrillation is for pulseless rhythms, pacing is for symptomatic bradycardia, and Atropine would speed the heart up further."
+    rationale: "A-fib with rapid ventricular response (RVR) (HR over 100) in a stable patient is treated with an IV beta-blocker to slow the rate. Defibrillation is for pulseless rhythms, pacing is for symptomatic bradycardia, and Atropine would speed the heart up further."
   },
   {
     stem: "A new graduate nurse is preparing to apply EKG leads. Which action requires the preceptor to intervene?",
@@ -67,9 +67,9 @@ window.QUESTIONS = [
   },
   {
     stem: "A patient's monitor shows no QRS complexes and a flat line. The patient is unresponsive, pulseless, and not breathing. What is the priority action?",
-    options: ["Begin CPR immediately", "Defibrillate the patient", "Administer Adenosine", "Perform synchronized cardioversion"],
+    options: ["Begin cardiopulmonary resuscitation (CPR) immediately", "Defibrillate the patient", "Administer Adenosine", "Perform synchronized cardioversion"],
     correct: 0,
-    rationale: "Asystole (flatline) is treated with immediate CPR — you do NOT defibrillate asystole (there is no rhythm to convert). Cardioversion and Adenosine are inappropriate for a pulseless, flatline patient."
+    rationale: "Asystole (flatline) is treated with immediate cardiopulmonary resuscitation (CPR) — you do NOT defibrillate asystole (there is no rhythm to convert). Cardioversion and Adenosine are inappropriate for a pulseless, flatline patient."
   },
   {
     stem: "A patient newly diagnosed with A-fib asks the nurse why they have to take a blood thinner. What is the nurse's best response?",
@@ -85,9 +85,9 @@ window.QUESTIONS = [
   },
   {
     stem: "A patient is scheduled for an elective (synchronized) cardioversion in the morning. Which pre-procedure nursing action is essential?",
-    options: ["Keep the patient NPO before the procedure", "Encourage a large breakfast for energy", "Withhold all oxygen during the procedure", "Ambulate the patient immediately before"],
+    options: ["Keep the patient nothing by mouth (NPO) before the procedure", "Encourage a large breakfast for energy", "Withhold all oxygen during the procedure", "Ambulate the patient immediately before"],
     correct: 0,
-    rationale: "The patient is kept NPO before cardioversion because sedation/anesthesia is given. Oxygen, continuous ECG monitoring, and pain management are part of care — not withheld."
+    rationale: "The patient is kept nothing by mouth (NPO) before cardioversion because sedation/anesthesia is given. Oxygen, continuous ECG monitoring, and pain management are part of care — not withheld."
   },
   {
     stem: "A patient with a new permanent pacemaker is being discharged. Which patient statement indicates correct understanding of the teaching?",
@@ -118,5 +118,23 @@ window.QUESTIONS = [
     options: ["Atrial fibrillation; risk of clot formation and stroke", "Atrial flutter; risk of immediate cardiac arrest", "Ventricular tachycardia; risk of pulselessness", "Sinus bradycardia; risk of fainting"],
     correct: 0,
     rationale: "Irregularly irregular with no P waves at a rate under 100 is A-fib. The key long-term concern is clot formation in the pooled atrial blood leading to stroke, which is why anticoagulation is started."
+  },
+{
+    stem: "A patient in A-fib with rapid ventricular response (RVR) is given IV diltiazem but remains hemodynamically unstable with a BP of 72/40 and altered mental status. What does the nurse anticipate next?",
+    options: ["Synchronized cardioversion", "Immediate defibrillation", "IV magnesium sulfate", "Transcutaneous pacing"],
+    correct: 0,
+    rationale: "When an unstable patient with a pulse (low blood pressure, altered level of consciousness (LOC)) does not respond to IV rate-control medication, synchronized cardioversion is the next step. Defibrillation is for pulseless rhythms. Cardioversion is synchronized to the R point, uses lower joules, and is appropriate here because the patient still has a pulse."
+  },
+  {
+    stem: "A patient's monitor shows a twisting QRS pattern spiraling around the baseline at about 240 bpm. The nurse correctly identifies this as Torsades de Pointes. Which medication does the nurse anticipate administering?",
+    options: ["IV magnesium sulfate", "Atropine 0.5 mg IV push", "Adenosine IV push", "Oral verapamil"],
+    correct: 0,
+    rationale: "Torsades de Pointes is treated with IV magnesium sulfate. The twisting QRS pattern at 150–300 bpm is the classic identifier. Atropine is for bradycardia, adenosine is for atrial flutter, and oral medications are not appropriate for an acute, potentially life-threatening dysrhythmia."
+  },
+  {
+    stem: "A nurse is preparing a patient for elective cardioversion. Which set of pre-procedure actions is correct?",
+    options: ["Keep the patient nothing by mouth (NPO), apply continuous electrocardiogram (ECG) monitoring, ensure oxygen is available, and obtain consent", "Offer the patient a light meal, apply defibrillator pads to the left arm only, and prepare adenosine", "Place the patient prone, discontinue all monitoring, and have atropine ready", "Begin cardiopulmonary resuscitation (CPR) immediately before the procedure as a precaution"],
+    correct: 0,
+    rationale: "Before elective cardioversion the patient must be nothing by mouth (NPO) because sedation is given, continuous electrocardiogram (ECG) monitoring is required, oxygen must be available, and the shock is synchronized to the R point. Cardiopulmonary resuscitation (CPR) is not initiated pre-procedure — cardioversion is for a patient with a pulse."
   }
 ];

@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABG Interpreter — Tic-Tac-Toe Method</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --surface2: #fbfaf7;
+  --border: #e4e0d6;
+  --border-strong: #d4cfc2;
+  --ink: #232020;
+  --ink-soft: #4f4a43;
+  --ink-mute: #847d71;
+  --accent: #b5482e;
+  --accent-deep: #9c3c25;
+  --accent-soft: #f3e0d9;
+  --gold: #b08534;
+  --gold-soft: #f6ecd6;
+  --teal: #2f6f6b;
+  --teal-soft: #dcebe9;
+  --correct: #2f7d4f;
+  --correct-soft: #ddf0e2;
+  --correct-border: #b9ddc4;
+  --wrong: #b5482e;
+  --wrong-soft: #f6e2dc;
+  --wrong-border: #e6c0b4;
+  --acid: #b5482e;
+  --acid-soft: #f3e0d9;
+  --base: #2f6f6b;
+  --base-soft: #dcebe9;
+  --normal-col: #b08534;
+  --normal-soft: #f6ecd6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  padding: 2rem 1rem 5rem;
+  font-size: 17px;
+  line-height: 1.5;
+}
+.wrap { max-width: 880px; margin: 0 auto; }
+.top-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+.back-link {
+  font-size: 14px; color: var(--ink-mute); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 7px 13px; border: 1px solid var(--border); border-radius: 7px;
+  background: var(--surface); transition: all 0.15s;
+}
+.back-link:hover { border-color: var(--accent); color: var(--accent); }
+.quiz-type-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent);
+  background: var(--accent-soft); padding: 4px 11px; border-radius: 5px;
+  display: inline-block; margin-bottom: 0.8rem;
+}
+h1 {
+  font-family: 'Fraunces', serif; font-size: 2.1rem; font-weight: 500;
+  color: var(--ink); line-height: 1.1; letter-spacing: -0.01em;
+}
+.quiz-sub { font-size: 15px; color: var(--ink-mute); margin-top: 0.5rem; }
+.progress-row { display: flex; align-items: center; gap: 14px; margin-bottom: 1.6rem; }
+.progress-track { flex: 1; height: 7px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0%; background: var(--accent); border-radius: 4px; transition: width 0.3s ease; }
+.progress-label { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-mute); white-space: nowrap; }
+.score-pill { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--teal); background: var(--teal-soft); padding: 3px 10px; border-radius: 5px; white-space: nowrap; }
+
+/* Question card */
+.question-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px; margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.q-meta { display: flex; align-items: center; gap: 9px; margin-bottom: 14px; }
+.q-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-mute); }
+.q-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 3px 9px;
+  border-radius: 4px; text-transform: uppercase; letter-spacing: 0.04em;
+  background: var(--teal-soft); color: var(--teal);
+}
+.q-stem { font-size: 18px; line-height: 1.6; color: var(--ink); font-weight: 500; }
+
+/* ABG values strip */
+.abg-values {
+  display: flex; gap: 10px; margin: 18px 0; flex-wrap: wrap;
+}
+.abg-chip {
+  font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500;
+  padding: 8px 16px; border-radius: 8px; border: 1.5px solid var(--border-strong);
+  background: var(--surface2); color: var(--ink);
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.abg-chip .chip-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-mute); font-weight: 400; }
+.abg-chip .chip-val { font-size: 17px; }
+
+/* TTT grid */
+.ttt-section {
+  margin: 20px 0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+.ttt-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-mute);
+  margin-bottom: 12px;
+}
+.ttt-grid {
+  width: 100%;
+  border-collapse: collapse;
+}
+.ttt-grid th {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 8px 4px; text-align: center; border-bottom: 2px solid var(--border-strong);
+  width: 33.33%;
+}
+.ttt-grid th.acid-header { color: var(--acid); }
+.ttt-grid th.normal-header { color: var(--normal-col); }
+.ttt-grid th.base-header { color: var(--base); }
+.ttt-grid td {
+  padding: 4px; text-align: center; border: 1px solid var(--border);
+  height: 52px; vertical-align: middle;
+}
+.ttt-grid td:first-child { border-left: none; }
+.ttt-grid td:last-child { border-right: none; }
+.ttt-grid tr:last-child td { border-bottom: none; }
+.row-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  color: var(--ink-mute); white-space: nowrap;
+  border: none !important; width: 80px; text-align: right; padding-right: 10px !important;
+}
+
+/* Cell tokens */
+.ttt-cell {
+  display: flex; gap: 4px; justify-content: center; align-items: center; flex-wrap: wrap;
+  min-height: 40px;
+}
+.place-btn {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;
+  padding: 5px 11px; border-radius: 6px; cursor: pointer;
+  border: 1.5px dashed var(--border-strong); background: transparent;
+  color: var(--ink-mute); transition: all 0.12s;
+}
+.place-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.place-btn:disabled { cursor: default; opacity: 0.4; }
+.token {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700;
+  padding: 5px 10px; border-radius: 6px; cursor: pointer;
+  transition: all 0.12s; border: 1.5px solid transparent;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.token.acid-tok { background: var(--acid-soft); color: var(--acid); border-color: #e8b5a8; }
+.token.normal-tok { background: var(--normal-soft); color: var(--normal-col); border-color: #e0c88a; }
+.token.base-tok { background: var(--base-soft); color: var(--base); border-color: #a8ccc9; }
+.token .tok-x { font-size: 10px; opacity: 0.6; }
+.token:hover .tok-x { opacity: 1; }
+.token:disabled { cursor: default; }
+
+/* Pending tray */
+.tray {
+  display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 6px;
+}
+.tray-label { font-size: 13px; color: var(--ink-mute); }
+.tray-hint { font-size: 12px; color: var(--ink-mute); margin-top: 4px; font-style: italic; }
+
+/* Lock reminder */
+.lock-note {
+  font-size: 13px; color: var(--ink-mute); margin-top: 8px;
+  font-style: italic;
+}
+
+/* Options */
+.options { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.opt {
+  display: flex; align-items: flex-start; gap: 13px;
+  padding: 15px 17px; border: 1px solid var(--border-strong);
+  border-radius: 9px; cursor: pointer; background: var(--surface2);
+  transition: all 0.12s; text-align: left; width: 100%;
+  font-family: 'DM Sans', sans-serif;
+}
+.opt:hover:not([disabled]) { border-color: var(--accent); background: var(--accent-soft); }
+.opt-letter { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-mute); min-width: 18px; margin-top: 1px; font-weight: 600; }
+.opt-text { font-size: 16px; color: var(--ink); line-height: 1.5; }
+.opt[disabled] { cursor: default; }
+.opt.correct { border-color: var(--correct); background: var(--correct-soft); }
+.opt.correct .opt-letter, .opt.correct .opt-text { color: var(--correct); font-weight: 600; }
+.opt.wrong { border-color: var(--wrong); background: var(--wrong-soft); }
+.opt.wrong .opt-letter, .opt.wrong .opt-text { color: var(--wrong); }
+.opt.dimmed { opacity: 0.45; }
+
+/* Rationale */
+.rationale {
+  margin-top: 18px; padding: 16px 18px; border-radius: 9px;
+  font-size: 15px; line-height: 1.6; border-left: 3px solid;
+}
+.rationale.r-correct { background: var(--correct-soft); border-color: var(--correct); color: #1a4d30; }
+.rationale.r-wrong { background: var(--wrong-soft); border-color: var(--wrong); color: #7a2a18; }
+.verdict { font-weight: 700; display: block; margin-bottom: 6px; }
+
+/* Revealed grid */
+.ttt-reveal {
+  margin-top: 12px; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px;
+}
+.reveal-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-mute); margin-bottom: 10px; }
+.reveal-grid { width: 100%; border-collapse: collapse; }
+.reveal-grid th {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 7px 4px; text-align: center; border-bottom: 2px solid var(--border-strong); width: 25%;
+}
+.reveal-grid th.acid-header { color: var(--acid); }
+.reveal-grid th.normal-header { color: var(--normal-col); }
+.reveal-grid th.base-header { color: var(--base); }
+.reveal-grid td { padding: 8px 4px; text-align: center; border: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+.reveal-grid td:first-child { border-left: none; text-align: right; padding-right: 10px; font-size: 12px; color: var(--ink-mute); width: 70px; }
+.reveal-grid td:last-child { border-right: none; }
+.reveal-grid tr:last-child td { border-bottom: none; }
+.cell-placed { font-weight: 700; padding: 4px 10px; border-radius: 5px; }
+.cell-placed.acid-tok { background: var(--acid-soft); color: var(--acid); }
+.cell-placed.normal-tok { background: var(--normal-soft); color: var(--normal-col); }
+.cell-placed.base-tok { background: var(--base-soft); color: var(--base); }
+.cell-empty { color: var(--border-strong); font-size: 16px; }
+
+.next-btn {
+  display: block; margin: 18px 0 0; padding: 14px 26px;
+  background: var(--accent); color: #fff; border: none; border-radius: 9px;
+  font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600;
+  cursor: pointer; transition: background 0.15s;
+}
+.next-btn:hover { background: var(--accent-deep); }
+
+/* Results */
+.results-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 36px 32px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+.score-big {
+  font-family: 'Fraunces', serif; font-size: 5rem; font-weight: 600;
+  line-height: 1; margin-bottom: 8px;
+}
+.score-big.pass { color: var(--correct); }
+.score-big.fail { color: var(--wrong); }
+.score-sub { font-size: 16px; color: var(--ink-soft); margin-bottom: 8px; }
+.score-msg { font-size: 16px; color: var(--ink-mute); margin-bottom: 24px; }
+.results-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+.r-tab {
+  font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 8px 18px;
+  border: 1px solid var(--border-strong); border-radius: 7px;
+  background: var(--surface2); color: var(--ink-soft); cursor: pointer; transition: all 0.12s;
+}
+.r-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.review-item {
+  padding: 18px 0; border-bottom: 1px solid var(--border);
+}
+.review-item:last-child { border-bottom: none; }
+.ri-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.ri-result { font-size: 13px; font-weight: 600; padding: 2px 9px; border-radius: 4px; }
+.ri-result.correct { background: var(--correct-soft); color: var(--correct); }
+.ri-result.wrong { background: var(--wrong-soft); color: var(--wrong); }
+.review-item-q { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 8px; line-height: 1.5; }
+.review-item-ans { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+.ri-yours { font-size: 14px; color: var(--wrong); }
+.ri-correct-ans { font-size: 14px; color: var(--correct); font-weight: 600; }
+.ri-rationale { font-size: 14px; color: var(--ink-soft); line-height: 1.6; background: var(--surface2); padding: 12px 14px; border-radius: 8px; }
+.results-actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+.action-btn {
+  padding: 13px 24px; border-radius: 9px; font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; transition: all 0.15s;
+}
+.action-btn.primary { background: var(--accent); color: #fff; border: none; }
+.action-btn.primary:hover { background: var(--accent-deep); }
+.action-btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--border-strong); }
+.action-btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+.empty-msg { color: var(--ink-mute); font-size: 15px; padding: 16px 0; display: flex; align-items: center; gap: 8px; }
+
+@media (max-width: 600px) {
+  h1 { font-size: 1.6rem; }
+  .question-card { padding: 20px 16px; }
+  .abg-chip { padding: 6px 12px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-bar">
+    <a href="index.html" class="back-link">← Back to hub</a>
+  </div>
+  <div class="quiz-title-row">
+    <span class="quiz-type-tag">ABG Interpreter</span>
+    <h1>Arterial Blood Gas<br><em>Tic-Tac-Toe Method</em></h1>
+    <p class="quiz-sub">15 scenarios · plot the values · identify the disturbance</p>
+  </div>
+  <div id="quiz-area"></div>
+</div>
+
+<script>
+// ── ABG Question Bank ──────────────────────────────────────────────
+// Each question: scenario text, pH, PaCO2, HCO3, correct answer index, rationale
+// answers[]: always 4 choices, correct is index 0 in source (engine shuffles)
+const ABG_QUESTIONS = [
+  {
+    scenario: "A 68-year-old patient with chronic obstructive pulmonary disease (COPD) is admitted with increased shortness of breath. They are using accessory muscles to breathe and their oxygen saturation is 85% on room air.",
+    ph: "7.28", co2: "62", hco3: "24",
+    answers: [
+      "Uncompensated Respiratory Acidosis",
+      "Partially Compensated Respiratory Acidosis",
+      "Uncompensated Metabolic Acidosis",
+      "Fully Compensated Respiratory Acidosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.28 is acidotic. PaCO2 62 is elevated — acid column. HCO3- 24 is normal — the kidneys have not yet responded. pH and PaCO2 are both in the acid column → Respiratory. HCO3- is still normal → no compensation yet → Uncompensated Respiratory Acidosis. The retained CO2 is driving the acidosis; the kidneys need time to compensate by retaining bicarbonate."
+  },
+  {
+    scenario: "A patient with diabetic ketoacidosis (DKA) is admitted. The nurse notes deep, rapid breathing. The patient is confused and diaphoretic.",
+    ph: "7.24", co2: "28", hco3: "14",
+    answers: [
+      "Partially Compensated Metabolic Acidosis",
+      "Uncompensated Metabolic Acidosis",
+      "Fully Compensated Metabolic Acidosis",
+      "Partially Compensated Respiratory Alkalosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.24 is acidotic. HCO3- 14 is low — acid column. PaCO2 28 is low — base column (lungs are blowing off CO2 to compensate). pH and HCO3- are both in the acid column → Metabolic. PaCO2 is also abnormal (compensation is happening) but pH is still acidotic → Partially Compensated Metabolic Acidosis. The deep rapid breathing is Kussmaul breathing — the body's attempt to blow off acid."
+  },
+  {
+    scenario: "A nursing student is hyperventilating in the break room before a major exam. A colleague brings them a paper bag. Their breathing is rapid and deep.",
+    ph: "7.52", co2: "30", hco3: "24",
+    answers: [
+      "Uncompensated Respiratory Alkalosis",
+      "Uncompensated Metabolic Alkalosis",
+      "Partially Compensated Respiratory Alkalosis",
+      "Fully Compensated Metabolic Alkalosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.52 is alkalotic. PaCO2 30 is low — base column. HCO3- 24 is normal — the kidneys have not yet responded. pH and PaCO2 are both in the base column → Respiratory. HCO3- is normal → no compensation → Uncompensated Respiratory Alkalosis. Hyperventilation blows off CO2, raising pH. The professor flagged this exact scenario."
+  },
+  {
+    scenario: "A postoperative patient has been vomiting for 18 hours and had prolonged nasogastric (NG) tube suctioning. They report muscle cramping and tingling in their fingers.",
+    ph: "7.51", co2: "44", hco3: "33",
+    answers: [
+      "Uncompensated Metabolic Alkalosis",
+      "Uncompensated Respiratory Alkalosis",
+      "Partially Compensated Metabolic Alkalosis",
+      "Fully Compensated Respiratory Alkalosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.51 is alkalotic. HCO3- 33 is elevated — base column. PaCO2 44 is normal — the lungs have not yet compensated. pH and HCO3- are both in the base column → Metabolic. PaCO2 is normal → no compensation yet → Uncompensated Metabolic Alkalosis. Vomiting and NG suctioning remove hydrochloric acid (HCl), causing bicarbonate to rise and pH to climb."
+  },
+  {
+    scenario: "A patient with chronic kidney disease has a follow-up arterial blood gas (ABG). They report fatigue and mild nausea. Their breathing appears slightly labored.",
+    ph: "7.30", co2: "30", hco3: "16",
+    answers: [
+      "Partially Compensated Metabolic Acidosis",
+      "Uncompensated Metabolic Acidosis",
+      "Partially Compensated Respiratory Acidosis",
+      "Fully Compensated Metabolic Acidosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.30 is acidotic. HCO3- 16 is low — acid column. PaCO2 30 is low — base column (lungs blowing off CO2 to compensate). pH and HCO3- are both in the acid column → Metabolic. Both PaCO2 and HCO3- are abnormal, but pH is still acidotic → Partially Compensated Metabolic Acidosis. Kidney failure causes bicarbonate loss, driving metabolic acidosis; the lungs compensate by hyperventilating."
+  },
+  {
+    scenario: "A patient is found unresponsive with a respiratory rate of 5 breaths per minute. Bystanders report they may have taken multiple prescription opioids. Pupils are pinpoint.",
+    ph: "7.22", co2: "68", hco3: "25",
+    answers: [
+      "Uncompensated Respiratory Acidosis",
+      "Partially Compensated Respiratory Acidosis",
+      "Uncompensated Metabolic Acidosis",
+      "Partially Compensated Metabolic Alkalosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.22 is acidotic. PaCO2 68 is elevated — acid column. HCO3- 25 is normal — kidneys have not responded. pH and PaCO2 are both in the acid column → Respiratory. HCO3- is normal → no compensation → Uncompensated Respiratory Acidosis. Opioid overdose causes respiratory depression, slowing breathing and allowing CO2 to accumulate acutely — the kidneys have not had time to compensate."
+  },
+  {
+    scenario: "A patient with a long history of COPD has the following values on a routine clinic visit. They report feeling at their baseline and have no acute complaints.",
+    ph: "7.37", co2: "55", hco3: "31",
+    answers: [
+      "Fully Compensated Respiratory Acidosis",
+      "Partially Compensated Respiratory Acidosis",
+      "Fully Compensated Metabolic Alkalosis",
+      "Uncompensated Respiratory Acidosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.37 is normal but leans toward acid (low-normal). PaCO2 55 is elevated — acid column. HCO3- 31 is elevated — base column. Both values are abnormal but pH is back in the normal range → Fully Compensated. pH leans toward acid → primary problem was acidosis. PaCO2 is abnormal → Respiratory → Fully Compensated Respiratory Acidosis. Chronic CO2 retainers like COPD patients have kidneys that chronically retain bicarbonate to normalize pH."
+  },
+  {
+    scenario: "A patient with a salicylate overdose (high-dose aspirin) is brought in by family. They are anxious and breathing rapidly. Their skin is flushed.",
+    ph: "7.49", co2: "28", hco3: "23",
+    answers: [
+      "Uncompensated Respiratory Alkalosis",
+      "Partially Compensated Metabolic Alkalosis",
+      "Uncompensated Metabolic Alkalosis",
+      "Fully Compensated Respiratory Alkalosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.49 is alkalotic. PaCO2 28 is low — base column. HCO3- 23 is normal — no metabolic compensation yet. pH and PaCO2 are both in the base column → Respiratory. HCO3- is normal → no compensation → Uncompensated Respiratory Alkalosis. Salicylate toxicity directly stimulates the respiratory center, causing hyperventilation and CO2 washout."
+  },
+  {
+    scenario: "A patient with severe diarrhea for 5 days is admitted dehydrated. The nurse notes weakness, hypotension, and rapid shallow breathing.",
+    ph: "7.29", co2: "38", hco3: "17",
+    answers: [
+      "Uncompensated Metabolic Acidosis",
+      "Partially Compensated Metabolic Acidosis",
+      "Uncompensated Respiratory Acidosis",
+      "Partially Compensated Respiratory Alkalosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.29 is acidotic. HCO3- 17 is low — acid column. PaCO2 38 is normal — the lungs have not yet compensated by blowing off CO2. pH and HCO3- are both in the acid column → Metabolic. PaCO2 is normal → no compensation yet → Uncompensated Metabolic Acidosis. Diarrhea causes massive bicarbonate loss from the gastrointestinal (GI) tract, directly lowering HCO3-."
+  },
+  {
+    scenario: "A postoperative patient on a morphine patient-controlled analgesia (PCA) pump has become increasingly drowsy. The nurse notes their respiratory rate is 8 breaths per minute and shallow. Their oxygen saturation is dropping.",
+    ph: "7.31", co2: "58", hco3: "29",
+    answers: [
+      "Partially Compensated Respiratory Acidosis",
+      "Uncompensated Respiratory Acidosis",
+      "Fully Compensated Respiratory Acidosis",
+      "Partially Compensated Metabolic Alkalosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.31 is acidotic. PaCO2 58 is elevated — acid column. HCO3- 29 is elevated — base column (kidneys retaining bicarbonate to compensate). pH and PaCO2 are both in the acid column → Respiratory. Both PaCO2 and HCO3- are abnormal and pH is still acidotic → Partially Compensated Respiratory Acidosis. Opioid-related respiratory depression is causing CO2 retention; the kidneys have started compensating but pH is not yet normalized."
+  },
+  {
+    scenario: "A patient with antacid overuse disorder has been taking large amounts of calcium carbonate (Tums) daily. They report nausea, muscle weakness, and tingling sensations.",
+    ph: "7.48", co2: "46", hco3: "34",
+    answers: [
+      "Uncompensated Metabolic Alkalosis",
+      "Uncompensated Respiratory Alkalosis",
+      "Partially Compensated Metabolic Alkalosis",
+      "Fully Compensated Metabolic Alkalosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.48 is alkalotic. HCO3- 34 is elevated — base column. PaCO2 46 is normal (just barely above 45 — within normal range effectively). pH and HCO3- are both in the base column → Metabolic. PaCO2 is not meaningfully abnormal → no compensation yet → Uncompensated Metabolic Alkalosis. Excess antacid intake floods the body with bicarbonate, driving HCO3- up and pH into the alkalotic range."
+  },
+  {
+    scenario: "A patient with a pulmonary embolism is admitted in respiratory distress, breathing rapidly and shallowly. They are anxious and chest pain is 8/10.",
+    ph: "7.47", co2: "33", hco3: "23",
+    answers: [
+      "Uncompensated Respiratory Alkalosis",
+      "Uncompensated Metabolic Alkalosis",
+      "Partially Compensated Respiratory Alkalosis",
+      "Uncompensated Respiratory Acidosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.47 is alkalotic. PaCO2 33 is low — base column. HCO3- 23 is normal. pH and PaCO2 are both in the base column → Respiratory. HCO3- is normal → no compensation → Uncompensated Respiratory Alkalosis. Pulmonary embolism causes anxiety, pain, and hypoxia, all of which drive hyperventilation and CO2 washout."
+  },
+  {
+    scenario: "A 78-year-old with COPD and heart failure has the following values. The nurse notes the patient appears comfortable at their baseline — this is their typical morning reading.",
+    ph: "7.44", co2: "50", hco3: "33",
+    answers: [
+      "Fully Compensated Respiratory Acidosis",
+      "Partially Compensated Respiratory Acidosis",
+      "Fully Compensated Metabolic Alkalosis",
+      "Normal — no disturbance"
+    ],
+    correct: 0,
+    rationale: "pH 7.44 is normal but leans toward base (high-normal). PaCO2 50 is elevated — acid column. HCO3- 33 is elevated — base column. Both values are abnormal but pH is back to normal → Fully Compensated. pH leans toward acid (7.44 is in the normal range but closer to 7.45 than to 7.35 — and PaCO2 is the primary driver) → Respiratory → Fully Compensated Respiratory Acidosis. Chronic CO2 retention with complete renal compensation is classic for COPD patients at baseline."
+  },
+  {
+    scenario: "A patient is admitted after aspirin overdose with an arterial blood gas (ABG) drawn 6 hours after ingestion. They are now drowsy. Their breathing has slowed compared to earlier.",
+    ph: "7.33", co2: "48", hco3: "18",
+    answers: [
+      "Partially Compensated Metabolic Acidosis",
+      "Partially Compensated Respiratory Acidosis",
+      "Uncompensated Metabolic Acidosis",
+      "Fully Compensated Respiratory Acidosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.33 is acidotic. HCO3- 18 is low — acid column. PaCO2 48 is elevated — acid column too. When all three values are abnormal, identify the primary driver by seeing which matches pH: pH is acidotic, HCO3- is in the acid column → Metabolic is the primary problem. PaCO2 is also in acid — but this represents a failure to compensate (or a mixed picture): the lungs are not blowing off CO2 as expected, worsening the acidosis → Partially Compensated Metabolic Acidosis (with respiratory component). Late salicylate toxicity causes metabolic acidosis as the primary disturbance."
+  },
+  {
+    scenario: "A patient with severe asthma has been in status asthmaticus for 3 hours. Initially tachypneic, they are now breathing slowly and appear exhausted.",
+    ph: "7.26", co2: "58", hco3: "26",
+    answers: [
+      "Uncompensated Respiratory Acidosis",
+      "Partially Compensated Respiratory Acidosis",
+      "Uncompensated Metabolic Acidosis",
+      "Fully Compensated Respiratory Acidosis"
+    ],
+    correct: 0,
+    rationale: "pH 7.26 is acidotic. PaCO2 58 is elevated — acid column. HCO3- 26 is normal — kidneys have not yet compensated. pH and PaCO2 are both in the acid column → Respiratory. HCO3- is normal → no compensation → Uncompensated Respiratory Acidosis. This is a critical finding in asthma: a rising CO2 in a patient who was previously tachypneic signals respiratory fatigue and impending respiratory failure — requires immediate intervention."
+  }
+];
+
+// ── Engine ─────────────────────────────────────────────────────────
+const KEY = 'ms2_e1_abg';
+const PASS = 77;
+const LETTERS = ['A','B','C','D'];
+
+let deck = [], idx = 0, correctCount = 0, answered = false, results = [], activeTab = 'full';
+
+// Each row: label, column placement key
+const ROWS = [
+  { label: 'pH',      key: 'ph' },
+  { label: 'PaCO₂',  key: 'co2' },
+  { label: 'HCO₃⁻',  key: 'hco3' }
+];
+// state[rowKey] = 'acid'|'normal'|'base'|null
+let gridState = {};
+
+function colClass(col) {
+  if (col === 'acid')   return 'acid-tok';
+  if (col === 'normal') return 'normal-tok';
+  if (col === 'base')   return 'base-tok';
+  return '';
+}
+function colLabel(col) {
+  if (col === 'acid')   return 'Acid';
+  if (col === 'normal') return 'Normal';
+  if (col === 'base')   return 'Base';
+  return '';
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function buildDeck() {
+  const pool = shuffle(ABG_QUESTIONS);
+  deck = pool.map(q => {
+    const ansObjs = q.answers.map((text, i) => ({ text, isCorrect: i === q.correct }));
+    return { ...q, opts: shuffle(ansObjs) };
+  });
+}
+
+function startQuiz() {
+  buildDeck();
+  idx = 0; correctCount = 0; answered = false; results = [];
+  renderQuestion();
+}
+
+function resetGrid() {
+  gridState = { ph: null, co2: null, hco3: null };
+}
+
+function placeToken(rowKey, col) {
+  if (answered) return;
+  gridState[rowKey] = col;
+  renderGrid(false);
+}
+
+function removeToken(rowKey) {
+  if (answered) return;
+  gridState[rowKey] = null;
+  renderGrid(false);
+}
+
+function renderGrid(locked) {
+  const wrap = document.getElementById('ttt-wrap');
+  if (!wrap) return;
+
+  const cols = ['acid', 'normal', 'base'];
+  const colHeaders = ['ACID', 'NORMAL', 'BASE'];
+
+  let html = `<table class="ttt-grid">
+    <thead>
+      <tr>
+        <th style="border:none;width:80px"></th>
+        <th class="acid-header">${colHeaders[0]}</th>
+        <th class="normal-header">${colHeaders[1]}</th>
+        <th class="base-header">${colHeaders[2]}</th>
+      </tr>
+    </thead>
+    <tbody>`;
+
+  ROWS.forEach(row => {
+    html += `<tr><td class="row-label">${row.label}</td>`;
+    cols.forEach(col => {
+      const placed = gridState[row.key] === col;
+      html += `<td>`;
+      if (placed && !locked) {
+        html += `<div class="ttt-cell">
+          <button class="token ${colClass(col)}" onclick="removeToken('${row.key}')" title="Click to remove">
+            ${row.label} <span class="tok-x">✕</span>
+          </button>
+        </div>`;
+      } else if (placed && locked) {
+        html += `<div class="ttt-cell">
+          <span class="token ${colClass(col)}" style="cursor:default">${row.label}</span>
+        </div>`;
+      } else if (!locked) {
+        // show place button only if this row hasn't been placed yet
+        if (gridState[row.key] === null) {
+          html += `<div class="ttt-cell">
+            <button class="place-btn" onclick="placeToken('${row.key}','${col}')">${colLabel(col)}</button>
+          </div>`;
+        } else {
+          html += `<div class="ttt-cell"></div>`;
+        }
+      } else {
+        html += `<div class="ttt-cell"></div>`;
+      }
+      html += `</td>`;
+    });
+    html += `</tr>`;
+  });
+
+  html += `</tbody></table>`;
+  if (!locked) {
+    const allPlaced = ROWS.every(r => gridState[r.key] !== null);
+    html += `<p class="tray-hint">${allPlaced ? 'Grid filled — now select your answer below.' : 'Click a column button to place each row value. Click a placed token to remove it.'}</p>`;
+  }
+  wrap.innerHTML = html;
+}
+
+function renderRevealGrid(q) {
+  // Show the correct answer grid in the rationale
+  const cols = ['acid', 'normal', 'base'];
+  const colHeaders = ['ACID', 'NORMAL', 'BASE'];
+
+  // Determine where each value actually belongs
+  function classify(rowKey, q) {
+    const val = parseFloat(rowKey === 'ph' ? q.ph : rowKey === 'co2' ? q.co2 : q.hco3);
+    if (rowKey === 'ph')   return val < 7.35 ? 'acid' : val > 7.45 ? 'base' : 'normal';
+    if (rowKey === 'co2')  return val > 45   ? 'acid' : val < 35   ? 'base' : 'normal';
+    if (rowKey === 'hco3') return val < 22   ? 'acid' : val > 26   ? 'base' : 'normal';
+  }
+
+  let html = `<table class="reveal-grid">
+    <thead>
+      <tr>
+        <th style="border:none;width:70px"></th>
+        <th class="acid-header">ACID</th>
+        <th class="normal-header">NORMAL</th>
+        <th class="base-header">BASE</th>
+      </tr>
+    </thead>
+    <tbody>`;
+
+  ROWS.forEach(row => {
+    const correctCol = classify(row.key, q);
+    html += `<tr><td>${row.label}</td>`;
+    cols.forEach(col => {
+      if (col === correctCol) {
+        // also check if student placed it here
+        const studentCorrect = gridState[row.key] === col;
+        const mark = studentCorrect ? ' ✓' : '';
+        html += `<td><span class="cell-placed ${colClass(col)}">${row.label}${mark}</span></td>`;
+      } else {
+        html += `<td><span class="cell-empty">·</span></td>`;
+      }
+    });
+    html += `</tr>`;
+  });
+  html += `</tbody></table>`;
+  return html;
+}
+
+function renderQuestion() {
+  answered = false;
+  resetGrid();
+  const q = deck[idx];
+  const area = document.getElementById('quiz-area');
+  const pct = Math.round((idx / deck.length) * 100);
+  const scoreText = idx > 0 ? Math.round((correctCount / idx) * 100) + '%' : '—';
+
+  let optsHTML = '';
+  q.opts.forEach((o, i) => {
+    optsHTML += `<button class="opt" data-i="${i}" onclick="__abgPick(${i})">
+      <span class="opt-letter">${LETTERS[i]}</span>
+      <span class="opt-text">${o.text}</span>
+    </button>`;
+  });
+
+  area.innerHTML = `
+    <div class="progress-row">
+      <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+      <span class="progress-label">${idx + 1} / ${deck.length}</span>
+      <span class="score-pill">${scoreText}</span>
+    </div>
+    <div class="question-card">
+      <div class="q-meta">
+        <span class="q-num">Q${idx + 1}</span>
+        <span class="q-tag">ABG</span>
+      </div>
+      <div class="q-stem">${q.scenario}</div>
+
+      <div class="abg-values">
+        <div class="abg-chip"><span class="chip-label">pH</span><span class="chip-val">${q.ph}</span></div>
+        <div class="abg-chip"><span class="chip-label">PaCO₂</span><span class="chip-val">${q.co2}</span></div>
+        <div class="abg-chip"><span class="chip-label">HCO₃⁻</span><span class="chip-val">${q.hco3}</span></div>
+      </div>
+
+      <div class="ttt-section">
+        <div class="ttt-label"><i class="fa-solid fa-table-cells"></i> &nbsp;Tic-Tac-Toe Grid — plot each value</div>
+        <div id="ttt-wrap"></div>
+      </div>
+
+      <div class="options" id="opts">${optsHTML}</div>
+      <div id="feedback"></div>
+    </div>
+  `;
+
+  renderGrid(false);
+}
+
+function pick(chosenI) {
+  if (answered) return;
+  answered = true;
+  const q = deck[idx];
+  const correctI = q.opts.findIndex(o => o.isCorrect);
+  const isCorrect = chosenI === correctI;
+  if (isCorrect) correctCount++;
+
+  // lock grid
+  renderGrid(true);
+
+  document.querySelectorAll('.opt').forEach((b, i) => {
+    b.setAttribute('disabled', 'true');
+    if (i === correctI) b.classList.add('correct');
+    else if (i === chosenI && !isCorrect) b.classList.add('wrong');
+    else b.classList.add('dimmed');
+  });
+
+  results.push({
+    stem: q.scenario,
+    ph: q.ph, co2: q.co2, hco3: q.hco3,
+    yourLetter: LETTERS[chosenI],
+    yourText: q.opts[chosenI].text,
+    correctLetter: LETTERS[correctI],
+    correctText: q.opts[correctI].text,
+    isCorrect,
+    rationale: q.rationale,
+    q
+  });
+
+  const fb = document.getElementById('feedback');
+  let verdict, cls;
+  if (isCorrect) {
+    verdict = `✓ Correct — ${LETTERS[correctI]} is right.`;
+    cls = 'r-correct';
+  } else {
+    verdict = `✗ You chose ${LETTERS[chosenI]}. Correct answer: ${LETTERS[correctI]}.`;
+    cls = 'r-wrong';
+  }
+
+  const revealGrid = renderRevealGrid(q);
+  const isLast = idx === deck.length - 1;
+
+  fb.innerHTML = `
+    <div class="rationale ${cls}">
+      <span class="verdict">${verdict}</span>
+      <div class="ttt-reveal">
+        <div class="reveal-label"><i class="fa-solid fa-check-double"></i> &nbsp;Correct grid placement</div>
+        ${revealGrid}
+      </div>
+      <div style="margin-top:12px">${q.rationale}</div>
+    </div>
+    <button class="next-btn" onclick="__abgNext()">${isLast ? 'See results →' : 'Next question →'}</button>
+  `;
+}
+
+function next() {
+  if (idx < deck.length - 1) {
+    idx++;
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    showResults();
+  }
+}
+
+function showResults() {
+  const pct = Math.round((correctCount / deck.length) * 100);
+  const pass = pct >= PASS;
+  try {
+    const prev = parseInt(localStorage.getItem(KEY + '_best') || '0', 10);
+    if (pct > prev) localStorage.setItem(KEY + '_best', String(pct));
+    localStorage.setItem(KEY + '_last', String(pct));
+  } catch(e) {}
+
+  let msg;
+  if (pct >= 90)   msg = "Sharp. ABGs are yours — keep that tic-tac-toe method locked in.";
+  else if (pct >= PASS) msg = "Passing. Review the ones you missed and you'll nail these on exam day.";
+  else             msg = "Below passing — run through the rationales carefully and retake. The method clicks with repetition.";
+
+  const area = document.getElementById('quiz-area');
+  area.innerHTML = `
+    <div class="results-card">
+      <div class="score-big ${pass ? 'pass' : 'fail'}">${pct}%</div>
+      <div class="score-sub">${correctCount} / ${deck.length} correct · ABG Interpreter</div>
+      <div class="score-msg">${msg}</div>
+      <div class="results-tabs">
+        <button class="r-tab ${activeTab==='full'?'active':''}" onclick="__abgTab('full',this)">Full Review</button>
+        <button class="r-tab ${activeTab==='missed'?'active':''}" onclick="__abgTab('missed',this)">Missed Only</button>
+      </div>
+      <div class="review-list" id="review-list"></div>
+      <div class="results-actions">
+        <button class="action-btn primary" onclick="__abgStart()">Retake quiz</button>
+        <a class="action-btn ghost" href="index.html">Back to hub</a>
+      </div>
+    </div>
+  `;
+  renderReview();
+}
+
+function setTab(t, el) {
+  activeTab = t;
+  document.querySelectorAll('.r-tab').forEach(b => b.classList.remove('active'));
+  if (el) el.classList.add('active');
+  renderReview();
+}
+
+function renderReview() {
+  const list = document.getElementById('review-list');
+  let items = results.map((r, i) => ({ ...r, n: i + 1 }));
+  if (activeTab === 'missed') items = items.filter(r => !r.isCorrect);
+
+  if (items.length === 0) {
+    const emptyMsg = activeTab === 'missed'
+      ? '<i class="fa-solid fa-circle-check" style="color:var(--correct)"></i> No missed questions — perfect score!'
+      : 'Nothing here.';
+    list.innerHTML = `<div class="empty-msg">${emptyMsg}</div>`;
+    return;
+  }
+
+  list.innerHTML = items.map(r => `
+    <div class="review-item">
+      <div class="ri-meta">
+        <span class="q-num">Q${r.n}</span>
+        <span class="ri-result ${r.isCorrect ? 'correct' : 'wrong'}">${r.isCorrect ? '✓ Correct' : '✗ Missed'}</span>
+      </div>
+      <div class="review-item-q">${r.stem}</div>
+      <div style="display:flex;gap:8px;margin:8px 0;flex-wrap:wrap">
+        <span style="font-family:JetBrains Mono,monospace;font-size:13px;padding:4px 10px;border-radius:6px;background:var(--surface2);border:1px solid var(--border)">pH ${r.ph}</span>
+        <span style="font-family:JetBrains Mono,monospace;font-size:13px;padding:4px 10px;border-radius:6px;background:var(--surface2);border:1px solid var(--border)">PaCO₂ ${r.co2}</span>
+        <span style="font-family:JetBrains Mono,monospace;font-size:13px;padding:4px 10px;border-radius:6px;background:var(--surface2);border:1px solid var(--border)">HCO₃⁻ ${r.hco3}</span>
+      </div>
+      <div class="review-item-ans">
+        ${r.isCorrect
+          ? `<span class="ri-correct-ans">Your answer: ${r.yourLetter} — ${r.yourText} ✓</span>`
+          : `<span class="ri-yours">You chose: ${r.yourLetter} — ${r.yourText}</span>
+             <span class="ri-correct-ans">Correct: ${r.correctLetter} — ${r.correctText}</span>`}
+      </div>
+      <div class="ri-rationale">${r.rationale}</div>
+    </div>
+  `).join('');
+}
+
+window.__abgPick = pick;
+window.__abgNext = next;
+window.__abgTab = setTab;
+window.__abgStart = startQuiz;
+window.placeToken = placeToken;
+window.removeToken = removeToken;
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', startQuiz);
+} else {
+  startQuiz();
+}
+</script>
+</body>
+</html>

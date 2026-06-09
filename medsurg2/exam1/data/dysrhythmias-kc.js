@@ -27,7 +27,7 @@ window.QUESTIONS = [
     stem: "On an EKG, ST segment elevation indicates which condition?",
     options: ["Myocardial infarction (MI)", "Ischemia", "Hypokalemia", "Atrial enlargement"],
     correct: 0,
-    rationale: "ST segment elevation indicates an MI, while ST depression indicates ischemia. The ST segment reflects early ventricular repolarization."
+    rationale: "ST segment elevation indicates an myocardial infarction (MI), while ST depression indicates ischemia. The ST segment reflects early ventricular repolarization."
   },
   {
     stem: "An EKG rhythm strip is typically how many seconds long?",
@@ -57,7 +57,7 @@ window.QUESTIONS = [
     stem: "Atropine is appropriate for a bradycardic patient under which condition?",
     options: ["Only when the patient is symptomatic or unstable", "For all bradycardic patients regardless of symptoms", "Only when the patient is asymptomatic", "Only when the heart rate is above 60"],
     correct: 0,
-    rationale: "Atropine is given only for symptomatic or unstable bradycardia (hypotension, altered LOC, chest pain). Never give it to an asymptomatic patient — those may simply be monitored."
+    rationale: "Atropine is given only for symptomatic or unstable bradycardia (hypotension, altered level of consciousness (LOC), chest pain). Never give it to an asymptomatic patient — those may simply be monitored."
   },
   {
     stem: "Which of the following is a recognized cause of sinus tachycardia?",
@@ -87,7 +87,7 @@ window.QUESTIONS = [
     stem: "Atrial fibrillation with rapid ventricular response (RVR) is defined as:",
     options: ["A-fib with a heart rate over 100 bpm", "A-fib with a heart rate under 60 bpm", "A-fib that has converted to sinus rhythm", "A-fib with a regular rhythm"],
     correct: 0,
-    rationale: "A-fib with RVR means the heart rate is over 100 bpm. It is treated with beta blockers to slow the ventricular rate. Plain A-fib runs under 100 bpm."
+    rationale: "A-fib with rapid ventricular response (RVR) means the heart rate is over 100 bpm. It is treated with beta blockers to slow the ventricular rate. Plain A-fib runs under 100 bpm."
   },
   {
     stem: "Which EKG finding is the classic identifier of atrial flutter?",
@@ -153,13 +153,13 @@ window.QUESTIONS = [
     stem: "Which dysrhythmia is the most common in cardiac arrest and requires immediate defibrillation?",
     options: ["Ventricular fibrillation (V-fib)", "Atrial fibrillation", "Sinus bradycardia", "First degree heart block"],
     correct: 0,
-    rationale: "V-fib is the most common dysrhythmia in cardiac arrest and is a medical emergency requiring immediate defibrillation. Between CPR and defibrillation, IV Amiodarone and IV Epinephrine are given."
+    rationale: "V-fib is the most common dysrhythmia in cardiac arrest and is a medical emergency requiring immediate defibrillation. Between cardiopulmonary resuscitation (CPR) and defibrillation, IV Amiodarone and IV Epinephrine are given."
   },
   {
     stem: "Ventricular asystole on an EKG appears as:",
     options: ["A flatline with no QRS complexes", "An irregularly irregular rhythm", "A sawtooth pattern", "A wide bizarre QRS at 120 bpm"],
     correct: 0,
-    rationale: "Asystole is a flatline with no QRS complexes — the patient is pulseless and not breathing. Treatment is immediate CPR. A common cause is MI."
+    rationale: "Asystole is a flatline with no QRS complexes — the patient is pulseless and not breathing. Treatment is immediate cardiopulmonary resuscitation (CPR). A common cause is myocardial infarction (MI)."
   },
   {
     stem: "A first degree heart block is identified by:",
@@ -177,7 +177,7 @@ window.QUESTIONS = [
     stem: "A third degree (complete) heart block typically requires which treatment?",
     options: ["A pacemaker", "Adenosine IV push", "Vagal maneuvers", "Monitoring only"],
     correct: 0,
-    rationale: "In 3rd degree block the P waves and QRS have no relationship (AV dissociation), the rate runs 30–40 bpm, and the patient is always symptomatic — requiring a pacemaker. There is no cardioversion for this rhythm; pacing only."
+    rationale: "In 3rd degree block the P waves and QRS have no relationship (atrioventricular (AV) dissociation), the rate runs 30–40 bpm, and the patient is always symptomatic — requiring a pacemaker. There is no cardioversion for this rhythm; pacing only."
   },
   {
     stem: "Which type of pacemaker uses external pads placed on the chest for emergency use?",
@@ -195,13 +195,13 @@ window.QUESTIONS = [
     stem: "Which nursing intervention is appropriate immediately after a cardioversion procedure?",
     options: ["Continuous ECG monitoring", "Encourage the patient to eat a large meal", "Remove all oxygen", "Ambulate the patient immediately"],
     correct: 0,
-    rationale: "After cardioversion, provide continuous ECG monitoring, oxygen, and pain management. The patient is kept NPO prior to the procedure."
+    rationale: "After cardioversion, provide continuous ECG monitoring, oxygen, and pain management. The patient is kept nothing by mouth (NPO) prior to the procedure."
   },
   {
     stem: "A patient is found collapsed on the floor. After calling for help, what is the next priority action?",
     options: ["Check the carotid (neck) pulse", "Start chest compressions immediately", "Apply oxygen", "Obtain a 12-lead EKG"],
     correct: 0,
-    rationale: "After calling for help, check the carotid pulse at the neck. If the patient is pulseless, begin CPR."
+    rationale: "After calling for help, check the carotid pulse at the neck. If the patient is pulseless, begin cardiopulmonary resuscitation (CPR)."
   },
   {
     stem: "When placing precordial leads, where does lead V1 go?",
@@ -213,12 +213,48 @@ window.QUESTIONS = [
     stem: "Which finding indicates a patient is hemodynamically UNSTABLE and needs immediate treatment?",
     options: ["Hypotension (low BP) with altered level of consciousness", "A heart rate of 72 bpm", "A blood pressure of 120/80", "An oxygen saturation of 98%"],
     correct: 0,
-    rationale: "Unstable means low BP (hypotension), altered LOC, chest pain, or signs of poor perfusion — treat immediately. Low BP is the number one sign of instability."
+    rationale: "Unstable means low BP (hypotension), altered level of consciousness (LOC), chest pain, or signs of poor perfusion — treat immediately. Low BP is the number one sign of instability."
   },
   {
     stem: "Before obtaining an EKG, which instruction should the nurse give the patient?",
     options: ["Stay still, do not talk, and do not tense the muscles", "Take deep rapid breaths during the recording", "Tense the arm muscles to improve the signal", "Apply lotion to the skin so leads adhere"],
     correct: 0,
     rationale: "The patient should stay still, not talk, and not tense muscles, since movement creates artifact. Skin must be dry with no lotion, and hairy areas should be shaved so leads adhere properly."
+  },
+{
+    stem: "Why is supplemental oxygen given to a patient experiencing chest pain with a cardiac dysrhythmia?",
+    options: ["To reduce myocardial workload and ensure oxygen delivery to the heart muscle", "To slow the heart rate directly", "To convert the rhythm back to normal sinus", "To prevent blood clot formation in the atria"],
+    correct: 0,
+    rationale: "Supplemental oxygen is given with chest pain because the heart muscle needs adequate oxygen supply. Any rhythm causing poor perfusion or hemodynamic instability also warrants oxygen. The goal is to reduce myocardial workload and prevent further ischemic damage."
+  },
+  {
+    stem: "Torsades de Pointes is a life-threatening ventricular dysrhythmia. Which medication is the treatment of choice?",
+    options: ["IV magnesium sulfate", "Atropine 0.5 mg IV push", "Adenosine IV push", "Oral beta blocker"],
+    correct: 0,
+    rationale: "Torsades de Pointes is treated with IV magnesium sulfate. It presents as a twisting QRS pattern at 150–300 bpm and is often triggered by prolonged QT interval or electrolyte imbalances. Atropine is for bradycardia, adenosine is for atrial flutter, and oral beta blockers are not appropriate for this emergency."
+  },
+  {
+    stem: "Which statement correctly distinguishes 2nd degree Type 2 heart block from 2nd degree Type 1 (Wenckebach)?",
+    options: ["Type 2 has a constant PR interval that suddenly drops a beat, and is considered more dangerous than Wenckebach", "Type 2 shows progressive PR lengthening before a dropped beat", "Type 2 is less dangerous than Wenckebach because the PR never changes", "Type 2 and Wenckebach are treated identically with vagal maneuvers"],
+    correct: 0,
+    rationale: "Second degree Type 2 has a constant PR interval that suddenly drops a beat without warning — making it more dangerous than Wenckebach (Type 1), which gives a predictable pattern of progressive PR lengthening before the dropped beat. Type 2 can progress unpredictably to complete heart block."
+  },
+  {
+    stem: "Where are leads V2 and V4 placed on the chest?",
+    options: ["V2 at the 4th intercostal space left sternal border; V4 at the 5th intercostal space midclavicular line", "V2 at the 5th intercostal space midclavicular line; V4 at the 4th intercostal space left sternal border", "V2 at the midaxillary line; V4 at the anterior axillary line", "V2 and V4 are both placed on the right side of the chest"],
+    correct: 0,
+    rationale: "V2 is at the 4th intercostal space, left sternal border (mirroring V1 on the right). V4 is at the 5th intercostal space, midclavicular line. V3 goes between V2 and V4; V5 is at the anterior axillary line and V6 at the midaxillary line, both at the same level as V4."
+  },
+  {
+    stem: "Which medication is used for rate control in atrial fibrillation and atrial flutter by blocking calcium channels?",
+    options: ["Verapamil (a calcium channel blocker)", "Atropine", "Epinephrine", "Adenosine"],
+    correct: 0,
+    rationale: "Verapamil is a calcium channel blocker used for rate control in atrial fibrillation and atrial flutter. It slows conduction through the atrioventricular (AV) node. Other rate-control options include beta blockers like atenolol. Atropine is for bradycardia; epinephrine is for cardiac arrest."
+  },
+  {
+    stem: "When a patient has a low heart rate or high heart rate due to anemia, why does the heart compensate by increasing its rate?",
+    options: ["Low red blood cells reduce oxygen delivery, so the heart beats faster to circulate blood more quickly", "Anemia directly stimulates the sinoatrial (SA) node to fire faster through a chemical signal", "The heart slows down to conserve energy when red blood cells are low", "Anemia has no effect on heart rate"],
+    correct: 0,
+    rationale: "When red blood cell count is low (anemia), less oxygen is carried per unit of blood. The heart compensates by beating faster to circulate the available blood more quickly and maintain oxygen delivery to tissues. This compensatory tachycardia may require treatment of the underlying anemia, including blood transfusion."
   }
 ];
