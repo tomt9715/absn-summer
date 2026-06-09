@@ -25,37 +25,37 @@ window.QUESTIONS = [
   },
   {
     stem: "A client on a new antipsychotic develops breast enlargement and milk production. What is the most likely explanation?",
-    options: ["Dopamine blockade raised prolactin levels (hyperprolactinemia)", "The drug enhanced gamma-aminobutyric acid (GABA)", "Serotonin levels dropped too low", "Acetylcholine (ACh) was overstimulated"],
+    options: ["Dopamine blockade raised prolactin levels (hyperprolactinemia)", "Serotonin excess from dual-pathway receptor activation caused hormonal dysregulation", "Cholinergic rebound after abrupt discontinuation of the previous medication", "GABA suppression from the antipsychotic reduced inhibitory control of the pituitary gland"],
     correct: 0,
     rationale: "Dopamine normally suppresses prolactin, so blocking dopamine with an antipsychotic raises prolactin (hyperprolactinemia), causing gynecomastia, galactorrhea, and menstrual or sexual changes."
   },
   {
     stem: "A client started on escitalopram (Lexapro) two days ago tells the nurse, 'This isn't working — I still feel depressed and now I'm nauseous. I'm going to stop it.' What is the best teaching?",
-    options: ["The selective serotonin reuptake inhibitor (SSRI) takes 2–4 weeks to work and the nausea is an expected early effect, so they should not stop", "They are right to stop, since it should work within 48 hours", "The nausea means they are allergic and must stop immediately", "They should double the dose to speed up the effect"],
+    options: ["The selective serotonin reuptake inhibitor (SSRI) takes 2–4 weeks to work and this timeline is expected", "The medication is likely the wrong choice and the provider should switch to a different drug class immediately", "The client needs a higher dose right away since an early lack of effect signals treatment resistance", "The medication should be stopped and replaced with a benzodiazepine for faster symptom relief"],
     correct: 0,
     rationale: "Selective serotonin reuptake inhibitors (SSRIs) take 2–4 weeks for full effect, so stopping at two days is premature. Nausea is an expected early GI effect (most serotonin is made in the gut). The nurse should reinforce adherence, not stopping or doubling the dose."
   },
   {
     stem: "A client asks why their selective serotonin reuptake inhibitor (SSRI) gives them diarrhea and nausea. What is the nurse's best explanation?",
-    options: ["Most of the body's serotonin is produced in the gastrointestinal tract, so raising serotonin affects the gut", "The medication directly burns the stomach lining", "The drug blocks dopamine in the intestines", "These symptoms mean the dose is dangerously high"],
+    options: ["Most of the body's serotonin is produced in the gastrointestinal tract, so raising serotonin levels affects gut motility", "The SSRI is directly irritating the gastric mucosa, which requires taking the medication with a full meal", "GI symptoms indicate serotonin syndrome developing and the provider should be notified immediately", "Nausea occurs because the medication crosses the blood-brain barrier too rapidly on an empty stomach"],
     correct: 0,
     rationale: "About 80% of serotonin is produced in the gastrointestinal tract, so a selective serotonin reuptake inhibitor (SSRI) that raises serotonin commonly causes GI effects like nausea and diarrhea — an expected, usually temporary effect."
   },
   {
     stem: "A client with Alzheimer's disease is prescribed donepezil. What should the nurse teach the family about its effect?",
-    options: ["It is a cholinesterase inhibitor that slows cognitive decline but does not cure the disease", "It cures Alzheimer's disease within a few weeks", "It blocks dopamine to reduce confusion", "It enhances gamma-aminobutyric acid (GABA) for relaxation"],
+    options: ["It is a cholinesterase inhibitor that slows cognitive decline but does not cure or reverse Alzheimer's disease", "It is a dopamine agonist that restores motor function and improves memory by activating reward pathways", "It is an SSRI that treats the depression and apathy commonly seen in early-stage Alzheimer's disease", "It is a GABA enhancer that reduces agitation and behavioral disturbances in moderate-to-severe dementia"],
     correct: 0,
     rationale: "Donepezil is a cholinesterase inhibitor that raises acetylcholine (ACh) to slow cognitive decline in Alzheimer's disease — it does not cure it. Memantine (Namenda), which modulates glutamate, is another Alzheimer's drug."
   },
   {
     stem: "A client wants help quitting smoking and is prescribed varenicline (Chantix). Which neurotransmitter system does this drug target?",
-    options: ["Acetylcholine (ACh) receptors, which nicotine normally mimics", "Dopamine receptors only", "Gamma-aminobutyric acid (GABA) receptors", "Glutamate receptors"],
+    options: ["Acetylcholine (ACh) receptors, which nicotine normally mimics", "Dopamine receptors in the reward pathway, directly blocking the pleasure response to all substances", "GABA receptors, reducing the anxiety and irritability that drive continued nicotine use", "Serotonin receptors in the limbic system, decreasing the emotional craving for nicotine stimulation"],
     correct: 0,
     rationale: "Varenicline (Chantix) targets acetylcholine (ACh) receptors for smoking cessation, since nicotine mimics acetylcholine. It is not primarily a gamma-aminobutyric acid (GABA) or glutamate agent."
   },
   {
     stem: "A client with depression is started on venlafaxine (Effexor). How does its mechanism differ from escitalopram (Lexapro)?",
-    options: ["Venlafaxine is a serotonin-norepinephrine reuptake inhibitor (SNRI) affecting both serotonin and norepinephrine; escitalopram is a selective serotonin reuptake inhibitor (SSRI) affecting serotonin only", "Venlafaxine blocks dopamine; escitalopram enhances gamma-aminobutyric acid (GABA)", "Both are antipsychotics", "Venlafaxine targets acetylcholine (ACh); escitalopram targets glutamate"],
+    options: ["Venlafaxine is a serotonin-norepinephrine reuptake inhibitor (SNRI) affecting both serotonin and norepinephrine pathways", "Venlafaxine is a selective serotonin reuptake inhibitor (SSRI) that works exclusively on serotonin transporters", "Venlafaxine is a tricyclic antidepressant that blocks multiple receptor types including histamine and muscarinic receptors", "Venlafaxine is a monoamine oxidase inhibitor (MAOI) that prevents breakdown of all monoamine neurotransmitters"],
     correct: 0,
     rationale: "Venlafaxine (Effexor) is a serotonin-norepinephrine reuptake inhibitor (SNRI) acting on both serotonin and norepinephrine, while escitalopram (Lexapro) is a selective serotonin reuptake inhibitor (SSRI) acting on serotonin alone."
   },
@@ -73,7 +73,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A client with anxiety is prescribed lorazepam (Ativan). The nurse explains it works by doing what?",
-    options: ["Enhancing gamma-aminobutyric acid (GABA), the brain's inhibitory 'brake pedal,' to promote calm", "Blocking dopamine to reduce hallucinations", "Raising acetylcholine (ACh) to improve memory", "Increasing glutamate to boost alertness"],
+    options: ["Enhancing gamma-aminobutyric acid (GABA), the brain's inhibitory 'brake pedal,' to reduce neuronal excitability", "Blocking serotonin reuptake to increase availability of serotonin at the synapse over several weeks", "Stimulating dopamine release in the mesolimbic pathway to reduce the perception of anxiety and threat", "Inhibiting norepinephrine release from the locus coeruleus to blunt the sympathetic stress response"],
     correct: 0,
     rationale: "Lorazepam (Ativan), a benzodiazepine, enhances gamma-aminobutyric acid (GABA) — the inhibitory 'brake pedal' — to reduce anxiety and promote calm. It does not block dopamine or raise acetylcholine (ACh)."
   },

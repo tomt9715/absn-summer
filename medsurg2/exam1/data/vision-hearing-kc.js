@@ -13,13 +13,13 @@ window.QUESTIONS = [
   },
   {
     stem: "Which set of symptoms is most characteristic of cataracts?",
-    options: ["Blurry vision, glare, halos around lights, and faded colors", "A curtain coming across the field of vision", "Wavy distortion of straight lines", "Loss of side (peripheral) vision"],
+    options: ["Blurry vision, glare, halos around lights, and faded colors", "Sudden painless curtain descending over the visual field with new floaters and flashing lights", "Wavy distortion of straight lines affecting central vision while peripheral vision remains intact", "Progressive peripheral vision loss creating tunnel vision with halos and eye pressure or pain"],
     correct: 0,
     rationale: "Cataracts cause blurry/cloudy vision, glare, halos, and faded colors with gradual onset. The curtain sensation is retinal detachment, wavy lines are age-related macular degeneration (AMD), and peripheral loss is glaucoma."
   },
   {
     stem: "What is the surgical treatment for cataracts?",
-    options: ["Phacoemulsification with lens removal and intraocular lens (IOL) implant", "Prone positioning with head immobilization", "Lifelong eye drops to manage the condition", "Irrigation to remove the buildup"],
+    options: ["Phacoemulsification with lens removal and intraocular lens (IOL) implant", "Prone positioning with restricted head and eye movement following laser photocoagulation", "Lifelong topical eye drops that control aqueous humor production and reduce lens clouding", "Verteporfin photodynamic therapy combined with anti-VEGF injections to slow progression"],
     correct: 0,
     rationale: "Cataracts are treated with phacoemulsification — the clouded lens is removed and an intraocular lens (IOL) is implanted. The other options describe care for other conditions."
   },
@@ -61,7 +61,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A patient is prescribed both eye drops and an eye ointment. What is the correct order and timing of administration?",
-    options: ["Drops first, then ointment last; wait 5 minutes between different drops", "Ointment first, then drops; no waiting needed", "Both at the same time in the same eye", "Ointment only in the morning, drops only at night"],
+    options: ["Drops first, then ointment last; wait 5 minutes between different drops", "Ointment first to coat the conjunctiva, then drops after 10 minutes to ensure full absorption", "Both drops and ointment are instilled simultaneously to reduce the number of administration steps", "Alternating drops and ointment in a sequence determined by which medication is more concentrated"],
     correct: 0,
     rationale: "Drops go in before ointment (ointment would block drop absorption), and the nurse waits 5 minutes between different eye drops. Contact lenses are removed first."
   },
@@ -91,13 +91,13 @@ window.QUESTIONS = [
   },
   {
     stem: "What is the correct post-operative positioning for a patient after retinal detachment repair?",
-    options: ["Prone, which pushes pressure toward the front of the eye", "Supine with the head fully elevated", "High-Fowler's leaning forward", "Side-lying on the operative side"],
+    options: ["Prone, which pushes pressure toward the front of the eye", "High Fowler's with the head of the bed elevated at 90 degrees to reduce intraocular pressure", "Supine with the operative eye patched and the head elevated on two pillows throughout recovery", "Side-lying on the non-operative side with a pillow placed between the knees for comfort"],
     correct: 0,
     rationale: "After retinal detachment repair the patient is positioned prone to push pressure toward the front of the eye, and head/eye movement is restricted. Pre-operatively the patient is kept supine with the head immobilized."
   },
   {
     stem: "Which condition is characterized by loss of central vision while peripheral vision is preserved?",
-    options: ["Age-related macular degeneration (AMD)", "Glaucoma", "Retinal detachment", "Cataracts"],
+    options: ["Age-related macular degeneration (AMD)", "Glaucoma, which causes progressive peripheral vision loss leading to tunnel vision over time", "Retinal detachment, which presents as a painless curtain descending across part of the visual field", "Cataracts, which cause gradual clouding of the entire visual field with glare and halos"],
     correct: 0,
     rationale: "age-related macular degeneration (AMD) causes central vision loss (affecting reading and driving) while peripheral vision is preserved. Glaucoma is the opposite — peripheral loss first."
   },
@@ -145,7 +145,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Which nursing instruction is appropriate for a patient with external otitis?",
-    options: ["Keep the ear dry — avoid swimming and use earplugs in the shower", "Irrigate the ear daily with warm water", "Insert a cotton swab to clean the canal twice a day", "Follow a strict low-sodium diet"],
+    options: ["Keep the ear dry — avoid swimming and use earplugs in the shower", "Irrigate the ear canal twice daily with warm water to prevent wax buildup and spread of infection", "Insert cotton swabs gently to clean discharge from the outer canal and promote faster healing", "Follow a low-sodium diet to reduce fluid retention and decrease swelling in the ear canal"],
     correct: 0,
     rationale: "Patients with external otitis should keep the ear dry, avoid swimming, and not insert objects into the canal. Topical antibiotic/steroid drops are used as ordered."
   },
@@ -157,7 +157,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Which class of medications is a key risk factor for ototoxicity?",
-    options: ["Aminoglycosides (gentamicin, tobramycin, streptomycin)", "Antihistamines like Meclizine", "Topical corticosteroids", "Beta blockers"],
+    options: ["Aminoglycosides (gentamicin, tobramycin, streptomycin)", "Calcium channel blockers (verapamil, diltiazem), which impair cochlear blood flow", "Antihistamines (diphenhydramine, loratadine), which accumulate in the inner ear over time", "Beta blockers (atenolol, metoprolol), which reduce perfusion to the cochlea and vestibule"],
     correct: 0,
     rationale: "Aminoglycosides are a key ototoxic drug class. Other ototoxic agents include loop diuretics, cisplatin/carboplatin, high-dose aspirin, and quinine. Meclizine treats vertigo, it doesn't cause ototoxicity."
   },
@@ -211,7 +211,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Which action best supports communication with a hearing-impaired patient?",
-    options: ["Face the person and reduce background noise before speaking", "Stand behind the patient while talking", "Turn up a nearby TV to normalize sound", "Speak only into the more impaired ear"],
+    options: ["Face the person and reduce background noise before speaking", "Stand behind the patient and speak directly into the more impaired ear at a louder volume", "Speak rapidly and concisely to maintain the patient's attention and reduce listening fatigue", "Turn on a nearby television at a moderate volume to normalize background sound in the room"],
     correct: 0,
     rationale: "Facing the person, getting their attention first, reducing background noise, and speaking into the less impaired ear all support communication. Standing behind them or adding noise does the opposite."
   },
@@ -229,7 +229,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Glaucoma is sometimes called the 'silent thief of sight.' Why?",
-    options: ["It is often asymptomatic in early stages, with peripheral vision lost gradually before the patient notices", "It causes sudden painful loss of all vision at once", "It only affects central vision, which patients notice immediately", "It produces a bright curtain sensation that goes unrecognized"],
+    options: ["It is often asymptomatic in early stages, with peripheral vision lost gradually before the patient notices", "It causes sudden complete vision loss overnight with no warning signs or preceding symptoms", "It presents only with eye pain and redness, symptoms that patients frequently mistake for allergies", "It affects central vision first, making reading and driving difficult while peripheral vision remains intact"],
     correct: 0,
     rationale: "Glaucoma earns the name 'silent thief of sight' because it is often asymptomatic in early stages. Peripheral vision is lost gradually, and patients may not notice until significant, irreversible damage has occurred."
   },
@@ -241,7 +241,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Which glaucoma medication classes work by DECREASING aqueous humor production?",
-    options: ["Beta blockers, alpha-2 agonists, and carbonic anhydrase inhibitors", "Miotics and prostaglandin analogs", "Loop diuretics and aminoglycosides", "Antihistamines and antiemetics"],
+    options: ["Beta blockers, alpha-2 agonists, and carbonic anhydrase inhibitors", "Miotics and prostaglandin analogs, which increase aqueous humor outflow from the anterior chamber", "Loop diuretics and aminoglycosides, which reduce fluid production throughout all body compartments", "Antihistamines and antiemetics, which decrease ciliary body secretion through anticholinergic effects"],
     correct: 0,
     rationale: "Beta blockers (e.g., timolol), alpha-2 agonists (e.g., brimonidine), and carbonic anhydrase inhibitors (e.g., dorzolamide) all lower intraocular pressure (IOP) by reducing aqueous humor production. Miotics and prostaglandins work by the opposite mechanism — increasing outflow."
   },
@@ -265,13 +265,13 @@ window.QUESTIONS = [
   },
   {
     stem: "What is the key difference between dry and wet age-related macular degeneration (AMD)?",
-    options: ["Dry type has drusen (yellow deposits) and progresses slowly; wet type has abnormal blood vessel growth and progresses faster", "Dry type is painless; wet type causes severe eye pain", "Dry type affects peripheral vision; wet type affects central vision only", "Dry type is treated with surgery; wet type is managed with diet alone"],
+    options: ["Dry type has drusen (yellow deposits) and progresses slowly; wet type has abnormal blood vessel growth and progresses faster", "Dry type causes sudden central vision loss; wet type causes gradual peripheral vision loss over decades", "Dry type requires immediate anti-VEGF injection; wet type is managed with dietary and lifestyle changes only", "Dry type affects both eyes simultaneously; wet type always begins in one eye and never progresses bilaterally"],
     correct: 0,
     rationale: "Dry age-related macular degeneration (AMD) involves drusen (yellow deposits under the retina) and progresses slowly. Wet age-related macular degeneration (AMD) involves abnormal blood vessel growth (neovascularization), can progress more rapidly, and is treated with verteporfin or anti-VEGF injections."
   },
   {
     stem: "How long does cataract surgery recovery typically take, and which activity must be avoided during this time?",
-    options: ["4–6 weeks; avoid bending, straining, sneezing forcefully, and blowing the nose", "1–2 days; no restrictions after 48 hours", "3–4 months; avoid all light exposure", "1 week; avoid eating solid food"],
+    options: ["4–6 weeks; avoid bending, straining, sneezing forcefully, and blowing the nose", "1–2 days; activity may fully resume after 48 hours with no restrictions on lifting or straining", "3–4 months; avoid all bright light exposure and wear UV-protective goggles outdoors at all times", "1 week; avoid solid food and restrict oral intake to clear liquids to prevent postoperative nausea"],
     correct: 0,
     rationale: "Cataract surgery recovery takes approximately 4–6 weeks. During this time, patients must avoid bending, straining, lifting, rubbing the eye, sneezing forcefully, and blowing the nose — all of which can raise intraocular pressure (IOP) and stress the surgical site."
   },
@@ -289,7 +289,7 @@ window.QUESTIONS = [
   },
   {
     stem: "In addition to meclizine (Antivert), which two medications may be used in the management of Meniere's disease?",
-    options: ["Diazepam (Valium) for acute vertigo and diuretics to reduce fluid retention", "Furosemide (Lasix) for vertigo and gentamicin for inflammation", "Atropine for nausea and high-dose aspirin for tinnitus", "Timolol eye drops and pilocarpine"],
+    options: ["Diazepam (Valium) for acute vertigo and diuretics to reduce fluid retention", "Furosemide (Lasix) for vertigo control and gentamicin for inflammation of the endolymphatic sac", "Atropine for nausea and high-dose aspirin to reduce tinnitus associated with endolymph buildup", "Timolol eye drops to reduce fluid pressure and pilocarpine to improve inner ear drainage"],
     correct: 0,
     rationale: "In addition to meclizine (Antivert) for vertigo, diazepam (Valium) may be used for acute vertigo relief, and diuretics are prescribed to reduce fluid retention and decrease endolymph buildup. Furosemide is ototoxic and not used here; gentamicin and aspirin can worsen hearing."
   },
@@ -301,13 +301,13 @@ window.QUESTIONS = [
   },
   {
     stem: "What distinguishes otitis media from otitis externa (swimmer's ear)?",
-    options: ["Otitis media is a middle ear infection that may cause fever and ear fullness; otitis externa is an outer ear infection with pain when touching the external ear", "Otitis media causes pain on the external ear; otitis externa causes fever and hearing loss", "Both conditions are treated with the same topical antibiotic drops", "Otitis media affects the inner ear; otitis externa affects the eardrum"],
+    options: ["Otitis media is a middle ear infection that may cause fever and ear fullness; otitis externa is an outer ear infection with pain when touching the external ear", "Otitis media causes pain on the external ear and discharge; otitis externa causes fever, fullness, and muffled hearing", "Both conditions are treated identically with the same topical antibiotic and steroid ear drop combinations", "Otitis media affects the inner ear cochlea causing vertigo; otitis externa affects the eardrum causing hearing loss"],
     correct: 0,
     rationale: "Otitis media is a middle ear infection — presenting with ear fullness, possible fever, and pain behind the eardrum — often associated with upper respiratory infections. Otitis externa (swimmer's ear) is an outer ear infection with characteristic pain when the external ear is touched or moved. They are treated differently."
   },
   {
     stem: "A patient with chronic otitis media asks why they keep getting this condition. What is the nurse's best explanation?",
-    options: ["Chronic otitis media results from recurrent acute middle ear infections that damage the ear over time", "It is caused by swimming without earplugs", "It is caused by ototoxic medications that inflame the outer ear canal", "It results from abnormal endolymph buildup in the inner ear"],
+    options: ["Chronic otitis media results from recurrent acute middle ear infections that damage the ear over time", "It is caused by repeated swimming without earplugs, which allows water to enter and infect the middle ear", "It develops when ototoxic medications accumulate in the middle ear and damage the ossicular chain", "It results from abnormal endolymph buildup in the middle ear caused by malabsorption of the endolymphatic sac"],
     correct: 0,
     rationale: "Chronic otitis media develops as a result of recurrent acute otitis media — repeated middle ear infections cause ongoing inflammation and potential structural damage to the middle ear. This is distinct from otitis externa (swimmer's ear) or Meniere's disease."
   }

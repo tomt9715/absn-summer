@@ -1,7 +1,7 @@
 window.QUESTIONS = [
   {
     stem: "A nurse places a client in seclusion because the unit is short-staffed, with no medical justification. Which intentional tort has occurred?",
-    options: ["False imprisonment", "Battery", "Negligence", "Fidelity"],
+    options: ["False imprisonment", "Permissible restraint under emergency staffing protocols", "Therapeutic limit-setting within the nurse's scope of practice", "Justified containment when no other options are available"],
     correct: 0,
     rationale: "Using seclusion or restraints without medical justification (such as for staffing convenience) is false imprisonment, an intentional tort. Battery is unwanted touching, and fidelity is loyalty/keeping commitments."
   },
@@ -13,13 +13,13 @@ window.QUESTIONS = [
   },
   {
     stem: "Which situation meets criteria for an involuntary (e.g., 72-hour) psychiatric hold?",
-    options: ["The client has a specific plan and access to lethal means, or poses imminent danger to self or others", "The client is sad but denies any thoughts of self-harm", "The client refuses to participate in group therapy", "The client wants to leave against medical advice but is not a danger"],
+    options: ["The client has a specific plan and access to lethal means, or poses imminent danger to self or others", "The client expresses sadness and hopelessness but denies any plan or intent to harm themselves", "The client refuses to attend group therapy and asks to be left alone in their room", "The client requests discharge against medical advice but denies any current suicidal ideation"],
     correct: 0,
     rationale: "An involuntary hold requires that the client be an imminent danger to self or others — for example, a specific plan plus access to lethal means. Sadness alone, refusing group, or wanting to leave without danger do not meet criteria."
   },
   {
     stem: "A competent, voluntarily admitted client states they want to refuse their prescribed electroconvulsive therapy (ECT). What is the nurse's best action?",
-    options: ["Advocate for the client's right to refuse and ensure they understand risks and benefits", "Tell the client they must comply because it was ordered", "Administer the treatment anyway since they were admitted", "Discharge the client immediately for non-compliance"],
+    options: ["Advocate for the client's right to refuse and ensure they understand risks and benefits", "Administer the treatment anyway since the provider ordered it and hospitalization implies consent", "Document the refusal and transfer the client to a locked unit to ensure compliance", "Notify the family and allow them to override the client's refusal on their behalf"],
     correct: 0,
     rationale: "A competent, voluntary client can refuse any treatment, including electroconvulsive therapy (ECT). The nurse advocates for the client's autonomy and ensures informed understanding of risks and benefits."
   },
@@ -37,7 +37,7 @@ window.QUESTIONS = [
   },
   {
     stem: "What does the ethical principle of fidelity refer to?",
-    options: ["Loyalty and honoring commitments so the client can trust the nurse", "Telling the client the truth at all times", "Doing no harm to the client", "Distributing resources fairly"],
+    options: ["Loyalty and honoring commitments so the client can trust the nurse", "Telling the client the full truth about their diagnosis even when the information is distressing", "Distributing care and resources fairly based on clinical need and priority", "Ensuring no harm comes to the client through any nursing action or omission"],
     correct: 0,
     rationale: "Fidelity is loyalty and keeping one's commitments, so the client can trust the nurse to follow through. Truth-telling is veracity, non-harm is nonmaleficence, and fair distribution is justice."
   },
@@ -85,25 +85,25 @@ window.QUESTIONS = [
   },
   {
     stem: "A nurse uses restraints on an agitated client only after less restrictive measures have failed and there is a documented risk of harm. Is this false imprisonment?",
-    options: ["No — restraints with proper medical justification and documentation are not false imprisonment", "Yes — any use of restraints is always false imprisonment", "Yes — restraints are never legally permitted", "No — but only if the client consents to the restraints"],
+    options: ["No — restraints with proper medical justification and documentation are not false imprisonment", "Yes — any use of physical restraints constitutes false imprisonment regardless of clinical reasoning", "Yes — restraints can only be ordered by a physician and nursing use is always a legal violation", "No — but only if the client gave verbal consent to the restraints before they were applied"],
     correct: 0,
     rationale: "Restraints used with genuine medical justification, after less restrictive measures fail, and with proper documentation are appropriate care — not false imprisonment. False imprisonment is restraint/seclusion WITHOUT justification (e.g., for staffing convenience)."
   },
   {
     stem: "A voluntarily admitted, competent client decides they want to leave the facility. What is generally true about their status?",
-    options: ["They can usually request discharge, since voluntary clients retain the right to leave unless they meet involuntary criteria", "They can never leave once admitted", "They must stay until the provider says treatment is complete", "They can only leave if a family member signs them out"],
+    options: ["They can usually request discharge, since voluntary clients retain the right to leave unless they meet involuntary criteria", "They cannot leave until the treatment team agrees the discharge is clinically appropriate and safe", "They must remain hospitalized until a court order or formal AMA discharge process is completed", "They can leave only if a family member or legal guardian signs a release form on their behalf"],
     correct: 0,
     rationale: "Voluntary clients generally retain the right to request discharge and leave, unless an assessment shows they now meet involuntary hold criteria (imminent danger to self or others). Admission alone does not remove that right."
   },
   {
     stem: "Under the Duty to Warn (Tarasoff principle), when must a clinician break confidentiality?",
-    options: ["When a client makes a serious, realistic threat against a specific, identifiable victim", "Whenever a client expresses any anger toward someone", "Any time a family member requests information", "Only after the client has already harmed someone"],
+    options: ["When a client makes a serious, realistic threat against a specific, identifiable victim", "Whenever a client expresses frustration or anger toward anyone in their personal life", "Any time a client discusses past conflicts with family members or former colleagues", "Only after the client has already acted on a threat and harm has occurred"],
     correct: 0,
     rationale: "The Tarasoff/Duty to Warn principle requires breaking confidentiality when a client makes a serious, realistic, imminent threat against a specific, identifiable victim. Vague anger or a delusional, non-specific threat does not meet the threshold."
   },
   {
     stem: "Which set of conditions must be met to trigger the Duty to Warn (Tarasoff)?",
-    options: ["A threatening statement, a specific identifiable victim, a serious and realistic threat, and imminent risk", "Any statement of frustration about another person", "A delusional threat with no identifiable target", "A client's refusal to take medication"],
+    options: ["A threatening statement, a specific identifiable victim, a serious and realistic threat, and imminent risk", "Any expression of anger toward another person combined with a history of past violence", "A client's refusal to take medication combined with agitation and delusional thinking", "A vague or delusional threat that lacks a specific target but causes staff concern"],
     correct: 0,
     rationale: "Duty to Warn requires all of these: the client makes a threatening statement, the victim is specific and identifiable, the threat is serious and realistic (not a delusion), and the risk of harm is imminent."
   },
@@ -115,13 +115,13 @@ window.QUESTIONS = [
   },
   {
     stem: "What is the difference between negligence and malpractice?",
-    options: ["Malpractice is professional negligence by a licensed provider that causes harm; negligence is the general failure to act as a reasonable person would", "They are identical terms", "Negligence only applies to physicians; malpractice only to nurses", "Malpractice is always intentional; negligence is always accidental"],
+    options: ["Malpractice is professional negligence by a licensed provider that causes harm; negligence is the general failure to act as a reasonable person would", "They are identical terms that can be used interchangeably in any clinical or legal context", "Negligence only applies to licensed physicians, while malpractice applies exclusively to registered nurses", "Malpractice requires intentional wrongdoing, while negligence always involves an accidental and unforeseeable act"],
     correct: 0,
     rationale: "Negligence is failing to act as a reasonably prudent person would. Malpractice is professional negligence — a licensed professional failing to meet the standard of care and causing harm. A medication error is an example of an unintentional tort for which the nurse is still accountable."
   },
   {
     stem: "A nurse makes a medication error that is an honest, unintended mistake. How is this best classified?",
-    options: ["An unintentional tort, for which the nurse is still legally accountable", "An intentional tort like battery", "False imprisonment", "Not the nurse's responsibility since it was accidental"],
+    options: ["An unintentional tort, for which the nurse is still legally accountable", "An intentional tort equivalent to battery, since any medication error involves direct patient contact", "Not a legal concern because unintentional acts cannot form the basis of a malpractice claim", "False imprisonment, since withholding correct medication restricts the client's physiological freedom"],
     correct: 0,
     rationale: "An unintended mistake such as a medication error is an unintentional tort. Even though it was not deliberate, the nurse remains legally accountable for the harm caused."
   }

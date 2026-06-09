@@ -1,7 +1,7 @@
 window.QUESTIONS = [
   {
     stem: "A client tells the nurse, 'I feel hopeless and empty.' The nurse observes that the client is tearful with a downcast expression. How should the nurse document the mood and affect?",
-    options: ["Mood 'hopeless and empty' (client's words); affect tearful and sad (observed)", "Mood tearful and sad (observed); affect 'hopeless and empty' (client's words)", "Both mood and affect as 'hopeless'", "Both mood and affect as tearful"],
+    options: ["Mood 'hopeless and empty' (client's words); affect tearful and sad (observed)", "Mood tearful and constricted (nurse's observation); affect hopeless and empty (client's report)", "Both mood and affect are documented as 'hopeless' since the client's report confirms the observation", "Affect is not documented separately since it is always assumed to match the client's stated mood"],
     correct: 0,
     rationale: "Mood is subjective — documented in the client's own words ('hopeless and empty'). Affect is objective — what the nurse observes (tearful, sad). Mixing these up is a common exam trap."
   },
@@ -31,13 +31,13 @@ window.QUESTIONS = [
   },
   {
     stem: "A nurse asks a client to interpret 'the grass is always greener on the other side,' and the adult client responds, 'It means you should water your lawn more.' How should the nurse interpret this?",
-    options: ["Concrete thinking, which may indicate impaired abstract thinking in an adult", "Normal abstract reasoning", "A delusion of reference", "A sign of euphoria"],
+    options: ["Concrete thinking, which may indicate impaired abstract thinking in an adult", "Intact abstract reasoning, since interpreting proverbs literally is developmentally normal at all ages", "Tangential thinking, since the client's response wandered away from the question being asked", "Flight of ideas, indicating pressured thought processes associated with mania or hypomania"],
     correct: 0,
     rationale: "A literal, concrete response to a proverb assesses abstract thinking. In an adult, concrete responses may indicate impairment. (In a child under ~12, concrete thinking is developmentally normal.)"
   },
   {
     stem: "A client states, 'I know I'm an alcoholic and it's hurting my family, but I can quit any time, so I won't go to treatment.' How should the nurse assess this client's insight and judgment?",
-    options: ["Insight is present (recognizes the problem); judgment is impaired (unsafe decision)", "Both insight and judgment are intact", "Insight is impaired; judgment is intact", "Neither insight nor judgment can be assessed here"],
+    options: ["Insight is present (recognizes the problem); judgment is impaired (unsafe decision-making)", "Both insight and judgment are intact since the client can articulate the impact of their behavior", "Insight is impaired (lacks awareness of illness); judgment is intact (making reasonable decisions)", "Neither insight nor judgment can be assessed without administering a formal cognitive screening tool"],
     correct: 0,
     rationale: "The client recognizes the illness and its impact (insight present) but makes an unsafe choice to decline treatment (judgment impaired). A client can have insight without good judgment."
   },
@@ -61,7 +61,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A nurse observes a client pacing rapidly, unable to sit still, with quick darting movements. Under which mental status exam (MSE) domain is this documented, and what does it suggest?",
-    options: ["Appearance and behavior; psychomotor agitation", "Perception; a hallucination", "Thought content; a delusion", "Cognition; disorientation"],
+    options: ["Appearance and behavior; psychomotor agitation", "Mood and affect; the pacing reflects elevated, dysphoric, or anxious emotional tone", "Thought process; the rapid movement signals disorganized thinking and flight of ideas", "Insight and judgment; the inability to sit still reflects poor impulse control and decision-making"],
     correct: 0,
     rationale: "Pacing and restlessness are psychomotor activity, documented under appearance and behavior, and suggest agitation. This is an observed behavior, not a perception or thought-content finding."
   },
@@ -85,7 +85,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A client who recently had a stroke can recall their childhood in detail but cannot remember three words the nurse said two minutes ago. How should the nurse document this?",
-    options: ["Intact remote memory with impaired recent (short-term) memory", "Intact recent memory with impaired remote memory", "Disorientation to person and place", "A disturbance in abstract thinking"],
+    options: ["Intact remote memory with impaired recent (short-term) memory", "Intact recent memory with impaired remote memory, consistent with early Alzheimer's disease", "Global amnesia affecting both remote and recent memory equally across all time periods", "Intact memory overall, since stroke rarely causes isolated cognitive deficits in adults"],
     correct: 0,
     rationale: "Detailed childhood recall shows intact remote (long-term) memory, while failure to recall three recent words shows impaired recent (short-term) memory. This is a cognition/memory finding, not orientation or abstraction."
   }

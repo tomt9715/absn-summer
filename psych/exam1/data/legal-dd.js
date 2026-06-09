@@ -1,7 +1,7 @@
 window.QUESTIONS = [
   {
     stem: "A charge nurse directs staff to put a wandering but non-dangerous client in seclusion because the unit is busy and short-staffed. How should another nurse respond?",
-    options: ["Object — this is false imprisonment, as seclusion without medical justification is an intentional tort", "Comply, since the charge nurse has authority over staffing decisions", "Document it as a routine safety measure", "Seclude the client but shorten the time"],
+    options: ["Object — this is false imprisonment, as seclusion without medical justification or imminent danger is unlawful", "Comply with the charge nurse's direction, since staffing emergencies create implied authority to use seclusion", "Follow the order but document that the client was confused and potentially a fall risk", "Place the client in seclusion briefly and release them once the census decreases and staffing stabilizes"],
     correct: 0,
     rationale: "Seclusion without medical justification — for staffing convenience — is false imprisonment, an intentional tort. Following the order anyway does not make it lawful; the nurse should object and advocate for the client."
   },
@@ -19,13 +19,13 @@ window.QUESTIONS = [
   },
   {
     stem: "A nurse threatens a client, saying, 'If you don't take your medication, I'll have you held down and injected.' Even if no one touches the client, what has the nurse committed?",
-    options: ["Assault — a threat that places the client in fear of harmful contact", "Battery — actual harmful contact", "False imprisonment — restraint without justification", "Negligence — failure to provide reasonable care"],
+    options: ["Assault — a threat that places the client in fear of harmful contact", "Battery — direct physical contact with the client that causes harm or offensive touching", "False imprisonment — restricting the client's freedom of movement without medical justification", "Malpractice — a professional negligence action resulting from failure to meet the standard of care"],
     correct: 0,
     rationale: "A threat that makes a client fear imminent harmful contact is assault, even with no physical contact. Battery would require actual unwanted touching, and false imprisonment involves confinement."
   },
   {
     stem: "A client presents to the emergency department stating they have a detailed plan to end their life and have a loaded firearm at home. Which action is appropriate?",
-    options: ["Initiate an involuntary hold, as the client is an imminent danger to self with a specific plan and means", "Discharge the client with outpatient follow-up", "Document that the client is sad and reassess in a week", "Allow the client to leave since they came in voluntarily"],
+    options: ["Initiate an involuntary hold, as the client is an imminent danger to self with a specific plan and intent", "Offer outpatient therapy and schedule a follow-up appointment within the next 48 to 72 hours", "Discharge the client with a safety plan and contact information for a crisis hotline", "Consult with the ethics committee before taking any action to preserve the client's autonomy"],
     correct: 0,
     rationale: "A specific plan plus access to lethal means makes the client an imminent danger to self, which meets criteria for an involuntary hold. Discharge or delay would be unsafe."
   },
@@ -49,7 +49,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A client recovering from substance use needs more support than a weekly session but does not require a full-day program. Which setting is most appropriate?",
-    options: ["Intensive outpatient (IOP), meeting several days per week", "Inpatient hospitalization", "Partial hospitalization (PHP), full days", "A single monthly check-in"],
+    options: ["Intensive outpatient (IOP), meeting several days per week for structured treatment and support", "Inpatient hospitalization, which provides the highest level of care for substance use recovery", "Outpatient therapy once weekly, which is the most appropriate step down from inpatient", "Assertive Community Treatment (ACT), which provides mobile team-based support in the community"],
     correct: 0,
     rationale: "Intensive outpatient (IOP) meets several days per week — more than weekly therapy but less than a full-day program — and is commonly used for substance use treatment."
   },
@@ -61,25 +61,25 @@ window.QUESTIONS = [
   },
   {
     stem: "A nurse applies restraints to a client who is actively attacking staff, after verbal de-escalation and less restrictive measures have failed, and documents the justification. Is this legally appropriate?",
-    options: ["Yes — restraints with genuine medical justification and documentation are appropriate, not false imprisonment", "No — restraints are always false imprisonment", "No — restraints can never be used in psychiatry", "Yes — but only with the client's written consent first"],
+    options: ["Yes — restraints with genuine medical justification and documentation are appropriate and legal in this scenario", "No — any physical restraint applied by nursing staff constitutes false imprisonment regardless of circumstances", "No — only security personnel are authorized to apply restraints when a client is violent", "Yes — but only if the family has been contacted and provided verbal consent before application"],
     correct: 0,
     rationale: "Restraints used as a last resort for genuine safety, after less restrictive measures fail and with documentation, are appropriate care. False imprisonment is confinement WITHOUT justification."
   },
   {
     stem: "A nurse promises a frightened client, 'I'll check on you every hour tonight,' and then does so reliably. Which ethical principle is the nurse demonstrating?",
-    options: ["Fidelity — honoring commitments so the client can trust the nurse", "Justice — fair distribution of resources", "Veracity — telling the truth", "Nonmaleficence — doing no harm"],
+    options: ["Fidelity — honoring commitments so the client can trust the nurse", "Veracity — the ethical obligation to provide honest and accurate information to the client", "Beneficence — acting in the client's best interest by promoting comfort and reducing fear", "Autonomy — respecting the client's right to make their own decisions about care and treatment"],
     correct: 0,
     rationale: "Following through on a commitment so the client can trust the nurse demonstrates fidelity. Justice is fairness, veracity is truth-telling, and nonmaleficence is avoiding harm."
   },
   {
     stem: "A voluntarily admitted, competent client who is not a danger to self or others states they want to leave the facility. What is the nurse's appropriate response?",
-    options: ["Acknowledge the client's right to request discharge and follow the facility's process", "Tell the client they are not allowed to leave", "Place the client in seclusion to prevent them from leaving", "Ignore the request and continue treatment"],
+    options: ["Acknowledge the client's right to request discharge and follow the facility's protocol for voluntary discharges", "Initiate an involuntary hold to prevent discharge until the treatment team approves the release", "Refuse to process the discharge until the client has attended all required therapy sessions", "Contact the family to override the client's request since family involvement supersedes patient autonomy"],
     correct: 0,
     rationale: "A voluntary, competent client who is not dangerous retains the right to request discharge. Preventing them from leaving or secluding them without justification would be false imprisonment."
   },
   {
     stem: "A family member asks the nurse to crush a refusing client's medication into food 'for their own good.' The client has no court order for treatment. How should the nurse respond?",
-    options: ["Explain that covertly medicating the client would violate their rights; document the refusal and notify the provider", "Agree, since the family knows the client best", "Crush the medication but tell the client afterward", "Refuse to discuss it with the family at all"],
+    options: ["Explain that covertly medicating the client would violate their rights; document the refusal and notify the provider", "Comply with the family request since family members hold legal authority over a hospitalized client's care", "Crush the medication as requested but document it as a standard medication administration in the chart", "Ask the charge nurse to make the decision and defer entirely to their clinical judgment on the matter"],
     correct: 0,
     rationale: "Without a court order, the client can refuse, and covertly hiding medication in food violates their rights. The nurse explains this, documents the refusal, and notifies the provider rather than deceiving the client."
   },

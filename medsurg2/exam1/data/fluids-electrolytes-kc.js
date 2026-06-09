@@ -79,7 +79,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Which low-potassium foods should be recommended to a patient with hyperkalemia?",
-    options: ["Butter, margarine, cranberry juice, ginger ale, hard candy, and sugar", "Bananas, oranges, potatoes, and lean meats", "Dairy, milk, and whole grains", "Canned beans, broth, and salted nuts"],
+    options: ["Butter, margarine, cranberry juice, ginger ale, hard candy, and sugar", "Bananas, citrus fruits, melons, fresh vegetables, and lean meats to replete the deficit", "Dairy products, whole grains, and legumes, which are potassium-neutral and safe in all amounts", "Canned soups, broth, salted nuts, and pickled foods to maintain sodium balance alongside potassium"],
     correct: 0,
     rationale: "Patients with hyperkalemia (K+ > 5.0 mEq/L) need a low-potassium diet. Safe foods include butter, margarine, cranberry juice, ginger ale, hard candy, honey, and sugar. Bananas, oranges, potatoes, and dairy are all potassium-rich and should be limited."
   },
@@ -91,7 +91,7 @@ window.QUESTIONS = [
   },
   {
     stem: "What is the purpose of giving calcium gluconate to a patient with hyperkalemia?",
-    options: ["To stabilize the cardiac membrane and protect the heart — it does NOT lower potassium", "To drive potassium from the blood into the cells", "To permanently remove potassium from the body via the kidneys", "To correct the acidosis causing the potassium elevation"],
+    options: ["To stabilize the cardiac membrane and protect the heart — it does NOT lower potassium", "To drive potassium from the extracellular fluid back into the cells, temporarily lowering serum levels", "To permanently remove potassium from the body by binding it in the gastrointestinal tract for excretion", "To correct the underlying acidosis that is causing potassium to shift out of the cells into the blood"],
     correct: 0,
     rationale: "Calcium gluconate stabilizes the cardiac membrane in hyperkalemia, protecting the heart from dysrhythmias. It does NOT lower potassium levels. Glucose and insulin or sodium bicarbonate shift potassium into cells temporarily; loop diuretics and Kayexalate actually remove it from the body."
   },
@@ -109,7 +109,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Which clinical manifestations are associated with hypocalcemia?",
-    options: ["Tetany, muscle cramps, paresthesia, seizures, dysrhythmias, and positive Trousseau's and Chvostek's signs", "Polyuria, thirst, muscle weakness, bone pain, and dysrhythmias", "Peaked T waves, muscle twitching, and ascending weakness", "Fatigue, flat T waves, weakness, and prominent U wave"],
+    options: ["Tetany, muscle cramps, paresthesia, seizures, dysrhythmias, and positive Trousseau's and Chvostek's signs", "Polyuria, thirst, bone pain, muscle weakness, nausea, and flank pain from hypercalcemia crisis", "Peaked T waves on the electrocardiogram (ECG), ascending muscle weakness, and absent P waves", "Fatigue, flat T waves, prominent U waves, and dysrhythmias from hypokalemia and potassium deficit"],
     correct: 0,
     rationale: "Hypocalcemia presents with tetany, muscle cramps, paresthesia, seizures, dysrhythmias, abnormal clotting, and positive Trousseau's and Chvostek's signs. Polyuria and bone pain are hypercalcemia; peaked T waves are hyperkalemia; flat T waves and U waves are hypokalemia."
   },
@@ -121,7 +121,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Which dietary foods are high in magnesium and should be recommended to a patient with hypomagnesemia?",
-    options: ["Green leafy vegetables, dry roasted almonds, legumes, and peanut butter", "Bananas, citrus fruits, and melons", "Butter, cranberry juice, and hard candy", "Soup, broth, and salted nuts"],
+    options: ["Green leafy vegetables, dry roasted almonds, legumes, and peanut butter", "Bananas, oranges, melons, and citrus juices, which are high in potassium not magnesium", "Butter, margarine, cranberry juice, and hard candy, which are low-potassium foods for hyperkalemia", "Canned soups, broth, and salted nuts, which are sodium-rich and used for hyponatremia correction"],
     correct: 0,
     rationale: "Magnesium-rich foods include green leafy vegetables, dry roasted almonds, legumes, and peanut butter. Bananas and citrus are potassium-rich; butter and candy are low-potassium foods for hyperkalemia; broth and salted nuts are sodium-rich."
   },
@@ -133,7 +133,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Phosphate and calcium have a reciprocal relationship. What happens to calcium when phosphate is elevated (hyperphosphatemia)?",
-    options: ["Calcium drops — most symptoms of hyperphosphatemia are actually caused by the resulting hypocalcemia", "Calcium also rises proportionally", "Calcium is unaffected by phosphate levels", "Calcium is excreted more rapidly through the kidneys"],
+    options: ["Calcium drops — most symptoms of hyperphosphatemia are actually caused by the resulting hypocalcemia", "Calcium rises proportionally alongside phosphate since both are regulated by the same parathyroid pathway", "Calcium is completely unaffected by phosphate changes and is regulated exclusively by parathyroid hormone", "Calcium is excreted more rapidly through the kidneys to compensate for the elevated phosphate load"],
     correct: 0,
     rationale: "Phosphate and calcium have an inverse (reciprocal) relationship — when phosphate rises, calcium falls. This means most symptoms of hyperphosphatemia are actually those of hypocalcemia: tetany, paresthesias, Trousseau's and Chvostek's signs, and dysrhythmias."
   },
@@ -145,19 +145,19 @@ window.QUESTIONS = [
   },
   {
     stem: "What is 'third spacing' and why is it clinically significant?",
-    options: ["Fluid trapped in a body compartment where it cannot contribute to normal fluid balance — the patient is functionally fluid-depleted despite having fluid in the body", "Fluid stored in the intracellular space to be used as a reserve during shock", "Normal redistribution of sodium and potassium between cells", "Fluid overload in the vascular space causing hypertension and edema"],
+    options: ["Fluid trapped in a body compartment where it cannot contribute to normal fluid balance — the patient is functionally fluid-depleted despite having fluid in the body", "Fluid that shifts into the intracellular space during hyponatremia, causing cells to swell and increasing the risk of cerebral edema", "Fluid overload in the vascular compartment from excess IV fluids, causing hypertension, distended neck veins, and pulmonary edema", "Fluid redistribution from the extracellular space back into the intravascular space during recovery from dehydration or hemorrhagic shock"],
     correct: 0,
     rationale: "Third spacing is when extracellular fluid (ECF) shifts into a space — such as the peritoneal cavity (ascites), pleural space, or pericardial space — where it cannot participate in fluid equilibrium. The patient becomes functionally hypovolemic even though total body fluid hasn't been lost."
   },
   {
     stem: "What is the key difference between hypovolemia and dehydration?",
-    options: ["Hypovolemia is loss of extracellular fluid volume exceeding intake; dehydration is excess water loss relative to sodium, causing elevated sodium", "Hypovolemia always involves low sodium; dehydration always involves normal sodium", "They are the same condition with different names", "Hypovolemia only occurs with hemorrhage; dehydration only occurs with vomiting"],
+    options: ["Hypovolemia is loss of extracellular fluid volume exceeding intake; dehydration is excess water loss relative to sodium, causing elevated sodium", "Hypovolemia always involves low serum sodium; dehydration always involves normal serum sodium levels", "They are clinically identical conditions that are used interchangeably in nursing and medical practice", "Hypovolemia only occurs with hemorrhage or surgical blood loss; dehydration only occurs with vomiting"],
     correct: 0,
     rationale: "Hypovolemia is loss of extracellular fluid (ECF) volume — sodium is typically normal. Dehydration is excess water loss relative to sodium, causing sodium to become elevated. The distinction matters for choosing the correct IV fluid replacement."
   },
   {
     stem: "Which clinical manifestations indicate fluid volume deficit (hypovolemia)?",
-    options: ["Acute weight loss, oliguria, concentrated urine, poor skin turgor, and prolonged capillary refill", "Edema, distended neck veins, and crackles in the lungs", "Peaked T waves, muscle weakness, and dysrhythmias", "Polyuria, thirst, and dehydration"],
+    options: ["Acute weight loss, oliguria, concentrated urine, poor skin turgor, and prolonged capillary refill", "Edema, distended neck veins, crackles in the lungs, and bounding pulses from fluid volume excess", "Peaked T waves, ascending muscle weakness, and cardiac dysrhythmias from hyperkalemia", "Seizures, muscle cramps, and altered mental status from critical hyponatremia and sodium deficit"],
     correct: 0,
     rationale: "Fluid volume deficit presents with acute weight loss, oliguria (decreased urine output), concentrated urine, poor skin turgor, and prolonged capillary refill. Edema, distended neck veins, and lung crackles are signs of fluid volume excess."
   },
@@ -169,7 +169,7 @@ window.QUESTIONS = [
   },
   {
     stem: "An isotonic intravenous (IV) solution has the same osmolality as blood. How does it behave once infused?",
-    options: ["It stays in the vascular space and expands blood volume without causing fluid shifts", "It shifts fluid from the blood into the cells", "It pulls fluid from the cells into the bloodstream", "It is metabolized immediately into free water"],
+    options: ["It stays in the vascular space and expands blood volume without causing fluid shifts", "It shifts fluid from the vascular space into the cells, causing intracellular swelling and edema", "It pulls fluid from the intracellular space into the bloodstream, shrinking cells and expanding volume", "It is immediately metabolized into free water that distributes evenly into all body fluid compartments"],
     correct: 0,
     rationale: "Isotonic solutions (e.g., 0.9% normal saline, Lactated Ringer's) have the same osmolality as blood, so they stay in the vascular space and expand blood volume without causing fluid shifts into or out of cells. They are used for hypovolemia and shock."
   },
@@ -181,13 +181,13 @@ window.QUESTIONS = [
   },
   {
     stem: "Why should D5W be avoided in children and patients with head injuries?",
-    options: ["Once the dextrose is metabolized, free water shifts into brain cells and can cause cerebral edema", "D5W raises potassium levels too rapidly in children", "D5W is hypertonic and causes cells to shrink", "D5W contains too much sodium for pediatric patients"],
+    options: ["Once the dextrose is metabolized, free water shifts into brain cells and can cause cerebral edema", "D5W raises serum sodium too rapidly in children, causing osmotic demyelination syndrome", "D5W is hypertonic and pulls fluid out of brain cells, worsening cerebral dehydration and edema", "D5W contains too much glucose for pediatric patients and causes acute hyperglycemia"],
     correct: 0,
     rationale: "D5W is isotonic in the bag but acts as free water once infused — shifting into cells and potentially causing cerebral edema. This is especially dangerous in children and patients with head injuries, where even small increases in intracranial pressure can be harmful."
   },
   {
     stem: "In an older adult patient, why is skin turgor an unreliable indicator of hydration status?",
-    options: ["Age-related thinning of the skin causes loss of elasticity, making it appear poor even when the patient is well hydrated", "Older adults always have excellent skin turgor regardless of hydration", "Skin turgor is only unreliable in patients with kidney disease", "Older adults absorb fluids through the skin, making turgor falsely reassuring"],
+    options: ["Age-related thinning of the skin causes loss of elasticity, making it appear poor even when the patient is well hydrated", "Older adults absorb fluid through the skin at a higher rate, making turgor falsely reassuring", "Skin turgor is unreliable only in patients with chronic kidney disease, not in healthy elderly adults", "Older adults always maintain excellent skin turgor regardless of their actual hydration status"],
     correct: 0,
     rationale: "Age-related skin changes — thinning, loss of elasticity and strength — make skin turgor an unreliable assessment tool in older adults. A fold of skin may remain tented even in a well-hydrated elderly patient. Other assessments (urine output, mucous membranes, weight) are more reliable."
   },
@@ -205,7 +205,7 @@ window.QUESTIONS = [
   },
   {
     stem: "In the tic-tac-toe arterial blood gas (ABG) method, PaCO2 is placed in the ACID column when it is HIGH. Why?",
-    options: ["CO2 combines with water to form carbonic acid — so high CO2 means more acid in the blood", "CO2 is a base, so high levels increase the pH", "The direction is a convention with no physiologic basis", "High CO2 causes the kidneys to retain bicarbonate"],
+    options: ["CO2 combines with water to form carbonic acid — so high CO2 means more acid in the blood", "CO2 is classified as a base at physiologic pH, so high levels increase bicarbonate and raise the pH", "The direction is an arbitrary convention with no physiologic basis but is standardized for clinical use", "High CO2 causes the kidneys to retain bicarbonate directly, which lowers the pH into the acidotic range"],
     correct: 0,
     rationale: "CO2 combines with water to form carbonic acid (H2CO3) — this is why high PaCO2 (> 45 mmHg) is placed in the ACID column of the tic-tac-toe grid. The direction is inverted from what students expect: high CO2 = acid side; low CO2 = base side."
   },

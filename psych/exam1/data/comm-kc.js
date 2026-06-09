@@ -19,7 +19,7 @@ window.QUESTIONS = [
   },
   {
     stem: "According to the professor, what is the key difference between empathy and sympathy?",
-    options: ["Empathy validates the client's feelings; sympathy projects the nurse's own feelings", "Empathy projects the nurse's feelings; sympathy validates the client's", "They are the same and both therapeutic", "Empathy is non-therapeutic; sympathy is therapeutic"],
+    options: ["Empathy validates the client's feelings; sympathy projects the nurse's own feelings onto the client", "Empathy requires sharing personal experiences; sympathy requires only listening without responding", "Empathy is appropriate only in psychiatric settings; sympathy is used in all other clinical contexts", "Empathy focuses on offering solutions to the client; sympathy focuses on acknowledging emotions only"],
     correct: 0,
     rationale: "Empathy validates the client's feelings, while sympathy projects the nurse's own feelings onto the client. Empathy is therapeutic; sympathy is generally not."
   },
@@ -31,7 +31,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Per the professor's teaching, why is the statement 'I understand how you feel' considered non-therapeutic?",
-    options: ["It projects the nurse's perspective rather than validating the client's unique experience", "It is too open-ended and invites oversharing", "It is a form of false reassurance about the future", "It asks the client a closed question"],
+    options: ["It projects the nurse's perspective rather than validating the client's unique experience", "It is non-therapeutic because it encourages the client to share more than is clinically appropriate", "It sets a boundary by stopping the client from elaborating on their emotional distress", "It is dismissive because it uses a closed-ended format that shuts down further conversation"],
     correct: 0,
     rationale: "The professor classifies 'I understand how you feel' as non-therapeutic because the nurse cannot truly know the client's experience — it projects rather than validates. Empathy validates feelings; this phrase assumes them."
   },
@@ -79,13 +79,13 @@ window.QUESTIONS = [
   },
   {
     stem: "What is countertransference?",
-    options: ["The nurse develops feelings toward the client based on the nurse's own experiences", "The client transfers past feelings onto the nurse", "The nurse uses therapeutic silence", "The client splits staff into all-good and all-bad"],
+    options: ["The nurse develops feelings toward the client based on the nurse's own experiences or unresolved conflicts", "The client projects feelings about a past relationship onto the nurse during the therapeutic relationship", "A technique used by the nurse to redirect client feelings toward more productive therapeutic topics", "A mutual boundary violation that occurs when the nurse and client develop feelings for each other"],
     correct: 0,
     rationale: "Countertransference is when the nurse develops feelings toward the client based on the nurse's own past experiences. Self-awareness, supervision, and peer support help manage it."
   },
   {
     stem: "A client tells the nurse, 'You sound just like my mother!' How should the nurse interpret this, and what is the best approach?",
-    options: ["Transference; recognize it, don't take it personally, and explore it therapeutically", "Countertransference; request immediate reassignment", "False reassurance; apologize and change the subject", "Splitting; set a punitive limit"],
+    options: ["Transference; recognize it, don't take it personally, and explore it therapeutically", "Countertransference; the nurse should seek supervision and examine their own feelings about the client", "A boundary violation; the nurse must end the session immediately and document the incident", "A therapeutic breakthrough; the nurse should reinforce the positive mother-figure dynamic with the client"],
     correct: 0,
     rationale: "This is transference — the client is redirecting feelings from a past relationship onto the nurse. The nurse should recognize it, not take it personally, and use it as material to explore therapeutically."
   },
@@ -97,7 +97,7 @@ window.QUESTIONS = [
   },
   {
     stem: "What principle distinguishes a therapeutic relationship from a friendship?",
-    options: ["A therapeutic relationship is goal-directed and centered on the client's needs, not mutual social needs", "A therapeutic relationship involves sharing equally about each other's lives", "A therapeutic relationship has no boundaries", "A therapeutic relationship should continue socially after discharge"],
+    options: ["A therapeutic relationship is goal-directed and centered on the client's needs, not the nurse's", "A therapeutic relationship is more personal and self-disclosing than a friendship in clinical practice", "A therapeutic relationship is defined by mutual support and equal sharing between nurse and client", "A therapeutic relationship differs from friendship only in that it takes place in a clinical setting"],
     correct: 0,
     rationale: "A therapeutic relationship is professional, goal-directed, and focused on the client's needs — it is not a friendship. Maintaining professional boundaries is essential."
   },
@@ -109,19 +109,19 @@ window.QUESTIONS = [
   },
   {
     stem: "A client with borderline personality disorder (BPD) becomes upset and demanding. Which approach reflects appropriate de-escalation?",
-    options: ["Validate feelings and set structure: 'I see you're upset. Let's set a time to talk.'", "Tell the client to control themselves immediately", "Remove the client from the group for upsetting others", "Ignore the behavior until the client calms down"],
+    options: ["Validate feelings and set structure: 'I see you're upset. Let's set a time to talk about this.'", "Match the client's emotional intensity to show empathy and meet them where they are", "Leave the client alone to de-escalate independently, since intervention reinforces the behavior", "Redirect the client to group therapy immediately where the issue can be processed collectively"],
     correct: 0,
     rationale: "De-escalation with a borderline personality disorder (BPD) client combines validating feelings with clear structure — it is supportive, not punitive. Confrontational demands and dismissal escalate the situation."
   },
   {
     stem: "Which nurse statement is an example of acknowledgment (therapeutic)?",
-    options: ["'I can see you're feeling anxious. Let's walk together.'", "'There's no reason to be anxious.'", "'You're overreacting to this.'", "'Why are you always so anxious?'"],
+    options: ["'I can see you're feeling anxious. Let's walk together.'", "'I'm sure everything will be fine — most people feel this way before a procedure.'", "'You shouldn't be anxious. The staff here are very experienced and skilled.'", "'Let me explain the procedure step by step so you have less reason to feel anxious.'"],
     correct: 0,
     rationale: "Acknowledgment names what the nurse observes and offers support ('I can see you're anxious. Let's walk together'). The other responses dismiss or challenge the client's feelings."
   },
   {
     stem: "Which of the following is a non-therapeutic communication technique to avoid?",
-    options: ["Deflection or dismissal, such as 'You're upsetting the group. Leave now.'", "Reflecting the client's feelings back to them", "Using open-ended statements", "Sitting in supportive silence"],
+    options: ["Deflection or dismissal, such as 'You're upsetting the group. Leave now.'", "Restating the client's words using slightly different phrasing to show active listening", "Sitting in silence with the client to demonstrate presence and therapeutic use of self", "Asking open-ended questions that invite elaboration on the client's emotional experience"],
     correct: 0,
     rationale: "Deflection/dismissal ('You're upsetting the group, leave now') is non-therapeutic and rejecting. Reflection, open-ended statements, and supportive silence are all therapeutic techniques."
   },
@@ -139,13 +139,13 @@ window.QUESTIONS = [
   },
   {
     stem: "In Peplau's framework, which activities occur during the working phase?",
-    options: ["Exploring issues, expressing feelings, and promoting problem-solving and behavior change", "Building initial trust and setting the contract", "Summarizing progress and preparing for discharge", "Introducing the nurse and explaining roles"],
+    options: ["Exploring issues, expressing feelings, and promoting problem-solving and behavior change", "Establishing rapport, defining roles, and clarifying mutual expectations for the relationship", "Reviewing progress made, evaluating goal attainment, and preparing the client for independence", "Assessing the client's needs, identifying initial problems, and formulating the treatment plan"],
     correct: 0,
     rationale: "The working phase is where the client explores issues, expresses feelings, and works on problem-solving, behavior change, and self-esteem. Trust-building belongs to orientation, and summarizing progress belongs to termination."
   },
   {
     stem: "During the termination phase of Peplau's nurse–client relationship, what is the nurse's focus?",
-    options: ["Summarizing progress, evaluating goals, and preparing the client for independence", "Establishing the initial contract and trust", "First exploring the client's core issues", "Setting boundaries for the first time"],
+    options: ["Summarizing progress, evaluating goals, and preparing the client for independence", "Establishing trust and rapport while identifying the client's primary concerns and needs", "Actively working through the client's issues and facilitating problem-solving and coping strategies", "Reassessing the initial nursing diagnoses and revising the care plan based on new assessment data"],
     correct: 0,
     rationale: "The termination phase focuses on summarizing progress, evaluating whether goals were met, and preparing the client for independence. Trust-building and boundary-setting happen earlier, in orientation."
   },
@@ -157,7 +157,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Under what circumstances may a nurse share otherwise confidential client information?",
-    options: ["Threat of harm to self or others, suspected abuse, written consent, or court order", "Whenever a family member asks about the client", "Any time the nurse believes it would help", "Only with verbal permission from another nurse"],
+    options: ["Threat of harm to self or others, suspected abuse, written consent, or court order", "When any family member requests information to coordinate the client's discharge planning", "Whenever the information would significantly benefit the client's long-term treatment outcomes", "When the treatment team agrees that disclosure serves the client's best interest and safety"],
     correct: 0,
     rationale: "Confidentiality may be broken only for specific reasons: threat of harm to self or others, suspected child/elder/dependent abuse, written client consent, or a court order/legal requirement."
   }

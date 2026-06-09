@@ -7,13 +7,13 @@ window.QUESTIONS = [
   },
   {
     stem: "A nurse notices she keeps giving one likable client extra time and bending unit rules for them. What does this most likely represent, and what is the best action?",
-    options: ["Countertransference; seek self-awareness and supervision/peer support", "Transference; confront the client about their behavior", "Fidelity; continue as it builds trust", "Sublimation; no action needed"],
+    options: ["Countertransference; seek self-awareness and supervision/peer support", "Transference; the client is projecting positive feelings about a past authority figure onto the nurse", "A therapeutic use of self; adapting care intensity to individual client needs is best practice", "Boundary maintenance; adjusting time allocation based on clinical complexity is standard practice"],
     correct: 0,
     rationale: "The nurse's own feelings driving boundary-bending is countertransference. Managing it requires self-awareness, supervision, and peer support — not acting on the feelings. Bending rules erodes professional boundaries."
   },
   {
     stem: "A client on the unit becomes overly attached to the nurse, saying the nurse is their only real friend. What is the most therapeutic response?",
-    options: ["'Let's explore other friendships and supports in your life.'", "'I'm glad to be your friend too.'", "'You shouldn't depend on anyone.'", "'I can't talk about that — it's against the rules.'"],
+    options: ["'Let's explore other friendships and supports in your life outside of our sessions.'", "'I feel the same connection. Let's make sure we schedule extra time each shift to talk.'", "'That's very flattering. Let me know what I can do to continue supporting you this way.'", "'I'll need to transfer your care to a colleague since this attachment has become inappropriate.'"],
     correct: 0,
     rationale: "A therapeutic relationship is not a friendship. The nurse addresses over-reliance by redirecting the client toward building other supports, maintaining professional boundaries without being dismissive or cold."
   },
@@ -49,7 +49,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A client with a phobia is gradually exposed to the feared object in increasing steps while practicing relaxation. Which cognitive behavioral therapy (CBT) phase and technique does this represent?",
-    options: ["Exposure and desensitization (systematic desensitization)", "Cognitive restructuring", "Behavioral activation", "Self-observation"],
+    options: ["Exposure and desensitization (systematic desensitization)", "Cognitive restructuring, which challenges and replaces distorted beliefs about the feared stimulus", "Flooding, in which the client is immediately and intensively exposed to the feared object at full intensity", "Behavioral activation, which increases engagement in pleasant activities to reduce avoidance patterns"],
     correct: 0,
     rationale: "Gradual, stepwise exposure paired with relaxation is exposure and desensitization, known on the NCLEX as systematic desensitization. Cognitive restructuring targets thought patterns, and behavioral activation increases engagement in activities."
   },
@@ -73,7 +73,7 @@ window.QUESTIONS = [
   },
   {
     stem: "During a session, a client suddenly says to the nurse, 'You don't really care about me — nobody ever has.' The nurse recognizes possible transference. What is the most therapeutic response?",
-    options: ["'It sounds like you've felt uncared for before. Can you tell me more?'", "'That's not true — I care very much about you.'", "'You're being unfair to me right now.'", "'Let's not talk about feelings today.'"],
+    options: ["'It sounds like you've felt uncared for before. Can you tell me more?'", "'Of course I care — I've been here for every session and always follow through on what I promise.'", "'Let's redirect and focus on your treatment goals rather than discussing our relationship.'", "'That's a common feeling in therapy. It will pass as we continue building trust over time.'"],
     correct: 0,
     rationale: "Rather than getting defensive or taking it personally, the nurse explores the underlying feelings the client may be transferring from past relationships. This opens up therapeutic work instead of shutting it down."
   },

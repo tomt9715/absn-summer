@@ -1,7 +1,7 @@
 window.QUESTIONS = [
   {
     stem: "What is the key difference between mood and affect on the mental status examination?",
-    options: ["Mood is subjective (what the client reports); affect is objective (what the nurse observes)", "Mood is objective (what the nurse observes); affect is subjective (what the client reports)", "Mood and affect mean the same thing", "Mood is the client's appearance; affect is their speech"],
+    options: ["Mood is subjective (what the client reports); affect is objective (what the nurse observes)", "Mood is observed by the nurse during the interview; affect is self-reported by the client", "Mood refers only to sadness and depression; affect refers only to anxiety and agitation", "Mood is measured with standardized scales; affect is determined exclusively by neuroimaging"],
     correct: 0,
     rationale: "Mood is subjective — it is what the client tells you they feel. Affect is objective — it is the emotional expression the nurse observes. This distinction is a guaranteed exam point."
   },
@@ -13,7 +13,7 @@ window.QUESTIONS = [
   },
   {
     stem: "What distinguishes a blunted affect from a flat affect?",
-    options: ["Blunted is reduced/slow emotional expression; flat is completely absent expression", "Blunted is completely absent; flat is only slightly reduced", "They are the same thing", "Blunted refers to mood; flat refers to speech"],
+    options: ["Blunted is reduced/slow emotional expression; flat is completely absent expression", "Blunted affect is appropriate to the situation but subdued; flat affect is exaggerated and inappropriate", "Blunted affect indicates psychosis; flat affect is a normal variant seen in introverted individuals", "Blunted is observed during mania with pressured speech; flat is specific to depressive disorders"],
     correct: 0,
     rationale: "Blunted affect shows reduced, slow-to-respond emotional expression — some emotion is present but diminished. Flat affect shows no emotional expression at all."
   },
@@ -43,13 +43,13 @@ window.QUESTIONS = [
   },
   {
     stem: "What is the difference between a hallucination and a delusion?",
-    options: ["A hallucination is a false sensory perception; a delusion is a fixed false belief", "A hallucination is a false belief; a delusion is a false sensory perception", "They are the same thing", "A hallucination affects mood; a delusion affects speech"],
+    options: ["A hallucination is a false sensory perception; a delusion is a fixed false belief", "A hallucination is a false belief held despite evidence; a delusion is a distorted sensory experience", "A hallucination occurs only in psychosis; a delusion can occur in any mood disorder", "A hallucination is always auditory; a delusion is always a grandiose or persecutory belief"],
     correct: 0,
     rationale: "A hallucination is a false sensory perception (hearing/seeing things that aren't there). A delusion is a fixed false belief held despite contrary evidence."
   },
   {
     stem: "The terms tangential thinking, flight of ideas, and loose associations all describe disturbances in which area of the mental status exam?",
-    options: ["Thought process (how thoughts connect)", "Thought content (what is thought)", "Perception", "Cognition"],
+    options: ["Thought process (how thoughts connect)", "Thought content (what the client is thinking about and believing)", "Affect and mood (the emotional quality and intensity of the client's experience)", "Level of consciousness and orientation to person, place, and time"],
     correct: 0,
     rationale: "These all describe thought PROCESS — how thoughts are connected to one another. Thought content is WHAT the person thinks (e.g., delusions)."
   },
@@ -67,7 +67,7 @@ window.QUESTIONS = [
   },
   {
     stem: "What is the difference between circumstantial and tangential thinking?",
-    options: ["Circumstantial eventually answers the question after a detour; tangential wanders off and never returns to the point", "Circumstantial never answers; tangential always answers directly", "They are identical", "Circumstantial affects perception; tangential affects mood"],
+    options: ["Circumstantial eventually answers the question after a detour; tangential wanders off and never returns", "Circumstantial never reaches an answer; tangential always returns to the original topic eventually", "Circumstantial is seen in psychosis; tangential is a normal variant of anxious or pressured speech", "Circumstantial involves loose word associations; tangential involves complete absence of any connection"],
     correct: 0,
     rationale: "Circumstantial thinking gets to the answer eventually after unnecessary detail. Tangential thinking wanders off topic and never returns to the point. A useful memory hook: circumstantial 'gets there,' tangential 'never gets there.'"
   },
@@ -97,7 +97,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Persistent, unwanted, intrusive thoughts that the client cannot stop are called what, and are most associated with which condition?",
-    options: ["Obsessions; obsessive-compulsive disorder (OCD)", "Delusions; schizophrenia", "Hallucinations; psychosis", "Neologisms; mania"],
+    options: ["Obsessions; obsessive-compulsive disorder (OCD)", "Delusions; these are fixed false beliefs that are resistant to logical reasoning or contradictory evidence", "Ruminations; these occur specifically in major depressive disorder and relate to guilt and worthlessness", "Compulsions; these are repetitive mental acts performed to reduce distress caused by anxiety"],
     correct: 0,
     rationale: "Obsessions are persistent, unwanted, intrusive thoughts the client cannot stop, most associated with obsessive-compulsive disorder (OCD). Delusions are fixed false beliefs, and hallucinations are false sensory perceptions."
   },
@@ -115,7 +115,7 @@ window.QUESTIONS = [
   },
   {
     stem: "What is the difference between insight and judgment?",
-    options: ["Insight is awareness of one's illness/situation; judgment is the ability to make safe, sound decisions", "Insight is decision-making; judgment is self-awareness", "They mean the same thing", "Insight is memory; judgment is orientation"],
+    options: ["Insight is awareness of one's illness/situation; judgment is the ability to make sound decisions", "Insight is the ability to make safe and logical decisions; judgment is awareness of psychiatric symptoms", "Insight refers to long-term memory for past events; judgment refers to abstract reasoning ability", "Insight measures orientation to person and place; judgment measures recall of recent information"],
     correct: 0,
     rationale: "Insight is the client's awareness and understanding that they have an illness or problem. Judgment is the ability to make safe, sound, reality-based decisions. A client can have insight without good judgment."
   },
@@ -127,13 +127,13 @@ window.QUESTIONS = [
   },
   {
     stem: "During the mental status exam, pacing and restlessness are documented under which domain?",
-    options: ["Appearance and behavior", "Thought content", "Cognition", "Perception"],
+    options: ["Appearance and behavior", "Thought process, since psychomotor agitation reflects disorganized and pressured thinking", "Mood and affect, since restlessness signals an elevated or dysphoric emotional state", "Insight and judgment, since pacing indicates poor ability to regulate behavioral responses"],
     correct: 0,
     rationale: "Psychomotor activity such as pacing (which suggests agitation) is documented under appearance and behavior. Reduced movement (psychomotor retardation) is often seen in depression."
   },
   {
     stem: "Rapid, pressured speech is most associated with which condition, while slow, soft speech is most associated with which?",
-    options: ["Pressured speech = mania; slow/soft speech = depression", "Pressured speech = depression; slow/soft speech = mania", "Both indicate intoxication", "Both indicate dementia"],
+    options: ["Pressured speech = mania; slow/soft speech = depression", "Pressured speech = anxiety disorder; slow/soft speech = psychosis with negative symptoms", "Pressured speech = schizophrenia with positive symptoms; slow/soft speech = borderline personality disorder", "Pressured speech = serotonin syndrome; slow/soft speech = benzodiazepine intoxication"],
     correct: 0,
     rationale: "Pressured/rapid speech is associated with mania, while slow, soft speech is associated with depression. Slurred speech suggests intoxication."
   },

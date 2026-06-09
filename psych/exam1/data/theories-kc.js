@@ -13,7 +13,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A nurse realizes she feels unusually distressed by a client who reminds her of a friend who died. What is this called?",
-    options: ["Countertransference", "Transference", "Sublimation", "Regression"],
+    options: ["Countertransference", "Transference", "Empathic resonance", "Therapeutic use of self"],
     correct: 0,
     rationale: "Countertransference is when the nurse develops feelings toward the client based on the nurse's own experiences. Self-awareness, supervision, and peer support help manage it. Transference is the client's feelings toward the nurse."
   },
@@ -85,7 +85,7 @@ window.QUESTIONS = [
   },
   {
     stem: "In Beck's cognitive theory, what is a 'cognitive distortion'?",
-    options: ["An error in thinking that drives negative feelings and behaviors", "An unconscious defense mechanism", "A stage of psychosocial development", "A fixed false belief held despite evidence"],
+    options: ["An error in thinking that drives negative feelings and behaviors", "An unconscious defense mechanism used to avoid painful emotional memories", "A learned behavioral response reinforced by repeated environmental conditioning", "A neurobiological pattern caused by imbalances in serotonin and dopamine levels"],
     correct: 0,
     rationale: "Cognitive distortions are errors in thinking. In cognitive behavioral therapy (CBT), dysfunctional assumptions lead to these distortions, and automatic negative thoughts drive symptoms. A fixed false belief is a delusion, which is a different concept."
   },
@@ -133,7 +133,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A client adores a nurse one day and despises the same nurse the next, seeing people as all-good or all-bad. Which defense mechanism is this, and which disorder is it commonly associated with?",
-    options: ["Splitting; borderline personality disorder", "Projection; schizophrenia", "Regression; depression", "Sublimation; anxiety"],
+    options: ["Splitting; borderline personality disorder", "Transference; the client is projecting past relationship experiences onto the nurse", "Projection; the client is attributing their own negative feelings to external people", "Reaction formation; the client is expressing the opposite of their true underlying feelings"],
     correct: 0,
     rationale: "Splitting is seeing things as all-good or all-bad, and it is common in borderline personality disorder (BPD). The nurse should expect rapid shifts and respond with consistent structure, not take it personally."
   },
@@ -157,7 +157,7 @@ window.QUESTIONS = [
   },
   {
     stem: "For which conditions is cognitive behavioral therapy (CBT) commonly used?",
-    options: ["Depression, anxiety, post-traumatic stress disorder (PTSD), and substance abuse", "Only borderline personality disorder", "Only severe treatment-resistant depression", "Only acute psychosis"],
+    options: ["Depression, anxiety, post-traumatic stress disorder (PTSD), and substance abuse", "Schizophrenia, bipolar disorder, and borderline personality disorder as first-line monotherapy", "Alzheimer's disease, vascular dementia, and other neurocognitive disorders causing memory loss", "Acute psychosis, neuroleptic malignant syndrome, and serotonin syndrome in inpatient settings"],
     correct: 0,
     rationale: "Cognitive behavioral therapy (CBT) is used for depression, anxiety, post-traumatic stress disorder (PTSD), and substance abuse. Borderline personality disorder (BPD) is treated with dialectical behavior therapy (DBT), severe depression with electroconvulsive therapy (ECT), and acute psychosis typically requires inpatient care and antipsychotics."
   },
@@ -169,13 +169,13 @@ window.QUESTIONS = [
   },
   {
     stem: "What are the three core components of cognitive behavioral therapy?",
-    options: ["Cognitive restructuring, behavioral activation, and problem-solving", "Denial, projection, and splitting", "Exposure, sublimation, and humor", "Transference, countertransference, and fidelity"],
+    options: ["Cognitive restructuring, behavioral activation, and problem-solving", "Psychoeducation, medication management, and structured journaling techniques", "Free association, dream analysis, and transference interpretation from psychoanalytic theory", "Exposure therapy, desensitization, and systematic flooding based on behavioral conditioning"],
     correct: 0,
     rationale: "The three components of cognitive behavioral therapy (CBT) are cognitive restructuring, behavioral activation, and problem-solving. The other options mix in defense mechanisms and relationship concepts."
   },
   {
     stem: "What is the overall goal of cognitive behavioral therapy?",
-    options: ["Replace negative thought patterns with more positive, realistic thinking", "Uncover repressed childhood memories", "Block dopamine receptors to reduce psychosis", "Reach the top of Maslow's hierarchy"],
+    options: ["Replace negative thought patterns with more positive, realistic thinking", "Uncover unconscious conflicts and resolve early developmental trauma through insight", "Condition new adaptive behaviors by pairing responses with positive environmental reinforcement", "Achieve self-actualization by identifying and fulfilling the client's highest potential"],
     correct: 0,
     rationale: "Cognitive behavioral therapy (CBT) aims to replace negative, distorted thought patterns with more positive and realistic thinking. Uncovering repressed memories is a psychoanalytic goal, not cognitive behavioral therapy (CBT)."
   },

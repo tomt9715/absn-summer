@@ -1,7 +1,7 @@
 window.QUESTIONS = [
   {
     stem: "According to Maslow's hierarchy of needs, which category is always the highest priority?",
-    options: ["Physiological needs (food, water, sleep, hygiene)", "Safety and security", "Love and belonging", "Self-esteem"],
+    options: ["Physiological needs (food, water, sleep, hygiene)", "Safety and security needs, including freedom from harm and environmental threats", "Love and belonging needs, including therapeutic relationships and peer support", "Self-esteem needs, including achievement, recognition, and confidence in one's abilities"],
     correct: 0,
     rationale: "Physiological needs — food, water, sleep, hygiene — are always the highest priority in Maslow's hierarchy because they are required for survival. Safety comes next, followed by love/belonging, esteem, and self-actualization."
   },
@@ -13,19 +13,19 @@ window.QUESTIONS = [
   },
   {
     stem: "After physiological needs, which level of Maslow's hierarchy becomes the next priority?",
-    options: ["Safety and security, including freedom from harm and risk assessment", "Love and belonging", "Self-esteem and achievement", "Self-actualization"],
+    options: ["Safety and security, including freedom from harm and risk assessment", "Love and belonging, including social connection, intimacy, and therapeutic relationships", "Self-esteem, including achievement, confidence, and the respect of others", "Self-actualization, including personal growth, creativity, and reaching one's full potential"],
     correct: 0,
     rationale: "Once physiological needs are met, safety and security (freedom from harm, risk assessment) is the next priority. This is why suicide risk assessment ranks so high once basic survival needs are addressed."
   },
   {
     stem: "What is the basic role of a neurotransmitter?",
-    options: ["A chemical messenger that crosses the synapse and either increases or decreases activity in the next neuron", "A hormone released by the adrenal glands into the bloodstream", "A protein that forms the structure of the cell membrane", "An enzyme that digests food in the gastrointestinal tract"],
+    options: ["A chemical messenger that crosses the synapse and either increases or decreases activity in the receiving neuron", "A protein structure embedded in the neuron membrane that generates electrical signals during depolarization", "A hormone released by the adrenal gland that travels through the bloodstream to regulate mood and arousal", "A myelinated fiber that conducts electrical impulses along the axon to the terminal buttons"],
     correct: 0,
     rationale: "Neurotransmitters are chemical messengers released by one neuron that cross the synaptic cleft and bind to the next neuron, increasing or decreasing its activity. Psychiatric disorders arise when these are out of balance, and psychiatric medications work to correct those imbalances."
   },
   {
     stem: "Which neurotransmitter is the brain's main inhibitory 'brake pedal,' calming neuronal activity?",
-    options: ["Gamma-aminobutyric acid (GABA)", "Glutamate", "Dopamine", "Norepinephrine"],
+    options: ["Gamma-aminobutyric acid (GABA)", "Dopamine, which regulates reward, motivation, and movement in the basal ganglia", "Norepinephrine, which is released during stress and activates the fight-or-flight response", "Acetylcholine (ACh), which is involved in memory formation and neuromuscular transmission"],
     correct: 0,
     rationale: "Gamma-aminobutyric acid (GABA) is the main inhibitory neurotransmitter — the brain's 'brake pedal' that slows activity and reduces anxiety. Glutamate is the excitatory 'gas pedal.'"
   },
@@ -37,7 +37,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Low levels of gamma-aminobutyric acid (GABA) are associated with which conditions?",
-    options: ["Anxiety and seizure disorders", "Psychosis and mania", "Parkinson's disease", "Alzheimer's disease"],
+    options: ["Anxiety and seizure disorders", "Parkinson's disease and anhedonia due to impaired movement and reward circuitry", "Schizophrenia and psychosis due to disrupted cortical inhibition and perceptual distortions", "Depression and flat affect resulting from reduced emotional processing in the limbic system"],
     correct: 0,
     rationale: "Reduced gamma-aminobutyric acid (GABA), the brain's main inhibitory neurotransmitter, is linked to anxiety and seizure disorders. Benzodiazepines enhance gamma-aminobutyric acid (GABA) to counter this."
   },
@@ -67,13 +67,13 @@ window.QUESTIONS = [
   },
   {
     stem: "High levels of dopamine are most associated with which conditions?",
-    options: ["Psychosis, mania, and substance abuse", "Parkinson's disease and anhedonia", "Anxiety and seizures", "Alzheimer's disease"],
+    options: ["Psychosis, mania, and substance abuse", "Depression, anhedonia, and loss of motivation due to reward pathway dysfunction", "Anxiety and panic disorder caused by excessive limbic system activation", "Parkinson's disease and bradykinesia from degeneration of the substantia nigra"],
     correct: 0,
     rationale: "Excess dopamine is linked to psychosis, mania, and substance abuse. Low dopamine is linked to Parkinson's disease, anhedonia, and attention-deficit/hyperactivity disorder (ADHD). Antipsychotics block dopamine to reduce psychosis."
   },
   {
     stem: "Low levels of dopamine are associated with which conditions?",
-    options: ["Parkinson's disease, anhedonia, and attention-deficit/hyperactivity disorder (ADHD)", "Psychosis and mania", "Anxiety disorders", "Seizure disorders"],
+    options: ["Parkinson's disease, anhedonia, and attention-deficit/hyperactivity disorder (ADHD)", "Schizophrenia, psychosis, and grandiose delusions from excessive dopamine receptor activation", "Mania, impulsivity, and elevated mood caused by reward pathway overstimulation", "Serotonin syndrome, characterized by agitation, hyperthermia, and clonus from excess dopamine"],
     correct: 0,
     rationale: "Reduced dopamine is associated with Parkinson's disease, anhedonia, and attention-deficit/hyperactivity disorder (ADHD). High dopamine, by contrast, is linked to psychosis and mania."
   },
@@ -85,7 +85,7 @@ window.QUESTIONS = [
   },
   {
     stem: "When antipsychotics block dopamine, prolactin levels can rise. What is one expected result?",
-    options: ["Hyperprolactinemia causing gynecomastia, galactorrhea, or menstrual changes", "Reduced anxiety and sedation", "Improved memory and attention", "Lowered blood pressure"],
+    options: ["Hyperprolactinemia causing gynecomastia, galactorrhea, or menstrual changes", "Serotonin syndrome characterized by agitation, muscle rigidity, and hyperthermia", "Tardive dyskinesia presenting as involuntary repetitive facial and limb movements", "Neuroleptic malignant syndrome with hyperthermia, rigidity, and autonomic instability"],
     correct: 0,
     rationale: "Dopamine normally regulates prolactin, so blocking dopamine raises prolactin (hyperprolactinemia), causing gynecomastia, galactorrhea, menstrual changes, and sexual dysfunction."
   },
@@ -103,7 +103,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Low levels of serotonin are associated with which group of conditions?",
-    options: ["Depression, obsessive-compulsive disorder (OCD), anxiety, and schizophrenia", "Parkinson's disease and attention-deficit/hyperactivity disorder (ADHD)", "Alzheimer's disease only", "Seizure disorders only"],
+    options: ["Depression, obsessive-compulsive disorder (OCD), anxiety, and schizophrenia", "Parkinson's disease, tardive dyskinesia, and hyperprolactinemia from dopamine pathway disruption", "Mania, psychosis, and substance use disorder from excessive reward system activation", "Alzheimer's disease, memory impairment, and cognitive decline from cholinergic pathway loss"],
     correct: 0,
     rationale: "Reduced serotonin is associated with depression, obsessive-compulsive disorder (OCD), anxiety, and schizophrenia. Serotonin also regulates mood, sleep, and appetite, and is a precursor for melatonin."
   },
@@ -139,7 +139,7 @@ window.QUESTIONS = [
   },
   {
     stem: "How is mental health best described?",
-    options: ["A state of well-being in which a person can cope with stress, work, and contribute to society", "The complete absence of any stress or sadness", "A fixed trait a person either has or does not have", "A diagnosable disturbance in mood or thinking"],
+    options: ["A state of well-being in which a person can cope with stress, work, and contribute to their community", "The complete absence of any psychiatric diagnosis or history of mental illness throughout a person's lifetime", "A fixed biological trait determined entirely by genetics and neurochemical balance at birth", "The ability to maintain perfect emotional equilibrium and avoid distress in all life circumstances"],
     correct: 0,
     rationale: "Mental health is a state of well-being in which a person can realize their potential, cope with normal stress, work productively, and contribute to their community. It is not the absence of all stress, and it exists on a continuum rather than being fixed."
   },
@@ -199,7 +199,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Which of the following does the Diagnostic and Statistical Manual of Mental Disorders (DSM-5) contain?",
-    options: ["Diagnostic criteria, disorder descriptions, and symptom duration", "Nursing interventions for each disorder", "Detailed treatment and care plans", "Medication dosing protocols"],
+    options: ["Diagnostic criteria, disorder descriptions, and symptom duration", "Recommended medication dosages and first-line pharmacological treatment protocols", "Evidence-based psychotherapy techniques and structured treatment planning guidelines", "Neuroimaging findings and laboratory values for each psychiatric disorder"],
     correct: 0,
     rationale: "The Diagnostic and Statistical Manual of Mental Disorders (DSM-5) provides diagnostic criteria, disorder descriptions, and the expected duration of symptoms. It does NOT include nursing interventions or treatment plans, which come from other sources."
   },

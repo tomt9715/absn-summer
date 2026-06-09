@@ -55,7 +55,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A patient asks the nurse to explain the difference between the vision loss in glaucoma versus age-related macular degeneration (AMD). Which explanation is accurate?",
-    options: ["Glaucoma takes peripheral vision first; age-related macular degeneration (AMD) takes central vision while peripheral is preserved", "Glaucoma takes central vision; age-related macular degeneration (AMD) takes peripheral vision", "Both conditions cause a sudden painless curtain over the vision", "Both cause cloudy vision with halos and faded colors"],
+    options: ["Glaucoma takes peripheral vision first; age-related macular degeneration (AMD) takes central vision while peripheral is preserved", "Glaucoma takes central vision while peripheral vision is preserved; age-related macular degeneration (AMD) takes peripheral vision first", "Both conditions cause a sudden painless curtain descending over the visual field with floaters and flashes", "Both conditions cause cloudy vision with halos around lights and faded colors due to lens changes"],
     correct: 0,
     rationale: "Glaucoma causes peripheral (side) vision loss first, progressing to tunnel vision, while age-related macular degeneration (AMD) causes central vision loss with peripheral vision preserved. The curtain is retinal detachment and the cloudy/halos picture is cataracts."
   },
@@ -67,7 +67,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A patient is on furosemide and is about to start an aminoglycoside antibiotic. Which nursing concern is most important?",
-    options: ["Combining two ototoxic drugs increases the risk of permanent hearing damage", "The two drugs will cancel each other out", "Both drugs improve inner ear fluid balance", "Neither drug has any effect on hearing"],
+    options: ["Combining two ototoxic drugs increases the risk of permanent hearing damage", "The two medications cancel each other out metabolically and produce no meaningful drug interaction", "Both drugs independently improve inner ear fluid balance and are safe to combine in most patients", "Neither drug has any documented effect on cochlear or vestibular function at standard clinical doses"],
     correct: 0,
     rationale: "Both loop diuretics (furosemide) and aminoglycosides are ototoxic, so combining them raises the risk of permanent inner ear damage. The nurse should monitor closely for tinnitus and hearing changes and report early signs."
   },
@@ -85,7 +85,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A patient reports brief, intense spinning that occurs only when they roll over or tip their head back. Which condition does the nurse suspect, and what is the priority intervention?",
-    options: ["benign paroxysmal positional vertigo (BPPV); fall precautions", "Ototoxicity; stop all medications", "Conjunctivitis; frequent handwashing", "Cataracts; prepare for surgery"],
+    options: ["benign paroxysmal positional vertigo (BPPV); fall precautions", "Ototoxicity from a recent aminoglycoside course; discontinue all current medications immediately", "Labyrinthitis requiring immediate oral meclizine, bed rest, and referral for antibiotic treatment", "Ménière's disease requiring a low-sodium diet restriction and referral to a neurotologist"],
     correct: 0,
     rationale: "Brief incapacitating vertigo triggered by head position changes is characteristic of benign paroxysmal positional vertigo (BPPV). Fall precautions are the priority nursing intervention. The Dix-Hallpike diagnoses it and the Epley maneuver treats it."
   },
@@ -97,55 +97,55 @@ window.QUESTIONS = [
   },
   {
     stem: "An older adult with significant hearing loss is admitted. Which approach best supports communication?",
-    options: ["Face the patient, reduce background noise, and speak slowly in a low-tone voice", "Shout loudly into the more impaired ear", "Speak quickly from across the room to save time", "Turn on the TV so the patient is used to background sound"],
+    options: ["Face the patient, reduce background noise, and speak slowly in a low-tone voice", "Shout directly into the more impaired ear to ensure the patient receives all critical information", "Speak quickly from across the room to save time, then follow up with written instructions", "Turn on a television or radio to a comfortable volume so the patient feels less isolated"],
     correct: 0,
     rationale: "Effective communication means facing the patient, getting their attention first, reducing background noise, speaking slowly and distinctly in a low-tone (not shouting) voice, and speaking toward the less impaired ear. Shouting raises pitch and distorts speech."
   },
   {
     stem: "A patient newly using hearing aids asks how to care for them. Which instruction is correct?",
-    options: ["Remove them at night, keep them dry, and avoid hairspray near the device", "Wear them in the shower so you don't miss any sounds", "Soak them in water overnight to keep them clean", "Spray hairspray on them to prevent feedback"],
+    options: ["Remove them at night, keep them dry, and avoid hairspray near the device", "Wear them continuously including in the shower to build tolerance and maximize daily use", "Soak them in warm water overnight every week to remove wax buildup and maintain clarity", "Apply hairspray to the casing once weekly to reduce static feedback and improve sound quality"],
     correct: 0,
     rationale: "Hearing aids should be removed at night, kept dry, cleaned with a dry cloth, kept away from hairspray, and have their batteries checked regularly. Water and hairspray will damage the device."
   },
   {
     stem: "A patient with labyrinthitis is admitted with sudden vertigo, nausea, and vomiting. Which combination of interventions is most appropriate?",
-    options: ["Fall precautions, bed rest, antiemetics, and a quiet environment", "Ambulation in a bright hallway and a high-sodium diet", "Ear irrigation and immediate surgery", "Lifelong eye drops and sunglasses"],
+    options: ["Fall precautions, bed rest, antiemetics, and a quiet environment", "Encourage early ambulation in a brightly lit hallway to stimulate vestibular compensation", "Perform immediate ear irrigation to remove any debris triggering the labyrinthine inflammation", "Administer lifelong glaucoma eye drops and instruct the patient on sunglasses use outdoors"],
     correct: 0,
     rationale: "Labyrinthitis care includes fall precautions, bed rest during the acute phase, antiemetics for nausea/vomiting, Meclizine for vertigo, and a quiet, low-stimulation environment. The other options apply to unrelated conditions."
   },
   {
     stem: "A patient asks why the nurse is pressing on the inner corner of their eye after eye drops are given. What is the best explanation?",
-    options: ["It keeps the medication from draining into the nose and being absorbed by the body", "It helps spread the drop across the whole eye", "It holds the eyelid open longer", "It prevents the eye from watering"],
+    options: ["It keeps the medication from draining into the nose and being absorbed by the body", "It helps spread the drop evenly across the entire surface of the cornea and conjunctiva", "It holds the eyelid open long enough for the drop to be fully absorbed into the eye", "It prevents the patient from blinking and accidentally expelling the drop from the eye"],
     correct: 0,
     rationale: "Applying pressure at the puncta (inner canthus) blocks the drop from draining through the nasolacrimal duct into the nose, which prevents systemic absorption and keeps the medication working locally in the eye."
   },
   {
     stem: "A patient newly diagnosed with glaucoma says, 'My eye pressure was 26 mmHg — is that bad?' How should the nurse respond?",
-    options: ["Yes, normal intraocular pressure (IOP) is 10–21 mmHg; elevated pressure can damage your optic nerve over time if untreated", "No, 26 mmHg is within normal range and no treatment is needed", "Only pressures above 50 mmHg are concerning", "Intraocular pressure (IOP) only matters during acute attacks"],
+    options: ["Yes, normal intraocular pressure (IOP) is 10–21 mmHg; elevated pressure can damage your optic nerve over time if untreated", "No, 26 mmHg is within the normal range and no treatment or monitoring is currently necessary", "Only pressures above 50 mmHg are clinically concerning and require immediate pharmacological intervention", "Intraocular pressure (IOP) only matters during acute attacks and is not relevant between symptomatic episodes"],
     correct: 0,
     rationale: "Normal intraocular pressure (IOP) is 10–21 mmHg, so 26 mmHg is elevated and places the optic nerve at risk. The nurse should explain this clearly and reinforce the importance of adherence to prescribed eye drops to keep intraocular pressure (IOP) controlled and prevent irreversible vision loss."
   },
   {
     stem: "A patient with glaucoma is prescribed both a prostaglandin analog and a beta blocker eye drop. They ask why they need two drops. What is the nurse's best explanation?",
-    options: ["They work by different mechanisms — the prostaglandin increases aqueous humor outflow while the beta blocker decreases production — giving better intraocular pressure (IOP) control together", "One drop is for daytime and one is for nighttime only", "Both drops do the same thing — it is simply a backup in case one fails", "The beta blocker is for pain and the prostaglandin is for infection"],
+    options: ["They work by different mechanisms — the prostaglandin increases aqueous humor outflow while the beta blocker decreases production — giving better intraocular pressure (IOP) control together", "One drop is administered only in the morning and one only at bedtime to prevent accumulation of both medications in the anterior chamber at the same time", "Both drops work through the same pathway and achieve the same effect — prescribing two is simply a backup protocol in case one medication becomes unavailable", "The beta blocker treats the eye pain and injection-related inflammation while the prostaglandin analog specifically targets and lowers the elevated intraocular pressure"],
     correct: 0,
     rationale: "Prostaglandin analogs lower intraocular pressure (IOP) by increasing aqueous humor outflow; beta blockers lower intraocular pressure (IOP) by decreasing production. Using both together attacks two different pathways and often achieves better pressure control than either alone."
   },
   {
     stem: "An older adult patient reports that straight lines on their Amsler grid look wavy and their central vision is blurred. Their peripheral vision is intact. Which condition does the nurse suspect and what is the priority action?",
-    options: ["Age-related macular degeneration (AMD); refer the patient for urgent evaluation as this may indicate progression", "Glaucoma; reassure the patient that peripheral vision is preserved", "Retinal detachment; prepare the patient for emergency surgery today", "Cataracts; schedule elective surgery at the patient's convenience"],
+    options: ["Age-related macular degeneration (AMD); refer the patient for urgent evaluation as this may indicate progression", "Glaucoma; reassure the patient that peripheral vision loss is expected and wavy lines are unrelated", "Retinal detachment; prepare the patient for immediate emergency surgical repair today", "Cataracts; schedule elective phacoemulsification surgery at the patient's earliest convenience"],
     correct: 0,
     rationale: "Wavy Amsler grid lines plus central vision blurring with intact peripheral vision is the classic presentation of age-related macular degeneration (AMD). New or worsening distortion requires urgent evaluation — it can signal transition to wet age-related macular degeneration (AMD), which needs prompt treatment to slow progression."
   },
   {
     stem: "A patient undergoes photodynamic therapy with verteporfin for wet age-related macular degeneration (AMD). What is the most important discharge instruction?",
-    options: ["Avoid sunlight and bright light exposure for 5 days after the procedure", "Keep the eye patched and lie prone for 2 weeks", "Take a high-sodium diet to support healing", "Resume all activities immediately, including driving"],
+    options: ["Avoid sunlight and bright light exposure for 5 days after the procedure", "Keep the operative eye patched and remain in the prone position for at least two weeks post-procedure", "Follow a high-sodium diet to support vascular healing in the treated retinal tissue", "Resume all normal activities including driving immediately since the procedure is minimally invasive"],
     correct: 0,
     rationale: "After verteporfin photodynamic therapy, the patient must avoid sunlight and bright light for 5 days because verteporfin remains in the body and sunlight can activate it, causing serious skin burns or eye damage. This is a critical and specific safety teaching for wet age-related macular degeneration (AMD) treatment."
   },
   {
     stem: "Two days after cataract surgery, a patient calls reporting they sneezed hard several times and now have increased redness and pain in the operative eye. What is the nurse's priority action?",
-    options: ["Instruct the patient to contact the provider immediately, as these are warning signs of a post-operative complication", "Reassure the patient that sneezing is expected and redness is normal", "Tell the patient to apply a warm compress and call back in 24 hours", "Advise the patient to increase their dose of acetaminophen"],
+    options: ["Instruct the patient to contact the provider immediately, as these are warning signs of a post-operative complication", "Reassure the patient that sneezing is expected and redness with mild pain is normal post-operatively", "Advise the patient to apply a warm compress every four hours and call back only if symptoms worsen", "Recommend the patient increase their dose of acetaminophen and monitor symptoms for another 24 hours"],
     correct: 0,
     rationale: "Forceful sneezing raises intraocular pressure (IOP) and can disrupt the cataract surgical repair. Increasing redness and pain are warning signs of a post-operative complication and require immediate provider contact. Mild discomfort manageable with acetaminophen is expected; escalating pain is not."
   }

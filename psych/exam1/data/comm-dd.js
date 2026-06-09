@@ -1,7 +1,7 @@
 window.QUESTIONS = [
   {
     stem: "A client says, 'I just found out my husband has cancer. I don't know how I'll cope.' Which is the MOST therapeutic response?",
-    options: ["'This must be a frightening time for you. Tell me what you're feeling.'", "'I understand exactly how you feel.'", "'Don't worry, the doctors here are excellent.'", "'You'll need to be strong for him.'"],
+    options: ["'This must be a frightening time for you. Tell me what you're feeling.'", "'I understand exactly how you feel — I went through something similar with my own family.'", "'Try not to worry too much. Many people with cancer go on to live full and healthy lives.'", "'Let me get you some pamphlets about cancer support groups and caregiver resources.'"],
     correct: 0,
     rationale: "Validating the client's fear and inviting them to share is empathy plus an open-ended statement. 'I understand how you feel' is non-therapeutic, 'don't worry' is false reassurance, and telling them to 'be strong' gives advice/dismisses feelings."
   },
@@ -31,31 +31,31 @@ window.QUESTIONS = [
   },
   {
     stem: "A client angrily tells the nurse, 'You're just like every other person who's let me down!' The nurse recognizes transference. What is the best response?",
-    options: ["'It sounds like people have let you down before. Can you tell me about that?'", "'That's unfair — I've done nothing to let you down.'", "'You're being disrespectful and need to stop.'", "'Maybe you should work with a different nurse.'"],
+    options: ["'It sounds like people have let you down before. Can you tell me about that?'", "'I haven't let you down — I've been following the care plan exactly as ordered.'", "'You're right to feel that way. The healthcare system does fail people sometimes.'", "'Let's focus on your treatment right now rather than discussing past experiences.'"],
     correct: 0,
     rationale: "Rather than taking the transference personally, the nurse explores the underlying feelings the client is redirecting from past relationships. Defensiveness, confrontation, and withdrawal all damage the therapeutic relationship."
   },
   {
     stem: "A nurse notices she feels unusually protective of a young client who reminds her of her own child, and is tempted to bend unit rules. What does this represent, and what should she do?",
-    options: ["Countertransference; seek self-awareness and supervision rather than act on it", "Transference; confront the client", "Empathy; continue bending the rules to build trust", "Fidelity; document and proceed"],
+    options: ["Countertransference; seek self-awareness and supervision rather than act on it", "Transference; the client is projecting their own feelings about authority figures onto the nurse", "A therapeutic use of self; using personal experience to deepen empathy is appropriate in nursing", "A boundary crossing; the nurse should immediately transfer care to a colleague and document it"],
     correct: 0,
     rationale: "The nurse's own feelings (driven by her personal life) toward the client is countertransference. It is managed through self-awareness and supervision — not by acting on it or bending boundaries."
   },
   {
     stem: "A client says, 'You're the only one who really cares about me here. Can we be friends after I'm discharged?' What is the most appropriate response?",
-    options: ["'Our relationship is a professional one. Let's work on building supports in your life outside the hospital.'", "'Of course, I'd love to stay in touch.'", "'You shouldn't get so attached to people.'", "'I care about you too much to say no.'"],
+    options: ["'Our relationship is a professional one. Let's work on building supports in your life outside of here.'", "'That means a lot to me. I do care about you and want to support you as much as I can.'", "'I'm glad you feel that way. Let's explore what makes our relationship feel different from others.'", "'I can't respond to that comment. Let's change the subject and focus on your treatment goals.'"],
     correct: 0,
     rationale: "The nurse maintains professional boundaries by clarifying the relationship is therapeutic, not a friendship, while redirecting the client toward outside supports. Agreeing to a post-discharge friendship crosses boundaries."
   },
   {
     stem: "A client with borderline personality disorder (BPD) is escalating, raising their voice and demanding immediate attention. Which nursing response is best?",
-    options: ["'I can see you're really upset. Let's sit down and set a time to talk this through.'", "'You need to control yourself right now.'", "'If you don't calm down, you'll lose privileges.'", "'I can't help you when you act like this.'"],
+    options: ["'I can see you're really upset. Let's sit down and set a time to talk this through together.'", "'If you don't calm down immediately, I will have to call security and document this incident.'", "'Everyone feels this way sometimes. Let's go to the group room where others can support you.'", "'I understand you're upset, but this behavior is disrupting the unit and needs to stop now.'"],
     correct: 0,
     rationale: "Validating the client's emotion while offering clear structure is the de-escalation approach for borderline personality disorder (BPD) — supportive, not punitive. Threats and ultimatums escalate the situation."
   },
   {
     stem: "A client says, 'I'm so anxious I can't sit still.' Which response best combines acknowledgment with support?",
-    options: ["'I can see you're feeling anxious. Let's take a walk together.'", "'There's really nothing to be anxious about.'", "'Try to calm down on your own.'", "'Why do you let yourself get so worked up?'"],
+    options: ["'I can see you're feeling anxious. Let's take a walk together.'", "'Anxiety is very common. Let me get you a medication to help calm you down quickly.'", "'Try some deep breathing exercises — that should reduce your anxiety within a few minutes.'", "'Tell me exactly what you're anxious about so we can problem-solve a solution together.'"],
     correct: 0,
     rationale: "Naming the observed anxiety and offering to help (a walk) is acknowledgment plus support. Dismissing the anxiety, telling the client to handle it alone, or asking 'why' are non-therapeutic."
   },
@@ -67,13 +67,13 @@ window.QUESTIONS = [
   },
   {
     stem: "A client receiving bad news says, 'Just tell me everything is going to be okay.' What is the most therapeutic response?",
-    options: ["'I can't promise that, but I'll be here to support you through this.'", "'Everything is going to be okay.'", "'There's no way to know, so try not to think about it.'", "'You need to stay positive.'"],
+    options: ["'I can't promise that, but I'll be here to support you through this.'", "'Everything is going to be okay — the team is doing everything possible for you.'", "'I understand you want reassurance, but I'm not the right person to answer that question.'", "'Let's focus on the positive possibilities and not think about the worst-case scenario.'"],
     correct: 0,
     rationale: "Honest support without false promises is therapeutic — the nurse acknowledges uncertainty while committing to presence. Promising everything will be okay is false reassurance, and the other options dismiss the client's distress."
   },
   {
     stem: "Which nurse statement during a difficult conversation is non-therapeutic and should be corrected?",
-    options: ["'You're upsetting the other clients, so you'll have to leave the group.'", "'It sounds like this situation is really frustrating for you.'", "'Tell me more about what happened.'", "'I'm here with you right now.'"],
+    options: ["'You're upsetting the other clients, so you'll have to leave the group.'", "'I can see this is difficult. Take your time and share whatever you're comfortable with.'", "'It sounds like you're going through something really painful. I'm here to listen.'", "'Can you help me understand what's happening for you right now in this moment?'"],
     correct: 0,
     rationale: "Dismissing the client and removing them is deflection/dismissal — non-therapeutic and rejecting. The other three (reflection, open-ended, presence) are all therapeutic techniques."
   },

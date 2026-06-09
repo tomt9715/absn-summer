@@ -25,7 +25,7 @@ window.QUESTIONS = [
   },
   {
     stem: "On an EKG, ST segment elevation indicates which condition?",
-    options: ["Myocardial infarction (MI)", "Ischemia", "Hypokalemia", "Atrial enlargement"],
+    options: ["Myocardial infarction (MI)", "Hypokalemia, identified by a prominent U wave and flat or inverted T waves", "First degree heart block, identified by a prolonged PR interval greater than 0.20 seconds", "Atrial fibrillation, identified by an irregularly irregular rhythm with no discernible P waves"],
     correct: 0,
     rationale: "ST segment elevation indicates an myocardial infarction (MI), while ST depression indicates ischemia. The ST segment reflects early ventricular repolarization."
   },
@@ -73,7 +73,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Which EKG finding is the classic identifier of atrial fibrillation?",
-    options: ["Irregularly irregular rhythm with no discernible P waves", "Sawtooth-shaped waves", "Wide, bizarre QRS complexes", "Progressive lengthening of the PR interval"],
+    options: ["Irregularly irregular rhythm with no discernible P waves", "Sawtooth-like flutter waves at a regular rate of approximately 250 to 400 beats per minute", "A twisting QRS pattern spiraling around the baseline at a rate of 150 to 300 beats per minute", "Progressive lengthening of the PR interval until a beat is dropped, then the cycle repeats"],
     correct: 0,
     rationale: "A-fib is identified by an irregularly irregular rhythm with no discernible P waves. Sawtooth waves are atrial flutter, wide bizarre QRS is PVC/V-tach, and progressive PR lengthening is Wenckebach."
   },
@@ -103,7 +103,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A premature ventricular contraction (PVC) appears on the EKG as:",
-    options: ["A wide, bizarre-looking QRS complex occurring earlier than expected", "A sawtooth wave pattern", "An absent P wave with an irregularly irregular rhythm", "A progressively lengthening PR interval"],
+    options: ["A wide, bizarre-looking QRS complex occurring earlier than expected", "A sawtooth-like flutter wave pattern occurring at a regular atrial rate of 250 to 400 bpm", "A progressively lengthening PR interval followed by a dropped QRS beat in a repeating cycle", "An absent P wave with an irregularly irregular rhythm and variable ventricular response"],
     correct: 0,
     rationale: "A PVC starts in the ventricle and fires before the next normal sinus impulse, producing a wide, bizarre QRS that comes earlier than expected."
   },
@@ -127,7 +127,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A patient in ventricular tachycardia WITH a pulse is treated with:",
-    options: ["Cardioversion plus IV medication", "Immediate defibrillation", "Vagal maneuvers only", "Monitoring only"],
+    options: ["Cardioversion plus IV medication", "Immediate unsynchronized defibrillation with the highest available joule setting", "Atropine 0.5 mg IV push followed by transcutaneous pacing if no response", "Vagal maneuvers and adenosine since ventricular tachycardia with a pulse is a stable rhythm"],
     correct: 0,
     rationale: "V-tach WITH a pulse is treated with cardioversion plus IV medication. V-tach that is PULSELESS requires immediate defibrillation."
   },
@@ -145,13 +145,13 @@ window.QUESTIONS = [
   },
   {
     stem: "Torsades de Pointes appears on the EKG as:",
-    options: ["A twisting pattern with a rate of 150–300 bpm", "A sawtooth pattern", "A flat line", "A wide regular QRS at 60 bpm"],
+    options: ["A twisting pattern with a rate of 150–300 bpm", "Sawtooth-like flutter waves at a regular atrial rate of 250 to 400 beats per minute", "An irregularly irregular rhythm with no discernible P waves and variable ventricular rate", "A flat, isoelectric baseline with no QRS complexes, P waves, or T waves visible"],
     correct: 0,
     rationale: "Torsades de Pointes shows a twisting pattern around the baseline with a rapid, irregular heartbeat of 150–300 bpm."
   },
   {
     stem: "Which dysrhythmia is the most common in cardiac arrest and requires immediate defibrillation?",
-    options: ["Ventricular fibrillation (V-fib)", "Atrial fibrillation", "Sinus bradycardia", "First degree heart block"],
+    options: ["Ventricular fibrillation (V-fib)", "Atrial fibrillation with rapid ventricular response, requiring synchronized cardioversion", "Third degree heart block, requiring emergent transcutaneous pacemaker placement", "Sinus bradycardia with hypotension, requiring atropine 0.5 mg IV push as first-line treatment"],
     correct: 0,
     rationale: "V-fib is the most common dysrhythmia in cardiac arrest and is a medical emergency requiring immediate defibrillation. Between cardiopulmonary resuscitation (CPR) and defibrillation, IV Amiodarone and IV Epinephrine are given."
   },
@@ -169,7 +169,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Which heart block is characterized by a PR interval that progressively lengthens until a beat is dropped?",
-    options: ["2nd degree Type 1 (Wenckebach)", "2nd degree Type 2", "1st degree", "3rd degree (complete)"],
+    options: ["2nd degree Type 1 (Wenckebach)", "1st degree heart block, which has a constant prolonged PR interval that never drops a beat", "3rd degree (complete) heart block, in which P waves and QRS complexes have no relationship", "2nd degree Type 2, which has a constant PR interval that suddenly drops a beat without warning"],
     correct: 0,
     rationale: "2nd degree Type 1 (Wenckebach) shows progressive PR lengthening until a beat drops. 2nd degree Type 2 has a constant PR that suddenly drops — and is considered more dangerous."
   },
@@ -211,7 +211,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Which finding indicates a patient is hemodynamically UNSTABLE and needs immediate treatment?",
-    options: ["Hypotension (low BP) with altered level of consciousness", "A heart rate of 72 bpm", "A blood pressure of 120/80", "An oxygen saturation of 98%"],
+    options: ["Hypotension (low BP) with altered level of consciousness", "A heart rate of 58 bpm in an asymptomatic patient with no complaints of dizziness or dyspnea", "A blood pressure of 118/76 mmHg with a normal level of consciousness and no chest pain", "Occasional premature ventricular contractions (PVCs) occurring once or twice daily without symptoms"],
     correct: 0,
     rationale: "Unstable means low BP (hypotension), altered level of consciousness (LOC), chest pain, or signs of poor perfusion — treat immediately. Low BP is the number one sign of instability."
   },
@@ -223,7 +223,7 @@ window.QUESTIONS = [
   },
 {
     stem: "Why is supplemental oxygen given to a patient experiencing chest pain with a cardiac dysrhythmia?",
-    options: ["To reduce myocardial workload and ensure oxygen delivery to the heart muscle", "To slow the heart rate directly", "To convert the rhythm back to normal sinus", "To prevent blood clot formation in the atria"],
+    options: ["To reduce myocardial workload and ensure oxygen delivery to the heart muscle", "To convert the dysrhythmia back to normal sinus rhythm by correcting hypoxic conduction disturbances", "To slow the heart rate directly by stimulating vagal tone through increased oxygen saturation", "To prevent clot formation in the atria by reducing the viscosity of blood during ischemia"],
     correct: 0,
     rationale: "Supplemental oxygen is given with chest pain because the heart muscle needs adequate oxygen supply. Any rhythm causing poor perfusion or hemodynamic instability also warrants oxygen. The goal is to reduce myocardial workload and prevent further ischemic damage."
   },
@@ -235,7 +235,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Which statement correctly distinguishes 2nd degree Type 2 heart block from 2nd degree Type 1 (Wenckebach)?",
-    options: ["Type 2 has a constant PR interval that suddenly drops a beat, and is considered more dangerous than Wenckebach", "Type 2 shows progressive PR lengthening before a dropped beat", "Type 2 is less dangerous than Wenckebach because the PR never changes", "Type 2 and Wenckebach are treated identically with vagal maneuvers"],
+    options: ["Type 2 has a constant PR interval that suddenly drops a beat, and is considered more dangerous than Wenckebach", "Type 2 shows progressive PR lengthening before each dropped beat, similar to the Wenckebach pattern", "Type 2 is considered less dangerous than Wenckebach because the PR interval never changes predictably", "Type 2 and Wenckebach are clinically identical and treated the same way with vagal maneuvers"],
     correct: 0,
     rationale: "Second degree Type 2 has a constant PR interval that suddenly drops a beat without warning — making it more dangerous than Wenckebach (Type 1), which gives a predictable pattern of progressive PR lengthening before the dropped beat. Type 2 can progress unpredictably to complete heart block."
   },
@@ -247,13 +247,13 @@ window.QUESTIONS = [
   },
   {
     stem: "Which medication is used for rate control in atrial fibrillation and atrial flutter by blocking calcium channels?",
-    options: ["Verapamil (a calcium channel blocker)", "Atropine", "Epinephrine", "Adenosine"],
+    options: ["Verapamil (a calcium channel blocker)", "Atropine, which blocks vagal tone and increases the heart rate by accelerating sinus node firing", "Adenosine, which terminates reentrant supraventricular tachycardias by blocking the AV node transiently", "Epinephrine, which increases heart rate and myocardial contractility in cardiac arrest situations"],
     correct: 0,
     rationale: "Verapamil is a calcium channel blocker used for rate control in atrial fibrillation and atrial flutter. It slows conduction through the atrioventricular (AV) node. Other rate-control options include beta blockers like atenolol. Atropine is for bradycardia; epinephrine is for cardiac arrest."
   },
   {
     stem: "When a patient has a low heart rate or high heart rate due to anemia, why does the heart compensate by increasing its rate?",
-    options: ["Low red blood cells reduce oxygen delivery, so the heart beats faster to circulate blood more quickly", "Anemia directly stimulates the sinoatrial (SA) node to fire faster through a chemical signal", "The heart slows down to conserve energy when red blood cells are low", "Anemia has no effect on heart rate"],
+    options: ["Low red blood cells reduce oxygen delivery, so the heart beats faster to circulate blood more quickly", "Anemia directly stimulates the sinoatrial (SA) node to fire faster through a chemical signaling cascade", "The heart slows down in anemia to conserve energy and reduce myocardial oxygen demand", "Anemia raises serum potassium levels, which triggers tachycardia through direct membrane effects"],
     correct: 0,
     rationale: "When red blood cell count is low (anemia), less oxygen is carried per unit of blood. The heart compensates by beating faster to circulate the available blood more quickly and maintain oxygen delivery to tissues. This compensatory tachycardia may require treatment of the underlying anemia, including blood transfusion."
   }

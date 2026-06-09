@@ -35,7 +35,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A nurse responds to a worried client with, 'Don't worry, I'm sure everything will work out fine.' Why is this non-therapeutic?",
-    options: ["It is false reassurance that dismisses the client's real concern", "It is too open-ended", "It reflects the client's feelings too directly", "It asks a closed question"],
+    options: ["It is false reassurance that dismisses the client's real concern", "It is an appropriate empathic statement that validates feelings while offering comfort", "It demonstrates therapeutic use of self by projecting calm confidence onto the client", "It encourages the client to reframe negative thinking using cognitive restructuring techniques"],
     correct: 0,
     rationale: "Promising things will be fine is false reassurance — it shuts down the client's concern and makes a claim the nurse cannot guarantee."
   },
@@ -47,25 +47,25 @@ window.QUESTIONS = [
   },
   {
     stem: "A nurse tells a distressed client, 'You just need to stay positive and stop dwelling on it.' This is an example of which non-therapeutic technique?",
-    options: ["Giving advice / minimizing feelings", "Therapeutic silence", "Reflection", "Clarification"],
+    options: ["Giving advice / minimizing feelings", "Active listening combined with therapeutic silence and genuine empathic presence", "Reflecting the client's words back to validate their emotional experience", "Using open-ended questioning to invite the client to elaborate on their concerns"],
     correct: 0,
     rationale: "Telling the client what they 'need' to do is giving unsolicited advice and minimizes their feelings — both non-therapeutic. It removes the client's autonomy and dismisses their distress."
   },
   {
     stem: "A client states, 'I'm scared about my surgery tomorrow.' Which response best demonstrates empathy?",
-    options: ["'Feeling scared before surgery is completely understandable. What worries you most?'", "'There's nothing to be scared of, the surgeons are excellent.'", "'I know exactly how you feel.'", "'You shouldn't think about it so much.'"],
+    options: ["'Feeling scared before surgery is completely understandable. What worries you most?'", "'Don't be scared — the surgical team is highly experienced and everything will go smoothly.'", "'Let me explain exactly what will happen during the procedure so you feel more prepared.'", "'Many patients feel that way. Once it's over you'll be relieved it wasn't as bad as expected.'"],
     correct: 0,
     rationale: "Validating the fear and inviting the client to share is empathy. False reassurance, the non-therapeutic 'I know how you feel,' and dismissing the worry are all unhelpful."
   },
   {
     stem: "A client suddenly says to the nurse, 'You remind me of my daughter who never visits.' The nurse recognizes transference. What is the best response?",
-    options: ["'It sounds like not seeing your daughter has been painful. Tell me about that.'", "'I'm not your daughter, so let's stay focused.'", "'I'm sure she'll visit soon.'", "'Why doesn't your daughter visit you?'"],
+    options: ["'It sounds like not seeing your daughter has been painful. Tell me about that.'", "'I'm your nurse, not your daughter. Let's keep our relationship professional.'", "'I'm sure your daughter loves you — families are sometimes just busy with their own lives.'", "'That must be hard. Would you like me to help you contact her during your hospital stay?'"],
     correct: 0,
     rationale: "The nurse explores the feelings the client is transferring rather than taking it personally or deflecting. This turns the transference into therapeutic material."
   },
   {
     stem: "Which nurse action reflects maintaining professional boundaries in a therapeutic relationship?",
-    options: ["Keeping the focus on the client's needs and goals rather than sharing personal problems", "Becoming social-media friends with the client after discharge", "Sharing personal struggles to seem relatable", "Promising to always be available to the client"],
+    options: ["Keeping the focus on the client's needs and goals rather than sharing personal problems", "Exchanging phone numbers with a client to stay connected after discharge for continuity of support", "Accepting a small gift from a grateful client as a gesture of warmth and therapeutic connection", "Meeting a client for coffee after discharge to support their transition back to the community"],
     correct: 0,
     rationale: "A therapeutic relationship is goal-directed and centered on the client, not the nurse. Sharing personal problems, social friendships, or promises of constant availability all blur professional boundaries."
   },
@@ -97,7 +97,7 @@ window.QUESTIONS = [
   },
   {
     stem: "During the interview a client gives long-winded, overly detailed answers but does eventually answer the question. How is this documented?",
-    options: ["Circumstantial thinking", "Tangential thinking", "Thought blocking", "Neologisms"],
+    options: ["Circumstantial thinking", "Tangential thinking, since the client wanders off topic and never returns to the original question", "Flight of ideas, since the client's speech is pressured and rapidly shifting between topics", "Loose associations, since the client's thoughts have no recognizable logical connection to each other"],
     correct: 0,
     rationale: "Circumstantial thinking includes excessive detail but eventually reaches the point. Tangential thinking never returns to the point."
   },
@@ -115,7 +115,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A client can state the date, the hospital name, and who they are. How should the nurse document this?",
-    options: ["Oriented to person, place, and time (oriented x3)", "Intact remote memory", "Good insight and judgment", "Normal affect"],
+    options: ["Oriented to person, place, and time (oriented x3)", "Oriented to person and place only, since the client did not demonstrate orientation to situation", "Partially oriented, since full orientation requires knowledge of the treating physician and diagnosis", "Fully oriented, since the client demonstrated intact insight and judgment in addition to basic facts"],
     correct: 0,
     rationale: "Knowing person, place, and time is orientation x3, part of the cognition assessment. It is separate from memory, insight, judgment, and affect."
   },
@@ -177,7 +177,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A 10-year-old interprets proverbs literally and reasons about concrete objects rather than abstract ideas. According to Piaget, how should this be viewed?",
-    options: ["Developmentally normal, since abstract thinking emerges around age 11", "A sign of intellectual disability requiring referral", "Evidence of a thought disorder", "Abnormal regression under stress"],
+    options: ["Developmentally normal, since abstract thinking emerges around age 11", "A sign of intellectual disability, since children should develop abstract thinking by age 7", "Evidence of psychosis, since concrete thinking in a child always requires psychiatric evaluation", "An early indicator of autism spectrum disorder requiring formal neuropsychological assessment"],
     correct: 0,
     rationale: "Per Piaget, concrete thinking is normal before about age 11–12, when formal operational (abstract) thinking begins. Literal reasoning in a 10-year-old is expected."
   },
@@ -185,7 +185,7 @@ window.QUESTIONS = [
   // ===== LEGAL & ETHICAL (~6) =====
   {
     stem: "A nurse confines a non-dangerous client to a seclusion room solely because the unit is short-staffed. Which tort is this?",
-    options: ["False imprisonment", "Assault", "Battery", "Defamation"],
+    options: ["False imprisonment", "A justified safety measure under emergency staffing conditions and standard hospital protocol", "Permissible restraint use when documented as a therapeutic intervention in the care plan", "Battery, since placing the client in seclusion involves unwanted physical contact and coercion"],
     correct: 0,
     rationale: "Seclusion without medical justification (e.g., for staffing) is false imprisonment, an intentional tort. Assault is a threat, and battery is unwanted contact."
   },
@@ -203,7 +203,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A competent client who voluntarily admitted themselves wishes to refuse electroconvulsive therapy (ECT). What is the nurse's role?",
-    options: ["Advocate for the client's right to refuse and ensure informed understanding", "Insist the client proceed since it was ordered", "Administer the treatment over the client's objection", "Threaten discharge if the client refuses"],
+    options: ["Advocate for the client's right to refuse and ensure informed understanding", "Proceed with the treatment since voluntary admission implies consent for all ordered procedures", "Contact the client's family to obtain surrogate consent and override the client's refusal", "Seek a court order immediately since refusal of a provider-ordered treatment is not legally permitted"],
     correct: 0,
     rationale: "A competent voluntary client can refuse any treatment, including electroconvulsive therapy (ECT). The nurse advocates for autonomy and ensures the client understands risks and benefits."
   },
@@ -261,7 +261,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Which scenario reflects a client working at the love and belonging level of Maslow's hierarchy?",
-    options: ["A stable client wanting to reconnect with family and join a support group", "A client who has not slept or eaten in days", "A client in immediate danger of self-harm", "A client pursuing a long-term life ambition"],
+    options: ["A stable client wanting to reconnect with family and join a support group", "A client focused on finding a job and housing after being discharged from inpatient care", "A client requesting information about advanced education and career development opportunities", "A client asking the nurse to ensure their room is safe and free from environmental hazards"],
     correct: 0,
     rationale: "Seeking social connection and group participation reflects love and belonging. Sleep/food is physiological, danger is safety, and pursuing ambition is self-actualization."
   },
@@ -269,13 +269,13 @@ window.QUESTIONS = [
   // ===== PSYCHOPHARM (~3) =====
   {
     stem: "A client with anxiety is prescribed lorazepam (Ativan). Which neurotransmitter does this benzodiazepine enhance?",
-    options: ["Gamma-aminobutyric acid (GABA)", "Dopamine", "Acetylcholine (ACh)", "Glutamate"],
+    options: ["Gamma-aminobutyric acid (GABA)", "Serotonin, which is enhanced by benzodiazepines through the same mechanism as SSRIs", "Dopamine, which is regulated by benzodiazepines to reduce the anticipatory anxiety response", "Norepinephrine, which is blocked by lorazepam to reduce sympathetic arousal and panic symptoms"],
     correct: 0,
     rationale: "Benzodiazepines like lorazepam (Ativan) enhance gamma-aminobutyric acid (GABA), the inhibitory neurotransmitter, to reduce anxiety and promote calm."
   },
   {
     stem: "A client is started on escitalopram (Lexapro) for depression. Which teaching point is essential?",
-    options: ["It may take 2–4 weeks to feel the full effect, so do not stop early", "It works within a few hours of the first dose", "It should be taken only when feeling sad", "It cures depression after a single dose"],
+    options: ["It may take 2–4 weeks to feel the full effect, so do not stop early", "The medication works immediately, so report if symptoms have not improved within 48 hours", "SSRIs must be taken only when symptoms are present, not as a scheduled daily medication", "Stopping the medication abruptly once feeling better is safe and prevents long-term dependence"],
     correct: 0,
     rationale: "Selective serotonin reuptake inhibitors (SSRIs) like escitalopram (Lexapro) take 2–4 weeks for full effect, so clients must be taught not to stop early when relief is not immediate."
   },

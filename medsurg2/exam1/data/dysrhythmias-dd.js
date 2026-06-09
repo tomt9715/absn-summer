@@ -49,7 +49,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A patient is in A-fib with rapid ventricular response (HR 148) but maintains a stable BP and is alert. What does the nurse anticipate as first-line treatment?",
-    options: ["IV beta-blocker to slow the ventricular rate", "Immediate defibrillation", "Transcutaneous pacing", "Atropine 0.5 mg IV push"],
+    options: ["IV beta-blocker to slow the ventricular rate", "Immediate synchronized cardioversion, since all A-fib with rapid ventricular response is unstable", "Atropine 0.5 mg IV push to block vagal tone and restore normal sinus rhythm", "Defibrillation at maximum joules, since rapid ventricular response indicates pulseless tachycardia"],
     correct: 0,
     rationale: "A-fib with rapid ventricular response (RVR) (HR over 100) in a stable patient is treated with an IV beta-blocker to slow the rate. Defibrillation is for pulseless rhythms, pacing is for symptomatic bradycardia, and Atropine would speed the heart up further."
   },
@@ -61,19 +61,19 @@ window.QUESTIONS = [
   },
   {
     stem: "A monitor shows a rhythm with a PR interval that gets progressively longer until a QRS is dropped, then the cycle repeats. How should the nurse document this rhythm?",
-    options: ["2nd degree heart block, Type 1 (Wenckebach)", "2nd degree heart block, Type 2", "1st degree heart block", "3rd degree (complete) heart block"],
+    options: ["2nd degree heart block, Type 1 (Wenckebach)", "1st degree heart block, since the PR interval is prolonged but no beats are being dropped", "3rd degree (complete) heart block, since P waves and QRS complexes have no consistent relationship", "2nd degree Type 2, since the PR interval is constant right up until the beat suddenly drops"],
     correct: 0,
     rationale: "Progressive PR lengthening until a beat drops is Wenckebach (2nd degree Type 1). Type 2 has a constant PR that suddenly drops, 1st degree has a constant prolonged PR with no dropped beats, and 3rd degree shows no P–QRS relationship."
   },
   {
     stem: "A patient's monitor shows no QRS complexes and a flat line. The patient is unresponsive, pulseless, and not breathing. What is the priority action?",
-    options: ["Begin cardiopulmonary resuscitation (CPR) immediately", "Defibrillate the patient", "Administer Adenosine", "Perform synchronized cardioversion"],
+    options: ["Begin cardiopulmonary resuscitation (CPR) immediately", "Deliver an immediate unsynchronized defibrillatory shock to convert the flatline rhythm", "Administer adenosine IV push to restore conduction through the atrioventricular (AV) node", "Perform synchronized cardioversion since asystole with no QRS complexes requires a timed shock"],
     correct: 0,
     rationale: "Asystole (flatline) is treated with immediate cardiopulmonary resuscitation (CPR) — you do NOT defibrillate asystole (there is no rhythm to convert). Cardioversion and Adenosine are inappropriate for a pulseless, flatline patient."
   },
   {
     stem: "A patient newly diagnosed with A-fib asks the nurse why they have to take a blood thinner. What is the nurse's best response?",
-    options: ["In A-fib, blood can pool in the atria and form clots that may travel to the brain and cause a stroke", "Blood thinners will convert your heart back to a normal rhythm", "The medication will slow your heart rate down", "Blood thinners prevent your atria from fibrillating"],
+    options: ["In A-fib, blood can pool in the atria and form clots that may travel to the brain causing stroke", "Anticoagulants slow the ventricular rate by blocking calcium channels in the atrioventricular (AV) node", "Blood thinners convert the irregular rhythm back to normal sinus by reducing clot-triggered misfiring", "Anticoagulants prevent heart failure by reducing the workload on the left ventricle during A-fib"],
     correct: 0,
     rationale: "Anticoagulation prevents clot formation from pooled atrial blood, reducing stroke risk — the major complication of A-fib. Blood thinners don't control rate or convert the rhythm."
   },
@@ -85,7 +85,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A patient is scheduled for an elective (synchronized) cardioversion in the morning. Which pre-procedure nursing action is essential?",
-    options: ["Keep the patient nothing by mouth (NPO) before the procedure", "Encourage a large breakfast for energy", "Withhold all oxygen during the procedure", "Ambulate the patient immediately before"],
+    options: ["Keep the patient nothing by mouth (NPO) before the procedure", "Encourage the patient to eat a light breakfast to maintain energy for post-procedure recovery", "Administer a large fluid bolus to ensure adequate hydration before the electrical shock is delivered", "Apply defibrillator pads to the left arm and right thigh for optimal energy delivery during cardioversion"],
     correct: 0,
     rationale: "The patient is kept nothing by mouth (NPO) before cardioversion because sedation/anesthesia is given. Oxygen, continuous ECG monitoring, and pain management are part of care — not withheld."
   },
@@ -133,7 +133,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A nurse is preparing a patient for elective cardioversion. Which set of pre-procedure actions is correct?",
-    options: ["Keep the patient nothing by mouth (NPO), apply continuous electrocardiogram (ECG) monitoring, ensure oxygen is available, and obtain consent", "Offer the patient a light meal, apply defibrillator pads to the left arm only, and prepare adenosine", "Place the patient prone, discontinue all monitoring, and have atropine ready", "Begin cardiopulmonary resuscitation (CPR) immediately before the procedure as a precaution"],
+    options: ["Keep the patient nothing by mouth (NPO), apply continuous electrocardiogram (ECG) monitoring, ensure oxygen is available, and obtain consent", "Offer a light meal, apply defibrillator pads to the left arm only, and have adenosine drawn up at bedside", "Place the patient prone, disconnect cardiac monitoring to avoid artifact, and prepare atropine for backup", "Begin cardiopulmonary resuscitation (CPR) immediately before the procedure as a standard precautionary measure"],
     correct: 0,
     rationale: "Before elective cardioversion the patient must be nothing by mouth (NPO) because sedation is given, continuous electrocardiogram (ECG) monitoring is required, oxygen must be available, and the shock is synchronized to the R point. Cardiopulmonary resuscitation (CPR) is not initiated pre-procedure — cardioversion is for a patient with a pulse."
   }
