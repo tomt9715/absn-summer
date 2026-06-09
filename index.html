@@ -255,5 +255,102 @@
   })();
 </script>
 <script src="shared/footer.js"></script>
+
+<!-- Welcome Modal -->
+<style>
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(35,32,32,0.45); backdrop-filter: blur(3px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.5rem;
+  opacity: 0; animation: modalFadeIn 0.3s ease 0.4s forwards;
+}
+@keyframes modalFadeIn { to { opacity: 1; } }
+.modal-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 18px; padding: 2.2rem 2.4rem;
+  max-width: 520px; width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+  transform: translateY(20px); animation: modalRise 0.35s ease 0.4s forwards;
+}
+@keyframes modalRise { to { transform: translateY(0); } }
+.modal-eyebrow {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent);
+  margin-bottom: 0.7rem; display: block;
+}
+.modal-title {
+  font-family: 'Fraunces', serif; font-size: 1.7rem; font-weight: 500;
+  color: var(--ink); line-height: 1.15; margin-bottom: 1rem;
+}
+.modal-intro {
+  font-size: 15px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 1.5rem;
+}
+.modal-modes {
+  display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.6rem;
+}
+.modal-mode {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 15px;
+}
+.modal-mode-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 4px 10px; border-radius: 5px; white-space: nowrap; flex-shrink: 0; margin-top: 1px;
+}
+.modal-mode-tag.kc { background: var(--teal-soft); color: var(--teal); }
+.modal-mode-tag.dd { background: var(--accent-soft); color: var(--accent); }
+.modal-mode-body { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+.modal-mode-body strong { color: var(--ink); font-weight: 600; }
+.modal-note {
+  font-size: 13px; color: var(--ink-mute); line-height: 1.6;
+  border-top: 1px solid var(--border); padding-top: 1rem; margin-bottom: 1.4rem;
+}
+.modal-btn {
+  display: block; width: 100%; padding: 14px;
+  background: var(--accent); color: #fff; border: none; border-radius: 10px;
+  font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600;
+  cursor: pointer; transition: background 0.15s;
+}
+.modal-btn:hover { background: var(--accent-deep); }
+</style>
+
+<div class="modal-overlay" id="welcome-overlay" style="display:none">
+  <div class="modal-card">
+    <span class="modal-eyebrow">Welcome</span>
+    <div class="modal-title">How this site works</div>
+    <p class="modal-intro">Each topic has two quiz modes. Start with the Knowledge Check to drill the facts, then hit the Deep Drill once you feel solid.</p>
+    <div class="modal-modes">
+      <div class="modal-mode">
+        <span class="modal-mode-tag kc">KC</span>
+        <div class="modal-mode-body"><strong>Knowledge Check</strong> — direct recall questions. Know your notes cold before moving on.</div>
+      </div>
+      <div class="modal-mode">
+        <span class="modal-mode-tag dd">DD</span>
+        <div class="modal-mode-body"><strong>Deep Drill</strong> — clinical scenarios and priority questions. Apply what you know the way the exam will test it.</div>
+      </div>
+    </div>
+    <p class="modal-note">Questions and answer choices reshuffle every time you retake — so you're learning the material, not the position of the answer. Your best score is saved automatically.</p>
+    <button class="modal-btn" onclick="__dismissModal()">Got it — let's study</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  const KEY = 'absn_welcome_seen';
+  try { if (!localStorage.getItem(KEY)) {
+    const overlay = document.getElementById('welcome-overlay');
+    overlay.style.display = 'flex';
+  } } catch(e) {}
+  window.__dismissModal = function () {
+    try { localStorage.setItem(KEY, '1'); } catch(e) {}
+    const overlay = document.getElementById('welcome-overlay');
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.2s ease';
+    setTimeout(() => overlay.style.display = 'none', 200);
+  };
+})();
+</script>
 </body>
 </html>
