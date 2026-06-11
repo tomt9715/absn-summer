@@ -117,6 +117,21 @@ h1 { font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 500; color:
   animation: slideRight 0.35s ease forwards;
 }
 .next-btn:hover { background: var(--accent-deep); }
+.strip-nav { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.nav-btn {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-mute);
+  background: none; border: 1px solid var(--border); border-radius: 6px;
+  padding: 4px 10px; cursor: pointer; transition: all 0.15s;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.step-nav { display: flex; justify-content: flex-start; margin-top: 10px; }
+.step-back-btn {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-mute);
+  background: none; border: 1px solid var(--border); border-radius: 6px;
+  padding: 4px 10px; cursor: pointer; transition: all 0.15s;
+}
+.step-back-btn:hover { border-color: var(--teal); color: var(--teal); }
 </style>
 </head>
 <body>
@@ -252,7 +267,7 @@ const STRIPS = [
     label: 'Atrial Fibrillation',
     parts: [
       {
-        stem: 'Count the R waves and multiply by 10. What best describes the ventricular rate in this strip?',
+        stem: 'What best describes the ventricular rate in this strip?',
         options: ['Variable — difficult to calculate a single rate due to irregular spacing', '60–100 bpm and consistent', 'Less than 60 bpm and regular', 'Exactly 150 bpm with a 2:1 pattern'],
         correct: 0,
         rationale: 'In atrial fibrillation the ventricular rate is variable because the atrioventricular (AV) node is bombarded with chaotic atrial impulses and conducts them irregularly.'
@@ -470,6 +485,8 @@ const LETTERS = ['A','B','C','D'];
 const TOTAL_QUESTIONS = STRIPS.reduce((sum, s) => sum + s.parts.length, 0);
 let totalAnswered = 0, totalCorrect = 0;
 let currentStrip = 0;
+const currentPart = {};
+const doneParts = {};
 
 function updateScore() {
   document.getElementById('score-val').textContent = `${totalCorrect} / ${totalAnswered}`;
@@ -490,7 +507,34 @@ function updateDots(si, activePi, donePis) {
   });
 }
 
-const doneParts = {}; // tracks completed part indices per strip
+function swapParts(si, fromPi, toPi, direction) {
+  const fromEl = document.getElementById(`part-${si}-${fromPi}`);
+  const toEl   = document.getElementById(`part-${si}-${toPi}`);
+  if (!fromEl || !toEl) return;
+  const outX = direction === 'forward' ? '-50px' : '50px';
+  const inX  = direction === 'forward' ? '50px'  : '-50px';
+  fromEl.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+  fromEl.style.opacity = '0';
+  fromEl.style.transform = `translateX(${outX})`;
+  setTimeout(() => {
+    fromEl.style.display = 'none';
+    toEl.classList.remove('hidden');
+    toEl.style.display = 'block';
+    toEl.style.opacity = '0';
+    toEl.style.transform = `translateX(${inX})`;
+    toEl.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      toEl.style.opacity = '1';
+      toEl.style.transform = 'translateX(0)';
+    }));
+  }, 220);
+}
+
+function goToPart(si, fromPi, toPi, direction) {
+  currentPart[si] = toPi;
+  swapParts(si, fromPi, toPi, direction);
+  updateDots(si, toPi, doneParts[si] || []);
+}
 
 function pickAnswer(partId, chosenI, correctI) {
   const isCorrect = chosenI === correctI;
@@ -506,7 +550,6 @@ function pickAnswer(partId, chosenI, correctI) {
       btn.style.background = 'var(--wrong-soft)';
       setTimeout(() => { btn.style.background = ''; }, 600);
     }
-    // Show try again
     if (tryAgainEl) {
       tryAgainEl.textContent = '✗ Not quite — try again';
       tryAgainEl.style.display = 'block';
@@ -518,10 +561,8 @@ function pickAnswer(partId, chosenI, correctI) {
     return;
   }
 
-  // Hide try again if visible
   if (tryAgainEl) tryAgainEl.style.display = 'none';
 
-  // Correct — lock all, pulse correct button
   document.querySelectorAll(`[data-part="${partId}"] .opt`).forEach((b, i) => {
     b.setAttribute('disabled', 'true');
     if (i === correctI) b.classList.add('correct');
@@ -535,9 +576,8 @@ function pickAnswer(partId, chosenI, correctI) {
   const [si, pi] = partId.split('-').map(Number);
   const part = STRIPS[si].parts[pi];
 
-  // Mark dot as done, activate next
   if (!doneParts[si]) doneParts[si] = [];
-  doneParts[si].push(pi);
+  if (!doneParts[si].includes(pi)) doneParts[si].push(pi);
   updateDots(si, pi + 1, doneParts[si]);
 
   document.getElementById(`verdict-${partId}`).textContent = `✓ Correct — ${LETTERS[correctI]} is right.`;
@@ -551,25 +591,11 @@ function pickAnswer(partId, chosenI, correctI) {
 
   if (!isLastPart) {
     setTimeout(() => {
-      const currentPart = document.getElementById(`part-${si}-${pi}`);
-      const nextPart = document.getElementById(`part-${si}-${pi + 1}`);
-      currentPart.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-      currentPart.style.opacity = '0';
-      currentPart.style.transform = 'translateX(-50px)';
-      setTimeout(() => {
-        currentPart.style.display = 'none';
-        nextPart.classList.remove('hidden');
-        nextPart.style.opacity = '0';
-        nextPart.style.transform = 'translateX(50px)';
-        nextPart.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          nextPart.style.opacity = '1';
-          nextPart.style.transform = 'translateX(0)';
-        }));
-      }, 260);
+      currentPart[si] = pi + 1;
+      swapParts(si, pi, pi + 1, 'forward');
+      updateDots(si, pi + 1, doneParts[si]);
     }, 500);
   } else {
-    // Mark last dot done
     updateDots(si, -1, doneParts[si]);
     setTimeout(() => {
       const nextBtn = document.getElementById(`next-btn-${si}`);
@@ -578,33 +604,33 @@ function pickAnswer(partId, chosenI, correctI) {
   }
 }
 
-function nextStrip() {
-  const current = document.getElementById(`strip-${currentStrip}`);
-  // Slide out current
-  current.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-  current.style.opacity = '0';
-  current.style.transform = 'translateX(-40px)';
-
+function goToStrip(toIdx, direction) {
+  const fromEl = document.getElementById(`strip-${currentStrip}`);
+  const toEl   = document.getElementById(`strip-${toIdx}`);
+  if (!fromEl || !toEl) return;
+  const outX = direction === 'forward' ? '-40px' : '40px';
+  const inX  = direction === 'forward' ? '40px'  : '-40px';
+  fromEl.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+  fromEl.style.opacity = '0';
+  fromEl.style.transform = `translateX(${outX})`;
   setTimeout(() => {
-    current.style.display = 'none';
-    currentStrip++;
-    if (currentStrip < STRIPS.length) {
-      const next = document.getElementById(`strip-${currentStrip}`);
-      next.style.display = 'block';
-      next.style.opacity = '0';
-      next.style.transform = 'translateX(40px)';
-      next.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        next.style.opacity = '1';
-        next.style.transform = 'translateX(0)';
-      }));
-      updateScore();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      showDone();
-    }
+    fromEl.style.display = 'none';
+    currentStrip = toIdx;
+    toEl.style.display = 'block';
+    toEl.style.opacity = '0';
+    toEl.style.transform = `translateX(${inX})`;
+    toEl.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      toEl.style.opacity = '1';
+      toEl.style.transform = 'translateX(0)';
+    }));
+    updateScore();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, 280);
 }
+
+function nextStrip() { goToStrip(currentStrip + 1, 'forward'); }
+function prevStrip() { if (currentStrip > 0) goToStrip(currentStrip - 1, 'back'); }
 
 function showDone() {
   document.getElementById('strips').innerHTML = `
@@ -616,9 +642,10 @@ function showDone() {
   `;
 }
 
-// Build all strips upfront, show only first
+// Build all strips
 const container = document.getElementById('strips');
 STRIPS.forEach((strip, si) => {
+  currentPart[si] = 0;
   const block = document.createElement('div');
   block.id = `strip-${si}`;
   block.className = 'strip-block';
@@ -640,6 +667,7 @@ STRIPS.forEach((strip, si) => {
           <span class="verdict" id="verdict-${partId}"></span>
           <span id="rat-${partId}"></span>
         </div>
+        ${pi > 0 ? `<div class="step-nav"><button class="step-back-btn" onclick="goToPart(${si}, ${pi}, ${pi-1}, 'back')">← prev step</button></div>` : ''}
       </div>`;
   }).join('');
 
@@ -650,7 +678,11 @@ STRIPS.forEach((strip, si) => {
   const isLast = si === STRIPS.length - 1;
   block.innerHTML = `
     <div class="strip-header">
-      <span class="strip-num">Strip ${si + 1}</span>
+      <div class="strip-nav">
+        <button class="nav-btn" onclick="prevStrip()" ${si === 0 ? 'disabled' : ''} id="strip-prev-${si}">← prev</button>
+        <span class="strip-num">Strip ${si + 1} / ${STRIPS.length}</span>
+        <button class="nav-btn" onclick="nextStrip()" id="strip-next-${si}">next →</button>
+      </div>
     </div>
     <div class="img-wrap">
       <div class="img-skeleton" id="skel-${si}"></div>
@@ -660,7 +692,8 @@ STRIPS.forEach((strip, si) => {
     </div>
     <div class="step-dots">${dotsHTML}</div>
     <div class="parts">${partsHTML}</div>
-    <button id="next-btn-${si}" class="next-btn" style="display:none" onclick="nextStrip()">
+    <button id="next-btn-${si}" class="next-btn" style="display:none"
+      onclick="${isLast ? 'showDone()' : 'nextStrip()'}">
       ${isLast ? 'See results →' : 'Next strip →'}
     </button>
   `;
