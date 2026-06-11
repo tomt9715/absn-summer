@@ -187,3 +187,20 @@ h1 {
 .action-btn.primary:hover { background: var(--accent-deep); }
 .action-btn.ghost { background: var(--surface); color: var(--ink-soft); border: 1px solid var(--border-strong); }
 .action-btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Clinical image support */
+.q-image-wrap {
+  margin: 16px 0;
+  text-align: center;
+}
+.q-image {
+  max-width: 100%;
+  max-height: 360px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: block;
+  margin: 0 auto;
+}

@@ -31,7 +31,7 @@
     }
     deck = pool.map(q => {
       const optionObjs = q.options.map((text, i) => ({ text, isCorrect: i === q.correct }));
-      return { stem: q.stem, rationale: q.rationale, opts: shuffle(optionObjs) };
+      return { stem: q.stem, rationale: q.rationale, image: q.image || null, opts: shuffle(optionObjs) };
     });
   }
 
@@ -68,6 +68,7 @@
           ${TAG ? `<span class="q-tag">${TAG}</span>` : ''}
         </div>
         <div class="q-stem">${q.stem}</div>
+        ${q.image ? `<div class="q-image-wrap"><img src="${q.image}" alt="Clinical image" class="q-image" /></div>` : ''}
         <div class="options" id="opts">${optsHTML}</div>
         <div id="feedback"></div>
       </div>
@@ -91,6 +92,7 @@
 
     results.push({
       stem: q.stem,
+      image: q.image || null,
       yourLetter: LETTERS[chosenI],
       yourText: q.opts[chosenI].text,
       correctLetter: LETTERS[correctI],
@@ -189,6 +191,7 @@
           <span class="ri-result ${r.isCorrect ? 'correct' : 'wrong'}">${r.isCorrect ? '✓ Correct' : '✗ Missed'}</span>
         </div>
         <div class="review-item-q">${r.stem}</div>
+        ${r.image ? `<img src="${r.image}" alt="Clinical image" class="q-image" style="max-width:260px;margin:8px 0;border-radius:8px;border:1px solid var(--border);" />` : ''}
         <div class="review-item-ans">
           ${r.isCorrect
             ? `<span class="ri-correct-ans">Your answer: ${r.yourLetter} — ${r.yourText} ✓</span>`
