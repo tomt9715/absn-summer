@@ -48,6 +48,35 @@ h1 { font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 500; color:
   80%     { transform: translateX(4px); }
 }
 .opt.shake { animation: shake 0.35s ease; }
+@keyframes pulse-correct {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+.opt.correct { animation: pulse-correct 0.35s ease; }
+
+/* Try again toast */
+.try-again {
+  text-align: center; font-size: 13px; font-weight: 600;
+  color: var(--wrong); padding: 8px 0 2px;
+  animation: fadeInUp 0.2s ease;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Step dots */
+.step-dots {
+  display: flex; justify-content: center; gap: 8px; margin: 12px 0 4px;
+}
+.step-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--border); border: 1.5px solid var(--border-strong);
+  transition: background 0.3s, border-color 0.3s;
+}
+.step-dot.done { background: var(--correct); border-color: var(--correct); }
+.step-dot.active { background: var(--accent); border-color: var(--accent); }
 .part-stem { padding: 12px 16px; font-size: 15px; font-weight: 500; color: var(--ink); background: var(--surface2); border-bottom: 1px solid var(--border); }
 .opts { display: flex; flex-direction: column; gap: 0; }
 .opt { display: flex; align-items: flex-start; gap: 12px; padding: 11px 16px; cursor: pointer; background: var(--surface); border: none; border-bottom: 1px solid var(--border); text-align: left; width: 100%; font-family: 'DM Sans', sans-serif; transition: background 0.12s; }
@@ -114,7 +143,7 @@ const STRIPS = [
     label: 'Normal Sinus Rhythm',
     parts: [
       {
-        stem: 'Count the number of R waves (peaks) visible in this strip and multiply by 10. What is the approximate heart rate?',
+        stem: 'What is the approximate heart rate?',
         options: ['60–100 bpm — within normal range', 'Less than 60 bpm — bradycardic range', 'Greater than 100 bpm — tachycardic range', 'Rate is indeterminate — no R waves identifiable'],
         correct: 0,
         rationale: 'Normal sinus rhythm has a rate of 60–100 bpm. Counting R waves × 10 in a 6-second strip should yield a number in this range.'
@@ -150,7 +179,7 @@ const STRIPS = [
     label: 'Sinus Bradycardia',
     parts: [
       {
-        stem: 'Count the R waves in this strip and multiply by 10. What is the approximate heart rate?',
+        stem: 'What is the approximate heart rate?',
         options: ['Less than 60 bpm', '60–100 bpm', 'Greater than 100 bpm', 'Rate is indeterminate'],
         correct: 0,
         rationale: 'Sinus bradycardia is defined by a heart rate below 60 bpm. Counting R waves × 10 should yield a number less than 60.'
@@ -186,7 +215,7 @@ const STRIPS = [
     label: 'Sinus Tachycardia',
     parts: [
       {
-        stem: 'Count the R waves and multiply by 10. What range does the rate fall in?',
+        stem: 'What range does the rate fall in?',
         options: ['Greater than 100 bpm', '60–100 bpm', 'Less than 60 bpm', 'Indeterminate — no identifiable R waves'],
         correct: 0,
         rationale: 'Sinus tachycardia is defined by a rate above 100 bpm. The R waves are closer together than in normal sinus rhythm.'
@@ -258,7 +287,7 @@ const STRIPS = [
     label: 'Atrial Flutter',
     parts: [
       {
-        stem: 'Count the ventricular R waves and multiply by 10. What does the ventricular rate appear to be?',
+        stem: 'What does the ventricular rate appear to be?',
         options: ['Around 75–150 bpm — the atria fire at ~300 but the atrioventricular (AV) node blocks some', 'Less than 60 bpm', 'Greater than 250 bpm matching the atrial rate exactly', 'Indeterminate — no R waves visible'],
         correct: 0,
         rationale: 'In atrial flutter the atria fire at 250–350 bpm but the atrioventricular (AV) node cannot conduct every impulse. It typically conducts at a 2:1, 3:1, or 4:1 ratio, so the ventricular rate is a fraction of the atrial rate.'
@@ -294,7 +323,7 @@ const STRIPS = [
     label: 'Supraventricular Tachycardia (SVT)',
     parts: [
       {
-        stem: 'Count the R waves and multiply by 10. What is the approximate ventricular rate?',
+        stem: 'What is the approximate ventricular rate?',
         options: ['150–250 bpm — very fast', '60–100 bpm', 'Less than 60 bpm', 'Greater than 300 bpm'],
         correct: 0,
         rationale: 'Supraventricular tachycardia (SVT) typically presents with a rate of 150–250 bpm. The very fast rate with a narrow QRS is the key feature.'
@@ -330,7 +359,7 @@ const STRIPS = [
     label: 'First Degree Heart Block',
     parts: [
       {
-        stem: 'Count the R waves and multiply by 10. What is the approximate heart rate?',
+        stem: 'What is the approximate heart rate?',
         options: ['60–100 bpm — within normal range', 'Less than 60 bpm', 'Greater than 100 bpm', 'Indeterminate — no consistent R waves'],
         correct: 0,
         rationale: 'First degree heart block typically presents with a normal rate of 60–100 bpm. The block refers to conduction delay, not a slow rate.'
@@ -366,7 +395,7 @@ const STRIPS = [
     label: 'Second Degree AV Block Type 1 (Wenckebach)',
     parts: [
       {
-        stem: 'Count the ventricular R waves (not the P waves) and multiply by 10. What is the approximate ventricular rate?',
+        stem: 'What is the approximate ventricular rate?',
         options: ['Slower than the atrial rate — some P waves do not conduct', '60–100 bpm matching every P wave', 'Greater than 100 bpm', 'Indeterminate — no R waves present'],
         correct: 0,
         rationale: 'In second degree type 1 block, not every P wave conducts, so the ventricular rate is slower than the atrial rate. You will see more P waves than QRS complexes.'
@@ -402,7 +431,7 @@ const STRIPS = [
     label: 'Ventricular Fibrillation',
     parts: [
       {
-        stem: 'Attempt to count R waves on this strip. What can you determine about the rate?',
+        stem: 'What can you determine about the rate?',
         options: ['Rate is indeterminate — no organized R waves are identifiable', 'Less than 60 bpm — slow but regular', '60–100 bpm — normal rate', 'Greater than 150 bpm — fast but countable'],
         correct: 0,
         rationale: 'In ventricular fibrillation there are no organized QRS complexes and no identifiable R waves. The rate cannot be calculated — the ventricles are quivering chaotically rather than contracting.'
@@ -450,26 +479,47 @@ function updateScore() {
   document.getElementById('strip-counter').textContent = `Strip ${currentStrip + 1} / ${STRIPS.length}`;
 }
 
+function updateDots(si, activePi, donePis) {
+  STRIPS[si].parts.forEach((_, pi) => {
+    const dot = document.getElementById(`dot-${si}-${pi}`);
+    if (!dot) return;
+    dot.className = 'step-dot';
+    if (donePis.includes(pi)) dot.classList.add('done');
+    else if (pi === activePi) dot.classList.add('active');
+  });
+}
+
+const doneParts = {}; // tracks completed part indices per strip
+
 function pickAnswer(partId, chosenI, correctI) {
   const isCorrect = chosenI === correctI;
+  const tryAgainEl = document.getElementById(`try-again-${partId}`);
 
   if (!isCorrect) {
-    // Wrong — shake the chosen button, don't lock anything
     const btn = document.querySelector(`[data-part="${partId}"] .opt:nth-child(${chosenI + 1})`);
     if (btn) {
       btn.classList.remove('shake');
-      // Force reflow to restart animation
       void btn.offsetWidth;
       btn.classList.add('shake');
       btn.addEventListener('animationend', () => btn.classList.remove('shake'), { once: true });
+      btn.style.background = 'var(--wrong-soft)';
+      setTimeout(() => { btn.style.background = ''; }, 600);
     }
-    // Flash wrong briefly
-    btn.style.background = 'var(--wrong-soft)';
-    setTimeout(() => { btn.style.background = ''; }, 600);
-    return; // Do nothing else — let them try again
+    // Show try again
+    if (tryAgainEl) {
+      tryAgainEl.textContent = '✗ Not quite — try again';
+      tryAgainEl.style.display = 'block';
+      tryAgainEl.classList.remove('try-again');
+      void tryAgainEl.offsetWidth;
+      tryAgainEl.classList.add('try-again');
+    }
+    return;
   }
 
-  // Correct — lock all buttons, show feedback, advance
+  // Hide try again if visible
+  if (tryAgainEl) tryAgainEl.style.display = 'none';
+
+  // Correct — lock all, pulse correct button
   document.querySelectorAll(`[data-part="${partId}"] .opt`).forEach((b, i) => {
     b.setAttribute('disabled', 'true');
     if (i === correctI) b.classList.add('correct');
@@ -482,6 +532,11 @@ function pickAnswer(partId, chosenI, correctI) {
 
   const [si, pi] = partId.split('-').map(Number);
   const part = STRIPS[si].parts[pi];
+
+  // Mark dot as done, activate next
+  if (!doneParts[si]) doneParts[si] = [];
+  doneParts[si].push(pi);
+  updateDots(si, pi + 1, doneParts[si]);
 
   document.getElementById(`verdict-${partId}`).textContent = `✓ Correct — ${LETTERS[correctI]} is right.`;
   document.getElementById(`rat-${partId}`).textContent = part.rationale;
@@ -512,6 +567,8 @@ function pickAnswer(partId, chosenI, correctI) {
       }, 260);
     }, 500);
   } else {
+    // Mark last dot done
+    updateDots(si, -1, doneParts[si]);
     setTimeout(() => {
       const nextBtn = document.getElementById(`next-btn-${si}`);
       if (nextBtn) nextBtn.style.display = 'block';
@@ -576,12 +633,17 @@ STRIPS.forEach((strip, si) => {
       <div id="part-${si}-${pi}" class="part${pi > 0 ? ' hidden' : ''}">
         <div class="part-stem">${part.stem}</div>
         <div class="opts" data-part="${partId}">${optsHTML}</div>
+        <div id="try-again-${partId}" class="try-again" style="display:none"></div>
         <div class="feedback" id="fb-${partId}">
           <span class="verdict" id="verdict-${partId}"></span>
           <span id="rat-${partId}"></span>
         </div>
       </div>`;
   }).join('');
+
+  const dotsHTML = strip.parts.map((_, pi) =>
+    `<div class="step-dot${pi === 0 ? ' active' : ''}" id="dot-${si}-${pi}"></div>`
+  ).join('');
 
   const isLast = si === STRIPS.length - 1;
   block.innerHTML = `
@@ -594,6 +656,7 @@ STRIPS.forEach((strip, si) => {
         onload="this.style.display='block';this.style.opacity=0;document.getElementById('skel-${si}').style.display='none';setTimeout(()=>{document.getElementById('simg-${si}').style.opacity=1;},10);"
         onerror="document.getElementById('skel-${si}').textContent='Image not found: ${strip.file}';" />
     </div>
+    <div class="step-dots">${dotsHTML}</div>
     <div class="parts">${partsHTML}</div>
     <button id="next-btn-${si}" class="next-btn" style="display:none" onclick="nextStrip()">
       ${isLast ? 'See results →' : 'Next strip →'}
