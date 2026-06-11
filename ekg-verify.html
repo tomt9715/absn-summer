@@ -159,34 +159,34 @@ const STRIPS = [
     label: 'Normal Sinus Rhythm',
     parts: [
       {
-        stem: 'What is the approximate heart rate?',
-        options: ['60–100 bpm — within normal range', 'Less than 60 bpm — bradycardic range', 'Greater than 100 bpm — tachycardic range', 'Rate is indeterminate — no R waves identifiable'],
+        stem: 'What is the heart rate?',
+        options: ['60–100 bpm', 'Less than 60 bpm', 'Greater than 100 bpm', 'Indeterminate — no R waves identifiable'],
         correct: 0,
-        rationale: 'Normal sinus rhythm has a rate of 60–100 bpm. Counting R waves × 10 in a 6-second strip should yield a number in this range.'
+        rationale: 'Normal sinus rhythm has a rate of 60–100 bpm. Count R waves × 10 to calculate.'
       },
       {
-        stem: 'How would you describe the rhythm?',
-        options: ['Regular — R-to-R intervals are equal', 'Irregularly irregular — no pattern to the intervals', 'Regularly irregular — a repeating pattern of unequal intervals', 'Irregular with grouped beating'],
+        stem: 'Is the rhythm regular or irregular?',
+        options: ['Regular', 'Irregularly irregular', 'Regularly irregular', 'Cannot be determined'],
         correct: 0,
-        rationale: 'Normal sinus rhythm has a regular rhythm — the R-to-R intervals are equal throughout the strip.'
+        rationale: 'Normal sinus rhythm is regular — the R-to-R intervals are equal throughout the strip.'
       },
       {
-        stem: 'What do you observe about the P waves?',
-        options: ['A upright P wave precedes every QRS complex', 'No P waves are visible — replaced by a chaotic baseline', 'Sawtooth-shaped flutter waves replace normal P waves', 'P waves are present but the PR interval gets longer with each beat'],
+        stem: 'Are P waves present before every QRS?',
+        options: ['Yes — upright P wave before every QRS', 'No P waves visible', 'Sawtooth flutter waves instead of P waves', 'P waves present but PR interval progressively lengthens'],
         correct: 0,
-        rationale: 'In normal sinus rhythm, every QRS is preceded by an upright P wave, indicating the impulse originates in the sinoatrial (SA) node.'
+        rationale: 'In normal sinus rhythm every QRS is preceded by an upright P wave, confirming the impulse originates in the sinoatrial (SA) node.'
       },
       {
-        stem: 'Look at the QRS complexes on this strip. How would you describe their appearance?',
-        options: ['Narrow and normal-looking (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes visible — flat line only', 'QRS complexes are present but vary in shape beat to beat'],
+        stem: 'What does the QRS complex look like?',
+        options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'],
         correct: 0,
-        rationale: 'Normal sinus rhythm has narrow, normal-looking QRS complexes (< 0.12 seconds), indicating normal ventricular conduction.'
+        rationale: 'Normal sinus rhythm has narrow normal QRS complexes (< 0.12 sec), indicating normal ventricular conduction.'
       },
       {
-        stem: 'Based on your 4-step analysis — rate 60–100, regular rhythm, upright P before every QRS, narrow QRS — what is this rhythm?',
+        stem: 'Based on your analysis, what is this rhythm?',
         options: ['Normal Sinus Rhythm', 'Sinus Bradycardia', 'Sinus Tachycardia', 'First Degree Heart Block'],
         correct: 0,
-        rationale: 'All four criteria point to Normal Sinus Rhythm: rate 60–100 bpm, regular, upright P before every QRS, and narrow normal QRS. This is the baseline rhythm everything else is compared to.'
+        rationale: 'Rate 60–100, regular, upright P before every QRS, narrow QRS — all criteria point to Normal Sinus Rhythm. This is the baseline everything else is compared to.'
       }
     ]
   },
@@ -195,34 +195,34 @@ const STRIPS = [
     label: 'Sinus Bradycardia',
     parts: [
       {
-        stem: 'What is the approximate heart rate?',
-        options: ['Less than 60 bpm', '60–100 bpm', 'Greater than 100 bpm', 'Rate is indeterminate'],
+        stem: 'What is the heart rate?',
+        options: ['Less than 60 bpm', '60–100 bpm', 'Greater than 100 bpm', 'Indeterminate — no R waves identifiable'],
         correct: 0,
-        rationale: 'Sinus bradycardia is defined by a heart rate below 60 bpm. Counting R waves × 10 should yield a number less than 60.'
+        rationale: 'Sinus bradycardia is defined by a rate below 60 bpm. Count R waves × 10 — the result should be less than 60.'
       },
       {
-        stem: 'Are the R-to-R intervals equal?',
-        options: ['Regular — intervals are equal, just slow', 'Irregularly irregular — no repeating pattern', 'Regularly irregular — grouped beating present', 'Completely chaotic — no identifiable pattern'],
+        stem: 'Is the rhythm regular or irregular?',
+        options: ['Regular', 'Irregularly irregular', 'Regularly irregular', 'Cannot be determined'],
         correct: 0,
-        rationale: 'Sinus bradycardia has a regular rhythm — the intervals between beats are equal. It looks like normal sinus rhythm, just slower.'
+        rationale: 'Sinus bradycardia is regular — R-to-R intervals are equal. It looks exactly like normal sinus rhythm, just slower.'
       },
       {
-        stem: 'Is there a P wave before every QRS complex?',
-        options: ['Yes — upright P wave before every QRS', 'No P waves visible — chaotic baseline instead', 'Sawtooth flutter waves replace P waves', 'P waves present but PR interval progressively lengthens'],
+        stem: 'Are P waves present before every QRS?',
+        options: ['Yes — upright P wave before every QRS', 'No P waves visible', 'Sawtooth flutter waves instead of P waves', 'P waves present but PR interval progressively lengthens'],
         correct: 0,
-        rationale: 'Sinus bradycardia originates in the sinoatrial (SA) node, so each QRS is preceded by an upright P wave, just like normal sinus rhythm.'
+        rationale: 'Sinus bradycardia originates in the sinoatrial (SA) node so every QRS is preceded by an upright P wave — same as normal sinus rhythm.'
       },
       {
-        stem: 'What do the QRS complexes look like on this strip?',
-        options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'QRS present but twisting around the baseline'],
+        stem: 'What does the QRS complex look like?',
+        options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'],
         correct: 0,
-        rationale: 'Sinus bradycardia has narrow, normal QRS complexes. The slow rate is the only abnormality — ventricular conduction is intact.'
+        rationale: 'Sinus bradycardia has narrow normal QRS complexes. The slow rate is the only abnormality — ventricular conduction is intact.'
       },
       {
-        stem: 'Rate below 60, regular rhythm, P before every QRS, narrow QRS. What is this rhythm?',
+        stem: 'Based on your analysis, what is this rhythm?',
         options: ['Sinus Bradycardia', 'Normal Sinus Rhythm', 'Third Degree Heart Block', 'Junctional Rhythm'],
         correct: 0,
-        rationale: 'Sinus bradycardia meets all normal sinus criteria except the rate is below 60 bpm. Causes include vagal tone, athletic conditioning, hypothyroidism, medications (beta blockers, digoxin). Treat if symptomatic — atropine is first line.'
+        rationale: 'Rate < 60, regular, upright P before every QRS, narrow QRS — Sinus Bradycardia. Treat if symptomatic — atropine is first line.'
       }
     ]
   },
@@ -231,34 +231,34 @@ const STRIPS = [
     label: 'Sinus Tachycardia',
     parts: [
       {
-        stem: 'What range does the rate fall in?',
-        options: ['Greater than 100 bpm', '60–100 bpm', 'Less than 60 bpm', 'Indeterminate — no identifiable R waves'],
+        stem: 'What is the heart rate?',
+        options: ['Greater than 100 bpm', '60–100 bpm', 'Less than 60 bpm', 'Indeterminate — no R waves identifiable'],
         correct: 0,
         rationale: 'Sinus tachycardia is defined by a rate above 100 bpm. The R waves are closer together than in normal sinus rhythm.'
       },
       {
-        stem: 'How would you describe the R-to-R intervals?',
-        options: ['Regular — equal intervals throughout', 'Irregularly irregular', 'Regularly irregular with grouped beats', 'Chaotic with no discernible pattern'],
+        stem: 'Is the rhythm regular or irregular?',
+        options: ['Regular', 'Irregularly irregular', 'Regularly irregular', 'Cannot be determined'],
         correct: 0,
-        rationale: 'Sinus tachycardia is regular — the fast beats are evenly spaced. If it were irregular, you would consider atrial fibrillation.'
+        rationale: 'Sinus tachycardia is regular — the fast beats are evenly spaced. Irregularity would suggest atrial fibrillation.'
       },
       {
-        stem: 'What do you observe about the P waves?',
-        options: ['Upright P wave before every QRS, though they may be close to the preceding T wave', 'No P waves — fine chaotic baseline', 'Sawtooth flutter waves at a rapid rate', 'P waves present but disappearing into T waves without any QRS following'],
+        stem: 'Are P waves present before every QRS?',
+        options: ['Yes — upright P wave before every QRS, though they may merge with the preceding T wave at fast rates', 'No P waves visible', 'Sawtooth flutter waves instead of P waves', 'P waves present but PR interval progressively lengthens'],
         correct: 0,
         rationale: 'In sinus tachycardia there is a P wave before every QRS. At fast rates the P wave may appear close to or merging with the preceding T wave, but it is still present.'
       },
       {
-        stem: 'What do the QRS complexes look like?',
-        options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'Absent — no QRS complexes visible', 'Wide with a twisting pattern around the baseline'],
+        stem: 'What does the QRS complex look like?',
+        options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'],
         correct: 0,
-        rationale: 'Sinus tachycardia has narrow normal QRS complexes. The only abnormality is the rate. A wide QRS with tachycardia should raise concern for ventricular tachycardia.'
+        rationale: 'Sinus tachycardia has narrow normal QRS complexes. A wide QRS with tachycardia should raise concern for ventricular tachycardia.'
       },
       {
-        stem: 'Rate over 100, regular, P before every QRS, narrow QRS. What is this rhythm?',
+        stem: 'Based on your analysis, what is this rhythm?',
         options: ['Sinus Tachycardia', 'Atrial Fibrillation', 'Supraventricular Tachycardia (SVT)', 'Ventricular Tachycardia'],
         correct: 0,
-        rationale: 'Sinus tachycardia has the same features as normal sinus rhythm but the rate exceeds 100 bpm. Common causes: fever, pain, anxiety, hypovolemia, hypoxia. Treat the underlying cause, not the rhythm.'
+        rationale: 'Rate > 100, regular, upright P before every QRS, narrow QRS — Sinus Tachycardia. Treat the underlying cause, not the rhythm.'
       }
     ]
   },
@@ -267,34 +267,34 @@ const STRIPS = [
     label: 'Atrial Fibrillation',
     parts: [
       {
-        stem: 'What best describes the ventricular rate in this strip?',
-        options: ['Variable — difficult to calculate a single rate due to irregular spacing', '60–100 bpm and consistent', 'Less than 60 bpm and regular', 'Exactly 150 bpm with a 2:1 pattern'],
+        stem: 'What is the heart rate?',
+        options: ['Variable — difficult to calculate a single rate due to irregular spacing', 'Less than 60 bpm and regular', '60–100 bpm and consistent', 'Indeterminate — no R waves identifiable'],
         correct: 0,
-        rationale: 'In atrial fibrillation the ventricular rate is variable because the atrioventricular (AV) node is bombarded with chaotic atrial impulses and conducts them irregularly.'
+        rationale: 'In atrial fibrillation the ventricular rate is variable because the atrioventricular (AV) node conducts the chaotic atrial impulses irregularly.'
       },
       {
-        stem: 'How would you describe this rhythm?',
-        options: ['Irregularly irregular — no two intervals are the same and there is no repeating pattern', 'Regular — all R-to-R intervals are equal', 'Regularly irregular — a consistent pattern of unequal intervals', 'Regular with occasional dropped beats'],
+        stem: 'Is the rhythm regular or irregular?',
+        options: ['Irregularly irregular — no two R-to-R intervals are the same', 'Regular', 'Regularly irregular', 'Cannot be determined'],
         correct: 0,
-        rationale: '"Irregularly irregular" is the hallmark of atrial fibrillation — there is no pattern whatsoever to the intervals. This is different from regularly irregular rhythms that have a predictable grouped pattern.'
+        rationale: '"Irregularly irregular" is the hallmark of atrial fibrillation — there is no pattern whatsoever to the intervals.'
       },
       {
-        stem: 'What do you observe where P waves should be?',
-        options: ['No discernible P waves — replaced by a chaotic fibrillatory baseline', 'Upright P waves before every QRS', 'Sawtooth-shaped flutter waves at 250–350 per minute', 'P waves present but the PR interval lengthens progressively'],
+        stem: 'Are P waves present before every QRS?',
+        options: ['No — no discernible P waves, replaced by a chaotic fibrillatory baseline', 'Yes — upright P wave before every QRS', 'Sawtooth flutter waves instead of P waves', 'P waves present but PR interval progressively lengthens'],
         correct: 0,
-        rationale: 'Atrial fibrillation has no identifiable P waves. The atria are firing chaotically at 350–600 impulses per minute, producing a wavy, irregular baseline instead of distinct P waves.'
+        rationale: 'Atrial fibrillation has no identifiable P waves. The atria fire chaotically at 350–600 per minute, producing a wavy irregular baseline.'
       },
       {
-        stem: 'What do the QRS complexes look like on this strip?',
-        options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — completely flat line', 'Progressively widening with each beat'],
+        stem: 'What does the QRS complex look like?',
+        options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'],
         correct: 0,
-        rationale: 'In typical atrial fibrillation the QRS complexes are narrow and normal — ventricular conduction is intact. If the QRS is wide in A-fib, consider aberrant conduction or a pre-existing bundle branch block.'
+        rationale: 'In typical atrial fibrillation the QRS is narrow and normal — ventricular conduction is intact. Wide QRS in A-fib suggests aberrant conduction or bundle branch block.'
       },
       {
-        stem: 'Irregular rate, irregularly irregular rhythm, no P waves, narrow QRS. What is this rhythm?',
+        stem: 'Based on your analysis, what is this rhythm?',
         options: ['Atrial Fibrillation', 'Atrial Flutter', 'Ventricular Fibrillation', 'Sinus Arrhythmia'],
         correct: 0,
-        rationale: 'Atrial fibrillation: no P waves, irregularly irregular rhythm, narrow QRS. Key nursing concerns: stroke risk (anticoagulation), rate control (beta blockers, calcium channel blockers), and monitoring for hemodynamic instability requiring cardioversion.'
+        rationale: 'No P waves, irregularly irregular, narrow QRS — Atrial Fibrillation. Key concerns: stroke risk (anticoagulation), rate control, hemodynamic stability.'
       }
     ]
   },
@@ -303,34 +303,34 @@ const STRIPS = [
     label: 'Atrial Flutter',
     parts: [
       {
-        stem: 'What does the ventricular rate appear to be?',
-        options: ['Around 75–150 bpm — the atria fire at ~300 but the atrioventricular (AV) node blocks some', 'Less than 60 bpm', 'Greater than 250 bpm matching the atrial rate exactly', 'Indeterminate — no R waves visible'],
+        stem: 'What is the heart rate?',
+        options: ['Around 75–150 bpm — the atria fire at ~300 but the AV node blocks some impulses', 'Less than 60 bpm', 'Greater than 250 bpm', 'Indeterminate — no R waves identifiable'],
         correct: 0,
-        rationale: 'In atrial flutter the atria fire at 250–350 bpm but the atrioventricular (AV) node cannot conduct every impulse. It typically conducts at a 2:1, 3:1, or 4:1 ratio, so the ventricular rate is a fraction of the atrial rate.'
+        rationale: 'In atrial flutter the atria fire at 250–350 bpm but the atrioventricular (AV) node conducts only a fraction, producing a ventricular rate that is a fraction of the atrial rate.'
       },
       {
-        stem: 'How would you describe the ventricular rhythm?',
-        options: ['Regular — R-to-R intervals are equal', 'Irregularly irregular — no pattern', 'Completely chaotic — no identifiable complexes', 'Progressive lengthening then a dropped beat'],
+        stem: 'Is the rhythm regular or irregular?',
+        options: ['Regularly irregular — conduction ratio varies creating a repeating unequal pattern', 'Regular', 'Irregularly irregular', 'Cannot be determined'],
         correct: 0,
-        rationale: 'Atrial flutter with a consistent conduction ratio (e.g. 2:1) produces a regular ventricular rhythm. If the ratio varies, it can appear regularly irregular.'
+        rationale: 'Atrial flutter with a varying conduction ratio produces a regularly irregular ventricular rhythm — there is a pattern to the irregularity. A fixed ratio (e.g. 2:1) would be regular.'
       },
       {
-        stem: 'What do you observe instead of normal P waves?',
-        options: ['Sawtooth-shaped flutter waves at approximately 250–350 per minute', 'Upright P waves before every QRS', 'No waves at all — chaotic fine baseline', 'P waves with a progressively lengthening PR interval'],
+        stem: 'Are P waves present before every QRS?',
+        options: ['No — sawtooth-shaped flutter waves at approximately 250–350 per minute replace normal P waves', 'Yes — upright P wave before every QRS', 'No P waves or flutter waves — chaotic baseline', 'P waves present but PR interval progressively lengthens'],
         correct: 0,
-        rationale: 'The hallmark of atrial flutter is the sawtooth pattern — continuous flutter waves at 250–350 per minute that resemble the teeth of a saw blade. There are no true P waves.'
+        rationale: 'The hallmark of atrial flutter is the sawtooth pattern — continuous flutter waves at 250–350 per minute. There are no true P waves.'
       },
       {
-        stem: 'What do the QRS complexes look like on this strip?',
-        options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'Absent — no QRS complexes', 'Twisting around the baseline in a spindle pattern'],
+        stem: 'What does the QRS complex look like?',
+        options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'],
         correct: 0,
-        rationale: 'In atrial flutter the QRS is narrow and normal — ventricular conduction is unaffected. The abnormality is entirely in the atria.'
+        rationale: 'In atrial flutter the QRS is narrow and normal — ventricular conduction is unaffected. The abnormality is entirely atrial.'
       },
       {
-        stem: 'Atrial rate ~300, regular ventricular rhythm, sawtooth flutter waves, narrow QRS. What is this rhythm?',
+        stem: 'Based on your analysis, what is this rhythm?',
         options: ['Atrial Flutter', 'Atrial Fibrillation', 'Sinus Tachycardia', 'Supraventricular Tachycardia (SVT)'],
         correct: 0,
-        rationale: 'Atrial flutter: sawtooth flutter waves at 250–350/min, regular ventricular rate at a fraction of atrial rate, narrow QRS. Key distinction from A-fib: flutter is regular with sawtooth pattern; A-fib is irregularly irregular with chaotic baseline.'
+        rationale: 'Sawtooth flutter waves at ~300/min, regularly irregular ventricular rate, narrow QRS — Atrial Flutter. Key distinction from A-fib: flutter has sawtooth pattern; A-fib has chaotic baseline.'
       }
     ]
   },
@@ -339,34 +339,34 @@ const STRIPS = [
     label: 'Supraventricular Tachycardia (SVT)',
     parts: [
       {
-        stem: 'What is the approximate ventricular rate?',
-        options: ['150–250 bpm — very fast', '60–100 bpm', 'Less than 60 bpm', 'Greater than 300 bpm'],
+        stem: 'What is the heart rate?',
+        options: ['150–250 bpm', '60–100 bpm', 'Less than 60 bpm', 'Indeterminate — no R waves identifiable'],
         correct: 0,
-        rationale: 'Supraventricular tachycardia (SVT) typically presents with a rate of 150–250 bpm. The very fast rate with a narrow QRS is the key feature.'
+        rationale: 'Supraventricular tachycardia (SVT) typically presents at 150–250 bpm. The R waves are very close together.'
       },
       {
-        stem: 'How would you describe the R-to-R intervals?',
-        options: ['Regular — equal intervals despite the fast rate', 'Irregularly irregular', 'Regularly irregular with grouped beats', 'Chaotic with no pattern'],
+        stem: 'Is the rhythm regular or irregular?',
+        options: ['Regular', 'Irregularly irregular', 'Regularly irregular', 'Cannot be determined'],
         correct: 0,
-        rationale: 'Supraventricular tachycardia (SVT) is typically very regular — the fast rate is consistent and the intervals are equal. Irregularity would suggest atrial fibrillation with rapid ventricular response.'
+        rationale: 'Supraventricular tachycardia (SVT) is typically very regular — the fast rate is consistent. Irregularity would suggest atrial fibrillation with rapid ventricular response.'
       },
       {
-        stem: 'What do you observe about the P waves?',
-        options: ['P waves are absent or hidden within the T waves due to the fast rate', 'Clear upright P waves before every QRS', 'Sawtooth flutter waves clearly visible between QRS complexes', 'P waves present with a progressively lengthening PR interval'],
+        stem: 'Are P waves present before every QRS?',
+        options: ['No — P waves are absent or hidden within the T waves due to the fast rate', 'Yes — clear upright P waves before every QRS', 'Sawtooth flutter waves instead of P waves', 'P waves present but PR interval progressively lengthens'],
         correct: 0,
-        rationale: 'In supraventricular tachycardia (SVT), P waves are often hidden in the preceding T wave or absent from view because the rate is so fast. This distinguishes it from sinus tachycardia where P waves are visible.'
+        rationale: 'In supraventricular tachycardia (SVT) P waves are often hidden in the preceding T wave or absent because the rate is so fast. This distinguishes it from sinus tachycardia.'
       },
       {
-        stem: 'What do the QRS complexes look like on this strip?',
-        options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes visible', 'QRS complexes that twist around the isoelectric baseline'],
+        stem: 'What does the QRS complex look like?',
+        options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'],
         correct: 0,
-        rationale: 'Supraventricular tachycardia (SVT) has narrow QRS complexes because the impulse originates above the ventricles and conducts normally through the bundle branches. A wide QRS tachycardia should raise concern for ventricular tachycardia.'
+        rationale: 'Supraventricular tachycardia (SVT) has narrow QRS complexes — the impulse originates above the ventricles and conducts normally. Wide QRS tachycardia suggests ventricular tachycardia.'
       },
       {
-        stem: 'Rate 150–250 bpm, regular, P waves not visible, narrow QRS. What is this rhythm?',
+        stem: 'Based on your analysis, what is this rhythm?',
         options: ['Supraventricular Tachycardia (SVT)', 'Ventricular Tachycardia', 'Atrial Flutter with 2:1 conduction', 'Sinus Tachycardia'],
         correct: 0,
-        rationale: 'Supraventricular tachycardia (SVT): very fast (150–250), regular, narrow QRS, no visible P waves. Treatment: vagal maneuvers first, then adenosine IV push if unstable. If hemodynamically unstable → synchronized cardioversion.'
+        rationale: 'Rate 150–250, regular, no visible P waves, narrow QRS — Supraventricular Tachycardia (SVT). Treatment: vagal maneuvers first, then adenosine. If unstable → synchronized cardioversion.'
       }
     ]
   },
@@ -375,34 +375,34 @@ const STRIPS = [
     label: 'First Degree Heart Block',
     parts: [
       {
-        stem: 'What is the approximate heart rate?',
-        options: ['60–100 bpm — within normal range', 'Less than 60 bpm', 'Greater than 100 bpm', 'Indeterminate — no consistent R waves'],
+        stem: 'What is the heart rate?',
+        options: ['60–100 bpm', 'Less than 60 bpm', 'Greater than 100 bpm', 'Indeterminate — no R waves identifiable'],
         correct: 0,
-        rationale: 'First degree heart block typically presents with a normal rate of 60–100 bpm. The block refers to conduction delay, not a slow rate.'
+        rationale: 'First degree heart block typically presents with a normal rate of 60–100 bpm. The block is a conduction delay, not a rate change.'
       },
       {
-        stem: 'How would you describe the R-to-R intervals?',
-        options: ['Regular — equal intervals throughout', 'Irregularly irregular', 'Regularly irregular with dropped beats', 'Progressive lengthening then a pause'],
+        stem: 'Is the rhythm regular or irregular?',
+        options: ['Regular', 'Irregularly irregular', 'Regularly irregular', 'Cannot be determined'],
         correct: 0,
-        rationale: 'First degree heart block is regular — every impulse conducts through to the ventricles, just with a delay. No beats are dropped.'
+        rationale: 'First degree heart block is regular — every impulse conducts to the ventricles, just with a delay. No beats are dropped.'
       },
       {
-        stem: 'What do you observe about the PR interval?',
-        options: ['P wave before every QRS but the PR interval is prolonged — greater than 0.20 seconds (one large box)', 'No P waves visible', 'P waves present but PR interval gets longer with each beat until one is dropped', 'P waves present with a normal PR interval of 0.12–0.20 seconds'],
+        stem: 'Are P waves present before every QRS?',
+        options: ['Yes — P wave before every QRS but the PR interval is prolonged (> 0.20 sec)', 'No P waves visible', 'P waves present but PR interval progressively lengthens until a beat drops', 'Sawtooth flutter waves instead of P waves'],
         correct: 0,
-        rationale: 'The defining feature of first degree heart block is a prolonged PR interval greater than 0.20 seconds (one large box on the electrocardiogram (ECG) paper). Every P wave still conducts — no beats are dropped.'
+        rationale: 'The defining feature of first degree heart block is a consistently prolonged PR interval > 0.20 seconds. Every P wave still conducts — no beats are dropped.'
       },
       {
-        stem: 'What do the QRS complexes look like on this strip?',
-        options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'Absent after some P waves — dropped beats', 'Twisting pattern around the baseline'],
+        stem: 'What does the QRS complex look like?',
+        options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'],
         correct: 0,
-        rationale: 'First degree heart block has narrow normal QRS complexes. The delay is in the atrioventricular (AV) node, not in ventricular conduction, so the QRS is unaffected.'
+        rationale: 'First degree heart block has narrow normal QRS complexes. The delay is in the atrioventricular (AV) node, not in ventricular conduction.'
       },
       {
-        stem: 'Normal rate, regular, P before every QRS with a prolonged PR interval (> 0.20 sec), narrow QRS. What is this rhythm?',
+        stem: 'Based on your analysis, what is this rhythm?',
         options: ['First Degree Heart Block', 'Second Degree Type 1 (Wenckebach)', 'Second Degree Type 2', 'Third Degree (Complete) Heart Block'],
         correct: 0,
-        rationale: 'First degree heart block: every impulse conducts (no dropped beats) but the PR interval is consistently prolonged > 0.20 seconds. It is benign on its own — monitor, no treatment needed unless symptomatic.'
+        rationale: 'Normal rate, regular, P before every QRS with prolonged PR interval > 0.20 sec, narrow QRS — First Degree Heart Block. Benign — monitor, no treatment needed unless symptomatic.'
       }
     ]
   },
@@ -411,34 +411,34 @@ const STRIPS = [
     label: 'Second Degree AV Block Type 1 (Wenckebach)',
     parts: [
       {
-        stem: 'What is the approximate ventricular rate?',
-        options: ['Slower than the atrial rate — some P waves do not conduct', '60–100 bpm matching every P wave', 'Greater than 100 bpm', 'Indeterminate — no R waves present'],
+        stem: 'What is the heart rate?',
+        options: ['Slower than the atrial rate — some P waves do not conduct through', '60–100 bpm matching every P wave', 'Greater than 100 bpm', 'Indeterminate — no R waves present'],
         correct: 0,
-        rationale: 'In second degree type 1 block, not every P wave conducts, so the ventricular rate is slower than the atrial rate. You will see more P waves than QRS complexes.'
+        rationale: 'In Wenckebach not every P wave conducts, so the ventricular rate is slower than the atrial rate. You will see more P waves than QRS complexes.'
       },
       {
-        stem: 'How would you describe the overall rhythm?',
-        options: ['Regularly irregular — a grouped pattern of beats followed by a pause then repeating', 'Irregularly irregular — no repeating pattern at all', 'Regular — all intervals are equal', 'Completely chaotic baseline'],
+        stem: 'Is the rhythm regular or irregular?',
+        options: ['Regularly irregular — grouped beats followed by a pause, then repeating', 'Regular', 'Irregularly irregular', 'Cannot be determined'],
         correct: 0,
-        rationale: 'Wenckebach has a "regularly irregular" rhythm — the grouped beating pattern (beats getting closer then a pause) repeats itself in a predictable cycle.'
+        rationale: 'Wenckebach is regularly irregular — the grouped beating pattern repeats in a predictable cycle. This distinguishes it from the random irregularity of atrial fibrillation.'
       },
       {
-        stem: 'What do you observe about the PR intervals?',
-        options: ['The PR interval progressively lengthens with each beat until one QRS is dropped, then the cycle repeats', 'P waves before every QRS with a constant prolonged PR interval', 'No P waves visible — chaotic baseline', 'P waves and QRS complexes have no relationship to each other'],
+        stem: 'Are P waves present before every QRS?',
+        options: ['No — the PR interval progressively lengthens until one QRS is dropped, then the cycle repeats', 'Yes — upright P wave before every QRS with a normal PR interval', 'No P waves visible — chaotic baseline', 'Sawtooth flutter waves instead of P waves'],
         correct: 0,
-        rationale: 'Progressive PR lengthening followed by a dropped QRS — then the cycle resets — is the defining pattern of Wenckebach (second degree type 1). This is what makes it predictable and distinguishes it from type 2.'
+        rationale: 'Progressive PR lengthening then a dropped QRS — the defining pattern of Wenckebach. The cycle then resets and repeats.'
       },
       {
-        stem: 'What do the QRS complexes look like on this strip?',
-        options: ['Narrow and normal (< 0.12 sec) — absent after the blocked P wave', 'Wide and bizarre (> 0.12 sec)', 'All QRS complexes are present — none are dropped', 'Twisting spindle pattern around the baseline'],
+        stem: 'What does the QRS complex look like?',
+        options: ['Narrow and normal (< 0.12 sec) — absent after the blocked P wave', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes at all — flat line', 'Twisting around the baseline'],
         correct: 0,
-        rationale: 'In Wenckebach the QRS complexes are narrow and normal. The problem is at the atrioventricular (AV) node level, not in ventricular conduction. One QRS drops at the end of each cycle.'
+        rationale: 'Wenckebach has narrow normal QRS complexes. The problem is at the atrioventricular (AV) node, not in ventricular conduction. One QRS drops per cycle.'
       },
       {
-        stem: 'Regularly irregular, PR progressively lengthens then a beat is dropped, narrow QRS, pattern repeats. What is this rhythm?',
+        stem: 'Based on your analysis, what is this rhythm?',
         options: ['Second Degree AV Block Type 1 (Wenckebach)', 'Second Degree AV Block Type 2', 'First Degree Heart Block', 'Third Degree (Complete) Heart Block'],
         correct: 0,
-        rationale: 'Wenckebach (type 1): progressive PR lengthening → dropped beat → cycle repeats. It is generally less dangerous than type 2. Usually benign, may require monitoring. The predictable pattern is the key distinguishing feature.'
+        rationale: 'Regularly irregular, progressive PR lengthening then dropped beat, narrow QRS — Wenckebach. Generally benign. The predictable pattern distinguishes it from the more dangerous Type 2.'
       }
     ]
   },
@@ -447,39 +447,38 @@ const STRIPS = [
     label: 'Ventricular Fibrillation',
     parts: [
       {
-        stem: 'What can you determine about the rate?',
-        options: ['Rate is indeterminate — no organized R waves are identifiable', 'Less than 60 bpm — slow but regular', '60–100 bpm — normal rate', 'Greater than 150 bpm — fast but countable'],
+        stem: 'What is the heart rate?',
+        options: ['Indeterminate — no organized R waves identifiable', 'Less than 60 bpm', '60–100 bpm', 'Greater than 150 bpm'],
         correct: 0,
-        rationale: 'In ventricular fibrillation there are no organized QRS complexes and no identifiable R waves. The rate cannot be calculated — the ventricles are quivering chaotically rather than contracting.'
+        rationale: 'In ventricular fibrillation there are no organized QRS complexes or identifiable R waves. The rate cannot be calculated — the ventricles are quivering chaotically.'
       },
       {
-        stem: 'How would you describe the baseline on this strip?',
-        options: ['Completely chaotic — irregular wavy baseline with no discernible pattern', 'Regular — consistent intervals throughout', 'Irregularly irregular but with some identifiable complexes', 'Flat line with no activity'],
+        stem: 'Is the rhythm regular or irregular?',
+        options: ['Completely chaotic — no discernible pattern of any kind', 'Regular', 'Regularly irregular', 'Irregularly irregular but with identifiable complexes'],
         correct: 0,
-        rationale: 'Ventricular fibrillation shows a completely chaotic, irregular wavy baseline. There is no organized rhythm of any kind. This is a lethal dysrhythmia — the heart is not pumping.'
+        rationale: 'Ventricular fibrillation has a completely chaotic baseline with no organized rhythm. This is a lethal dysrhythmia — the heart is not pumping.'
       },
       {
-        stem: 'Can you identify any P waves on this strip?',
-        options: ['No — P waves are completely absent', 'Yes — upright P waves visible before each complex', 'Sawtooth flutter waves visible at a rapid rate', 'P waves visible but not followed by QRS complexes'],
+        stem: 'Are P waves present before every QRS?',
+        options: ['No — no P waves, no QRS complexes, only chaotic electrical activity', 'Yes — upright P waves before each complex', 'Sawtooth flutter waves at a rapid rate', 'P waves visible but not followed by QRS complexes'],
         correct: 0,
-        rationale: 'Ventricular fibrillation has no P waves, no QRS complexes, and no T waves — only chaotic electrical activity. There is no organized atrial or ventricular conduction.'
+        rationale: 'Ventricular fibrillation has no P waves, no QRS complexes, no T waves — only disorganized chaotic activity. There is no coordinated atrial or ventricular conduction.'
       },
       {
-        stem: 'Can you identify any QRS complexes on this strip?',
-        options: ['No — no identifiable QRS complexes, only chaotic waveforms', 'Yes — narrow normal QRS complexes at a fast rate', 'Yes — wide bizarre QRS complexes at a fast rate', 'Yes — wide QRS complexes that twist around the baseline'],
+        stem: 'What does the QRS complex look like?',
+        options: ['No identifiable QRS complexes — only chaotic waveforms', 'Narrow and normal at a fast rate', 'Wide and bizarre at a fast rate', 'Twisting around the baseline in a spindle pattern'],
         correct: 0,
-        rationale: 'There are no identifiable QRS complexes in ventricular fibrillation. The chaotic waveforms represent disorganized electrical activity in the ventricles — no effective contraction is occurring.'
+        rationale: 'There are no identifiable QRS complexes in ventricular fibrillation. The chaotic waveforms represent disorganized electrical activity — no effective ventricular contraction occurs.'
       },
       {
-        stem: 'Chaotic baseline, no identifiable rate, no P waves, no QRS complexes, patient is pulseless. What is this rhythm and what is the immediate intervention?',
-        options: ['Ventricular Fibrillation — immediate unsynchronized defibrillation', 'Asystole — begin cardiopulmonary resuscitation (CPR) only, defibrillation is not indicated', 'Ventricular Tachycardia — synchronized cardioversion', 'Atrial Fibrillation — rate control with IV beta blocker'],
+        stem: 'Based on your analysis, what is this rhythm?',
+        options: ['Ventricular Fibrillation — immediate unsynchronized defibrillation required', 'Asystole — CPR only, defibrillation not indicated', 'Ventricular Tachycardia — synchronized cardioversion', 'Atrial Fibrillation — rate control with IV beta blocker'],
         correct: 0,
-        rationale: 'Ventricular fibrillation is a pulseless, lethal dysrhythmia requiring immediate unsynchronized defibrillation. Do not delay — every second without defibrillation reduces survival. Follow with cardiopulmonary resuscitation (CPR) and the ACLS algorithm.'
+        rationale: 'Chaotic baseline, no rate, no P waves, no QRS, pulseless — Ventricular Fibrillation. Immediate unsynchronized defibrillation. Every second without it reduces survival.'
       }
     ]
   }
 ];
-
 // ── Engine ────────────────────────────────────────────────────────
 const LETTERS = ['A','B','C','D'];
 const TOTAL_QUESTIONS = STRIPS.reduce((sum, s) => sum + s.parts.length, 0);
