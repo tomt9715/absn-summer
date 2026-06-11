@@ -125,7 +125,7 @@ h1 { font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 500; color:
 }
 .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
 .nav-btn:disabled { opacity: 0.3; cursor: default; }
-.step-nav { display: flex; justify-content: flex-start; margin-top: 10px; }
+.step-nav { display: flex; align-items: center; margin-top: 10px; min-height: 28px; }
 .step-back-btn {
   font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-mute);
   background: none; border: 1px solid var(--border); border-radius: 6px;
@@ -531,9 +531,25 @@ function swapParts(si, fromPi, toPi, direction) {
 }
 
 function goToPart(si, fromPi, toPi, direction) {
+  if (toPi < 0 || toPi >= STRIPS[si].parts.length) return;
   currentPart[si] = toPi;
   swapParts(si, fromPi, toPi, direction);
   updateDots(si, toPi, doneParts[si] || []);
+
+  // If going back to an already-answered step, show the forward button
+  if (direction === 'back') {
+    setTimeout(() => {
+      const fwdBtn = document.getElementById(`step-fwd-${si}-${toPi}`);
+      if (fwdBtn && toPi + 1 < STRIPS[si].parts.length) {
+        fwdBtn.style.display = 'inline-block';
+      }
+    }, 300);
+  }
+  // Hide forward button on the step we left when going forward
+  if (direction === 'forward') {
+    const fwdBtn = document.getElementById(`step-fwd-${si}-${fromPi}`);
+    if (fwdBtn) fwdBtn.style.display = 'none';
+  }
 }
 
 function pickAnswer(partId, chosenI, correctI) {
@@ -667,7 +683,10 @@ STRIPS.forEach((strip, si) => {
           <span class="verdict" id="verdict-${partId}"></span>
           <span id="rat-${partId}"></span>
         </div>
-        ${pi > 0 ? `<div class="step-nav"><button class="step-back-btn" onclick="goToPart(${si}, ${pi}, ${pi-1}, 'back')">← prev step</button></div>` : ''}
+        <div class="step-nav" id="step-nav-${si}-${pi}">
+          ${pi > 0 ? `<button class="step-back-btn" onclick="goToPart(${si}, currentPart[${si}], ${pi-1}, 'back')">← prev step</button>` : ''}
+          <button class="step-back-btn" id="step-fwd-${si}-${pi}" style="display:none;margin-left:auto" onclick="goToPart(${si}, currentPart[${si}], ${pi+1}, 'forward')">next step →</button>
+        </div>
       </div>`;
   }).join('');
 
