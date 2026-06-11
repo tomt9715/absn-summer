@@ -68,7 +68,12 @@
           ${TAG ? `<span class="q-tag">${TAG}</span>` : ''}
         </div>
         <div class="q-stem">${q.stem}</div>
-        ${q.image ? `<div class="q-image-wrap"><img src="${q.image}" alt="Clinical image" class="q-image" /></div>` : ''}
+        ${q.image ? `<div class="q-image-wrap">
+          <div class="q-image-skeleton" id="img-skeleton"></div>
+          <img src="${q.image}" alt="Clinical image" class="q-image" style="display:none" id="q-img"
+            onload="this.style.display='block';this.style.opacity=0;var s=document.getElementById('img-skeleton');if(s)s.style.display='none';setTimeout(function(){var el=document.getElementById('q-img');if(el)el.style.opacity=1;},10);"
+            onerror="var s=document.getElementById('img-skeleton');if(s){s.textContent='Image unavailable';s.style.background='var(--surface2)';}" />
+        </div>` : ''}
         <div class="options" id="opts">${optsHTML}</div>
         <div id="feedback"></div>
       </div>

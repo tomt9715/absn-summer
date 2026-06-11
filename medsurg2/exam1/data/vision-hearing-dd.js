@@ -150,22 +150,22 @@ window.QUESTIONS = [
     rationale: "Forceful sneezing raises intraocular pressure (IOP) and can disrupt the cataract surgical repair. Increasing redness and pain are warning signs of a post-operative complication and require immediate provider contact. Mild discomfort manageable with acetaminophen is expected; escalating pain is not."
   },
   {
-    stem: "A patient presents to the ophthalmology clinic for a routine screening. This image shows their fundus photograph. Based on what you see, which condition does this most likely represent?",
-    image: "images/Glaucoma.png",
+    stem: "A patient presents to the ophthalmology clinic reporting gradual loss of their side vision. This image represents what the patient sees. Based on what you see, which condition does this most likely represent?",
+    image: "images/Glaucoma.jpg",
     options: ["Glaucoma — note the enlarged cup-to-disc ratio indicating increased intraocular pressure (IOP) compressing the optic nerve", "Age-related macular degeneration (AMD) — central drusen deposits are visible causing central vision loss", "Cataracts — clouding of the lens is obstructing the fundus view and reducing visual acuity", "Retinal detachment — the retina is pulling away from the underlying pigment epithelium"],
     correct: 0,
     rationale: "Glaucoma is identified on fundus photography by an enlarged cup-to-disc ratio — the optic cup takes up a larger proportion of the optic disc than normal. This results from increased intraocular pressure (IOP) compressing and damaging optic nerve fibers. Normal cup-to-disc ratio is less than 0.5; values above that raise concern for glaucoma. It earns the name 'silent thief of sight' because peripheral vision is lost gradually before the patient notices."
   },
   {
-    stem: "During a wellness visit, a patient mentions their vision has been progressively blurry and they notice glare and halos around lights at night. This image shows a slit-lamp photograph of their eye. What condition does this represent?",
-    image: "images/Cataracts.png",
+    stem: "During a wellness visit, a patient mentions their vision has been progressively blurry and they notice glare and halos around lights at night. This image shows what the patient's vision looks like. What condition does this represent?",
+    image: "images/Cataracts.jpg",
     options: ["Cataracts — note the clouding of the lens that obstructs light from reaching the retina", "Glaucoma — the optic nerve shows compression from elevated intraocular pressure (IOP)", "Age-related macular degeneration (AMD) — drusen deposits are forming under the retinal pigment epithelium", "Retinal detachment — fluid is separating the retina from the underlying tissue"],
     correct: 0,
     rationale: "Cataracts are identified by clouding or opacification of the lens, seen here as a loss of the normal clear lens appearance. Patients typically report progressive blurry vision, glare, halos around lights, and faded colors. Risk increases with age, UV exposure, diabetes, and steroid use. Treatment is phacoemulsification with intraocular lens (IOL) implant. Recovery takes 4–6 weeks — patients must avoid sneezing forcefully, blowing the nose, and straining."
   },
   {
-    stem: "An older adult patient presents with gradual loss of central vision. They report that straight lines appear wavy when looking at their Amsler grid. This image shows their fundus. What condition does this represent?",
-    image: "images/age-related-macular-degeneration.png",
+    stem: "An older adult patient presents with gradual loss of central vision. They have difficulty recognizing faces and reading. This image represents what the patient sees. What condition does this most likely represent?",
+    image: "images/age-related-macular-degeneration.jpg",
     options: ["Age-related macular degeneration (AMD) — note the changes at the macula affecting central vision while peripheral vision is preserved", "Glaucoma — the optic nerve cup is enlarged from chronically elevated intraocular pressure (IOP)", "Cataracts — the lens is clouded, causing diffuse blurring of the entire visual field", "Retinal detachment — the retina is separating from the pigment epithelium causing a curtain effect"],
     correct: 0,
     rationale: "Age-related macular degeneration (AMD) affects the macula — the central part of the retina responsible for sharp, detailed vision. Patients experience central vision loss while peripheral vision is typically preserved. Dry age-related macular degeneration (AMD) shows drusen (yellow deposits); wet age-related macular degeneration (AMD) involves abnormal blood vessel growth and is treated with verteporfin or anti-VEGF injections. Wavy lines on an Amsler grid are a key warning sign of progression."
