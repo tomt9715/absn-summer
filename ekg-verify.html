@@ -59,6 +59,7 @@ h1 { font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 500; color:
 .try-again {
   text-align: center; font-size: 13px; font-weight: 600;
   color: var(--wrong); padding: 8px 0 2px;
+  border-top: 1px solid var(--border);
   animation: fadeInUp 0.2s ease;
 }
 @keyframes fadeInUp {
@@ -80,7 +81,7 @@ h1 { font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 500; color:
 .part-stem { padding: 12px 16px; font-size: 15px; font-weight: 500; color: var(--ink); background: var(--surface2); border-bottom: 1px solid var(--border); }
 .opts { display: flex; flex-direction: column; gap: 0; }
 .opt { display: flex; align-items: flex-start; gap: 12px; padding: 11px 16px; cursor: pointer; background: var(--surface); border: none; border-bottom: 1px solid var(--border); text-align: left; width: 100%; font-family: 'DM Sans', sans-serif; transition: background 0.12s; }
-.opt:last-child { border-bottom: none; }
+.opt:last-child { border-bottom: 1px solid var(--border); }
 .opt:hover:not([disabled]) { background: var(--accent-soft); }
 .opt-letter { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-mute); min-width: 18px; font-weight: 600; }
 .opt-text { font-size: 15px; color: var(--ink); }
