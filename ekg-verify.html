@@ -512,6 +512,7 @@ function pickAnswer(partId, chosenI, correctI) {
       tryAgainEl.classList.remove('try-again');
       void tryAgainEl.offsetWidth;
       tryAgainEl.classList.add('try-again');
+      setTimeout(() => { tryAgainEl.style.display = 'none'; }, 2000);
     }
     return;
   }
