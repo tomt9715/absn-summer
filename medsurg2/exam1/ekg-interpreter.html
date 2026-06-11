@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EKG Strip Interpreter — 4-Step Framework</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --bg: #f6f4ef; --surface: #fff; --surface2: #fbfaf7;
+  --border: #e4e0d6; --border-strong: #d4cfc2;
+  --ink: #232020; --ink-soft: #4f4a43; --ink-mute: #847d71;
+  --accent: #b5482e; --accent-deep: #9c3c25; --accent-soft: #f3e0d9;
+  --teal: #2f6f6b; --teal-soft: #dcebe9;
+  --correct: #2f7d4f; --correct-soft: #ddf0e2;
+  --wrong: #b5482e; --wrong-soft: #f6e2dc;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; min-height: 100vh; padding: 2rem 1rem 5rem; font-size: 17px; line-height: 1.5; }
+.wrap { max-width: 900px; margin: 0 auto; }
+.top-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+.back-link { font-size: 14px; color: var(--ink-mute); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 7px 13px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); transition: all 0.15s; }
+.back-link:hover { border-color: var(--accent); color: var(--accent); }
+.quiz-type-tag { font-family: 'JetBrains Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--teal); background: var(--teal-soft); padding: 4px 11px; border-radius: 5px; display: inline-block; margin-bottom: 0.8rem; }
+h1 { font-family: 'Fraunces', serif; font-size: 2.1rem; font-weight: 500; color: var(--ink); line-height: 1.1; }
+.quiz-sub { font-size: 16px; color: var(--ink-mute); margin-top: 0.5rem; margin-bottom: 1.5rem; }
+
+/* Progress */
+.progress-row { display: flex; align-items: center; gap: 14px; margin-bottom: 1.4rem; }
+.progress-track { flex: 1; height: 7px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0%; background: var(--teal); border-radius: 4px; transition: width 0.3s; }
+.progress-label { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-mute); white-space: nowrap; }
+.score-pill { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--teal); background: var(--teal-soft); padding: 3px 10px; border-radius: 5px; }
+
+/* Card */
+.question-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); overflow: hidden; }
+
+/* Image */
+.img-wrap { margin-bottom: 20px; }
+.img-skeleton { width: 100%; height: 180px; border-radius: 10px; background: linear-gradient(90deg, var(--border) 25%, var(--surface2) 50%, var(--border) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; display: flex; align-items: center; justify-content: center; }
+.img-skeleton::after { content: 'Loading strip…'; color: var(--ink-mute); font-size: 13px; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.strip-img { max-width: 100%; max-height: 200px; border-radius: 10px; border: 1px solid var(--border); display: none; transition: opacity 0.3s; margin: 0 auto; display: none; }
+
+/* Step dots */
+.step-dots { display: flex; justify-content: center; gap: 8px; margin: 14px 0; }
+.step-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border); border: 1.5px solid var(--border-strong); transition: all 0.3s; }
+.step-dot.active { background: var(--teal); border-color: var(--teal); }
+.step-dot.done { background: var(--correct); border-color: var(--correct); }
+
+/* Step area */
+.step-area { position: relative; min-height: 200px; }
+.step-slide { }
+.step-stem { font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 16px; line-height: 1.5; }
+.step-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal); display: block; margin-bottom: 6px; }
+
+/* Options */
+.options { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: flex; align-items: flex-start; gap: 13px; padding: 14px 16px; border: 1px solid var(--border-strong); border-radius: 9px; cursor: pointer; background: var(--surface2); transition: all 0.12s; text-align: left; width: 100%; font-family: 'DM Sans', sans-serif; }
+.opt:hover:not([disabled]) { border-color: var(--teal); background: var(--teal-soft); }
+.opt-letter { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-mute); min-width: 20px; font-weight: 600; margin-top: 1px; }
+.opt-text { font-size: 16px; color: var(--ink); line-height: 1.5; }
+.opt[disabled] { cursor: default; }
+.opt.correct { border-color: var(--correct); background: var(--correct-soft); }
+.opt.correct .opt-letter, .opt.correct .opt-text { color: var(--correct); font-weight: 600; }
+.opt.wrong { border-color: var(--wrong); background: var(--wrong-soft); }
+.opt.wrong .opt-letter, .opt.wrong .opt-text { color: var(--wrong); }
+.opt.dimmed { opacity: 0.4; }
+
+/* Shake */
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+.opt.shake { animation: shake 0.35s ease; }
+@keyframes pulse-correct { 0%{transform:scale(1)} 40%{transform:scale(1.02)} 100%{transform:scale(1)} }
+.opt.correct { animation: pulse-correct 0.3s ease; }
+
+/* Try again */
+.try-again { text-align: center; font-size: 13px; font-weight: 600; color: var(--wrong); padding: 8px 0 2px; border-top: 1px solid var(--border); margin-top: 8px; animation: fadeInUp 0.2s ease; }
+@keyframes fadeInUp { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+
+/* Rationale */
+.rationale { margin-top: 14px; padding: 14px 16px; border-radius: 9px; font-size: 15px; line-height: 1.7; border-left: 3px solid; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease; }
+.rationale.show { max-height: 200px; opacity: 1; padding: 14px 16px; }
+.rationale.correct { background: var(--correct-soft); border-color: var(--correct); color: #1a4d30; }
+.rationale.wrong { background: var(--wrong-soft); border-color: var(--wrong); color: #7a2a18; }
+.verdict { font-weight: 700; display: block; margin-bottom: 6px; }
+
+/* Slide transitions */
+@keyframes slideInRight { from{opacity:0;transform:translateX(50px)} to{opacity:1;transform:translateX(0)} }
+@keyframes slideInLeft  { from{opacity:0;transform:translateX(-50px)} to{opacity:1;transform:translateX(0)} }
+.slide-in-right { animation: slideInRight 0.3s ease forwards; }
+.slide-in-left  { animation: slideInLeft  0.3s ease forwards; }
+
+/* Next button */
+.next-btn { display: block; width: 100%; margin-top: 18px; padding: 14px; background: var(--teal); color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
+.next-btn:hover { background: var(--teal-soft); color: var(--teal); }
+
+/* Results */
+.results-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 36px 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+.score-big { font-family: 'Fraunces', serif; font-size: 5rem; font-weight: 600; line-height: 1; margin-bottom: 8px; }
+.score-big.pass { color: var(--correct); }
+.score-big.fail { color: var(--wrong); }
+.score-sub { font-size: 16px; color: var(--ink-soft); margin-bottom: 8px; }
+.score-msg { font-size: 16px; color: var(--ink-mute); margin-bottom: 24px; }
+.results-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+.r-tab { font-size: 14px; padding: 8px 18px; border: 1px solid var(--border-strong); border-radius: 7px; background: var(--surface2); color: var(--ink-soft); cursor: pointer; transition: all 0.12s; font-family: 'DM Sans', sans-serif; }
+.r-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.review-item { padding: 18px 0; border-bottom: 1px solid var(--border); }
+.review-item:last-child { border-bottom: none; }
+.ri-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.ri-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-mute); }
+.ri-badge { font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 4px; }
+.ri-badge.correct { background: var(--correct-soft); color: var(--correct); }
+.ri-badge.wrong { background: var(--wrong-soft); color: var(--wrong); }
+.ri-strip-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal); background: var(--teal-soft); padding: 2px 8px; border-radius: 4px; }
+.ri-q { font-size: 15px; color: var(--ink); margin-bottom: 6px; font-weight: 500; }
+.ri-ans { display: flex; flex-direction: column; gap: 3px; margin-bottom: 8px; font-size: 14px; }
+.ri-yours { color: var(--wrong); }
+.ri-correct-ans { color: var(--correct); font-weight: 600; }
+.ri-rationale { font-size: 14px; color: var(--ink-soft); line-height: 1.6; background: var(--surface2); padding: 10px 13px; border-radius: 7px; }
+.results-actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+.action-btn { padding: 13px 24px; border-radius: 9px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
+.action-btn.primary { background: var(--teal); color: #fff; border: none; }
+.action-btn.primary:hover { background: var(--teal-soft); color: var(--teal); }
+.action-btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--border-strong); }
+.action-btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+.empty-msg { color: var(--ink-mute); font-size: 15px; padding: 16px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-bar">
+    <a href="index.html" class="back-link">← Back to hub</a>
+  </div>
+  <span class="quiz-type-tag">EKG Interpreter</span>
+  <h1>Strip Interpretation<br><em>4-Step Framework</em></h1>
+  <p class="quiz-sub">9 strips · rate · rhythm · P waves · QRS · identify</p>
+  <div id="quiz-area"></div>
+</div>
+
+<script>
+const STRIPS = [
+  {
+    file: 'normal-sinus-rhythm.jpg',
+    label: 'Strip 1',
+    parts: [
+      { stem: 'What is the heart rate?', options: ['60–100 bpm', 'Less than 60 bpm', 'Greater than 100 bpm', 'Indeterminate — no R waves identifiable'], correct: 0, rationale: 'Normal sinus rhythm has a rate of 60–100 bpm. Count R waves × 10 to calculate.' },
+      { stem: 'Is the rhythm regular or irregular?', options: ['Regular', 'Irregularly irregular', 'Regularly irregular', 'Cannot be determined'], correct: 0, rationale: 'Normal sinus rhythm is regular — the R-to-R intervals are equal throughout the strip.' },
+      { stem: 'Are P waves present before every QRS?', options: ['Yes — upright P wave before every QRS', 'No P waves visible', 'Sawtooth flutter waves instead of P waves', 'P waves present but PR interval progressively lengthens'], correct: 0, rationale: 'In normal sinus rhythm every QRS is preceded by an upright P wave, confirming the impulse originates in the sinoatrial (SA) node.' },
+      { stem: 'What does the QRS complex look like?', options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'], correct: 0, rationale: 'Normal sinus rhythm has narrow normal QRS complexes (< 0.12 sec), indicating normal ventricular conduction.' },
+      { stem: 'Based on your analysis, what is this rhythm?', options: ['Normal Sinus Rhythm', 'Sinus Bradycardia', 'Sinus Tachycardia', 'First Degree Heart Block'], correct: 0, rationale: 'Rate 60–100, regular, upright P before every QRS, narrow QRS — Normal Sinus Rhythm. This is the baseline everything else is compared to.' }
+    ]
+  },
+  {
+    file: 'sinus-bradycardia.jpg',
+    label: 'Strip 2',
+    parts: [
+      { stem: 'What is the heart rate?', options: ['Less than 60 bpm', '60–100 bpm', 'Greater than 100 bpm', 'Indeterminate — no R waves identifiable'], correct: 0, rationale: 'Sinus bradycardia is defined by a rate below 60 bpm. Count R waves × 10 — the result should be less than 60.' },
+      { stem: 'Is the rhythm regular or irregular?', options: ['Regular', 'Irregularly irregular', 'Regularly irregular', 'Cannot be determined'], correct: 0, rationale: 'Sinus bradycardia is regular — R-to-R intervals are equal. It looks exactly like normal sinus rhythm, just slower.' },
+      { stem: 'Are P waves present before every QRS?', options: ['Yes — upright P wave before every QRS', 'No P waves visible', 'Sawtooth flutter waves instead of P waves', 'P waves present but PR interval progressively lengthens'], correct: 0, rationale: 'Sinus bradycardia originates in the sinoatrial (SA) node so every QRS is preceded by an upright P wave — same as normal sinus rhythm.' },
+      { stem: 'What does the QRS complex look like?', options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'], correct: 0, rationale: 'Sinus bradycardia has narrow normal QRS complexes. The slow rate is the only abnormality — ventricular conduction is intact.' },
+      { stem: 'Based on your analysis, what is this rhythm?', options: ['Sinus Bradycardia', 'Normal Sinus Rhythm', 'Third Degree Heart Block', 'Junctional Rhythm'], correct: 0, rationale: 'Rate < 60, regular, upright P before every QRS, narrow QRS — Sinus Bradycardia. Treat if symptomatic — atropine is first line.' }
+    ]
+  },
+  {
+    file: 'sinus-tachycardia.jpg',
+    label: 'Strip 3',
+    parts: [
+      { stem: 'What is the heart rate?', options: ['Greater than 100 bpm', '60–100 bpm', 'Less than 60 bpm', 'Indeterminate — no R waves identifiable'], correct: 0, rationale: 'Sinus tachycardia is defined by a rate above 100 bpm. The R waves are closer together than in normal sinus rhythm.' },
+      { stem: 'Is the rhythm regular or irregular?', options: ['Regular', 'Irregularly irregular', 'Regularly irregular', 'Cannot be determined'], correct: 0, rationale: 'Sinus tachycardia is regular — the fast beats are evenly spaced. Irregularity would suggest atrial fibrillation.' },
+      { stem: 'Are P waves present before every QRS?', options: ['Yes — upright P wave before every QRS, though they may merge with the preceding T wave at fast rates', 'No P waves visible', 'Sawtooth flutter waves instead of P waves', 'P waves present but PR interval progressively lengthens'], correct: 0, rationale: 'In sinus tachycardia there is a P wave before every QRS. At fast rates the P wave may merge with the preceding T wave, but it is still present.' },
+      { stem: 'What does the QRS complex look like?', options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'], correct: 0, rationale: 'Sinus tachycardia has narrow normal QRS complexes. A wide QRS with tachycardia should raise concern for ventricular tachycardia.' },
+      { stem: 'Based on your analysis, what is this rhythm?', options: ['Sinus Tachycardia', 'Atrial Fibrillation', 'Supraventricular Tachycardia (SVT)', 'Ventricular Tachycardia'], correct: 0, rationale: 'Rate > 100, regular, upright P before every QRS, narrow QRS — Sinus Tachycardia. Treat the underlying cause, not the rhythm.' }
+    ]
+  },
+  {
+    file: 'atrial-fibrillation.jpg',
+    label: 'Strip 4',
+    parts: [
+      { stem: 'What is the heart rate?', options: ['Approximately 100 bpm — but note the irregular spacing between beats', 'Less than 60 bpm and regular', '60–100 bpm and consistent', 'Indeterminate — no R waves identifiable'], correct: 0, rationale: 'This A-fib strip has a ventricular rate of approximately 100 bpm. However the spacing between beats is irregular — a key distinction from sinus tachycardia which would be regular at the same rate.' },
+      { stem: 'Is the rhythm regular or irregular?', options: ['Irregularly irregular — no two R-to-R intervals are the same', 'Regular', 'Regularly irregular', 'Cannot be determined'], correct: 0, rationale: 'Irregularly irregular is the hallmark of atrial fibrillation — there is no pattern whatsoever to the intervals.' },
+      { stem: 'Are P waves present before every QRS?', options: ['No — no discernible P waves, replaced by a chaotic fibrillatory baseline', 'Yes — upright P wave before every QRS', 'Sawtooth flutter waves instead of P waves', 'P waves present but PR interval progressively lengthens'], correct: 0, rationale: 'Atrial fibrillation has no identifiable P waves. The atria fire chaotically at 350–600 per minute, producing a wavy irregular baseline.' },
+      { stem: 'What does the QRS complex look like?', options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'], correct: 0, rationale: 'In typical atrial fibrillation the QRS is narrow and normal — ventricular conduction is intact.' },
+      { stem: 'Based on your analysis, what is this rhythm?', options: ['Atrial Fibrillation', 'Atrial Flutter', 'Ventricular Fibrillation', 'Sinus Arrhythmia'], correct: 0, rationale: 'Approximately 100 bpm but irregular, no P waves, narrow QRS — Atrial Fibrillation. Key concerns: stroke risk (anticoagulation), rate control, hemodynamic stability.' }
+    ]
+  },
+  {
+    file: 'atrial-flutter.jpg',
+    label: 'Strip 5',
+    parts: [
+      { stem: 'What is the heart rate?', options: ['Around 75–150 bpm — the atria fire at ~300 but the atrioventricular (AV) node blocks some impulses', 'Less than 60 bpm', 'Greater than 250 bpm', 'Indeterminate — no R waves identifiable'], correct: 0, rationale: 'In atrial flutter the atria fire at 250–350 bpm but the atrioventricular (AV) node conducts only a fraction, producing a ventricular rate that is a fraction of the atrial rate.' },
+      { stem: 'Is the rhythm regular or irregular?', options: ['Regularly irregular — conduction ratio varies creating a repeating unequal pattern', 'Regular', 'Irregularly irregular', 'Cannot be determined'], correct: 0, rationale: 'Atrial flutter with a varying conduction ratio produces a regularly irregular ventricular rhythm. A fixed ratio (e.g. 2:1) would be regular.' },
+      { stem: 'Are P waves present before every QRS?', options: ['No — sawtooth-shaped flutter waves at approximately 250–350 per minute replace normal P waves', 'Yes — upright P wave before every QRS', 'No P waves or flutter waves — chaotic baseline', 'P waves present but PR interval progressively lengthens'], correct: 0, rationale: 'The hallmark of atrial flutter is the sawtooth pattern — continuous flutter waves at 250–350 per minute. There are no true P waves.' },
+      { stem: 'What does the QRS complex look like?', options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'], correct: 0, rationale: 'In atrial flutter the QRS is narrow and normal — ventricular conduction is unaffected. The abnormality is entirely atrial.' },
+      { stem: 'Based on your analysis, what is this rhythm?', options: ['Atrial Flutter', 'Atrial Fibrillation', 'Sinus Tachycardia', 'Supraventricular Tachycardia (SVT)'], correct: 0, rationale: 'Sawtooth flutter waves at ~300/min, regularly irregular ventricular rate, narrow QRS — Atrial Flutter. Key distinction from A-fib: flutter has sawtooth pattern; A-fib has chaotic baseline.' }
+    ]
+  },
+  {
+    file: 'supraventricular-tachycardia.jpg',
+    label: 'Strip 6',
+    parts: [
+      { stem: 'What is the heart rate?', options: ['150–250 bpm', '60–100 bpm', 'Less than 60 bpm', 'Indeterminate — no R waves identifiable'], correct: 0, rationale: 'Supraventricular tachycardia (SVT) typically presents at 150–250 bpm. The R waves are very close together.' },
+      { stem: 'Is the rhythm regular or irregular?', options: ['Regular', 'Irregularly irregular', 'Regularly irregular', 'Cannot be determined'], correct: 0, rationale: 'Supraventricular tachycardia (SVT) is typically very regular — the fast rate is consistent.' },
+      { stem: 'Are P waves present before every QRS?', options: ['No — P waves are absent or hidden within the T waves due to the fast rate', 'Yes — clear upright P waves before every QRS', 'Sawtooth flutter waves instead of P waves', 'P waves present but PR interval progressively lengthens'], correct: 0, rationale: 'In supraventricular tachycardia (SVT) P waves are often hidden in the preceding T wave or absent. This distinguishes it from sinus tachycardia.' },
+      { stem: 'What does the QRS complex look like?', options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'], correct: 0, rationale: 'Supraventricular tachycardia (SVT) has narrow QRS complexes — the impulse originates above the ventricles. Wide QRS tachycardia suggests ventricular tachycardia.' },
+      { stem: 'Based on your analysis, what is this rhythm?', options: ['Supraventricular Tachycardia (SVT)', 'Ventricular Tachycardia', 'Atrial Flutter with 2:1 conduction', 'Sinus Tachycardia'], correct: 0, rationale: 'Rate 150–250, regular, no visible P waves, narrow QRS — Supraventricular Tachycardia (SVT). Treatment: vagal maneuvers first, then adenosine. If unstable → synchronized cardioversion.' }
+    ]
+  },
+  {
+    file: 'sinus-rhythm-with-1st-degree-heart-block.jpg',
+    label: 'Strip 7',
+    parts: [
+      { stem: 'What is the heart rate?', options: ['Approximately 50 bpm — bradycardic range', '60–100 bpm', 'Greater than 100 bpm', 'Indeterminate — no R waves identifiable'], correct: 0, rationale: 'This strip shows approximately 5 QRS complexes × 10 = 50 bpm. First degree heart block can occur at any rate — the block refers to conduction delay, not rate.' },
+      { stem: 'Is the rhythm regular or irregular?', options: ['Regular', 'Irregularly irregular', 'Regularly irregular', 'Cannot be determined'], correct: 0, rationale: 'First degree heart block is regular — every impulse conducts to the ventricles, just with a delay. No beats are dropped.' },
+      { stem: 'Are P waves present before every QRS?', options: ['Yes — P wave before every QRS but the PR interval is prolonged (> 0.20 sec)', 'No P waves visible', 'P waves present but PR interval progressively lengthens until a beat drops', 'Sawtooth flutter waves instead of P waves'], correct: 0, rationale: 'The defining feature of first degree heart block is a consistently prolonged PR interval > 0.20 seconds. Every P wave still conducts — no beats are dropped.' },
+      { stem: 'What does the QRS complex look like?', options: ['Narrow and normal (< 0.12 sec)', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes — flat line', 'Twisting around the baseline'], correct: 0, rationale: 'First degree heart block has narrow normal QRS complexes. The delay is in the atrioventricular (AV) node, not ventricular conduction.' },
+      { stem: 'Based on your analysis, what is this rhythm?', options: ['First Degree Heart Block', 'Second Degree Type 1 (Wenckebach)', 'Second Degree Type 2', 'Third Degree (Complete) Heart Block'], correct: 0, rationale: '~50 bpm, regular, P before every QRS with prolonged PR interval > 0.20 sec, narrow QRS — First Degree Heart Block. Benign — monitor, no treatment needed unless symptomatic.' }
+    ]
+  },
+  {
+    file: 'second-degree-av-block-type-1.jpg',
+    label: 'Strip 8',
+    parts: [
+      { stem: 'What is the heart rate?', options: ['Approximately 50 bpm — slower than the atrial rate since some P waves do not conduct', '60–100 bpm matching every P wave', 'Greater than 100 bpm', 'Indeterminate — no R waves present'], correct: 0, rationale: 'This strip shows approximately 5 QRS complexes × 10 = 50 bpm. The ventricular rate is slower than the atrial rate because not every P wave conducts through.' },
+      { stem: 'Is the rhythm regular or irregular?', options: ['Regularly irregular — grouped beats followed by a pause, then repeating', 'Regular', 'Irregularly irregular', 'Cannot be determined'], correct: 0, rationale: 'Wenckebach is regularly irregular — the grouped beating pattern repeats in a predictable cycle.' },
+      { stem: 'Are P waves present before every QRS?', options: ['No — the PR interval progressively lengthens until one QRS is dropped, then the cycle repeats', 'Yes — upright P wave before every QRS with a normal PR interval', 'No P waves visible — chaotic baseline', 'Sawtooth flutter waves instead of P waves'], correct: 0, rationale: 'Progressive PR lengthening then a dropped QRS — the defining pattern of Wenckebach. The cycle then resets and repeats.' },
+      { stem: 'What does the QRS complex look like?', options: ['Narrow and normal (< 0.12 sec) — absent after the blocked P wave', 'Wide and bizarre (> 0.12 sec)', 'No QRS complexes at all — flat line', 'Twisting around the baseline'], correct: 0, rationale: 'Wenckebach has narrow normal QRS complexes. The problem is at the atrioventricular (AV) node — one QRS drops per cycle.' },
+      { stem: 'Based on your analysis, what is this rhythm?', options: ['Second Degree Atrioventricular (AV) Block Type 1 (Wenckebach)', 'Second Degree Atrioventricular (AV) Block Type 2', 'First Degree Heart Block', 'Third Degree (Complete) Heart Block'], correct: 0, rationale: 'Regularly irregular, progressive PR lengthening then dropped beat, narrow QRS — Wenckebach. Generally benign. The predictable pattern distinguishes it from the more dangerous Type 2.' }
+    ]
+  },
+  {
+    file: 'ventricular-fibrillation.jpg',
+    label: 'Strip 9',
+    parts: [
+      { stem: 'What is the heart rate?', options: ['Indeterminate — no organized R waves identifiable', 'Less than 60 bpm', '60–100 bpm', 'Greater than 150 bpm'], correct: 0, rationale: 'In ventricular fibrillation there are no organized QRS complexes or identifiable R waves. The rate cannot be calculated — the ventricles are quivering chaotically.' },
+      { stem: 'Is the rhythm regular or irregular?', options: ['Completely chaotic — no discernible pattern of any kind', 'Regular', 'Regularly irregular', 'Irregularly irregular but with identifiable complexes'], correct: 0, rationale: 'Ventricular fibrillation has a completely chaotic baseline with no organized rhythm. This is a lethal dysrhythmia.' },
+      { stem: 'Are P waves present before every QRS?', options: ['No — no P waves, no QRS complexes, only chaotic electrical activity', 'Yes — upright P waves before each complex', 'Sawtooth flutter waves at a rapid rate', 'P waves visible but not followed by QRS complexes'], correct: 0, rationale: 'Ventricular fibrillation has no P waves, no QRS complexes, no T waves — only disorganized chaotic activity.' },
+      { stem: 'What does the QRS complex look like?', options: ['No identifiable QRS complexes — only chaotic waveforms', 'Narrow and normal at a fast rate', 'Wide and bizarre at a fast rate', 'Twisting around the baseline in a spindle pattern'], correct: 0, rationale: 'There are no identifiable QRS complexes in ventricular fibrillation — no effective ventricular contraction occurs.' },
+      { stem: 'Based on your analysis, what is this rhythm?', options: ['Ventricular Fibrillation — immediate unsynchronized defibrillation required', 'Asystole — cardiopulmonary resuscitation (CPR) only, defibrillation not indicated', 'Ventricular Tachycardia — synchronized cardioversion', 'Atrial Fibrillation — rate control with IV beta blocker'], correct: 0, rationale: 'Chaotic baseline, no rate, no P waves, no QRS, pulseless — Ventricular Fibrillation. Immediate unsynchronized defibrillation. Every second without it reduces survival.' }
+    ]
+  }
+];
+
+// ── Engine ──────────────────────────────────────────────────────────
+const KEY = 'ms2_e1_ekg';
+const PASS = 77;
+const LETTERS = ['A','B','C','D'];
+const STEP_LABELS = ['Step 1 — Rate', 'Step 2 — Rhythm', 'Step 3 — P Waves', 'Step 4 — QRS', 'Step 5 — Identify'];
+
+let deck = [];
+let stripIdx = 0;
+let stepIdx = 0;
+let totalAnswered = 0;
+let totalCorrect = 0;
+let results = [];
+let activeTab = 'full';
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length-1; i > 0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function buildDeck() {
+  deck = shuffle(STRIPS).map(strip => ({
+    ...strip,
+    parts: strip.parts.map(p => ({
+      ...p,
+      opts: p.options.map((text, i) => ({ text, isCorrect: i === p.correct }))
+    }))
+  }));
+}
+
+function startQuiz() {
+  buildDeck();
+  stripIdx = 0; stepIdx = 0;
+  totalAnswered = 0; totalCorrect = 0;
+  results = [];
+  renderStrip();
+}
+
+function updateDots(si, currentStep) {
+  for (let i = 0; i < 5; i++) {
+    const dot = document.getElementById(`dot-${i}`);
+    if (!dot) continue;
+    dot.className = 'step-dot';
+    if (i < currentStep) dot.classList.add('done');
+    else if (i === currentStep) dot.classList.add('active');
+  }
+}
+
+function renderStrip() {
+  stepIdx = 0;
+  const strip = deck[stripIdx];
+  const area = document.getElementById('quiz-area');
+  const pct = Math.round((stripIdx / deck.length) * 100);
+  const scoreText = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) + '%' : '—';
+
+  const dotsHTML = Array.from({length: 5}, (_, i) =>
+    `<div class="step-dot${i === 0 ? ' active' : ''}" id="dot-${i}"></div>`
+  ).join('');
+
+  area.innerHTML = `
+    <div class="progress-row">
+      <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+      <span class="progress-label">${stripIdx + 1} / ${deck.length}</span>
+      <span class="score-pill">${scoreText}</span>
+    </div>
+    <div class="question-card">
+      <div class="img-wrap">
+        <div class="img-skeleton" id="img-skel"></div>
+        <img id="strip-img" class="strip-img" src="images/${strip.file}" alt="EKG Strip"
+          onload="this.style.display='block';this.style.opacity=0;document.getElementById('img-skel').style.display='none';setTimeout(()=>{document.getElementById('strip-img').style.opacity=1;},10);"
+          onerror="document.getElementById('img-skel').textContent='Image not found';" />
+      </div>
+      <div class="step-dots">${dotsHTML}</div>
+      <div class="step-area" id="step-area"></div>
+    </div>`;
+
+  renderStep('in-right');
+}
+
+function renderStep(animClass) {
+  const strip = deck[stripIdx];
+  const part = strip.parts[stepIdx];
+  const area = document.getElementById('step-area');
+  if (!area) return;
+
+  const optsHTML = part.opts.map((o, i) => `
+    <button class="opt" onclick="pickAnswer(${i})">
+      <span class="opt-letter">${LETTERS[i]}</span>
+      <span class="opt-text">${o.text}</span>
+    </button>`).join('');
+
+  area.innerHTML = `
+    <div class="${animClass}" id="step-slide">
+      <span class="step-label">${STEP_LABELS[stepIdx]}</span>
+      <div class="step-stem">${part.stem}</div>
+      <div class="options" id="opts">${optsHTML}</div>
+      <div id="try-again" style="display:none" class="try-again"></div>
+      <div class="rationale" id="rationale"></div>
+    </div>`;
+}
+
+function pickAnswer(chosenI) {
+  const strip = deck[stripIdx];
+  const part = strip.parts[stepIdx];
+  const correctI = part.opts.findIndex(o => o.isCorrect);
+  const isCorrect = chosenI === correctI;
+
+  if (!isCorrect) {
+    const btn = document.querySelectorAll('.opt')[chosenI];
+    btn.classList.remove('shake'); void btn.offsetWidth; btn.classList.add('shake');
+    btn.addEventListener('animationend', () => btn.classList.remove('shake'), { once: true });
+    btn.style.background = 'var(--wrong-soft)';
+    setTimeout(() => { btn.style.background = ''; }, 600);
+    const ta = document.getElementById('try-again');
+    ta.textContent = '✗ Not quite — try again';
+    ta.style.display = 'block';
+    ta.classList.remove('try-again'); void ta.offsetWidth; ta.classList.add('try-again');
+    setTimeout(() => { ta.style.display = 'none'; }, 2000);
+    return;
+  }
+
+  // Correct
+  document.querySelectorAll('.opt').forEach((b, i) => {
+    b.setAttribute('disabled', 'true');
+    if (i === correctI) b.classList.add('correct');
+    else b.classList.add('dimmed');
+  });
+
+  totalAnswered++;
+  totalCorrect++;
+
+  results.push({
+    stripLabel: strip.label,
+    stepLabel: STEP_LABELS[stepIdx],
+    stem: part.stem,
+    yourLetter: LETTERS[chosenI],
+    yourText: part.opts[chosenI].text,
+    correctLetter: LETTERS[correctI],
+    correctText: part.opts[correctI].text,
+    isCorrect: true,
+    rationale: part.rationale
+  });
+
+  const rat = document.getElementById('rationale');
+  rat.textContent = part.rationale;
+  rat.classList.add('correct');
+  requestAnimationFrame(() => requestAnimationFrame(() => rat.classList.add('show')));
+
+  updateDots(stripIdx, stepIdx + 1);
+
+  const isLastStep = stepIdx === strip.parts.length - 1;
+  const isLastStrip = stripIdx === deck.length - 1;
+
+  if (!isLastStep) {
+    setTimeout(() => {
+      stepIdx++;
+      // Slide current out left, new in from right
+      const slide = document.getElementById('step-slide');
+      slide.style.transition = 'opacity 0.2s, transform 0.2s';
+      slide.style.opacity = '0';
+      slide.style.transform = 'translateX(-40px)';
+      setTimeout(() => renderStep('slide-in-right'), 220);
+    }, 600);
+  } else {
+    // Last step — show next strip button
+    setTimeout(() => {
+      const area = document.getElementById('step-area');
+      const btn = document.createElement('button');
+      btn.className = 'next-btn';
+      btn.textContent = isLastStrip ? 'See results →' : 'Next strip →';
+      btn.onclick = isLastStrip ? showResults : nextStrip;
+      area.appendChild(btn);
+    }, 700);
+  }
+}
+
+function nextStrip() {
+  stripIdx++;
+  const card = document.querySelector('.question-card');
+  card.style.transition = 'opacity 0.25s, transform 0.25s';
+  card.style.opacity = '0';
+  card.style.transform = 'translateX(-40px)';
+  setTimeout(() => {
+    renderStrip();
+    const newCard = document.querySelector('.question-card');
+    if (newCard) {
+      newCard.style.opacity = '0';
+      newCard.style.transform = 'translateX(40px)';
+      newCard.style.transition = 'opacity 0.3s, transform 0.3s';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        newCard.style.opacity = '1';
+        newCard.style.transform = 'translateX(0)';
+      }));
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 270);
+}
+
+function showResults() {
+  const pct = Math.round((totalCorrect / totalAnswered) * 100);
+  const pass = pct >= PASS;
+  try {
+    const prev = parseInt(localStorage.getItem(KEY + '_best') || '0', 10);
+    if (pct > prev) localStorage.setItem(KEY + '_best', String(pct));
+    localStorage.setItem(KEY + '_last', String(pct));
+  } catch(e) {}
+
+  const msg = pct >= 90 ? 'Sharp — EKG interpretation is yours.'
+    : pct >= PASS ? 'Passing. Review the ones you missed and you\'ll nail these on exam day.'
+    : 'Below passing — go back through the rationales and retake.';
+
+  document.getElementById('quiz-area').innerHTML = `
+    <div class="results-card">
+      <div class="score-big ${pass ? 'pass' : 'fail'}">${pct}%</div>
+      <div class="score-sub">${totalCorrect} / ${totalAnswered} correct · EKG Interpreter</div>
+      <div class="score-msg">${msg}</div>
+      <div class="results-tabs">
+        <button class="r-tab ${activeTab==='full'?'active':''}" onclick="setTab('full',this)">Full Review</button>
+        <button class="r-tab ${activeTab==='missed'?'active':''}" onclick="setTab('missed',this)">Missed Only</button>
+      </div>
+      <div id="review-list"></div>
+      <div class="results-actions">
+        <button class="action-btn primary" onclick="startQuiz()">Retake</button>
+        <a class="action-btn ghost" href="index.html">Back to hub</a>
+      </div>
+    </div>`;
+  renderReview();
+}
+
+function setTab(t, el) {
+  activeTab = t;
+  document.querySelectorAll('.r-tab').forEach(b => b.classList.remove('active'));
+  if (el) el.classList.add('active');
+  renderReview();
+}
+
+function renderReview() {
+  const list = document.getElementById('review-list');
+  let items = results.map((r, i) => ({ ...r, n: i + 1 }));
+  if (activeTab === 'missed') items = items.filter(r => !r.isCorrect);
+  if (!items.length) {
+    list.innerHTML = `<div class="empty-msg">${activeTab === 'missed' ? '✓ No missed questions — perfect score!' : 'Nothing here.'}</div>`;
+    return;
+  }
+  list.innerHTML = items.map(r => `
+    <div class="review-item">
+      <div class="ri-meta">
+        <span class="ri-num">Q${r.n}</span>
+        <span class="ri-strip-label">${r.stripLabel}</span>
+        <span class="ri-badge ${r.isCorrect ? 'correct' : 'wrong'}">${r.isCorrect ? '✓ Correct' : '✗ Missed'}</span>
+        <span style="font-size:12px;color:var(--ink-mute)">${r.stepLabel}</span>
+      </div>
+      <div class="ri-q">${r.stem}</div>
+      <div class="ri-ans">
+        ${r.isCorrect
+          ? `<span class="ri-correct-ans">${r.yourLetter} — ${r.yourText} ✓</span>`
+          : `<span class="ri-yours">You chose: ${r.yourLetter} — ${r.yourText}</span>
+             <span class="ri-correct-ans">Correct: ${r.correctLetter} — ${r.correctText}</span>`}
+      </div>
+      <div class="ri-rationale">${r.rationale}</div>
+    </div>`).join('');
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startQuiz);
+else startQuiz();
+</script>
+</body>
+</html>
