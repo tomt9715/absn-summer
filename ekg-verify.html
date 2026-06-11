@@ -40,10 +40,14 @@ h1 { font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 500; color:
   display: block;
   animation: slideRight 0.35s ease forwards;
 }
-@keyframes slideRight {
-  from { opacity: 0; transform: translateX(40px); }
-  to   { opacity: 1; transform: translateX(0); }
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%     { transform: translateX(-6px); }
+  40%     { transform: translateX(6px); }
+  60%     { transform: translateX(-4px); }
+  80%     { transform: translateX(4px); }
 }
+.opt.shake { animation: shake 0.35s ease; }
 .part-stem { padding: 12px 16px; font-size: 15px; font-weight: 500; color: var(--ink); background: var(--surface2); border-bottom: 1px solid var(--border); }
 .opts { display: flex; flex-direction: column; gap: 0; }
 .opt { display: flex; align-items: flex-start; gap: 12px; padding: 11px 16px; cursor: pointer; background: var(--surface); border: none; border-bottom: 1px solid var(--border); text-align: left; width: 100%; font-family: 'DM Sans', sans-serif; transition: background 0.12s; }
@@ -96,7 +100,7 @@ h1 { font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 500; color:
   <div class="score-bar">
     <span class="score-label" id="strip-counter">Strip 1 / 9</span>
     <div class="track"><div class="fill" id="score-fill"></div></div>
-    <span class="score-val" id="score-val">0 / 0</span>
+    <span class="score-val" id="score-val">0 / 45</span>
     <span class="score-label" id="score-pct">—</span>
   </div>
 
@@ -116,13 +120,13 @@ const STRIPS = [
         rationale: 'Normal sinus rhythm has a rate of 60–100 bpm. Counting R waves × 10 in a 6-second strip should yield a number in this range.'
       },
       {
-        stem: 'Look at the distances between each R-to-R interval on this strip. How would you describe the rhythm?',
+        stem: 'How would you describe the rhythm?',
         options: ['Regular — R-to-R intervals are equal', 'Irregularly irregular — no pattern to the intervals', 'Regularly irregular — a repeating pattern of unequal intervals', 'Irregular with grouped beating'],
         correct: 0,
         rationale: 'Normal sinus rhythm has a regular rhythm — the R-to-R intervals are equal throughout the strip.'
       },
       {
-        stem: 'Examine the waveform before each QRS complex. What do you observe about the P waves?',
+        stem: 'What do you observe about the P waves?',
         options: ['A upright P wave precedes every QRS complex', 'No P waves are visible — replaced by a chaotic baseline', 'Sawtooth-shaped flutter waves replace normal P waves', 'P waves are present but the PR interval gets longer with each beat'],
         correct: 0,
         rationale: 'In normal sinus rhythm, every QRS is preceded by an upright P wave, indicating the impulse originates in the sinoatrial (SA) node.'
@@ -152,7 +156,7 @@ const STRIPS = [
         rationale: 'Sinus bradycardia is defined by a heart rate below 60 bpm. Counting R waves × 10 should yield a number less than 60.'
       },
       {
-        stem: 'Are the R-to-R intervals equal across this strip?',
+        stem: 'Are the R-to-R intervals equal?',
         options: ['Regular — intervals are equal, just slow', 'Irregularly irregular — no repeating pattern', 'Regularly irregular — grouped beating present', 'Completely chaotic — no identifiable pattern'],
         correct: 0,
         rationale: 'Sinus bradycardia has a regular rhythm — the intervals between beats are equal. It looks like normal sinus rhythm, just slower.'
@@ -188,13 +192,13 @@ const STRIPS = [
         rationale: 'Sinus tachycardia is defined by a rate above 100 bpm. The R waves are closer together than in normal sinus rhythm.'
       },
       {
-        stem: 'How would you describe the R-to-R intervals on this strip?',
+        stem: 'How would you describe the R-to-R intervals?',
         options: ['Regular — equal intervals throughout', 'Irregularly irregular', 'Regularly irregular with grouped beats', 'Chaotic with no discernible pattern'],
         correct: 0,
         rationale: 'Sinus tachycardia is regular — the fast beats are evenly spaced. If it were irregular, you would consider atrial fibrillation.'
       },
       {
-        stem: 'Can you identify P waves on this strip? What do you observe?',
+        stem: 'What do you observe about the P waves?',
         options: ['Upright P wave before every QRS, though they may be close to the preceding T wave', 'No P waves — fine chaotic baseline', 'Sawtooth flutter waves at a rapid rate', 'P waves present but disappearing into T waves without any QRS following'],
         correct: 0,
         rationale: 'In sinus tachycardia there is a P wave before every QRS. At fast rates the P wave may appear close to or merging with the preceding T wave, but it is still present.'
@@ -224,13 +228,13 @@ const STRIPS = [
         rationale: 'In atrial fibrillation the ventricular rate is variable because the atrioventricular (AV) node is bombarded with chaotic atrial impulses and conducts them irregularly.'
       },
       {
-        stem: 'Look carefully at the R-to-R intervals. How would you describe this rhythm?',
+        stem: 'How would you describe this rhythm?',
         options: ['Irregularly irregular — no two intervals are the same and there is no repeating pattern', 'Regular — all R-to-R intervals are equal', 'Regularly irregular — a consistent pattern of unequal intervals', 'Regular with occasional dropped beats'],
         correct: 0,
         rationale: '"Irregularly irregular" is the hallmark of atrial fibrillation — there is no pattern whatsoever to the intervals. This is different from regularly irregular rhythms that have a predictable grouped pattern.'
       },
       {
-        stem: 'Look at the baseline between QRS complexes. What do you observe where P waves should be?',
+        stem: 'What do you observe where P waves should be?',
         options: ['No discernible P waves — replaced by a chaotic fibrillatory baseline', 'Upright P waves before every QRS', 'Sawtooth-shaped flutter waves at 250–350 per minute', 'P waves present but the PR interval lengthens progressively'],
         correct: 0,
         rationale: 'Atrial fibrillation has no identifiable P waves. The atria are firing chaotically at 350–600 impulses per minute, producing a wavy, irregular baseline instead of distinct P waves.'
@@ -260,13 +264,13 @@ const STRIPS = [
         rationale: 'In atrial flutter the atria fire at 250–350 bpm but the atrioventricular (AV) node cannot conduct every impulse. It typically conducts at a 2:1, 3:1, or 4:1 ratio, so the ventricular rate is a fraction of the atrial rate.'
       },
       {
-        stem: 'How would you describe the ventricular rhythm (R-to-R intervals) on this strip?',
+        stem: 'How would you describe the ventricular rhythm?',
         options: ['Regular — R-to-R intervals are equal', 'Irregularly irregular — no pattern', 'Completely chaotic — no identifiable complexes', 'Progressive lengthening then a dropped beat'],
         correct: 0,
         rationale: 'Atrial flutter with a consistent conduction ratio (e.g. 2:1) produces a regular ventricular rhythm. If the ratio varies, it can appear regularly irregular.'
       },
       {
-        stem: 'Look at the baseline between QRS complexes. What do you observe instead of normal P waves?',
+        stem: 'What do you observe instead of normal P waves?',
         options: ['Sawtooth-shaped flutter waves at approximately 250–350 per minute', 'Upright P waves before every QRS', 'No waves at all — chaotic fine baseline', 'P waves with a progressively lengthening PR interval'],
         correct: 0,
         rationale: 'The hallmark of atrial flutter is the sawtooth pattern — continuous flutter waves at 250–350 per minute that resemble the teeth of a saw blade. There are no true P waves.'
@@ -296,13 +300,13 @@ const STRIPS = [
         rationale: 'Supraventricular tachycardia (SVT) typically presents with a rate of 150–250 bpm. The very fast rate with a narrow QRS is the key feature.'
       },
       {
-        stem: 'How would you describe the R-to-R intervals on this strip?',
+        stem: 'How would you describe the R-to-R intervals?',
         options: ['Regular — equal intervals despite the fast rate', 'Irregularly irregular', 'Regularly irregular with grouped beats', 'Chaotic with no pattern'],
         correct: 0,
         rationale: 'Supraventricular tachycardia (SVT) is typically very regular — the fast rate is consistent and the intervals are equal. Irregularity would suggest atrial fibrillation with rapid ventricular response.'
       },
       {
-        stem: 'Can you identify P waves on this strip? What do you observe?',
+        stem: 'What do you observe about the P waves?',
         options: ['P waves are absent or hidden within the T waves due to the fast rate', 'Clear upright P waves before every QRS', 'Sawtooth flutter waves clearly visible between QRS complexes', 'P waves present with a progressively lengthening PR interval'],
         correct: 0,
         rationale: 'In supraventricular tachycardia (SVT), P waves are often hidden in the preceding T wave or absent from view because the rate is so fast. This distinguishes it from sinus tachycardia where P waves are visible.'
@@ -332,13 +336,13 @@ const STRIPS = [
         rationale: 'First degree heart block typically presents with a normal rate of 60–100 bpm. The block refers to conduction delay, not a slow rate.'
       },
       {
-        stem: 'How would you describe the R-to-R intervals on this strip?',
+        stem: 'How would you describe the R-to-R intervals?',
         options: ['Regular — equal intervals throughout', 'Irregularly irregular', 'Regularly irregular with dropped beats', 'Progressive lengthening then a pause'],
         correct: 0,
         rationale: 'First degree heart block is regular — every impulse conducts through to the ventricles, just with a delay. No beats are dropped.'
       },
       {
-        stem: 'Look closely at the PR interval (from start of P wave to start of QRS). What do you observe?',
+        stem: 'What do you observe about the PR interval?',
         options: ['P wave before every QRS but the PR interval is prolonged — greater than 0.20 seconds (one large box)', 'No P waves visible', 'P waves present but PR interval gets longer with each beat until one is dropped', 'P waves present with a normal PR interval of 0.12–0.20 seconds'],
         correct: 0,
         rationale: 'The defining feature of first degree heart block is a prolonged PR interval greater than 0.20 seconds (one large box on the electrocardiogram (ECG) paper). Every P wave still conducts — no beats are dropped.'
@@ -368,13 +372,13 @@ const STRIPS = [
         rationale: 'In second degree type 1 block, not every P wave conducts, so the ventricular rate is slower than the atrial rate. You will see more P waves than QRS complexes.'
       },
       {
-        stem: 'How would you describe the overall rhythm on this strip?',
+        stem: 'How would you describe the overall rhythm?',
         options: ['Regularly irregular — a grouped pattern of beats followed by a pause then repeating', 'Irregularly irregular — no repeating pattern at all', 'Regular — all intervals are equal', 'Completely chaotic baseline'],
         correct: 0,
         rationale: 'Wenckebach has a "regularly irregular" rhythm — the grouped beating pattern (beats getting closer then a pause) repeats itself in a predictable cycle.'
       },
       {
-        stem: 'Look closely at the PR intervals across multiple beats. What do you observe?',
+        stem: 'What do you observe about the PR intervals?',
         options: ['The PR interval progressively lengthens with each beat until one QRS is dropped, then the cycle repeats', 'P waves before every QRS with a constant prolonged PR interval', 'No P waves visible — chaotic baseline', 'P waves and QRS complexes have no relationship to each other'],
         correct: 0,
         rationale: 'Progressive PR lengthening followed by a dropped QRS — then the cycle resets — is the defining pattern of Wenckebach (second degree type 1). This is what makes it predictable and distinguishes it from type 2.'
@@ -447,28 +451,43 @@ function updateScore() {
 }
 
 function pickAnswer(partId, chosenI, correctI) {
+  const isCorrect = chosenI === correctI;
+
+  if (!isCorrect) {
+    // Wrong — shake the chosen button, don't lock anything
+    const btn = document.querySelector(`[data-part="${partId}"] .opt:nth-child(${chosenI + 1})`);
+    if (btn) {
+      btn.classList.remove('shake');
+      // Force reflow to restart animation
+      void btn.offsetWidth;
+      btn.classList.add('shake');
+      btn.addEventListener('animationend', () => btn.classList.remove('shake'), { once: true });
+    }
+    // Flash wrong briefly
+    btn.style.background = 'var(--wrong-soft)';
+    setTimeout(() => { btn.style.background = ''; }, 600);
+    return; // Do nothing else — let them try again
+  }
+
+  // Correct — lock all buttons, show feedback, advance
   document.querySelectorAll(`[data-part="${partId}"] .opt`).forEach((b, i) => {
     b.setAttribute('disabled', 'true');
     if (i === correctI) b.classList.add('correct');
-    else if (i === chosenI) b.classList.add('wrong');
     else b.classList.add('dimmed');
   });
 
-  const isCorrect = chosenI === correctI;
   totalAnswered++;
-  if (isCorrect) totalCorrect++;
+  totalCorrect++;
   updateScore();
 
   const [si, pi] = partId.split('-').map(Number);
   const part = STRIPS[si].parts[pi];
 
-  document.getElementById(`verdict-${partId}`).textContent = isCorrect
-    ? `✓ Correct — ${LETTERS[correctI]} is right.`
-    : `✗ You chose ${LETTERS[chosenI]}. Correct: ${LETTERS[correctI]}.`;
+  document.getElementById(`verdict-${partId}`).textContent = `✓ Correct — ${LETTERS[correctI]} is right.`;
   document.getElementById(`rat-${partId}`).textContent = part.rationale;
 
   const fb = document.getElementById(`fb-${partId}`);
-  fb.classList.add(isCorrect ? 'correct' : 'wrong');
+  fb.classList.add('correct');
   requestAnimationFrame(() => requestAnimationFrame(() => fb.classList.add('show')));
 
   const isLastPart = pi === STRIPS[si].parts.length - 1;
@@ -477,15 +496,11 @@ function pickAnswer(partId, chosenI, correctI) {
     setTimeout(() => {
       const currentPart = document.getElementById(`part-${si}-${pi}`);
       const nextPart = document.getElementById(`part-${si}-${pi + 1}`);
-
-      // Slide current out left
       currentPart.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
       currentPart.style.opacity = '0';
       currentPart.style.transform = 'translateX(-50px)';
-
       setTimeout(() => {
         currentPart.style.display = 'none';
-        // Slide next in from right
         nextPart.classList.remove('hidden');
         nextPart.style.opacity = '0';
         nextPart.style.transform = 'translateX(50px)';
