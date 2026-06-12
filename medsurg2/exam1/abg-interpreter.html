@@ -76,7 +76,52 @@ h1 { font-family: 'Fraunces', serif; font-size: 2.1rem; font-weight: 500; color:
 }
 .q-stem strong { color: var(--ink); font-weight: 600; }
 
-/* Two-column body */
+/* Method toggle */
+.method-toggle {
+  display: flex; align-items: center; gap: 8px; margin: 14px 0 0;
+}
+.method-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-mute); }
+.method-btn {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 7px; cursor: pointer; border: 1.5px solid var(--border-strong);
+  background: var(--surface2); color: var(--ink-mute); transition: all 0.15s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.method-btn:hover { border-color: var(--accent); color: var(--accent); }
+.method-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+/* ROME panel */
+.rome-rows { display: flex; flex-direction: column; gap: 8px; }
+.rome-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px; transition: border-color 0.2s;
+}
+.rome-row.classified { border-color: var(--teal); }
+.rome-val-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-mute); min-width: 48px; }
+.rome-val-num { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; color: var(--ink); min-width: 38px; }
+.rome-btns { display: flex; gap: 5px; flex: 1; justify-content: flex-end; }
+.rome-pick-btn {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+  padding: 5px 9px; border-radius: 6px; cursor: pointer;
+  border: 1.5px solid var(--border-strong); background: transparent;
+  color: var(--ink-mute); transition: all 0.12s; white-space: nowrap;
+}
+.rome-pick-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.rome-pick-btn.selected { background: var(--teal); color: #fff; border-color: var(--teal); }
+
+/* ROME conclusion */
+.rome-conclusion-box {
+  margin-top: 10px; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: 9px; padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.rome-concl-line { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; }
+.rome-concl-label { font-family: 'JetBrains Mono', monospace; color: var(--ink-mute); font-size: 12px; }
+.rome-concl-val { font-weight: 700; font-size: 13px; }
+.rome-resp  { color: var(--accent); }
+.rome-metab { color: var(--teal); }
+.rome-dim   { color: var(--ink-mute); font-weight: 400; }
 .q-body {
   display: grid;
   grid-template-columns: 1fr 380px;
@@ -97,27 +142,8 @@ h1 { font-family: 'Fraunces', serif; font-size: 2.1rem; font-weight: 500; color:
   text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-mute);
   margin-bottom: 10px;
 }
-.ttt-grid { width: 100%; border-collapse: collapse; }
-.ttt-grid th {
-  font-family: 'JetBrains Mono', monospace; font-size: 13px;
-  text-transform: uppercase; letter-spacing: 0.06em;
-  padding: 8px 2px; text-align: center; border-bottom: 2px solid var(--border-strong);
-}
-.ttt-grid th.ah { color: var(--acid); }
-.ttt-grid th.nh { color: var(--norm); }
-.ttt-grid th.bh { color: var(--base); }
-.ttt-grid td {
-  padding: 4px; text-align: center; border: 1px solid var(--border);
-  height: 64px; vertical-align: middle;
-}
-.ttt-grid td:first-child { border-left: none; }
-.ttt-grid td:last-child { border-right: none; }
-.ttt-grid tr:last-child td { border-bottom: none; }
-.row-label {
-  font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-mute);
-  border: none !important; width: 60px; text-align: right; padding-right: 8px !important;
-  white-space: nowrap;
-}
+.ttt-grid { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.ttt-grid td { vertical-align: middle; }
 .ttt-cell { display: flex; justify-content: center; align-items: center; min-height: 44px; }
 .place-btn {
   font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600;
@@ -173,18 +199,8 @@ h1 { font-family: 'Fraunces', serif; font-size: 2.1rem; font-weight: 500; color:
   border-radius: 8px; padding: 12px;
 }
 .reveal-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; margin-bottom: 8px; }
-.reveal-grid { width: 100%; border-collapse: collapse; }
-.reveal-grid th {
-  font-family: 'JetBrains Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;
-  padding: 6px 4px; text-align: center; border-bottom: 2px solid rgba(0,0,0,0.1);
-}
-.reveal-grid th.ah { color: var(--acid); }
-.reveal-grid th.nh { color: var(--norm); }
-.reveal-grid th.bh { color: var(--base); }
-.reveal-grid td { padding: 7px 4px; text-align: center; border: 1px solid rgba(0,0,0,0.08); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
-.reveal-grid td:first-child { border-left: none; text-align: right; padding-right: 8px; font-size: 13px; opacity: 0.7; width: 60px; }
-.reveal-grid td:last-child { border-right: none; }
-.reveal-grid tr:last-child td { border-bottom: none; }
+.reveal-grid { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.reveal-grid td { vertical-align: middle; }
 .cell-placed { font-weight: 700; padding: 4px 10px; border-radius: 4px; font-size: 13px; }
 .cell-placed.acid-tok { background: var(--acid-soft); color: var(--acid); }
 .cell-placed.norm-tok { background: var(--norm-soft); color: var(--norm); }
@@ -391,6 +407,92 @@ const ROWS = [
 
 let deck = [], idx = 0, correctCount = 0, answered = false, results = [], activeTab = 'full';
 let gridState = {};
+let abgMethod = 'ttt';
+let romeState = { ph: null, co2: null, hco3: null };
+
+function setMethod(m) {
+  abgMethod = m;
+  const ttt = document.getElementById('method-ttt');
+  const rome = document.getElementById('method-rome');
+  const btnTtt = document.getElementById('btn-ttt');
+  const btnRome = document.getElementById('btn-rome');
+  if (ttt)  ttt.style.display  = m === 'ttt'  ? 'block' : 'none';
+  if (rome) rome.style.display = m === 'rome' ? 'block' : 'none';
+  if (btnTtt)  btnTtt.classList.toggle('active',  m === 'ttt');
+  if (btnRome) btnRome.classList.toggle('active', m === 'rome');
+  if (m === 'ttt') renderGrid(answered);
+}
+
+function romeClassify(key, dir) {
+  if (answered) return;
+  romeState[key] = dir;
+
+  // Update button states for this row
+  const row = document.getElementById(`rome-row-${key}`);
+  if (row) {
+    row.querySelectorAll('.rome-pick-btn').forEach(b => {
+      b.classList.remove('selected');
+      if ((dir === 'high'   && b.textContent.includes('↑')) ||
+          (dir === 'normal' && b.textContent.includes('→')) ||
+          (dir === 'low'    && b.textContent.includes('↓'))) {
+        b.classList.add('selected');
+      }
+    });
+    // Mark row as done
+    row.classList.add('classified');
+  }
+
+  // Check if all three are classified
+  if (romeState.ph && romeState.co2 && romeState.hco3) {
+    showRomeConclusion();
+  }
+}
+
+function showRomeConclusion() {
+  const conclusion = document.getElementById('rome-conclusion');
+  if (!conclusion) return;
+
+  const phDir  = romeState.ph;
+  const co2Dir = romeState.co2;
+  const hcoDir = romeState.hco3;
+
+  // Determine acidosis/alkalosis
+  const acidBase = phDir === 'low' ? 'Acidosis' : phDir === 'high' ? 'Alkalosis' : 'Normal pH';
+  const phArrow  = phDir === 'low' ? '↓' : phDir === 'high' ? '↑' : '→';
+
+  // ROME checks
+  const respOpposite =
+    (phDir === 'low'  && co2Dir === 'high') ||
+    (phDir === 'high' && co2Dir === 'low');
+  const metabSame =
+    (phDir === 'low'  && hcoDir === 'low')  ||
+    (phDir === 'high' && hcoDir === 'high');
+
+  const co2Arrow = co2Dir === 'high' ? '↑' : co2Dir === 'low' ? '↓' : '→';
+  const hcoArrow = hcoDir === 'high' ? '↑' : hcoDir === 'low' ? '↓' : '→';
+
+  let html = `<div class="rome-conclusion-box">`;
+  html += `<div class="rome-concl-line"><span class="rome-concl-label">pH ${phArrow}</span><span class="rome-concl-val">${acidBase}</span></div>`;
+  html += `<div class="rome-concl-line">
+    <span class="rome-concl-label">PaCO₂ ${co2Arrow} vs pH ${phArrow}</span>
+    <span class="rome-concl-val ${respOpposite ? 'rome-resp' : 'rome-dim'}">${respOpposite ? 'Opposite → Respiratory' : 'Same → Not Respiratory'}</span>
+  </div>`;
+  html += `<div class="rome-concl-line">
+    <span class="rome-concl-label">HCO₃⁻ ${hcoArrow} vs pH ${phArrow}</span>
+    <span class="rome-concl-val ${metabSame ? 'rome-metab' : 'rome-dim'}">${metabSame ? 'Same → Metabolic' : 'Opposite → Not Metabolic'}</span>
+  </div>`;
+  html += `</div>`;
+
+  conclusion.innerHTML = html;
+  conclusion.style.display = 'block';
+  conclusion.style.opacity = '0';
+  conclusion.style.transform = 'translateY(6px)';
+  conclusion.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    conclusion.style.opacity = '1';
+    conclusion.style.transform = 'translateY(0)';
+  }));
+}
 
 function colClass(col) {
   return col === 'acid' ? 'acid-tok' : col === 'norm' ? 'norm-tok' : col === 'base' ? 'base-tok' : '';
@@ -423,7 +525,10 @@ function startQuiz() {
   buildDeck(); idx = 0; correctCount = 0; answered = false; results = [];
   renderQuestion();
 }
-function resetGrid() { gridState = { ph: null, co2: null, hco3: null }; }
+function resetGrid() {
+  gridState = { ph: null, co2: null, hco3: null };
+  romeState  = { ph: null, co2: null, hco3: null };
+}
 
 function placeToken(rowKey, col) {
   if (answered) return;
@@ -440,53 +545,77 @@ function renderGrid(locked) {
   const wrap = document.getElementById('ttt-wrap');
   if (!wrap) return;
   const cols = ['acid','norm','base'];
-  let html = `<table class="ttt-grid"><thead><tr>
-    <th style="border:none;width:54px"></th>
-    <th class="ah">ACID</th><th class="nh">NORMAL</th><th class="bh">BASE</th>
-  </tr></thead><tbody>`;
+  const colLabels = { acid: 'ACID', norm: 'NORMAL', base: 'BASE' };
+  const colColors = { acid: 'var(--acid)', norm: 'var(--norm)', base: 'var(--base)' };
+  const colBgs    = { acid: 'var(--acid-soft)', norm: 'var(--norm-soft)', base: 'var(--base-soft)' };
+
+  let html = `<table class="ttt-grid"><tbody>`;
+
+  // Top row — the 3 label squares
+  html += `<tr>`;
+  cols.forEach(col => {
+    html += `<td style="background:${colBgs[col]};border:2px solid ${colColors[col]};text-align:center;padding:10px 4px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:${colColors[col]};letter-spacing:0.06em;">${colLabels[col]}</td>`;
+  });
+  html += `</tr>`;
+
+  // Rows 2 and 3 — pH, PaCO₂, HCO₃⁻
   ROWS.forEach(row => {
-    html += `<tr><td class="row-label">${row.label}</td>`;
+    html += `<tr>`;
     cols.forEach(col => {
       const placed = gridState[row.key] === col;
-      html += `<td><div class="ttt-cell">`;
+      html += `<td style="border:1px solid var(--border);height:60px;text-align:center;vertical-align:middle;padding:4px;">`;
+      html += `<div class="ttt-cell">`;
       if (placed && !locked) {
         html += `<button class="token ${colClass(col)}" onclick="removeToken('${row.key}')">${row.label} <span class="tok-x">✕</span></button>`;
       } else if (placed && locked) {
         html += `<span class="token ${colClass(col)}" style="cursor:default">${row.label}</span>`;
       } else if (!locked && gridState[row.key] === null) {
-        html += `<button class="place-btn" onclick="placeToken('${row.key}','${col}')">${colLabel(col)}</button>`;
+        html += `<button class="place-btn" onclick="placeToken('${row.key}','${col}')" title="${row.label}">${row.label}</button>`;
       }
       html += `</div></td>`;
     });
     html += `</tr>`;
   });
+
   html += `</tbody></table>`;
+
   if (!locked) {
     const allPlaced = ROWS.every(r => gridState[r.key] !== null);
-    html += `<p class="tray-hint">${allPlaced ? '✓ Grid filled — select your answer.' : 'Click a column to place each value. Click a token to move it.'}</p>`;
+    html += `<p class="tray-hint">${allPlaced ? '✓ Grid filled — select your answer.' : 'Click a cell to place each value. Click a token to move it.'}</p>`;
   }
   wrap.innerHTML = html;
 }
 
 function renderRevealGrid(q) {
   const cols = ['acid','norm','base'];
-  let html = `<table class="reveal-grid"><thead><tr>
-    <th style="border:none;width:55px"></th>
-    <th class="ah">ACID</th><th class="nh">NORMAL</th><th class="bh">BASE</th>
-  </tr></thead><tbody>`;
+  const colLabels = { acid: 'ACID', norm: 'NORMAL', base: 'BASE' };
+  const colColors = { acid: 'var(--acid)', norm: 'var(--norm)', base: 'var(--base)' };
+  const colBgs    = { acid: 'var(--acid-soft)', norm: 'var(--norm-soft)', base: 'var(--base-soft)' };
+
+  let html = `<table class="reveal-grid"><tbody>`;
+
+  // Top row — label squares
+  html += `<tr>`;
+  cols.forEach(col => {
+    html += `<td style="background:${colBgs[col]};border:2px solid ${colColors[col]};text-align:center;padding:8px 4px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:${colColors[col]};letter-spacing:0.06em;">${colLabels[col]}</td>`;
+  });
+  html += `</tr>`;
+
+  // Value rows
   ROWS.forEach(row => {
     const correctCol = classify(row.key, q);
-    html += `<tr><td>${row.label}</td>`;
+    html += `<tr>`;
     cols.forEach(col => {
       if (col === correctCol) {
         const studentOk = gridState[row.key] === col;
-        html += `<td><span class="cell-placed ${colClass(col)}">${row.label}${studentOk ? ' ✓' : ''}</span></td>`;
+        html += `<td style="border:1px solid rgba(0,0,0,0.08);padding:7px 4px;text-align:center;"><span class="cell-placed ${colClass(col)}">${row.label}${studentOk ? ' ✓' : ''}</span></td>`;
       } else {
-        html += `<td><span class="cell-empty">·</span></td>`;
+        html += `<td style="border:1px solid rgba(0,0,0,0.08);padding:7px 4px;text-align:center;"><span class="cell-empty">·</span></td>`;
       }
     });
     html += `</tr>`;
   });
+
   return html + `</tbody></table>`;
 }
 
@@ -496,6 +625,67 @@ function renderQuestion() {
   const area = document.getElementById('quiz-area');
   const pct = Math.round((idx / deck.length) * 100);
   const scoreText = idx > 0 ? Math.round((correctCount / idx) * 100) + '%' : '—';
+
+  // Auto-arrows based on normal ranges
+  function arrow(key, val) {
+    const v = parseFloat(val);
+    if (key === 'ph')   return v < 7.35 ? '↓' : v > 7.45 ? '↑' : '→';
+    if (key === 'co2')  return v > 45   ? '↑' : v < 35   ? '↓' : '→';
+    if (key === 'hco3') return v > 26   ? '↑' : v < 22   ? '↓' : '→';
+  }
+  function arrowColor(key, val) {
+    const v = parseFloat(val);
+    if (key === 'ph')   return v < 7.35 ? 'var(--acid)' : v > 7.45 ? 'var(--base)' : 'var(--norm)';
+    if (key === 'co2')  return v > 45   ? 'var(--acid)' : v < 35   ? 'var(--base)' : 'var(--norm)';
+    if (key === 'hco3') return v > 26   ? 'var(--base)' : v < 22   ? 'var(--acid)' : 'var(--norm)';
+  }
+
+  const phArrow   = arrow('ph',   q.ph);
+  const co2Arrow  = arrow('co2',  q.co2);
+  const hco3Arrow = arrow('hco3', q.hco3);
+  const phColor   = arrowColor('ph',   q.ph);
+  const co2Color  = arrowColor('co2',  q.co2);
+  const hco3Color = arrowColor('hco3', q.hco3);
+
+  const methodToggleHTML = `
+    <div class="method-toggle">
+      <span class="method-label">Method:</span>
+      <button id="btn-ttt" class="method-btn${abgMethod==='ttt'?' active':''}" onclick="setMethod('ttt')">
+        <i class="fa-solid fa-table-cells"></i> Tic-Tac-Toe
+      </button>
+      <button id="btn-rome" class="method-btn${abgMethod==='rome'?' active':''}" onclick="setMethod('rome')">
+        <i class="fa-solid fa-arrows-up-down"></i> ROME
+      </button>
+    </div>`;
+
+  const tttHTML = `
+    <div id="method-ttt" style="display:${abgMethod==='ttt'?'block':'none'}">
+      <div class="ttt-label">Plot each value <span style="font-weight:400;opacity:0.6;text-transform:none;letter-spacing:0">(optional)</span></div>
+      <div style="font-size:11px;color:var(--ink-mute);margin-bottom:8px;line-height:1.5">Use this to organize the data — you don't need to fill it in to answer.</div>
+      <div id="ttt-wrap"></div>
+    </div>`;
+
+  const romeHTML = `
+    <div id="method-rome" style="display:${abgMethod==='rome'?'block':'none'}">
+      <div class="ttt-label">ROME Method <span style="font-weight:400;opacity:0.6;text-transform:none;letter-spacing:0">(optional)</span></div>
+      <div style="font-size:11px;color:var(--ink-mute);margin-bottom:12px;line-height:1.5">Classify each value — then the pattern reveals itself.</div>
+      <div class="rome-rows" id="rome-rows">
+        ${['ph','co2','hco3'].map((key, i) => {
+          const label = key === 'ph' ? 'pH' : key === 'co2' ? 'PaCO₂' : 'HCO₃⁻';
+          const val   = key === 'ph' ? q.ph : key === 'co2' ? q.co2 : q.hco3;
+          return `<div class="rome-row" id="rome-row-${key}">
+            <span class="rome-val-label">${label}</span>
+            <span class="rome-val-num">${val}</span>
+            <div class="rome-btns">
+              <button class="rome-pick-btn" onclick="romeClassify('${key}','high')">↑ High</button>
+              <button class="rome-pick-btn" onclick="romeClassify('${key}','normal')">→ Normal</button>
+              <button class="rome-pick-btn" onclick="romeClassify('${key}','low')">↓ Low</button>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+      <div id="rome-conclusion" style="display:none"></div>
+    </div>`;
 
   let optsHTML = q.opts.map((o, i) => `
     <button class="opt" onclick="__abgPick(${i})">
@@ -512,6 +702,7 @@ function renderQuestion() {
     <div class="question-card">
       <div class="q-meta"><span class="q-num">Q${idx + 1}</span><span class="q-tag">ABG</span></div>
       <div class="q-stem">${q.scenario}</div>
+      ${methodToggleHTML}
       <div class="q-body">
         <div class="q-left">
           <div class="options" id="opts">${optsHTML}</div>
@@ -519,14 +710,13 @@ function renderQuestion() {
         </div>
         <div class="q-right">
           <div class="ttt-section">
-            <div class="ttt-label"><i class="fa-solid fa-table-cells"></i> &nbsp;Plot each value <span style="font-weight:400;opacity:0.6;text-transform:none;letter-spacing:0">(optional)</span></div>
-            <div style="font-size:11px;color:var(--ink-mute);margin-bottom:8px;line-height:1.5">Use this to organize the data — you don't need to fill it in to answer.</div>
-            <div id="ttt-wrap"></div>
+            ${tttHTML}
+            ${romeHTML}
           </div>
         </div>
       </div>
     </div>`;
-  renderGrid(false);
+  if (abgMethod === 'ttt') renderGrid(false);
 }
 
 function pick(chosenI) {
@@ -641,6 +831,8 @@ window.__abgTab = setTab;
 window.__abgStart = startQuiz;
 window.placeToken = placeToken;
 window.removeToken = removeToken;
+window.setMethod = setMethod;
+window.romeClassify = romeClassify;
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startQuiz);
 else startQuiz();
