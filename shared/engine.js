@@ -99,16 +99,12 @@
       if (streak === 6 && !onFire) {
         onFire = true;
         showFireToast();
-        setTimeout(updateStreakUI, 300);
-      } else if (onFire) {
-        updateStreakUI();
+      } else if (streak > 6 && onFire) {
+        // badge will be re-applied after render
       }
     } else {
       streak = 0;
-      if (onFire) {
-        onFire = false;
-        updateStreakUI();
-      }
+      onFire = false;
     }
   }
 
@@ -168,6 +164,8 @@
         <div id="feedback"></div>
       </div>
     `;
+    // Apply fire badge if streak is active
+    if (onFire) updateStreakUI();
   }
 
   function pick(chosenI) {
