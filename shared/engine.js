@@ -23,6 +23,94 @@
   }
 
   let deck = [], idx = 0, correctCount = 0, answered = false, results = [], activeTab = 'full';
+  let streak = 0, onFire = false;
+
+  // ── Streak / Fire system ──────────────────────────────────────
+  function injectFireStyles() {
+    if (document.getElementById('fire-styles')) return;
+    const style = document.createElement('style');
+    style.id = 'fire-styles';
+    style.textContent = `
+      /* Fire badge — persistent */
+      .fire-badge {
+        display: inline-flex; align-items: center; gap: 5px;
+        font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+        color: #c94f00; background: #fff3eb; border: 1.5px solid #f4a56a;
+        padding: 3px 10px; border-radius: 20px;
+        animation: badgePop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+      }
+      @keyframes badgePop {
+        from { transform: scale(0.5); opacity: 0; }
+        to   { transform: scale(1);   opacity: 1; }
+      }
+      /* Fire toast — big burst */
+      .fire-toast {
+        position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) scale(0.6);
+        background: linear-gradient(135deg, #ff6b00, #ff9500);
+        color: #fff; font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600;
+        padding: 14px 32px; border-radius: 50px;
+        box-shadow: 0 8px 32px rgba(255,107,0,0.45);
+        z-index: 9999; opacity: 0; white-space: nowrap;
+        animation: toastBurst 2.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+        pointer-events: none;
+      }
+      @keyframes toastBurst {
+        0%   { transform: translateX(-50%) scale(0.6); opacity: 0; }
+        20%  { transform: translateX(-50%) scale(1.08); opacity: 1; }
+        35%  { transform: translateX(-50%) scale(0.97); opacity: 1; }
+        70%  { transform: translateX(-50%) scale(1);    opacity: 1; }
+        100% { transform: translateX(-50%) scale(1);    opacity: 0; }
+      }
+      /* Flame pulse on score pill row */
+      .score-pill.on-fire {
+        background: #fff3eb; color: #c94f00; border: 1.5px solid #f4a56a;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function showFireToast() {
+    const toast = document.createElement('div');
+    toast.className = 'fire-toast';
+    toast.textContent = '🔥 On Fire!';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2500);
+  }
+
+  function updateStreakUI() {
+    const pill = document.querySelector('.score-pill');
+    if (!pill) return;
+    if (onFire) {
+      // replace score pill content to add flame badge
+      const scoreText = pill.textContent.replace('🔥', '').trim();
+      pill.innerHTML = `${scoreText} &nbsp;<span class="fire-badge">🔥 On Fire</span>`;
+      pill.classList.add('on-fire');
+    } else {
+      pill.classList.remove('on-fire');
+      // restore clean score text
+      const scoreText = (idx > 0) ? Math.round((correctCount / idx) * 100) + '%' : '—';
+      pill.textContent = scoreText;
+    }
+  }
+
+  function handleStreak(isCorrect) {
+    if (isCorrect) {
+      streak++;
+      if (streak === 6 && !onFire) {
+        onFire = true;
+        showFireToast();
+        setTimeout(updateStreakUI, 300);
+      } else if (onFire) {
+        updateStreakUI();
+      }
+    } else {
+      streak = 0;
+      if (onFire) {
+        onFire = false;
+        updateStreakUI();
+      }
+    }
+  }
 
   function buildDeck() {
     let pool = shuffle(QUESTIONS);
@@ -36,8 +124,10 @@
   }
 
   function startQuiz() {
+    injectFireStyles();
     buildDeck();
     idx = 0; correctCount = 0; answered = false; results = [];
+    streak = 0; onFire = false;
     renderQuestion();
   }
 
@@ -87,6 +177,7 @@
     const correctI = q.opts.findIndex(o => o.isCorrect);
     const isCorrect = chosenI === correctI;
     if (isCorrect) correctCount++;
+    handleStreak(isCorrect);
 
     document.querySelectorAll('.opt').forEach((b, i) => {
       b.setAttribute('disabled', 'true');
