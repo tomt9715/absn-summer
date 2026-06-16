@@ -31,65 +31,105 @@
     const style = document.createElement('style');
     style.id = 'fire-styles';
     style.textContent = `
-      /* Fire badge — persistent */
+      /* Persistent badge next to Q number */
       .fire-badge {
-        display: inline-flex; align-items: center; gap: 5px;
-        font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+        display: inline-flex; align-items: center; gap: 4px;
+        font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
         color: #c94f00; background: #fff3eb; border: 1.5px solid #f4a56a;
-        padding: 3px 10px; border-radius: 20px;
-        animation: badgePop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+        padding: 3px 9px; border-radius: 20px; letter-spacing: 0.03em;
+        animation: badgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
       }
       @keyframes badgePop {
-        from { transform: scale(0.5); opacity: 0; }
+        from { transform: scale(0.4); opacity: 0; }
         to   { transform: scale(1);   opacity: 1; }
       }
-      /* Fire toast — big burst */
-      .fire-toast {
-        position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) scale(0.6);
-        background: linear-gradient(135deg, #ff6b00, #ff9500);
-        color: #fff; font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600;
-        padding: 14px 32px; border-radius: 50px;
-        box-shadow: 0 8px 32px rgba(255,107,0,0.45);
-        z-index: 9999; opacity: 0; white-space: nowrap;
-        animation: toastBurst 2.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+
+      /* Full-width bottom sweep banner */
+      .fire-sweep {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
         pointer-events: none;
+        z-index: 9999;
+        height: 64px;
+        display: flex; align-items: center; justify-content: center;
+        opacity: 0;
+        animation: sweepFade 3s ease forwards;
       }
-      @keyframes toastBurst {
-        0%   { transform: translateX(-50%) scale(0.6); opacity: 0; }
-        20%  { transform: translateX(-50%) scale(1.08); opacity: 1; }
-        35%  { transform: translateX(-50%) scale(0.97); opacity: 1; }
-        70%  { transform: translateX(-50%) scale(1);    opacity: 1; }
-        100% { transform: translateX(-50%) scale(1);    opacity: 0; }
+      @keyframes sweepFade {
+        0%   { opacity: 0; }
+        15%  { opacity: 1; }
+        70%  { opacity: 1; }
+        100% { opacity: 0; }
       }
-      /* Flame pulse on score pill row */
-      .score-pill.on-fire {
-        background: #fff3eb; color: #c94f00; border: 1.5px solid #f4a56a;
+      .fire-sweep-bar {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: linear-gradient(90deg, transparent, rgba(255,140,0,0.15), rgba(255,80,0,0.25), rgba(255,140,0,0.15), transparent);
+        animation: barSlide 3s ease forwards;
+      }
+      @keyframes barSlide {
+        0%   { transform: translateX(-100%); }
+        20%  { transform: translateX(0); }
+        80%  { transform: translateX(0); }
+        100% { transform: translateX(100%); }
+      }
+      .fire-sweep-line {
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #ff8c00, #ff5500, #ff8c00, transparent);
+        animation: lineSweep 3s ease forwards;
+      }
+      @keyframes lineSweep {
+        0%   { transform: scaleX(0); opacity: 0; }
+        20%  { transform: scaleX(1); opacity: 1; }
+        75%  { transform: scaleX(1); opacity: 1; }
+        100% { transform: scaleX(1); opacity: 0; }
+      }
+      .fire-sweep-text {
+        position: relative;
+        font-family: 'Fraunces', serif;
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #c94f00;
+        letter-spacing: -0.01em;
+        text-align: center;
+        animation: textRise 3s ease forwards;
+        text-shadow: 0 2px 12px rgba(255,140,0,0.3);
+      }
+      @keyframes textRise {
+        0%   { transform: translateY(10px); opacity: 0; }
+        20%  { transform: translateY(0);    opacity: 1; }
+        70%  { transform: translateY(0);    opacity: 1; }
+        100% { transform: translateY(-4px); opacity: 0; }
       }
     `;
     document.head.appendChild(style);
   }
 
   function showFireToast() {
-    const toast = document.createElement('div');
-    toast.className = 'fire-toast';
-    toast.textContent = '🔥 On Fire!';
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 2500);
+    const sweep = document.createElement('div');
+    sweep.className = 'fire-sweep';
+    sweep.innerHTML = `
+      <div class="fire-sweep-bar"></div>
+      <div class="fire-sweep-line"></div>
+      <div class="fire-sweep-text">🔥 On Fire</div>
+    `;
+    document.body.appendChild(sweep);
+    setTimeout(() => sweep.remove(), 3100);
   }
 
   function updateStreakUI() {
-    const pill = document.querySelector('.score-pill');
-    if (!pill) return;
-    if (onFire) {
-      // replace score pill content to add flame badge
-      const scoreText = pill.textContent.replace('🔥', '').trim();
-      pill.innerHTML = `${scoreText} &nbsp;<span class="fire-badge">🔥 On Fire</span>`;
-      pill.classList.add('on-fire');
-    } else {
-      pill.classList.remove('on-fire');
-      // restore clean score text
-      const scoreText = (idx > 0) ? Math.round((correctCount / idx) * 100) + '%' : '—';
-      pill.textContent = scoreText;
+    const meta = document.querySelector('.q-meta');
+    if (!meta) return;
+    const existing = meta.querySelector('.fire-badge');
+    if (onFire && !existing) {
+      const badge = document.createElement('span');
+      badge.className = 'fire-badge';
+      badge.textContent = '🔥 On Fire';
+      meta.appendChild(badge);
+    } else if (!onFire && existing) {
+      existing.remove();
     }
   }
 
@@ -99,12 +139,12 @@
       if (streak === 6 && !onFire) {
         onFire = true;
         showFireToast();
-      } else if (streak > 6 && onFire) {
-        // badge will be re-applied after render
       }
     } else {
       streak = 0;
-      onFire = false;
+      if (onFire) {
+        onFire = false;
+      }
     }
   }
 
@@ -164,8 +204,7 @@
         <div id="feedback"></div>
       </div>
     `;
-    // Apply fire badge if streak is active
-    if (onFire) updateStreakUI();
+    updateStreakUI();
   }
 
   function pick(chosenI) {
@@ -225,6 +264,7 @@
   }
 
   function showResults() {
+    streak = 0; onFire = false;
     const pct = Math.round((correctCount / deck.length) * 100);
     const pass = pct >= PASS;
     try {
