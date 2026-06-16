@@ -44,79 +44,114 @@
         to   { transform: scale(1);   opacity: 1; }
       }
 
-      /* Full-width bottom sweep banner */
-      .fire-sweep {
+      /* Actual fire animation from bottom */
+      .fire-container {
         position: fixed;
         bottom: 0; left: 0; right: 0;
+        height: 160px;
         pointer-events: none;
         z-index: 9999;
-        height: 64px;
-        display: flex; align-items: center; justify-content: center;
+        display: flex; align-items: flex-end;
         opacity: 0;
-        animation: sweepFade 3s ease forwards;
+        animation: fireEnter 4s ease forwards;
       }
-      @keyframes sweepFade {
+      @keyframes fireEnter {
         0%   { opacity: 0; }
-        15%  { opacity: 1; }
-        70%  { opacity: 1; }
+        10%  { opacity: 1; }
+        75%  { opacity: 1; }
         100% { opacity: 0; }
       }
-      .fire-sweep-bar {
+      .fire-container svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .flame {
+        transform-origin: bottom center;
+        animation: flicker 0.6s ease-in-out infinite alternate;
+      }
+      .flame:nth-child(2)  { animation-duration: 0.7s; animation-delay: 0.1s; }
+      .flame:nth-child(3)  { animation-duration: 0.5s; animation-delay: 0.2s; }
+      .flame:nth-child(4)  { animation-duration: 0.8s; animation-delay: 0.05s; }
+      .flame:nth-child(5)  { animation-duration: 0.65s; animation-delay: 0.15s; }
+      .flame:nth-child(6)  { animation-duration: 0.55s; animation-delay: 0.25s; }
+      .flame:nth-child(7)  { animation-duration: 0.75s; animation-delay: 0.08s; }
+      .flame:nth-child(8)  { animation-duration: 0.6s; animation-delay: 0.18s; }
+      .flame:nth-child(9)  { animation-duration: 0.7s; animation-delay: 0.12s; }
+      .flame:nth-child(10) { animation-duration: 0.5s; animation-delay: 0.22s; }
+      .flame:nth-child(11) { animation-duration: 0.8s; animation-delay: 0.03s; }
+      .flame:nth-child(12) { animation-duration: 0.6s; animation-delay: 0.28s; }
+      @keyframes flicker {
+        0%   { transform: scaleY(1)   scaleX(1)    skewX(0deg); }
+        100% { transform: scaleY(0.8) scaleX(0.92) skewX(3deg); }
+      }
+      .fire-text {
         position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: linear-gradient(90deg, transparent, rgba(255,140,0,0.15), rgba(255,80,0,0.25), rgba(255,140,0,0.15), transparent);
-        animation: barSlide 3s ease forwards;
-      }
-      @keyframes barSlide {
-        0%   { transform: translateX(-100%); }
-        20%  { transform: translateX(0); }
-        80%  { transform: translateX(0); }
-        100% { transform: translateX(100%); }
-      }
-      .fire-sweep-line {
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, #ff8c00, #ff5500, #ff8c00, transparent);
-        animation: lineSweep 3s ease forwards;
-      }
-      @keyframes lineSweep {
-        0%   { transform: scaleX(0); opacity: 0; }
-        20%  { transform: scaleX(1); opacity: 1; }
-        75%  { transform: scaleX(1); opacity: 1; }
-        100% { transform: scaleX(1); opacity: 0; }
-      }
-      .fire-sweep-text {
-        position: relative;
+        bottom: 140px;
+        left: 50%;
+        transform: translateX(-50%);
         font-family: 'Fraunces', serif;
-        font-size: 1.3rem;
+        font-size: 1.6rem;
         font-weight: 600;
-        color: #c94f00;
-        letter-spacing: -0.01em;
-        text-align: center;
-        animation: textRise 3s ease forwards;
-        text-shadow: 0 2px 12px rgba(255,140,0,0.3);
+        color: #fff;
+        white-space: nowrap;
+        text-shadow: 0 0 20px rgba(255,100,0,0.9), 0 2px 8px rgba(0,0,0,0.3);
+        animation: textFloat 4s ease forwards;
       }
-      @keyframes textRise {
-        0%   { transform: translateY(10px); opacity: 0; }
-        20%  { transform: translateY(0);    opacity: 1; }
-        70%  { transform: translateY(0);    opacity: 1; }
-        100% { transform: translateY(-4px); opacity: 0; }
+      @keyframes textFloat {
+        0%   { opacity: 0; transform: translateX(-50%) translateY(20px); }
+        15%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+        70%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+        100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
       }
     `;
     document.head.appendChild(style);
   }
 
   function showFireToast() {
-    const sweep = document.createElement('div');
-    sweep.className = 'fire-sweep';
-    sweep.innerHTML = `
-      <div class="fire-sweep-bar"></div>
-      <div class="fire-sweep-line"></div>
-      <div class="fire-sweep-text">🔥 On Fire</div>
+    const el = document.createElement('div');
+    el.className = 'fire-container';
+    el.innerHTML = `
+      <div class="fire-text">🔥 On Fire</div>
+      <svg viewBox="0 0 1440 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="fg1" cx="50%" cy="100%" r="60%">
+            <stop offset="0%" stop-color="#fff176"/>
+            <stop offset="40%" stop-color="#ff9500"/>
+            <stop offset="100%" stop-color="#ff3d00" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="fg2" cx="50%" cy="100%" r="60%">
+            <stop offset="0%" stop-color="#ffeb3b"/>
+            <stop offset="50%" stop-color="#ff6d00"/>
+            <stop offset="100%" stop-color="#b71c1c" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Base glow -->
+        <ellipse cx="720" cy="160" rx="760" ry="60" fill="#ff3d00" opacity="0.35"/>
+        <!-- Flame shapes — outer layer -->
+        <path class="flame" d="M0,160 C60,130 80,80 120,50 C140,90 130,120 160,160Z" fill="url(#fg1)" opacity="0.7"/>
+        <path class="flame" d="M100,160 C160,110 200,40 250,10 C270,60 260,110 300,160Z" fill="url(#fg1)" opacity="0.8"/>
+        <path class="flame" d="M240,160 C290,120 310,60 360,20 C380,70 370,120 410,160Z" fill="url(#fg2)" opacity="0.75"/>
+        <path class="flame" d="M370,160 C420,100 460,30 510,5 C530,55 510,120 550,160Z" fill="url(#fg1)" opacity="0.85"/>
+        <path class="flame" d="M490,160 C540,110 580,50 620,15 C645,65 630,120 670,160Z" fill="url(#fg2)" opacity="0.8"/>
+        <path class="flame" d="M620,160 C670,100 710,35 760,8 C780,55 765,115 800,160Z" fill="url(#fg1)" opacity="0.85"/>
+        <path class="flame" d="M750,160 C800,105 840,40 885,12 C905,62 890,120 930,160Z" fill="url(#fg2)" opacity="0.75"/>
+        <path class="flame" d="M880,160 C930,110 970,45 1015,15 C1035,65 1020,120 1060,160Z" fill="url(#fg1)" opacity="0.8"/>
+        <path class="flame" d="M1010,160 C1060,100 1100,35 1150,10 C1170,60 1155,115 1195,160Z" fill="url(#fg2)" opacity="0.85"/>
+        <path class="flame" d="M1150,160 C1195,115 1230,55 1270,20 C1290,70 1275,120 1315,160Z" fill="url(#fg1)" opacity="0.75"/>
+        <path class="flame" d="M1280,160 C1325,110 1360,50 1400,18 C1420,65 1405,120 1440,160Z" fill="url(#fg2)" opacity="0.8"/>
+        <!-- Inner brighter layer -->
+        <path class="flame" d="M60,160 C100,140 115,105 140,80 C155,105 148,135 175,160Z" fill="#ffeb3b" opacity="0.6"/>
+        <path class="flame" d="M200,160 C240,130 270,80 305,55 C320,85 310,130 340,160Z" fill="#fff176" opacity="0.55"/>
+        <path class="flame" d="M430,160 C465,125 490,75 525,45 C540,78 532,128 560,160Z" fill="#ffeb3b" opacity="0.6"/>
+        <path class="flame" d="M650,160 C685,125 710,70 748,40 C762,75 752,128 780,160Z" fill="#fff176" opacity="0.55"/>
+        <path class="flame" d="M870,160 C905,128 930,72 968,42 C982,77 972,128 1000,160Z" fill="#ffeb3b" opacity="0.6"/>
+        <path class="flame" d="M1100,160 C1135,128 1160,72 1198,42 C1212,77 1202,128 1230,160Z" fill="#fff176" opacity="0.55"/>
+        <path class="flame" d="M1330,160 C1360,132 1380,88 1408,62 C1420,90 1412,132 1440,160Z" fill="#ffeb3b" opacity="0.6"/>
+      </svg>
     `;
-    document.body.appendChild(sweep);
-    setTimeout(() => sweep.remove(), 3100);
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 4200);
   }
 
   function updateStreakUI() {
