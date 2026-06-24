@@ -31,17 +31,16 @@
 </div>
 
 <script>
-  // ── Add exams here as they're built ──
   const EXAMS = [
     { name: "Exam 1", topics: "Dysrhythmias · Vision & Hearing · Fluid & Electrolytes", date: "June 16", href: "exam1/index.html", ready: true },
-    { name: "Exam 2", topics: "Shock & MODS · Burns", date: "July 7", href: "exam1/index.html", ready: true },
+    { name: "Exam 2", topics: "Shock & MODS · Burns", date: "July 7",  href: "exam2/index.html", ready: true },
     { name: "Exam 3", topics: "TBD", date: "July 28", href: null, ready: false },
     { name: "Final",  topics: "Comprehensive", date: "Aug 11", href: null, ready: false }
   ];
 
   const wrap = document.getElementById('exam-list');
   let html = '<div class="nav-grid two">';
-  EXAMS.forEach((e, i) => {
+  EXAMS.forEach(e => {
     const cls = e.ready ? 'quiz-card' : 'quiz-card sim-locked';
     const href = e.href || '#';
     const badge = e.ready

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MedSurg II — Exam 1 Study Hub</title>
+<title>MedSurg II — Exam 2 Study Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="../../shared/hub.css">
@@ -16,13 +16,13 @@
     <div class="hero-inner">
       <a href="../index.html" class="hub-back">← MedSurg II exams</a>
       <span class="eyebrow">MedSurg II · Manhattanville</span>
-      <h1 class="hero-title">Exam 1 <em>Study Hub</em></h1>
+      <h1 class="hero-title">Exam 2 <em>Study Hub</em></h1>
 
       <div class="countdown-card">
         <div class="countdown-num" id="cd-num">—</div>
         <div class="countdown-meta">
           <span class="countdown-label">Days until exam</span>
-          <span class="countdown-date" id="cd-date">Monday, June 16</span>
+          <span class="countdown-date" id="cd-date">Monday, July 7</span>
           <span class="countdown-sub" id="cd-sub">&nbsp;</span>
         </div>
         <div class="countdown-divider"></div>
@@ -41,32 +41,6 @@
   </header>
 
   <div id="topics"></div>
-
-  <a class="sim-card" href="ekg-interpreter.html" style="background:var(--surface2);border-color:var(--border-strong);text-decoration:none;display:flex;align-items:center;justify-content:space-between;padding:22px 26px;border-radius:12px;margin-bottom:1rem;border:1.5px solid">
-    <div>
-      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-mute);display:block;margin-bottom:6px">EKG Interpreter</span>
-      <div style="font-family:'Fraunces',serif;font-size:1.25rem;font-weight:500;color:var(--ink)">Strip Interpretation</div>
-      <span style="font-size:14px;color:var(--ink-soft)">9 strips · 4-step framework · rate, rhythm, P waves, QRS</span>
-    </div>
-    <span style="font-size:22px;color:var(--ink-mute)"><i class="fa-solid fa-heart-pulse"></i></span>
-  </a>
-
-  <a class="sim-card" href="abg-interpreter.html" style="background:var(--teal-soft);border-color:var(--teal);text-decoration:none;display:flex;align-items:center;justify-content:space-between;padding:22px 26px;border-radius:12px;margin-bottom:1rem;border:1.5px solid">
-    <div>
-      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);display:block;margin-bottom:6px">ABG Interpreter</span>
-      <div style="font-family:'Fraunces',serif;font-size:1.25rem;font-weight:500;color:var(--ink)">Tic-Tac-Toe &amp; ROME Methods</div>
-      <span style="font-size:14px;color:var(--ink-soft)">20 scenarios · choose your method · classify, identify, interpret</span>
-    </div>
-    <span style="font-size:22px;color:var(--teal)"><i class="fa-solid fa-table-cells"></i></span>
-  </a>
-
-  <a class="sim-card" href="simulator.html" id="sim-card">
-    <div class="sim-left">
-      <span class="qc-type">Exam Simulator</span>
-      <div class="sim-name">Full mixed simulator</div>
-      <span class="sim-sub">56 questions · all topics · reshuffles every attempt</span>
-    </div>
-  </a>
 
   <div class="howto">
     <h3>How to get the most out of this</h3>
@@ -89,39 +63,23 @@
 
 <script>
   const EXAM = {
-    date: "2026-06-16",
-    dateLabel: "Monday, June 16",
+    date: "2026-07-07",
+    dateLabel: "Monday, July 7",
     topics: [
       {
-        name: "Dysrhythmias",
-        count: "66 questions",
+        name: "Shock & MODS",
+        count: "55 questions",
         quizzes: [
-          { type: "Knowledge Check", name: "Know it cold", count: "43 questions", href: "dysrhythmias-kc.html", key: "ms2_e1_dysr_kc" },
-          { type: "Deep Drill",     name: "Apply it",     count: "23 questions", href: "dysrhythmias-dd.html", key: "ms2_e1_dysr_dd" }
+          { type: "Knowledge Check", name: "Know it cold", count: "35 questions", href: "shock-mods-kc.html", key: "ms2_e2_shock_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "20 questions", href: "shock-mods-dd.html", key: "ms2_e2_shock_dd" }
         ]
       },
       {
-        name: "Vision & Hearing",
-        count: "77 questions",
+        name: "Burns",
+        count: "Coming soon",
         quizzes: [
-          { type: "Knowledge Check", name: "Know it cold", count: "52 questions", href: "vision-hearing-kc.html", key: "ms2_e1_vh_kc" },
-          { type: "Deep Drill",     name: "Apply it",     count: "25 questions", href: "vision-hearing-dd.html", key: "ms2_e1_vh_dd" }
-        ]
-      },
-      {
-        name: "Respiratory Disorders",
-        count: "70 questions",
-        quizzes: [
-          { type: "Knowledge Check", name: "Know it cold", count: "48 questions", href: "respiratory-kc.html", key: "ms2_e1_resp_kc" },
-          { type: "Deep Drill",     name: "Apply it",     count: "22 questions", href: "respiratory-dd.html", key: "ms2_e1_resp_dd" }
-        ]
-      },
-      {
-        name: "Fluid & Electrolytes",
-        count: "63 questions",
-        quizzes: [
-          { type: "Knowledge Check", name: "Know it cold", count: "43 questions", href: "fluids-electrolytes-kc.html", key: "ms2_e1_fe_kc" },
-          { type: "Deep Drill",     name: "Apply it",     count: "20 questions", href: "fluids-electrolytes-dd.html", key: "ms2_e1_fe_dd" }
+          { type: "Knowledge Check", name: "Know it cold", count: "Coming soon", href: null, key: "ms2_e2_burns_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "Coming soon", href: null, key: "ms2_e2_burns_dd" }
         ]
       }
     ]
