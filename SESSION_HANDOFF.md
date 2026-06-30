@@ -59,10 +59,12 @@ absn-summer/
     │   └── data/ (5 cluster files + simulator.js)
     └── exam2/
         ├── index.html                  ← Psych Exam 2 hub (source = uploaded study guides, not Obsidian)
+        ├── simulator.html              ← Psych Exam 2 simulator (50 Q, exact blueprint, incl. SATA)
         ├── addiction-kc.html / -dd.html
         ├── mood-kc.html / -dd.html
         ├── schizophrenia-kc.html / -dd.html
         └── data/
+            ├── simulator.js            ← 50 Q, fixed, matches professor blueprint exactly (16/17/17, 2 SATA)
             ├── addiction-kc.js / -dd.js
             ├── mood-kc.js / -dd.js
             └── schizophrenia-kc.js / -dd.js
@@ -88,7 +90,7 @@ absn-summer/
 - `correct: 0` source convention for single-select — correct answer always at index 0 in data file
 - **SATA (Select All That Apply) support:** set `correct` to an array of indices instead of a number (e.g. `correct: [0,1,2,3]`) to make a question SATA. Engine auto-detects via `Array.isArray(q.correct)`. Renders as toggleable checkboxes with a "Submit answer" button (disabled until at least one option is selected) instead of immediate-pick evaluation.
 - **SATA partial credit:** scored as (correct options selected − incorrect options selected) / total correct options, floored at 0, capped at 1. Example: a question with 4 correct answers out of 6 options — selecting 3 correct + 1 incorrect nets (3-1)/4 = 50% credit on that question. Full marks require selecting exactly the correct set. The streak/fire system only counts a SATA question toward the streak if it earned full credit. Results review shows a gold "◐ Partial" badge with the points breakdown (e.g. "3/4 correct, 1 incorrect selected") distinct from the green "✓ Correct" and red "✗ Missed" badges. Added June 30, 2026, upgraded from all-or-nothing to partial credit same day per Tom's request.
-- Optional `cfg.maxQuestions` cap (Exam 1 simulator uses 50 of 56; Exam 2 simulator sets 50 but the bank is exactly 50, so it's really just a safety cap, not a subsample)
+- Optional `cfg.maxQuestions` cap (Exam 1 simulators use a draw from a larger pool; Exam 2 simulators for both MedSurg and Psych set 50 but the bank is exactly 50, so it's really just a safety cap, not a subsample)
 - `image:` field support — renders image above stem with skeleton shimmer loader
 - **Streak/fire system:** 10 consecutive correct → CSS flame animation on Q number (orange glowing circle with flickering CSS flame tips above it, no emoji). Resets on wrong answer. No popup animation — just the Q number itself.
 - localStorage score persistence per quiz key (score is now able to be a non-integer percentage during accumulation when SATA partial credit is involved, but displayed percent is always rounded)
@@ -154,11 +156,11 @@ All 5 clusters complete + 45-Q simulator. Keys: `ps_e1_*`
 
 ### Psych Exam 2 (`psych/exam2/`)
 
-New hub, started June 30, 2026. Unlike MedSurg (sourced from Tom's own Obsidian lecture notes), Psych Exam 2 source material is two uploaded study guides since Tom's professor provides a comprehensive review sheet instead of requiring personal notes:
+New hub, built June 30, 2026. Unlike MedSurg (sourced from Tom's own Obsidian lecture notes), Psych Exam 2 source material is two uploaded study guides since Tom's professor provides a comprehensive review sheet instead of requiring personal notes:
 1. **Primary source (authoritative):** `NUR2010_Exam2_Master_StudyGuide.docx` — Tom's actual professor's guide. Contains the exact exam blueprint: 50 questions / 65 minutes / 2 SATA-NGN questions, split Ch 19 Addiction (16Q), Ch 17 Mood Disorders & Suicide (17Q), Ch 16 Schizophrenia & Psychosis (17Q).
 2. **Secondary source (supplementary only):** `Psych_Study_Guide_Exam_2__Luiza_.pdf` — a different student's guide from a prior semester with a different professor. Compared against the primary guide; content overlaps heavily with no contradictions found. Used only to add non-conflicting depth (e.g. carbamazepine details, Beck Depression Inventory score cutoffs, succinylcholine as the ECT muscle relaxant, repetitive TMS, naloxone ED-observation requirement, anticholinergic toxicity mnemonic). One soft conflict noted: secondary guide states SSRIs in Bipolar I must always be paired specifically with olanzapine; primary guide only states an antidepressant should never be given alone in bipolar disorder without naming a specific agent. Treated the broader, primary-guide framing as the test-relevant fact and did not assert the olanzapine specificity as guaranteed exam content.
 
-Tom built this exam topic by topic rather than all at once. **All 3 topics are now complete (164 questions total).**
+**All 3 topics + the simulator are now complete (214 questions total).**
 
 | Topic | KC | DD | Status |
 |---|---|---|---|
@@ -166,9 +168,14 @@ Tom built this exam topic by topic rather than all at once. **All 3 topics are n
 | Mood Disorders & Suicide (Ch 17) | 34 | 18 | Complete |
 | Schizophrenia & Psychosis (Ch 16) | 36 | 20 | Complete |
 
-No exam date set yet for Psych Exam 2 — hub countdown card currently shows "TBD" with a placeholder internal date (2026-07-14) that doesn't display; update `EXAM.date` and `EXAM.dateLabel` in `psych/exam2/index.html` once Tom confirms the actual date.
+**Simulator** (`psych/exam2/simulator.html` + `data/simulator.js`): 50 questions, fixed bank matching the professor's exact blueprint:
+- Ch. 19 Addiction & Substance Use — 16 questions (no SATA)
+- Ch. 17 Mood Disorders & Suicide — 17 questions (1 SATA: lithium toxicity findings)
+- Ch. 16 Schizophrenia & Psychosis — 17 questions (1 SATA: negative symptom findings)
 
-**No Psych Exam 2 simulator yet — this is now unblocked since all 3 topics are done.** The exact blueprint is already known from the primary study guide: 50 questions / 65 minutes / 2 SATA-NGN questions total, split Ch 19 Addiction (16Q), Ch 17 Mood Disorders & Suicide (17Q), Ch 16 Schizophrenia & Psychosis (17Q). Should mirror the MedSurg Exam 2 simulator approach: a fixed (not randomly subsampled) 50-question bank with brand-new application/priority questions distinct from the KC/DD banks, built to this exact chapter/SATA distribution.
+All 50 are new application/priority-style questions distinct from the KC/DD banks, mirroring the MedSurg Exam 2 simulator approach exactly. The 2 SATA questions match the blueprint's "2 SATA-NGN questions" requirement, distributed one in Mood Disorders (lithium toxicity, 4 correct of 6 options) and one in Schizophrenia (5 A's negative symptoms, 4 correct of 6 options), leaving Addiction as straightforward single-select to balance question-writing complexity across chapters.
+
+No exam date set yet for Psych Exam 2 — hub countdown card currently shows "TBD" with a placeholder internal date (2026-07-14) that doesn't display; update `EXAM.date` and `EXAM.dateLabel` in `psych/exam2/index.html` once Tom confirms the actual date.
 
 **Addiction & Substance Use topic build notes:** heavily weighted toward the alcohol withdrawal timeline and DTs vasodilation/vasoconstriction mechanism (explicitly tested misconception: DTs cause hypertension/tachycardia, not hypotension/bradycardia), opioid overdose vs. withdrawal contrast, the naloxone/methadone/buprenorphine/naltrexone/clonidine medication framework (which drug for which phase), and the disulfiram-causes-acetaldehyde-syndrome-NOT-methadone distinction the guide calls out as "consistently tested."
 
@@ -269,6 +276,15 @@ Fixed 50-question bank (not a draw-from-larger-pool like Exam 1) because Tom sup
 
 SATA scoring uses partial credit (see Engine Features above), not all-or-nothing.
 
+## Psych Exam 2 Simulator — Key Decisions
+
+Fixed 50-question bank (not a draw-from-larger-pool), same approach as the MedSurg Exam 2 simulator, since the professor's study guide supplied the exact blueprint. Question distribution:
+- Ch. 19 Addiction (16, no SATA): triage prioritization across withdrawal severities, DTs recognition, opioid OD vs withdrawal and naloxone follow-up, methadone QT risk, naltrexone safety teaching, disulfiram-alcohol reaction, stimulant/PCP/xylazine recognition, dual diagnosis, enabling vs codependency, relapse prevention and 12-step framing
+- Ch. 17 Mood Disorders & Suicide (17, 1 SATA): manic-phase nursing care, lithium toxicity recognition and teaching (SATA: toxicity findings), SSRI danger window, MAOI tyramine crisis, bupropion contraindication, ECT consent/post-procedure care, serotonin syndrome vs NMS, suicide risk assessment and discharge teaching, BDI interpretation, carbamazepine monitoring
+- Ch. 16 Schizophrenia & Psychosis (17, 1 SATA): command hallucination and home-visit safety priority actions, EPS recognition across all types (SATA: negative symptom findings), clozapine agranulocytosis monitoring, NMS, antipsychotic-specific side effects (risperidone hyperprolactinemia, aripiprazole akathisia, olanzapine+benzo respiratory risk, chlorpromazine potency profile), paranoid schizophrenia nursing care, delusion/hallucination vocabulary application
+
+SATA scoring uses partial credit (see Engine Features above), not all-or-nothing.
+
 ---
 
 ## LocalStorage Keys
@@ -304,6 +320,7 @@ SATA scoring uses partial credit (see Engine Features above), not all-or-nothing
 | Mood Disorders & Suicide DD | `ps_e2_mood_dd` |
 | Schizophrenia & Psychosis KC | `ps_e2_schiz_kc` |
 | Schizophrenia & Psychosis DD | `ps_e2_schiz_dd` |
+| Psych Exam 2 Simulator | `ps_e2_sim` |
 
 To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browser console, then refresh.
 
@@ -327,13 +344,13 @@ To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browse
 
 ## Pending / Next Session
 
-- Build the Psych Exam 2 simulator now that all 3 topics are complete (50 Q, exact blueprint: 16/17/17 split, 2 SATA/NGN questions) — see build notes above
 - Confirm actual Psych Exam 2 date and update `psych/exam2/index.html` countdown card (currently shows "TBD")
 - More EKG strips to screenshot and add: V-tach, Torsades de Pointes, second degree type 2, third degree heart block, asystole
 - ROME method: consider adding "leans acid / leans base" pH option for fully compensated ABG cases
 - Psych Exam 1 simulator DD answer choices audit — same embedded-definition issue as MedSurg DD files, not yet fixed
 - TNC platform Phase 4 (UI/UX redesign) and Phase 5 — separate product at thenursingcollective.pro
 - MedSurg Exam 3 once that course material/Obsidian notes exist
+- Psych Exam 2 is now fully built out (3 topics + simulator). Next major content push would be Psych Exam 3 once that course material exists.
 
 ---
 
