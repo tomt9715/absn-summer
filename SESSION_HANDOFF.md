@@ -1,5 +1,5 @@
 # ABSN Summer Study Site — Session Handoff
-**Last updated:** June 16, 2026  
+**Last updated:** June 30, 2026  
 **Repo:** `absn-summer` → live at `tomt9715.github.io/absn-summer/`  
 **Local repo:** `/Users/tomthomas/Documents/GitHub/absn-summer/`  
 **Deploy:** GitHub Desktop → commit → push
@@ -36,6 +36,15 @@ absn-summer/
 │       ├── Glaucoma.jpg
 │       ├── age-related-macular-degeneration.jpg
 │       └── [9 EKG strip JPEGs]
+├── medsurg2/exam2/
+│   ├── index.html                      ← MedSurg II Exam 2 hub
+│   ├── shock-mods-kc.html / -dd.html
+│   ├── burns-kc.html / -dd.html
+│   ├── kidney-kc.html / -dd.html
+│   └── data/
+│       ├── shock-mods-kc.js / -dd.js
+│       ├── burns-kc.js / -dd.js
+│       └── kidney-kc.js / -dd.js
 └── psych/exam1/
     ├── index.html
     ├── simulator.html
@@ -91,6 +100,20 @@ absn-summer/
 | Respiratory | 48 | 22 |
 | Fluid & Electrolytes | 43 | 20 |
 | Simulator | 56 Q bank, draws 50 | — |
+
+### MedSurg II Exam 2 (`medsurg2/exam2/`)
+
+Same shared-engine architecture as Exam 1, separate hub at `medsurg2/exam2/index.html`. Exam date: Monday, July 7.
+
+| Topic | KC | DD | Status |
+|---|---|---|---|
+| Shock, Sepsis & MODS | 36 | 20 | Complete |
+| Burns Management | 26 | 21 | Complete |
+| Kidney Disorders | 34 | 20 | Complete |
+| Hepatic Disorders | — | — | Coming soon |
+| Biliary Disorders | — | — | Coming soon |
+
+No Exam 2 simulator yet — hold off until remaining topics (Hepatic, Biliary) are built, then build a combined simulator like the Exam 1 one.
 
 ### Psych Exam 1
 All 5 clusters complete + 45-Q simulator. Keys: `ps_e1_*`
@@ -195,6 +218,12 @@ stapedectomy, enucleation, cardiac tamponade, glucagon antidote for beta blocker
 | EKG Interpreter | `ms2_e1_ekg` |
 | ABG Interpreter | `ms2_e1_abg` |
 | Psych Simulator | `ps_e1_sim` |
+| Shock, Sepsis & MODS KC | `ms2_e2_shock_kc` |
+| Shock, Sepsis & MODS DD | `ms2_e2_shock_dd` |
+| Burns Management KC | `ms2_e2_burns_kc` |
+| Burns Management DD | `ms2_e2_burns_dd` |
+| Kidney Disorders KC | `ms2_e2_kidney_kc` |
+| Kidney Disorders DD | `ms2_e2_kidney_dd` |
 
 To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browser console, then refresh.
 
@@ -216,6 +245,8 @@ To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browse
 
 ## Pending / Next Session
 
+- Build Hepatic Disorders and Biliary Disorders topics for Exam 2 (notes already exist in Obsidian: `MedSurg II/Exam 2/2026-06-30 Hepatic Disorders.md` and `2026-06-30 Biliary Disorders.md`)
+- Once all 5 Exam 2 topics are built, build a combined Exam 2 simulator (mirror the Exam 1 56-Q bank / draws-50 pattern)
 - More EKG strips to screenshot and add: V-tach, Torsades de Pointes, second degree type 2, third degree heart block, asystole
 - ROME method: consider adding "leans acid / leans base" pH option for fully compensated ABG cases
 - Psych simulator DD answer choices audit — same embedded-definition issue as MedSurg DD files, not yet fixed
