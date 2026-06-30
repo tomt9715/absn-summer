@@ -30,10 +30,10 @@ window.QUESTIONS = [
     rationale: "The zone of stasis surrounds the zone of coagulation and is ischemic but still viable if perfusion is restored. Inadequate fluid resuscitation causes this zone to convert to coagulation (irreversible necrosis), deepening the burn. Adequate resuscitation is the primary intervention that preserves this zone."
   },
   {
-    stem: "A nurse is preparing to administer the Parkland formula to a 70 kg patient with a 40% total body surface area burn. What is the total volume of lactated Ringer's to be given in the first 24 hours, and how much should be infused in the first 8 hours?",
-    options: ["11,200 mL total; 5,600 mL in the first 8 hours from the time of the burn", "11,200 mL total; 5,600 mL in the first 8 hours from the time of hospital arrival", "5,600 mL total; 2,800 mL in the first 8 hours from the time of hospital arrival", "2,800 mL total; 1,400 mL in the first 8 hours from the time of the burn"],
+    stem: "A patient with deep partial-thickness burns to 15% total body surface area is 10 days post-injury. The wound bed appears pale and dry with no signs of re-epithelialization. What does the nurse anticipate regarding ongoing wound management?",
+    options: ["The wound will likely require skin grafting, since deep partial-thickness burns without re-epithelialization by this point often need surgical closure", "Continued conservative dressing changes alone, since deep partial-thickness burns always heal spontaneously regardless of timeline", "Immediate amputation, since pale dry tissue indicates irreversible necrosis at this depth", "Discontinuation of all wound care, since the absence of pain indicates the wound has already healed"],
     correct: 0,
-    rationale: "The Parkland formula is 4 mL x weight in kg x percent TBSA burned. 4 x 70 x 40 equals 11,200 mL total. The first half (5,600 mL) is given in the first 8 hours calculated from the TIME OF THE BURN, not the time of arrival. The second half is given over the following 16 hours."
+    rationale: "Deep partial-thickness burns that show no progression toward re-epithelialization by 10 to 14 days often require surgical intervention with skin grafting to achieve timely wound closure and minimize scarring and infection risk. Conservative management alone is appropriate only when healing is progressing as expected."
   },
   {
     stem: "Which population is at highest risk for burn injuries, and why does this population sustain more severe burns than the general adult population?",
@@ -109,7 +109,7 @@ window.QUESTIONS = [
   },
   {
     stem: "A patient is admitted with burns to the face, bilateral hands, and perineum following an industrial accident. The burns are full thickness. What is the priority next step in the patient's care beyond initial stabilization?",
-    options: ["Transfer to a burn center, since burns to the face, hands, and perineum meet major burn criteria regardless of total body surface area percentage", "Initiate the Parkland formula resuscitation and monitor urine output without transfer since total body surface area is less than 20%", "Apply silver sulfadiazine to all burned areas including the face and begin twice-daily wound care on the unit", "Obtain plastic surgery consultation and schedule skin grafting within the first 24 hours of admission"],
+    options: ["Transfer to a burn center, since burns to the face, hands, and perineum meet major burn criteria regardless of total body surface area percentage", "Initiate fluid resuscitation and monitor urine output without transfer since total body surface area is less than 20%", "Apply silver sulfadiazine to all burned areas including the face and begin twice-daily wound care on the unit", "Obtain plastic surgery consultation and schedule skin grafting within the first 24 hours of admission"],
     correct: 0,
     rationale: "Burns involving the face, hands, feet, genitalia, perineum, or major joints meet burn center transfer criteria regardless of total body surface area. These are functionally and aesthetically critical areas requiring specialized multidisciplinary care. Silver sulfadiazine is also contraindicated on the face. Transfer to a burn center is the priority."
   },
