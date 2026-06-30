@@ -51,10 +51,17 @@ absn-summer/
 │       ├── kidney-kc.js / -dd.js
 │       ├── hepatic-kc.js / -dd.js
 │       └── biliary-kc.js / -dd.js
-└── psych/exam1/
-    ├── index.html
-    ├── simulator.html
-    └── data/ (5 cluster files + simulator.js)
+└── psych/
+    ├── index.html                      ← Psych exams root list (Exam 1, 2, 3, Final)
+    ├── exam1/
+    │   ├── index.html
+    │   ├── simulator.html
+    │   └── data/ (5 cluster files + simulator.js)
+    └── exam2/
+        ├── index.html                  ← Psych Exam 2 hub (new, source = uploaded study guide, not Obsidian)
+        ├── addiction-kc.html / -dd.html
+        └── data/
+            └── addiction-kc.js / -dd.js
 ```
 
 ---
@@ -94,7 +101,7 @@ absn-summer/
 - Distractor length parity — correct answer must not be >1.5x longer than avg wrong answers
 - All questions must map to content covered in KC/DD files for that topic
 - No EKG reading/identification questions in the simulator or DD files — those belong exclusively to the EKG Interpreter
-- When Obsidian notes flag content with `[!danger]`, `[!warning]` callouts, or explicit "TEST NOTE" / "professor's exam focus" language, that content gets heavier question coverage relative to its share of the notes
+- When source material flags content with explicit emphasis (Obsidian `[!danger]`/`[!warning]` callouts, "TEST NOTE" language, or a professor study guide's red/highlighted/bolded text), that content gets heavier question coverage relative to its share of the material
 - Simulator questions are always brand-new, NCLEX-style application/priority questions distinct from the KC/DD bank for that topic — never reused verbatim
 
 ---
@@ -136,8 +143,30 @@ Hepatic Disorders notes flagged two guaranteed-question topics ("there will be a
 
 Biliary Disorders notes flagged several `[!danger]` sections (cholecystitis signs/symptoms, post-op cholecystectomy interventions, patient education, pancreatitis signs/symptoms and nursing management) — all got proportionally heavier coverage, especially the pancreatitis subtopic.
 
+Note: Burns content (KC, DD, and simulator) intentionally excludes Parkland formula calculation questions — Tom confirmed only Rule of Nines TBSA calculations are tested, not Parkland fluid resuscitation math. Existing Parkland calc questions were pulled and backfilled with Rule of Nines / other burns content to preserve question counts.
+
 ### Psych Exam 1
 All 5 clusters complete + 45-Q simulator. Keys: `ps_e1_*`
+
+### Psych Exam 2 (`psych/exam2/`)
+
+New hub, started June 30, 2026. Unlike MedSurg (sourced from Tom's own Obsidian lecture notes), Psych Exam 2 source material is two uploaded study guides since Tom's professor provides a comprehensive review sheet instead of requiring personal notes:
+1. **Primary source (authoritative):** `NUR2010_Exam2_Master_StudyGuide.docx` — Tom's actual professor's guide. Contains the exact exam blueprint: 50 questions / 65 minutes / 2 SATA-NGN questions, split Ch 19 Addiction (16Q), Ch 17 Mood Disorders & Suicide (17Q), Ch 16 Schizophrenia & Psychosis (17Q).
+2. **Secondary source (supplementary only):** `Psych_Study_Guide_Exam_2__Luiza_.pdf` — a different student's guide from a prior semester with a different professor. Compared against the primary guide; content overlaps heavily with no contradictions found. Used only to add non-conflicting depth (e.g. carbamazepine details, Beck Depression Inventory score cutoffs, succinylcholine as the ECT muscle relaxant, repetitive TMS, naloxone ED-observation requirement). One soft conflict noted: secondary guide states SSRIs in Bipolar I must always be paired specifically with olanzapine; primary guide only states an antidepressant should never be given alone in bipolar disorder without naming a specific agent. Treated the broader, primary-guide framing as the test-relevant fact and did not assert the olanzapine specificity as guaranteed exam content.
+
+Tom builds this exam topic by topic rather than all at once.
+
+| Topic | KC | DD | Status |
+|---|---|---|---|
+| Addiction & Substance Use (Ch 19) | 36 | 20 | Complete |
+| Mood Disorders & Suicide (Ch 17) | — | — | Coming soon |
+| Schizophrenia & Psychosis (Ch 16) | — | — | Coming soon |
+
+No exam date set yet for Psych Exam 2 — hub countdown card currently shows "TBD" with a placeholder internal date (2026-07-14) that doesn't display; update `EXAM.date` and `EXAM.dateLabel` in `psych/exam2/index.html` once Tom confirms the actual date.
+
+No Psych Exam 2 simulator yet — hold until all 3 topics are built, then build a 50-question simulator matching the exact blueprint (16/17/17 split with 2 SATA/NGN questions), mirroring the MedSurg Exam 2 simulator approach.
+
+**Addiction & Substance Use topic build notes:** heavily weighted toward the alcohol withdrawal timeline and DTs vasodilation/vasoconstriction mechanism (explicitly tested misconception: DTs cause hypertension/tachycardia, not hypotension/bradycardia), opioid overdose vs. withdrawal contrast, the naloxone/methadone/buprenorphine/naltrexone/clonidine medication framework (which drug for which phase), and the disulfiram-causes-acetaldehyde-syndrome-NOT-methadone distinction the guide calls out as "consistently tested."
 
 ---
 
@@ -226,7 +255,7 @@ stapedectomy, enucleation, cardiac tamponade, glucagon antidote for beta blocker
 Fixed 50-question bank (not a draw-from-larger-pool like Exam 1) because Tom supplied the exact professor blueprint by chapter and SATA count. Engine still shuffles question order and answer-choice order each attempt. Question distribution:
 - Ch. 11 Shock/Sepsis/MODS (12, 2 SATA): shock-type identification and priority interventions across all 5 shock types, vasopressor safety (SATA), MODS recognition (SATA), lactate trend interpretation
 - Ch. 48 Kidney Disorders (12, 1 SATA): AKI category identification (prerenal/intrarenal/postrenal), hyperkalemia emergencies, GFR/dialysis thresholds, ESKD complications, nephrotic syndrome findings (SATA)
-- Ch. 57 Burns Management (12): Parkland formula and Rule of Nines calculations, zone of stasis, burn center transfer criteria, inhalation injury, CO poisoning, escharotomy, psychosocial care
+- Ch. 57 Burns Management (12): Rule of Nines TBSA calculations (x2 — no Parkland formula, see note above), zone of stasis, burn center transfer criteria, inhalation injury, CO poisoning, escharotomy, psychosocial care
 - Ch. 43 Hepatic Disorders (7): lactulose titration, hepatitis transmission, asterixis/encephalopathy staging, variceal bleeding, hepatotoxic med avoidance, paracentesis care, bleeding risk
 - Ch. 44 Biliary Disorders (7): cholecystitis recognition, ERCP NPO requirements, pancreatitis pain/labs, hypocalcemia severity correlation, JP drain troubleshooting, chronic pancreatitis causes, lithotripsy
 
@@ -249,7 +278,7 @@ SATA scoring uses partial credit (see Engine Features above), not all-or-nothing
 | MedSurg II Exam 1 Simulator | `ms2_e1_sim` |
 | EKG Interpreter | `ms2_e1_ekg` |
 | ABG Interpreter | `ms2_e1_abg` |
-| Psych Simulator | `ps_e1_sim` |
+| Psych Exam 1 Simulator | `ps_e1_sim` |
 | Shock, Sepsis & MODS KC | `ms2_e2_shock_kc` |
 | Shock, Sepsis & MODS DD | `ms2_e2_shock_dd` |
 | Burns Management KC | `ms2_e2_burns_kc` |
@@ -261,6 +290,8 @@ SATA scoring uses partial credit (see Engine Features above), not all-or-nothing
 | Biliary Disorders KC | `ms2_e2_biliary_kc` |
 | Biliary Disorders DD | `ms2_e2_biliary_dd` |
 | MedSurg II Exam 2 Simulator | `ms2_e2_sim` |
+| Addiction & Substance Use KC | `ps_e2_addiction_kc` |
+| Addiction & Substance Use DD | `ps_e2_addiction_dd` |
 
 To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browser console, then refresh.
 
@@ -278,16 +309,20 @@ To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browse
 - `correct: 0` convention always for single-select; `correct: [array]` for SATA
 - SATA questions score with partial credit, not all-or-nothing
 - absn-summer stays free for cohort — TNC is the paid product (kept strictly separate)
+- For Psych Exam 2: build one topic at a time rather than all at once, and confirm relevance/conflicts when supplementary (non-professor) source material is introduced
 
 ---
 
 ## Pending / Next Session
 
+- Build remaining Psych Exam 2 topics: Mood Disorders & Suicide (Ch 17, target ~34 KC / ~18 DD) and Schizophrenia & Psychosis (Ch 16, target ~36 KC / ~20 DD), one at a time per Tom's preference
+- Once all 3 Psych Exam 2 topics are done, build the 50-question simulator matching the blueprint exactly (16/17/17 split, 2 SATA/NGN questions)
+- Confirm actual Psych Exam 2 date and update `psych/exam2/index.html` countdown card (currently shows "TBD")
 - More EKG strips to screenshot and add: V-tach, Torsades de Pointes, second degree type 2, third degree heart block, asystole
 - ROME method: consider adding "leans acid / leans base" pH option for fully compensated ABG cases
-- Psych simulator DD answer choices audit — same embedded-definition issue as MedSurg DD files, not yet fixed
+- Psych Exam 1 simulator DD answer choices audit — same embedded-definition issue as MedSurg DD files, not yet fixed
 - TNC platform Phase 4 (UI/UX redesign) and Phase 5 — separate product at thenursingcollective.pro
-- Exam 2 is now fully built out (5 topics + simulator). Next major content push would be Exam 3 once that course material/Obsidian notes exist.
+- MedSurg Exam 3 once that course material/Obsidian notes exist
 
 ---
 
