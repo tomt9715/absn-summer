@@ -42,11 +42,13 @@ absn-summer/
 │   ├── burns-kc.html / -dd.html
 │   ├── kidney-kc.html / -dd.html
 │   ├── hepatic-kc.html / -dd.html
+│   ├── biliary-kc.html / -dd.html
 │   └── data/
 │       ├── shock-mods-kc.js / -dd.js
 │       ├── burns-kc.js / -dd.js
 │       ├── kidney-kc.js / -dd.js
-│       └── hepatic-kc.js / -dd.js
+│       ├── hepatic-kc.js / -dd.js
+│       └── biliary-kc.js / -dd.js
 └── psych/exam1/
     ├── index.html
     ├── simulator.html
@@ -106,7 +108,7 @@ absn-summer/
 
 ### MedSurg II Exam 2 (`medsurg2/exam2/`)
 
-Same shared-engine architecture as Exam 1, separate hub at `medsurg2/exam2/index.html`. Exam date: Monday, July 7.
+Same shared-engine architecture as Exam 1, separate hub at `medsurg2/exam2/index.html`. Exam date: Monday, July 7. **All 5 topics complete — 231 questions total.**
 
 | Topic | KC | DD | Status |
 |---|---|---|---|
@@ -114,11 +116,13 @@ Same shared-engine architecture as Exam 1, separate hub at `medsurg2/exam2/index
 | Burns Management | 26 | 21 | Complete |
 | Kidney Disorders | 34 | 20 | Complete |
 | Hepatic Disorders | 32 | 18 | Complete |
-| Biliary Disorders | — | — | Coming soon |
+| Biliary Disorders | 28 | 16 | Complete |
 
-No Exam 2 simulator yet — hold off until Biliary Disorders is also built, then build a combined simulator like the Exam 1 one.
+No Exam 2 simulator built yet. All 5 topics are now done, so this is unblocked — next session should build a combined simulator mirroring the Exam 1 pattern (56-Q bank, draws 50, hard NCLEX-style priority questions, no isolated recall items).
 
-Hepatic Disorders notes flagged two guaranteed-question topics ("there will be a question about lactulose" and a hepatitis transmission-modes test note) — both got dedicated heavy coverage across KC and DD (lactulose mechanism + monitoring, all three hepatitis transmission routes and vaccine schedules).
+Hepatic Disorders notes flagged two guaranteed-question topics ("there will be a question about lactulose" and a hepatitis transmission-modes test note) — both got dedicated heavy coverage across KC and DD.
+
+Biliary Disorders notes flagged several `[!danger]` sections (cholecystitis signs/symptoms, post-op cholecystectomy interventions, patient education, pancreatitis signs/symptoms and nursing management) — all got proportionally heavier coverage, especially the pancreatitis subtopic (8 KC + 6 DD of the 28/16 total).
 
 ### Psych Exam 1
 All 5 clusters complete + 45-Q simulator. Keys: `ps_e1_*`
@@ -231,6 +235,8 @@ stapedectomy, enucleation, cardiac tamponade, glucagon antidote for beta blocker
 | Kidney Disorders DD | `ms2_e2_kidney_dd` |
 | Hepatic Disorders KC | `ms2_e2_hepatic_kc` |
 | Hepatic Disorders DD | `ms2_e2_hepatic_dd` |
+| Biliary Disorders KC | `ms2_e2_biliary_kc` |
+| Biliary Disorders DD | `ms2_e2_biliary_dd` |
 
 To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browser console, then refresh.
 
@@ -252,8 +258,7 @@ To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browse
 
 ## Pending / Next Session
 
-- Build Biliary Disorders topic for Exam 2 (notes already exist in Obsidian: `MedSurg II/Exam 2/2026-06-30 Biliary Disorders.md`)
-- Once all 5 Exam 2 topics are built, build a combined Exam 2 simulator (mirror the Exam 1 56-Q bank / draws-50 pattern)
+- Build the Exam 2 simulator now that all 5 topics are complete (mirror the Exam 1 56-Q bank / draws-50 pattern; pull priority/application-style questions across Shock/MODS, Burns, Kidney, Hepatic, and Biliary)
 - More EKG strips to screenshot and add: V-tach, Torsades de Pointes, second degree type 2, third degree heart block, asystole
 - ROME method: consider adding "leans acid / leans base" pH option for fully compensated ABG cases
 - Psych simulator DD answer choices audit — same embedded-definition issue as MedSurg DD files, not yet fixed
