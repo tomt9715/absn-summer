@@ -156,7 +156,7 @@ All 5 clusters complete + 45-Q simulator. Keys: `ps_e1_*`
 
 ### Psych Exam 2 (`psych/exam2/`)
 
-New hub, built June 30, 2026. Unlike MedSurg (sourced from Tom's own Obsidian lecture notes), Psych Exam 2 source material is two uploaded study guides since Tom's professor provides a comprehensive review sheet instead of requiring personal notes:
+New hub, built June 30, 2026. Exam date: **Tuesday, July 7** (same day as MedSurg Exam 2). Unlike MedSurg (sourced from Tom's own Obsidian lecture notes), Psych Exam 2 source material is two uploaded study guides since Tom's professor provides a comprehensive review sheet instead of requiring personal notes:
 1. **Primary source (authoritative):** `NUR2010_Exam2_Master_StudyGuide.docx` — Tom's actual professor's guide. Contains the exact exam blueprint: 50 questions / 65 minutes / 2 SATA-NGN questions, split Ch 19 Addiction (16Q), Ch 17 Mood Disorders & Suicide (17Q), Ch 16 Schizophrenia & Psychosis (17Q).
 2. **Secondary source (supplementary only):** `Psych_Study_Guide_Exam_2__Luiza_.pdf` — a different student's guide from a prior semester with a different professor. Compared against the primary guide; content overlaps heavily with no contradictions found. Used only to add non-conflicting depth (e.g. carbamazepine details, Beck Depression Inventory score cutoffs, succinylcholine as the ECT muscle relaxant, repetitive TMS, naloxone ED-observation requirement, anticholinergic toxicity mnemonic). One soft conflict noted: secondary guide states SSRIs in Bipolar I must always be paired specifically with olanzapine; primary guide only states an antidepressant should never be given alone in bipolar disorder without naming a specific agent. Treated the broader, primary-guide framing as the test-relevant fact and did not assert the olanzapine specificity as guaranteed exam content.
 
@@ -174,8 +174,6 @@ New hub, built June 30, 2026. Unlike MedSurg (sourced from Tom's own Obsidian le
 - Ch. 16 Schizophrenia & Psychosis — 17 questions (1 SATA: negative symptom findings)
 
 All 50 are new application/priority-style questions distinct from the KC/DD banks, mirroring the MedSurg Exam 2 simulator approach exactly. The 2 SATA questions match the blueprint's "2 SATA-NGN questions" requirement, distributed one in Mood Disorders (lithium toxicity, 4 correct of 6 options) and one in Schizophrenia (5 A's negative symptoms, 4 correct of 6 options), leaving Addiction as straightforward single-select to balance question-writing complexity across chapters.
-
-No exam date set yet for Psych Exam 2 — hub countdown card currently shows "TBD" with a placeholder internal date (2026-07-14) that doesn't display; update `EXAM.date` and `EXAM.dateLabel` in `psych/exam2/index.html` once Tom confirms the actual date.
 
 **Addiction & Substance Use topic build notes:** heavily weighted toward the alcohol withdrawal timeline and DTs vasodilation/vasoconstriction mechanism (explicitly tested misconception: DTs cause hypertension/tachycardia, not hypotension/bradycardia), opioid overdose vs. withdrawal contrast, the naloxone/methadone/buprenorphine/naltrexone/clonidine medication framework (which drug for which phase), and the disulfiram-causes-acetaldehyde-syndrome-NOT-methadone distinction the guide calls out as "consistently tested."
 
@@ -339,18 +337,18 @@ To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browse
 - SATA questions score with partial credit, not all-or-nothing
 - absn-summer stays free for cohort — TNC is the paid product (kept strictly separate)
 - For Psych Exam 2: build one topic at a time rather than all at once, and confirm relevance/conflicts when supplementary (non-professor) source material is introduced
+- When wiring up countdown dates on hub pages: never leave a placeholder `EXAM.date` in place while showing "TBD" as the label — the countdown number still computes off the placeholder and will show a real-looking but wrong number. Either use the confirmed real date for both `EXAM.date` and `EXAM.dateLabel`, or if truly unconfirmed, the JS countdown logic needs a guard to hide the number entirely (not yet implemented anywhere on the site as of June 30, 2026 — current pattern is to just use a real or best-guess date)
 
 ---
 
 ## Pending / Next Session
 
-- Confirm actual Psych Exam 2 date and update `psych/exam2/index.html` countdown card (currently shows "TBD")
 - More EKG strips to screenshot and add: V-tach, Torsades de Pointes, second degree type 2, third degree heart block, asystole
 - ROME method: consider adding "leans acid / leans base" pH option for fully compensated ABG cases
 - Psych Exam 1 simulator DD answer choices audit — same embedded-definition issue as MedSurg DD files, not yet fixed
 - TNC platform Phase 4 (UI/UX redesign) and Phase 5 — separate product at thenursingcollective.pro
 - MedSurg Exam 3 once that course material/Obsidian notes exist
-- Psych Exam 2 is now fully built out (3 topics + simulator). Next major content push would be Psych Exam 3 once that course material exists.
+- Psych Exam 2 is now fully built out (3 topics + simulator, confirmed exam date July 7). Next major content push would be Psych Exam 3 once that course material exists.
 
 ---
 
