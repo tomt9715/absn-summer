@@ -58,12 +58,14 @@ absn-summer/
     │   ├── simulator.html
     │   └── data/ (5 cluster files + simulator.js)
     └── exam2/
-        ├── index.html                  ← Psych Exam 2 hub (new, source = uploaded study guide, not Obsidian)
+        ├── index.html                  ← Psych Exam 2 hub (source = uploaded study guides, not Obsidian)
         ├── addiction-kc.html / -dd.html
         ├── mood-kc.html / -dd.html
+        ├── schizophrenia-kc.html / -dd.html
         └── data/
             ├── addiction-kc.js / -dd.js
-            └── mood-kc.js / -dd.js
+            ├── mood-kc.js / -dd.js
+            └── schizophrenia-kc.js / -dd.js
 ```
 
 ---
@@ -154,26 +156,25 @@ All 5 clusters complete + 45-Q simulator. Keys: `ps_e1_*`
 
 New hub, started June 30, 2026. Unlike MedSurg (sourced from Tom's own Obsidian lecture notes), Psych Exam 2 source material is two uploaded study guides since Tom's professor provides a comprehensive review sheet instead of requiring personal notes:
 1. **Primary source (authoritative):** `NUR2010_Exam2_Master_StudyGuide.docx` — Tom's actual professor's guide. Contains the exact exam blueprint: 50 questions / 65 minutes / 2 SATA-NGN questions, split Ch 19 Addiction (16Q), Ch 17 Mood Disorders & Suicide (17Q), Ch 16 Schizophrenia & Psychosis (17Q).
-2. **Secondary source (supplementary only):** `Psych_Study_Guide_Exam_2__Luiza_.pdf` — a different student's guide from a prior semester with a different professor. Compared against the primary guide; content overlaps heavily with no contradictions found. Used only to add non-conflicting depth (e.g. carbamazepine details, Beck Depression Inventory score cutoffs, succinylcholine as the ECT muscle relaxant, repetitive TMS, naloxone ED-observation requirement). One soft conflict noted: secondary guide states SSRIs in Bipolar I must always be paired specifically with olanzapine; primary guide only states an antidepressant should never be given alone in bipolar disorder without naming a specific agent. Treated the broader, primary-guide framing as the test-relevant fact and did not assert the olanzapine specificity as guaranteed exam content.
+2. **Secondary source (supplementary only):** `Psych_Study_Guide_Exam_2__Luiza_.pdf` — a different student's guide from a prior semester with a different professor. Compared against the primary guide; content overlaps heavily with no contradictions found. Used only to add non-conflicting depth (e.g. carbamazepine details, Beck Depression Inventory score cutoffs, succinylcholine as the ECT muscle relaxant, repetitive TMS, naloxone ED-observation requirement, anticholinergic toxicity mnemonic). One soft conflict noted: secondary guide states SSRIs in Bipolar I must always be paired specifically with olanzapine; primary guide only states an antidepressant should never be given alone in bipolar disorder without naming a specific agent. Treated the broader, primary-guide framing as the test-relevant fact and did not assert the olanzapine specificity as guaranteed exam content.
 
-Tom builds this exam topic by topic rather than all at once.
+Tom built this exam topic by topic rather than all at once. **All 3 topics are now complete (164 questions total).**
 
 | Topic | KC | DD | Status |
 |---|---|---|---|
 | Addiction & Substance Use (Ch 19) | 36 | 20 | Complete |
 | Mood Disorders & Suicide (Ch 17) | 34 | 18 | Complete |
-| Schizophrenia & Psychosis (Ch 16) | — | — | Coming soon |
+| Schizophrenia & Psychosis (Ch 16) | 36 | 20 | Complete |
 
 No exam date set yet for Psych Exam 2 — hub countdown card currently shows "TBD" with a placeholder internal date (2026-07-14) that doesn't display; update `EXAM.date` and `EXAM.dateLabel` in `psych/exam2/index.html` once Tom confirms the actual date.
 
-No Psych Exam 2 simulator yet — hold until all 3 topics are built, then build a 50-question simulator matching the exact blueprint (16/17/17 split with 2 SATA/NGN questions), mirroring the MedSurg Exam 2 simulator approach.
+**No Psych Exam 2 simulator yet — this is now unblocked since all 3 topics are done.** The exact blueprint is already known from the primary study guide: 50 questions / 65 minutes / 2 SATA-NGN questions total, split Ch 19 Addiction (16Q), Ch 17 Mood Disorders & Suicide (17Q), Ch 16 Schizophrenia & Psychosis (17Q). Should mirror the MedSurg Exam 2 simulator approach: a fixed (not randomly subsampled) 50-question bank with brand-new application/priority questions distinct from the KC/DD banks, built to this exact chapter/SATA distribution.
 
 **Addiction & Substance Use topic build notes:** heavily weighted toward the alcohol withdrawal timeline and DTs vasodilation/vasoconstriction mechanism (explicitly tested misconception: DTs cause hypertension/tachycardia, not hypotension/bradycardia), opioid overdose vs. withdrawal contrast, the naloxone/methadone/buprenorphine/naltrexone/clonidine medication framework (which drug for which phase), and the disulfiram-causes-acetaldehyde-syndrome-NOT-methadone distinction the guide calls out as "consistently tested."
 
 **Mood Disorders & Suicide topic build notes:** heavily weighted toward lithium (therapeutic range 0.6-1.2, toxic at 1.8, factors that raise levels, early vs severe toxicity signs, consistent-not-low sodium teaching, Ebstein's anomaly/Category D), the SSRI 1-2 week danger window (energy returns before mood lifts), ECT specifics (informed consent can be withdrawn any time, succinylcholine, expected vs unexpected post-procedure findings), serotonin syndrome vs NMS (clonus/diarrhea/rapid onset vs lead-pipe rigidity/elevated CPK/slower onset), and the suicide risk-assessment and discharge-teaching content (direct questioning, sudden calm after depression, means restriction). Carbamazepine content (not in the primary guide at all) was folded in from the secondary guide since it's non-conflicting and the secondary guide treats it as a tested mood stabilizer alongside lithium.
 
-### Schizophrenia & Psychosis topic build notes
-Not yet started — next up. Will need to be heavily weighted toward: symptom domain classification (positive/negative/cognitive with the 5 A's), delusion and hallucination type vocabulary, the three antipsychotic generations and PINEs/DONEs/PIPs framework, EPS classification and treatment, the NMS vs serotonin syndrome distinction (also relevant to mood disorders, so some cross-reference is expected), clozapine's monitoring protocol and 5 black box warnings, and the paranoid schizophrenia nursing care / command hallucination priority-action content.
+**Schizophrenia & Psychosis topic build notes:** heavily weighted toward the three antipsychotic generations and the PINEs/DONEs/PIPs side-effect framework, complete EPS classification (acute dystonia, akathisia, pseudoparkinsonism, tardive dyskinesia, akinesia) with treatment and reversibility distinctions, clozapine's monitoring protocol and 5 black box warnings (agranulocytosis emphasized as most-tested), NMS recognition and treatment (cross-referenced with the same content built for Mood Disorders, since NMS is caused by antipsychotics and is relevant to both chapters), delusion and hallucination type vocabulary (paranoid/ideas of reference/control/grandiose/somatic/erotomanic; auditory/command/visual/tactile/olfactory/gustatory), and the paranoid schizophrenia nursing care and command-hallucination priority-action content (one-to-one observation before provider notification, home-visit firearm safety scenario from the primary guide).
 
 ---
 
@@ -301,6 +302,8 @@ SATA scoring uses partial credit (see Engine Features above), not all-or-nothing
 | Addiction & Substance Use DD | `ps_e2_addiction_dd` |
 | Mood Disorders & Suicide KC | `ps_e2_mood_kc` |
 | Mood Disorders & Suicide DD | `ps_e2_mood_dd` |
+| Schizophrenia & Psychosis KC | `ps_e2_schiz_kc` |
+| Schizophrenia & Psychosis DD | `ps_e2_schiz_dd` |
 
 To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browser console, then refresh.
 
@@ -324,8 +327,7 @@ To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browse
 
 ## Pending / Next Session
 
-- Build final Psych Exam 2 topic: Schizophrenia & Psychosis (Ch 16, target ~36 KC / ~20 DD) — see build notes above
-- Once all 3 Psych Exam 2 topics are done, build the 50-question simulator matching the blueprint exactly (16/17/17 split, 2 SATA/NGN questions)
+- Build the Psych Exam 2 simulator now that all 3 topics are complete (50 Q, exact blueprint: 16/17/17 split, 2 SATA/NGN questions) — see build notes above
 - Confirm actual Psych Exam 2 date and update `psych/exam2/index.html` countdown card (currently shows "TBD")
 - More EKG strips to screenshot and add: V-tach, Torsades de Pointes, second degree type 2, third degree heart block, asystole
 - ROME method: consider adding "leans acid / leans base" pH option for fully compensated ABG cases
