@@ -60,8 +60,10 @@ absn-summer/
     └── exam2/
         ├── index.html                  ← Psych Exam 2 hub (new, source = uploaded study guide, not Obsidian)
         ├── addiction-kc.html / -dd.html
+        ├── mood-kc.html / -dd.html
         └── data/
-            └── addiction-kc.js / -dd.js
+            ├── addiction-kc.js / -dd.js
+            └── mood-kc.js / -dd.js
 ```
 
 ---
@@ -159,7 +161,7 @@ Tom builds this exam topic by topic rather than all at once.
 | Topic | KC | DD | Status |
 |---|---|---|---|
 | Addiction & Substance Use (Ch 19) | 36 | 20 | Complete |
-| Mood Disorders & Suicide (Ch 17) | — | — | Coming soon |
+| Mood Disorders & Suicide (Ch 17) | 34 | 18 | Complete |
 | Schizophrenia & Psychosis (Ch 16) | — | — | Coming soon |
 
 No exam date set yet for Psych Exam 2 — hub countdown card currently shows "TBD" with a placeholder internal date (2026-07-14) that doesn't display; update `EXAM.date` and `EXAM.dateLabel` in `psych/exam2/index.html` once Tom confirms the actual date.
@@ -167,6 +169,11 @@ No exam date set yet for Psych Exam 2 — hub countdown card currently shows "TB
 No Psych Exam 2 simulator yet — hold until all 3 topics are built, then build a 50-question simulator matching the exact blueprint (16/17/17 split with 2 SATA/NGN questions), mirroring the MedSurg Exam 2 simulator approach.
 
 **Addiction & Substance Use topic build notes:** heavily weighted toward the alcohol withdrawal timeline and DTs vasodilation/vasoconstriction mechanism (explicitly tested misconception: DTs cause hypertension/tachycardia, not hypotension/bradycardia), opioid overdose vs. withdrawal contrast, the naloxone/methadone/buprenorphine/naltrexone/clonidine medication framework (which drug for which phase), and the disulfiram-causes-acetaldehyde-syndrome-NOT-methadone distinction the guide calls out as "consistently tested."
+
+**Mood Disorders & Suicide topic build notes:** heavily weighted toward lithium (therapeutic range 0.6-1.2, toxic at 1.8, factors that raise levels, early vs severe toxicity signs, consistent-not-low sodium teaching, Ebstein's anomaly/Category D), the SSRI 1-2 week danger window (energy returns before mood lifts), ECT specifics (informed consent can be withdrawn any time, succinylcholine, expected vs unexpected post-procedure findings), serotonin syndrome vs NMS (clonus/diarrhea/rapid onset vs lead-pipe rigidity/elevated CPK/slower onset), and the suicide risk-assessment and discharge-teaching content (direct questioning, sudden calm after depression, means restriction). Carbamazepine content (not in the primary guide at all) was folded in from the secondary guide since it's non-conflicting and the secondary guide treats it as a tested mood stabilizer alongside lithium.
+
+### Schizophrenia & Psychosis topic build notes
+Not yet started — next up. Will need to be heavily weighted toward: symptom domain classification (positive/negative/cognitive with the 5 A's), delusion and hallucination type vocabulary, the three antipsychotic generations and PINEs/DONEs/PIPs framework, EPS classification and treatment, the NMS vs serotonin syndrome distinction (also relevant to mood disorders, so some cross-reference is expected), clozapine's monitoring protocol and 5 black box warnings, and the paranoid schizophrenia nursing care / command hallucination priority-action content.
 
 ---
 
@@ -292,6 +299,8 @@ SATA scoring uses partial credit (see Engine Features above), not all-or-nothing
 | MedSurg II Exam 2 Simulator | `ms2_e2_sim` |
 | Addiction & Substance Use KC | `ps_e2_addiction_kc` |
 | Addiction & Substance Use DD | `ps_e2_addiction_dd` |
+| Mood Disorders & Suicide KC | `ps_e2_mood_kc` |
+| Mood Disorders & Suicide DD | `ps_e2_mood_dd` |
 
 To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browser console, then refresh.
 
@@ -315,7 +324,7 @@ To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browse
 
 ## Pending / Next Session
 
-- Build remaining Psych Exam 2 topics: Mood Disorders & Suicide (Ch 17, target ~34 KC / ~18 DD) and Schizophrenia & Psychosis (Ch 16, target ~36 KC / ~20 DD), one at a time per Tom's preference
+- Build final Psych Exam 2 topic: Schizophrenia & Psychosis (Ch 16, target ~36 KC / ~20 DD) — see build notes above
 - Once all 3 Psych Exam 2 topics are done, build the 50-question simulator matching the blueprint exactly (16/17/17 split, 2 SATA/NGN questions)
 - Confirm actual Psych Exam 2 date and update `psych/exam2/index.html` countdown card (currently shows "TBD")
 - More EKG strips to screenshot and add: V-tach, Torsades de Pointes, second degree type 2, third degree heart block, asystole
