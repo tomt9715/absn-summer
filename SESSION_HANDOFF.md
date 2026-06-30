@@ -41,10 +41,12 @@ absn-summer/
 │   ├── shock-mods-kc.html / -dd.html
 │   ├── burns-kc.html / -dd.html
 │   ├── kidney-kc.html / -dd.html
+│   ├── hepatic-kc.html / -dd.html
 │   └── data/
 │       ├── shock-mods-kc.js / -dd.js
 │       ├── burns-kc.js / -dd.js
-│       └── kidney-kc.js / -dd.js
+│       ├── kidney-kc.js / -dd.js
+│       └── hepatic-kc.js / -dd.js
 └── psych/exam1/
     ├── index.html
     ├── simulator.html
@@ -86,6 +88,7 @@ absn-summer/
 - Distractor length parity — correct answer must not be >1.5x longer than avg wrong answers
 - All questions must map to content covered in KC/DD files for that topic
 - No EKG reading/identification questions in the simulator or DD files — those belong exclusively to the EKG Interpreter
+- When Obsidian notes flag content with `[!danger]`, `[!warning]` callouts, or explicit "TEST NOTE" / "professor's exam focus" language, that content gets heavier question coverage relative to its share of the notes
 
 ---
 
@@ -110,10 +113,12 @@ Same shared-engine architecture as Exam 1, separate hub at `medsurg2/exam2/index
 | Shock, Sepsis & MODS | 36 | 20 | Complete |
 | Burns Management | 26 | 21 | Complete |
 | Kidney Disorders | 34 | 20 | Complete |
-| Hepatic Disorders | — | — | Coming soon |
+| Hepatic Disorders | 32 | 18 | Complete |
 | Biliary Disorders | — | — | Coming soon |
 
-No Exam 2 simulator yet — hold off until remaining topics (Hepatic, Biliary) are built, then build a combined simulator like the Exam 1 one.
+No Exam 2 simulator yet — hold off until Biliary Disorders is also built, then build a combined simulator like the Exam 1 one.
+
+Hepatic Disorders notes flagged two guaranteed-question topics ("there will be a question about lactulose" and a hepatitis transmission-modes test note) — both got dedicated heavy coverage across KC and DD (lactulose mechanism + monitoring, all three hepatitis transmission routes and vaccine schedules).
 
 ### Psych Exam 1
 All 5 clusters complete + 45-Q simulator. Keys: `ps_e1_*`
@@ -224,6 +229,8 @@ stapedectomy, enucleation, cardiac tamponade, glucagon antidote for beta blocker
 | Burns Management DD | `ms2_e2_burns_dd` |
 | Kidney Disorders KC | `ms2_e2_kidney_kc` |
 | Kidney Disorders DD | `ms2_e2_kidney_dd` |
+| Hepatic Disorders KC | `ms2_e2_hepatic_kc` |
+| Hepatic Disorders DD | `ms2_e2_hepatic_dd` |
 
 To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browser console, then refresh.
 
@@ -245,7 +252,7 @@ To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browse
 
 ## Pending / Next Session
 
-- Build Hepatic Disorders and Biliary Disorders topics for Exam 2 (notes already exist in Obsidian: `MedSurg II/Exam 2/2026-06-30 Hepatic Disorders.md` and `2026-06-30 Biliary Disorders.md`)
+- Build Biliary Disorders topic for Exam 2 (notes already exist in Obsidian: `MedSurg II/Exam 2/2026-06-30 Biliary Disorders.md`)
 - Once all 5 Exam 2 topics are built, build a combined Exam 2 simulator (mirror the Exam 1 56-Q bank / draws-50 pattern)
 - More EKG strips to screenshot and add: V-tach, Torsades de Pointes, second degree type 2, third degree heart block, asystole
 - ROME method: consider adding "leans acid / leans base" pH option for fully compensated ABG cases
