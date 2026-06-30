@@ -1,7 +1,8 @@
 // MedSurg II Exam 2 Simulator — all-new questions, distinct from topic KC/DD banks.
 // Matches the professor's exam blueprint exactly (no random subsampling):
 // Ch.11 Shock/Sepsis/MODS (12, incl. 2 SATA), Ch.48 Kidney Disorders (12, incl. 1 SATA),
-// Ch.57 Burns Management (12), Ch.43 Hepatic Disorders (7), Ch.44 Biliary Disorders (7)
+// Ch.57 Burns Management (12, Rule of Nines is the only tested calculation -- no Parkland formula),
+// Ch.43 Hepatic Disorders (7), Ch.44 Biliary Disorders (7)
 window.QUESTIONS = [
 
   // ===== CHAPTER 11: SHOCK, SEPSIS, AND MULTI-ORGAN DYSFUNCTION SYNDROME (12, incl. 2 SATA) =====
@@ -154,10 +155,10 @@ window.QUESTIONS = [
 
   // ===== CHAPTER 57: BURNS MANAGEMENT (12) =====
   {
-    stem: "A nurse is calculating fluid resuscitation for an 80 kg patient with 45% total body surface area (TBSA) burns using the Parkland formula. What is the total fluid volume for the first 24 hours, and how much should be given in the first 8 hours?",
-    options: ["14,400 mL total; 7,200 mL in the first 8 hours from the time of the burn", "14,400 mL total; 7,200 mL in the first 8 hours from the time of hospital arrival", "7,200 mL total; 3,600 mL in the first 8 hours from the time of hospital arrival", "3,600 mL total; 1,800 mL in the first 8 hours from the time of the burn"],
+    stem: "A patient sustains burns to the head and both arms entirely. Using the Rule of Nines, what is the estimated total body surface area (TBSA) burned?",
+    options: ["27%, because the head equals 9% and each arm equals 9%, totaling three regions of 9% each", "18%, because only the arms are counted in the Rule of Nines", "36%, because the head equals 18% and each arm equals 9%", "9%, because overlapping regions are only counted once"],
     correct: 0,
-    rationale: "The Parkland formula is 4 mL x weight in kg x percent TBSA burned. 4 x 80 x 45 equals 14,400 mL total. The first half, 7,200 mL, is given in the first 8 hours calculated from the time of the burn, not the time of arrival."
+    rationale: "The Rule of Nines assigns 9% to the head and 9% to each arm. Burns to the head and both arms equal three regions of 9% each, totaling 27% TBSA."
   },
   {
     stem: "Using the Rule of Nines, a patient has burns to the entire posterior trunk and the entire left leg. What is the estimated total body surface area (TBSA) burned?",

@@ -15,7 +15,7 @@ absn-summer/
 ├── index.html                          ← root hub (welcome modal)
 ├── ekg-verify.html                     ← EKG verification tool (not linked from hub)
 ├── shared/
-│   ├── engine.js                       ← shared quiz engine (single-select + SATA)
+│   ├── engine.js                       ← shared quiz engine (single-select + SATA w/ partial credit)
 │   ├── quiz.css                        ← quiz page styles
 │   ├── hub.css                         ← hub page styles
 │   └── footer.js
@@ -75,11 +75,12 @@ absn-summer/
 
 - Fisher-Yates shuffle for questions AND answer positions
 - `correct: 0` source convention for single-select — correct answer always at index 0 in data file
-- **SATA (Select All That Apply) support:** set `correct` to an array of indices instead of a number (e.g. `correct: [0,1,2,3]`) to make a question SATA. Engine auto-detects via `Array.isArray(q.correct)`. Renders as toggleable checkboxes with a "Submit answer" button (disabled until at least one option is selected) instead of immediate-pick evaluation. Scoring is all-or-nothing — the full correct set must be selected, nothing extra. Added June 30, 2026 to support the Exam 2 simulator's professor-specified SATA counts.
+- **SATA (Select All That Apply) support:** set `correct` to an array of indices instead of a number (e.g. `correct: [0,1,2,3]`) to make a question SATA. Engine auto-detects via `Array.isArray(q.correct)`. Renders as toggleable checkboxes with a "Submit answer" button (disabled until at least one option is selected) instead of immediate-pick evaluation.
+- **SATA partial credit:** scored as (correct options selected − incorrect options selected) / total correct options, floored at 0, capped at 1. Example: a question with 4 correct answers out of 6 options — selecting 3 correct + 1 incorrect nets (3-1)/4 = 50% credit on that question. Full marks require selecting exactly the correct set. The streak/fire system only counts a SATA question toward the streak if it earned full credit. Results review shows a gold "◐ Partial" badge with the points breakdown (e.g. "3/4 correct, 1 incorrect selected") distinct from the green "✓ Correct" and red "✗ Missed" badges. Added June 30, 2026, upgraded from all-or-nothing to partial credit same day per Tom's request.
 - Optional `cfg.maxQuestions` cap (Exam 1 simulator uses 50 of 56; Exam 2 simulator sets 50 but the bank is exactly 50, so it's really just a safety cap, not a subsample)
 - `image:` field support — renders image above stem with skeleton shimmer loader
 - **Streak/fire system:** 10 consecutive correct → CSS flame animation on Q number (orange glowing circle with flickering CSS flame tips above it, no emoji). Resets on wrong answer. No popup animation — just the Q number itself.
-- localStorage score persistence per quiz key
+- localStorage score persistence per quiz key (score is now able to be a non-integer percentage during accumulation when SATA partial credit is involved, but displayed percent is always rounded)
 
 ---
 
@@ -129,7 +130,7 @@ Same shared-engine architecture as Exam 1, separate hub at `medsurg2/exam2/index
 - Ch. 43 Hepatic Disorders — 7 questions
 - Ch. 44 Biliary Disorders — 7 questions
 
-All 50 are new application/priority-style questions distinct from the KC/DD banks. The 3 SATA questions required adding SATA support to `shared/engine.js` (see Engine Features above) — this is shared infrastructure, so SATA questions can now be authored for any quiz on the site going forward, not just this simulator.
+All 50 are new application/priority-style questions distinct from the KC/DD banks. The 3 SATA questions required adding SATA support to `shared/engine.js` (see Engine Features above) — this is shared infrastructure, so SATA questions can now be authored for any quiz on the site going forward, not just this simulator. SATA scoring gives partial credit (see Engine Features).
 
 Hepatic Disorders notes flagged two guaranteed-question topics ("there will be a question about lactulose" and a hepatitis transmission-modes test note) — both got dedicated heavy coverage across KC, DD, and the simulator.
 
@@ -229,6 +230,8 @@ Fixed 50-question bank (not a draw-from-larger-pool like Exam 1) because Tom sup
 - Ch. 43 Hepatic Disorders (7): lactulose titration, hepatitis transmission, asterixis/encephalopathy staging, variceal bleeding, hepatotoxic med avoidance, paracentesis care, bleeding risk
 - Ch. 44 Biliary Disorders (7): cholecystitis recognition, ERCP NPO requirements, pancreatitis pain/labs, hypocalcemia severity correlation, JP drain troubleshooting, chronic pancreatitis causes, lithotripsy
 
+SATA scoring uses partial credit (see Engine Features above), not all-or-nothing.
+
 ---
 
 ## LocalStorage Keys
@@ -273,6 +276,7 @@ To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browse
 - DD answer choices: plain actions only, no embedded explanations
 - Distractor length parity enforced on all question files
 - `correct: 0` convention always for single-select; `correct: [array]` for SATA
+- SATA questions score with partial credit, not all-or-nothing
 - absn-summer stays free for cohort — TNC is the paid product (kept strictly separate)
 
 ---

@@ -4,7 +4,7 @@
      QUIZ_CONFIG = { key, title, type, tag, passThreshold, maxQuestions }
      QUESTIONS   = [ { stem, options[], correct, rationale }, ... ]
        - correct as a number = single-select question
-       - correct as an array of numbers = Select All That Apply (SATA)
+       - correct as an array of numbers = Select All That Apply (SATA), partial credit scored
    Renders into #quiz-area.
    ============================================ */
 (function () {
@@ -152,7 +152,7 @@
           ${TAG ? `<span class="q-tag">${TAG}</span>` : ''}
         </div>
         <div class="q-stem">${q.stem}</div>
-        ${q.isSata ? `<div class="sata-hint">Select all that apply</div>` : ''}
+        ${q.isSata ? `<div class="sata-hint">Select all that apply · partial credit awarded</div>` : ''}
         ${q.image ? `<div class="q-image-wrap">
           <div class="q-image-skeleton" id="img-skeleton"></div>
           <img src="${q.image}" alt="Clinical image" class="q-image" style="display:none" id="q-img"
@@ -173,7 +173,7 @@
     const q = deck[idx];
     const correctI = q.opts.findIndex(o => o.isCorrect);
     const isCorrect = chosenI === correctI;
-    if (isCorrect) correctCount++;
+    if (isCorrect) correctCount += 1;
     handleStreak(isCorrect);
 
     document.querySelectorAll('.opt').forEach((b, i) => {
@@ -191,6 +191,7 @@
       correctLetter: LETTERS[correctI],
       correctText: q.opts[correctI].text,
       isCorrect,
+      isPartial: false,
       rationale: q.rationale
     });
 
@@ -228,6 +229,8 @@
     if (submitBtn) submitBtn.disabled = selected.size === 0;
   }
 
+  // Partial-credit SATA scoring: +1 per correct option selected, -1 per incorrect
+  // option selected, floored at 0, normalized against the total number of correct options.
   function submitSata() {
     if (answered) return;
     if (selected.size === 0) return;
@@ -235,9 +238,16 @@
     const q = deck[idx];
     const correctIs = q.opts.map((o, i) => o.isCorrect ? i : null).filter(i => i !== null);
     const selArr = Array.from(selected).sort((a, b) => a - b);
-    const isCorrect = correctIs.length === selArr.length && correctIs.every(i => selected.has(i));
-    if (isCorrect) correctCount++;
-    handleStreak(isCorrect);
+
+    const numCorrectSelected = selArr.filter(i => correctIs.includes(i)).length;
+    const numIncorrectSelected = selArr.filter(i => !correctIs.includes(i)).length;
+    const rawScore = numCorrectSelected - numIncorrectSelected;
+    const fraction = Math.max(0, Math.min(1, rawScore / correctIs.length));
+    const isFullCredit = fraction === 1;
+    const isPartial = fraction > 0 && fraction < 1;
+
+    correctCount += fraction;
+    handleStreak(isFullCredit);
 
     document.querySelectorAll('.opt').forEach((b, i) => {
       b.setAttribute('disabled', 'true');
@@ -253,25 +263,32 @@
     const correctLetters = correctIs.map(i => LETTERS[i]).join(', ');
     const yourTexts = selArr.map(i => q.opts[i].text).join('; ');
     const correctTexts = correctIs.map(i => q.opts[i].text).join('; ');
+    const pointsLabel = `${numCorrectSelected}/${correctIs.length} correct${numIncorrectSelected > 0 ? `, ${numIncorrectSelected} incorrect selected` : ''}`;
 
     results.push({
       stem: q.stem,
       image: q.image || null,
+      isSata: true,
       yourLetter: yourLetters || '(none selected)',
       yourText: yourTexts || '(none selected)',
       correctLetter: correctLetters,
       correctText: correctTexts,
-      isCorrect,
+      isCorrect: isFullCredit,
+      isPartial,
+      pointsLabel,
       rationale: q.rationale
     });
 
     const fb = document.getElementById('feedback');
     let verdict, cls;
-    if (isCorrect) {
+    if (isFullCredit) {
       verdict = `✓ Correct — ${correctLetters} ${correctIs.length > 1 ? 'are' : 'is'} right.`;
       cls = 'r-correct';
+    } else if (isPartial) {
+      verdict = `◐ Partial credit (${pointsLabel}). Full correct answer: ${correctLetters}.`;
+      cls = 'r-partial';
     } else {
-      verdict = `✗ You selected ${yourLetters || 'nothing'}. The correct answer${correctIs.length > 1 ? 's are' : ' is'} ${correctLetters}.`;
+      verdict = `✗ No credit (${pointsLabel}). The correct answer${correctIs.length > 1 ? 's are' : ' is'} ${correctLetters}.`;
       cls = 'r-wrong';
     }
     const isLast = idx === deck.length - 1;
@@ -309,11 +326,13 @@
     else if (pct >= PASS) msg = "Solid pass. Review the ones you missed and you're in good shape.";
     else msg = "Below passing — run through the missed questions and take it again.";
 
+    const scoreDisplay = Number.isInteger(correctCount) ? correctCount : correctCount.toFixed(1);
+
     const area = document.getElementById('quiz-area');
     area.innerHTML = `
       <div class="results-card">
         <div class="score-big ${pass ? 'pass' : 'fail'}">${pct}%</div>
-        <div class="score-sub">${correctCount} / ${deck.length} correct · ${cfg.title || ''}</div>
+        <div class="score-sub">${scoreDisplay} / ${deck.length} points · ${cfg.title || ''}</div>
         <div class="score-msg">${msg}</div>
         <div class="results-tabs">
           <button class="r-tab ${activeTab === 'full' ? 'active' : ''}" onclick="__quizTab('full', this)">Full Review</button>
@@ -349,11 +368,14 @@
       return;
     }
 
-    list.innerHTML = items.map(r => `
+    list.innerHTML = items.map(r => {
+      const resultCls = r.isCorrect ? 'correct' : (r.isPartial ? 'partial' : 'wrong');
+      const resultLabel = r.isCorrect ? '✓ Correct' : (r.isPartial ? `◐ Partial (${r.pointsLabel})` : '✗ Missed');
+      return `
       <div class="review-item">
         <div class="ri-meta">
           <span class="q-num">Q${r.n}</span>
-          <span class="ri-result ${r.isCorrect ? 'correct' : 'wrong'}">${r.isCorrect ? '✓ Correct' : '✗ Missed'}</span>
+          <span class="ri-result ${resultCls}">${resultLabel}</span>
         </div>
         <div class="review-item-q">${r.stem}</div>
         ${r.image ? `<img src="${r.image}" alt="Clinical image" class="q-image" style="max-width:260px;margin:8px 0;border-radius:8px;border:1px solid var(--border);" />` : ''}
@@ -365,7 +387,8 @@
         </div>
         <div class="ri-rationale">${r.rationale}</div>
       </div>
-    `).join('');
+    `;
+    }).join('');
   }
 
   // expose handlers for inline onclick

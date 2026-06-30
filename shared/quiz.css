@@ -120,9 +120,11 @@ h1 {
 }
 .rationale.r-correct { background: var(--correct-soft); border: 1px solid var(--correct-border); color: var(--ink-soft); }
 .rationale.r-wrong { background: var(--wrong-soft); border: 1px solid var(--wrong-border); color: var(--ink-soft); }
+.rationale.r-partial { background: var(--gold-soft); border: 1px solid var(--gold); color: var(--ink-soft); }
 .rationale .verdict { font-weight: 700; display: block; margin-bottom: 6px; font-size: 15px; }
 .rationale.r-correct .verdict { color: var(--correct); }
 .rationale.r-wrong .verdict { color: var(--wrong); }
+.rationale.r-partial .verdict { color: var(--gold); }
 .rationale strong { color: var(--ink); font-weight: 600; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -161,6 +163,7 @@ h1 {
 .ri-result { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 2px 8px; border-radius: 4px; }
 .ri-result.correct { background: var(--correct-soft); color: var(--correct); }
 .ri-result.wrong { background: var(--wrong-soft); color: var(--wrong); }
+.ri-result.partial { background: var(--gold-soft); color: var(--gold); }
 .review-item-q { font-size: 15px; color: var(--ink); margin-bottom: 11px; line-height: 1.55; font-weight: 500; }
 .review-item-ans { font-size: 14px; display: flex; flex-direction: column; gap: 5px; }
 .ri-yours { color: var(--wrong); }
