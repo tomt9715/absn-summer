@@ -1,8 +1,10 @@
 /* ============================================
    ABSN Summer — Shared Quiz Engine
    Generic. Reads two globals set by the quiz shell:
-     QUIZ_CONFIG = { key, title, type, tag, passThreshold }
+     QUIZ_CONFIG = { key, title, type, tag, passThreshold, maxQuestions }
      QUESTIONS   = [ { stem, options[], correct, rationale }, ... ]
+       - correct as a number = single-select question
+       - correct as an array of numbers = Select All That Apply (SATA)
    Renders into #quiz-area.
    ============================================ */
 (function () {
@@ -24,6 +26,7 @@
 
   let deck = [], idx = 0, correctCount = 0, answered = false, results = [], activeTab = 'full';
   let streak = 0, onFire = false;
+  let selected = new Set();
 
   // ── Streak / Fire system ──────────────────────────────────────
   function injectFireStyles() {
@@ -103,8 +106,12 @@
       pool = pool.slice(0, cfg.maxQuestions);
     }
     deck = pool.map(q => {
-      const optionObjs = q.options.map((text, i) => ({ text, isCorrect: i === q.correct }));
-      return { stem: q.stem, rationale: q.rationale, image: q.image || null, opts: shuffle(optionObjs) };
+      const isSata = Array.isArray(q.correct);
+      const optionObjs = q.options.map((text, i) => ({
+        text,
+        isCorrect: isSata ? q.correct.includes(i) : i === q.correct
+      }));
+      return { stem: q.stem, rationale: q.rationale, image: q.image || null, opts: shuffle(optionObjs), isSata };
     });
   }
 
@@ -118,6 +125,7 @@
 
   function renderQuestion() {
     answered = false;
+    selected = new Set();
     const q = deck[idx];
     const area = document.getElementById('quiz-area');
     const pct = Math.round((idx / deck.length) * 100);
@@ -125,7 +133,8 @@
 
     let optsHTML = '';
     q.opts.forEach((o, i) => {
-      optsHTML += `<button class="opt" data-i="${i}" onclick="__quizPick(${i})">
+      const clickHandler = q.isSata ? `__quizToggle(${i})` : `__quizPick(${i})`;
+      optsHTML += `<button class="opt" data-i="${i}" onclick="${clickHandler}">
         <span class="opt-letter">${LETTERS[i]}</span>
         <span class="opt-text">${o.text}</span>
       </button>`;
@@ -143,6 +152,7 @@
           ${TAG ? `<span class="q-tag">${TAG}</span>` : ''}
         </div>
         <div class="q-stem">${q.stem}</div>
+        ${q.isSata ? `<div class="sata-hint">Select all that apply</div>` : ''}
         ${q.image ? `<div class="q-image-wrap">
           <div class="q-image-skeleton" id="img-skeleton"></div>
           <img src="${q.image}" alt="Clinical image" class="q-image" style="display:none" id="q-img"
@@ -150,6 +160,7 @@
             onerror="var s=document.getElementById('img-skeleton');if(s){s.textContent='Image unavailable';s.style.background='var(--surface2)';}" />
         </div>` : ''}
         <div class="options" id="opts">${optsHTML}</div>
+        ${q.isSata ? `<button class="next-btn sata-submit" id="sata-submit-btn" onclick="__quizSubmitSata()" disabled>Submit answer</button>` : ''}
         <div id="feedback"></div>
       </div>
     `;
@@ -190,6 +201,77 @@
       cls = 'r-correct';
     } else {
       verdict = `✗ You chose ${LETTERS[chosenI]}. The correct answer is ${LETTERS[correctI]}.`;
+      cls = 'r-wrong';
+    }
+    const isLast = idx === deck.length - 1;
+    fb.innerHTML = `
+      <div class="rationale ${cls}">
+        <span class="verdict">${verdict}</span>
+        ${q.rationale}
+      </div>
+      <button class="next-btn" onclick="__quizNext()">${isLast ? 'See results →' : 'Next question →'}</button>
+    `;
+  }
+
+  function toggleSata(i) {
+    if (answered) return;
+    const btn = document.querySelector(`.opt[data-i="${i}"]`);
+    if (!btn) return;
+    if (selected.has(i)) {
+      selected.delete(i);
+      btn.classList.remove('selected');
+    } else {
+      selected.add(i);
+      btn.classList.add('selected');
+    }
+    const submitBtn = document.getElementById('sata-submit-btn');
+    if (submitBtn) submitBtn.disabled = selected.size === 0;
+  }
+
+  function submitSata() {
+    if (answered) return;
+    if (selected.size === 0) return;
+    answered = true;
+    const q = deck[idx];
+    const correctIs = q.opts.map((o, i) => o.isCorrect ? i : null).filter(i => i !== null);
+    const selArr = Array.from(selected).sort((a, b) => a - b);
+    const isCorrect = correctIs.length === selArr.length && correctIs.every(i => selected.has(i));
+    if (isCorrect) correctCount++;
+    handleStreak(isCorrect);
+
+    document.querySelectorAll('.opt').forEach((b, i) => {
+      b.setAttribute('disabled', 'true');
+      b.classList.remove('selected');
+      if (q.opts[i].isCorrect) b.classList.add('correct');
+      else if (selected.has(i)) b.classList.add('wrong');
+      else b.classList.add('dimmed');
+    });
+    const submitBtn = document.getElementById('sata-submit-btn');
+    if (submitBtn) submitBtn.remove();
+
+    const yourLetters = selArr.map(i => LETTERS[i]).join(', ');
+    const correctLetters = correctIs.map(i => LETTERS[i]).join(', ');
+    const yourTexts = selArr.map(i => q.opts[i].text).join('; ');
+    const correctTexts = correctIs.map(i => q.opts[i].text).join('; ');
+
+    results.push({
+      stem: q.stem,
+      image: q.image || null,
+      yourLetter: yourLetters || '(none selected)',
+      yourText: yourTexts || '(none selected)',
+      correctLetter: correctLetters,
+      correctText: correctTexts,
+      isCorrect,
+      rationale: q.rationale
+    });
+
+    const fb = document.getElementById('feedback');
+    let verdict, cls;
+    if (isCorrect) {
+      verdict = `✓ Correct — ${correctLetters} ${correctIs.length > 1 ? 'are' : 'is'} right.`;
+      cls = 'r-correct';
+    } else {
+      verdict = `✗ You selected ${yourLetters || 'nothing'}. The correct answer${correctIs.length > 1 ? 's are' : ' is'} ${correctLetters}.`;
       cls = 'r-wrong';
     }
     const isLast = idx === deck.length - 1;
@@ -288,6 +370,8 @@
 
   // expose handlers for inline onclick
   window.__quizPick = pick;
+  window.__quizToggle = toggleSata;
+  window.__quizSubmitSata = submitSata;
   window.__quizNext = next;
   window.__quizTab = setTab;
   window.__quizStart = startQuiz;

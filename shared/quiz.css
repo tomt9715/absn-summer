@@ -101,6 +101,18 @@ h1 {
 .opt.wrong .opt-letter { color: var(--wrong); }
 .opt.wrong .opt-text { color: var(--wrong); }
 .opt.dimmed { opacity: 0.4; }
+.opt.selected { border-color: var(--teal); background: var(--teal-soft); }
+.opt.selected .opt-letter { color: var(--teal); }
+.opt.selected .opt-text { color: var(--teal); font-weight: 600; }
+
+.sata-hint {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--teal); background: var(--teal-soft);
+  display: inline-block; padding: 4px 10px; border-radius: 5px; margin-bottom: 14px;
+}
+.next-btn.sata-submit { margin-top: 16px; }
+.next-btn[disabled] { opacity: 0.4; cursor: not-allowed; }
+.next-btn[disabled]:hover { background: var(--accent); transform: none; }
 
 .rationale {
   margin-top: 16px; padding: 16px 18px; border-radius: 9px;
