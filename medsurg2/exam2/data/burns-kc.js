@@ -19,7 +19,7 @@ window.QUESTIONS = [
   },
   {
     stem: "Using the Rule of Nines, a nurse calculates that a patient has burns to the entire head, the entire right arm, and the anterior surface of the right leg. What is the estimated total body surface area burned?",
-    options: ["27.5%, because the head equals 9%, the right arm equals 9%, and the anterior right leg equals 9%", "36%, because the head, right arm, and entire right leg are each assigned 9%", "18%, because only two full anatomic regions are counted and the leg is excluded", "22.5%, because the head counts as 4.5% in adults and the other regions are added in full"],
+    options: ["27%, because the head equals 9%, the right arm equals 9%, and the anterior right leg equals 9%", "36%, because the head, right arm, and entire right leg are each assigned 9%", "18%, because only two full anatomic regions are counted and the leg is excluded", "22.5%, because the head counts as 4.5% in adults and the other regions are added in full"],
     correct: 0,
     rationale: "In adults, the Rule of Nines assigns 9% to the head, 9% to each arm, and 18% to each leg (9% anterior, 9% posterior). Head (9%) plus right arm (9%) plus anterior right leg (9%) equals 27%. The head retains its full 9% in adults -- it is only adjusted upward in children using the Lund-Browder chart."
   },
