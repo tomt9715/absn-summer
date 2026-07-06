@@ -1,45 +1,15 @@
 window.QUESTIONS = [
   {
-    stem: "Approximately how many nephrons are in each kidney, and what are the two basic structural components of a single nephron?",
-    options: ["About one million nephrons per kidney, each composed of a glomerulus and a renal tubule", "About one hundred thousand nephrons per kidney, each composed of a renal tubule and a collecting duct", "About ten thousand nephrons per kidney, each composed of a glomerulus and a loop of Henle only", "About five million nephrons per kidney, each composed of a Bowman's capsule and a ureter"],
-    correct: 0,
-    rationale: "Each kidney contains approximately one million nephrons. Each nephron consists of a glomerulus (a ball of small capillaries) and a renal tubule, which together perform the filtering and reabsorption functions of the kidney."
-  },
-  {
-    stem: "Beyond filtering waste and balancing fluids, which two hormonal functions do the kidneys perform?",
-    options: ["Stimulating red blood cell production and producing an active form of vitamin D that supports bone health", "Producing insulin to regulate blood glucose and producing renin only to regulate cardiac output", "Stimulating white blood cell production and producing parathyroid hormone directly", "Producing thyroid hormone and regulating serum sodium exclusively through aldosterone synthesis"],
-    correct: 0,
-    rationale: "The kidneys release a hormone that stimulates red blood cell (RBC) production and produce an active form of vitamin D that promotes strong, healthy bones. They also release hormones that help regulate blood pressure and calcium metabolism."
-  },
-  {
     stem: "What is the most accurate indicator of fluid loss or gain in an acutely ill patient with a kidney disorder?",
     options: ["Daily weight", "Intake and output totals alone", "Skin turgor assessment", "Serum sodium trend"],
     correct: 0,
     rationale: "Weight is the most accurate indicator of fluid loss or gain in acutely ill patients. An accurate daily weight, obtained at the same time and under the same conditions each day, must be recorded to track fluid status reliably."
   },
   {
-    stem: "A patient's glomerular filtration rate (GFR) is 75. What does this value indicate?",
-    options: ["The patient is at risk for kidney disease, since a GFR below 90 indicates risk", "The patient has normal kidney function, since a GFR above 60 is always considered normal", "The patient requires immediate dialysis, since this GFR meets the end-stage threshold", "The patient has fully recovered kidney function and no further monitoring is needed"],
-    correct: 0,
-    rationale: "A GFR below 90 places the patient at risk for kidney disease. Dialysis is not required until GFR drops below 15 (stage 5, end-stage kidney disease). A GFR of 75 indicates reduced but not end-stage function and warrants monitoring."
-  },
-  {
     stem: "At what glomerular filtration rate (GFR) value is dialysis indicated, and what stage of chronic kidney disease (CKD) does this represent?",
     options: ["GFR below 15; stage 5, end-stage kidney disease (ESKD)", "GFR below 30; stage 3, moderate CKD", "GFR below 60; stage 2, mild CKD", "GFR below 90; stage 1, kidney damage with normal GFR"],
     correct: 0,
     rationale: "Dialysis is needed at stage 5 CKD, also called end-stage kidney disease (ESKD), when the GFR drops below 15. This is the critical threshold that distinguishes patients who require renal replacement therapy from those who can be managed medically."
-  },
-  {
-    stem: "How is chronic kidney disease (CKD) defined?",
-    options: ["Kidney damage or a decrease in the glomerular filtration rate (GFR) lasting 3 or more months", "Any single episode of elevated creatinine lasting longer than 24 hours", "A 50% or greater increase in creatinine above baseline within 48 hours", "Kidney damage that resolves completely within 3 months of onset"],
-    correct: 0,
-    rationale: "Chronic kidney disease (CKD) is defined as kidney damage or a decrease in the GFR lasting for 3 or more months. This duration distinguishes it from acute kidney injury, which develops rapidly. Untreated CKD can progress to end-stage kidney disease."
-  },
-  {
-    stem: "What is the leading cause of chronic kidney disease (CKD), and what is the second leading cause?",
-    options: ["Diabetes is the primary cause; hypertension is the second leading cause", "Hypertension is the primary cause; diabetes is the second leading cause", "Glomerulonephritis is the primary cause; polycystic kidney disease is the second leading cause", "Pyelonephritis is the primary cause; renal cancer is the second leading cause"],
-    correct: 0,
-    rationale: "Diabetes is the primary cause of CKD, followed by hypertension as the second leading cause. Other causes, in order, include glomerulonephritis and pyelonephritis, polycystic or hereditary disorders, and renal cancers."
   },
   {
     stem: "Which five manifestations are characteristic of acute nephritic syndrome (glomerulonephritis)?",
@@ -202,5 +172,47 @@ window.QUESTIONS = [
     options: ["To monitor the fluid volume removed during dialysis and assess fluid status between treatments", "To calculate the exact dose of erythropoietin required for the next treatment", "To determine whether the patient requires a change in dialysis modality", "To assess for protein-calorie malnutrition unrelated to fluid status"],
     correct: 0,
     rationale: "The nurse obtains the patient's weight pre- and post-dialysis to monitor the fluid volume removed during the treatment and to assess fluid status between dialysis sessions. Since every dialysis treatment plan is individualized, this weight comparison helps guide ongoing fluid management."
+  },
+  {
+    stem: "What is the underlying pathophysiology of polycystic kidney disease (PKD)?",
+    options: ["A genetic disorder characterized by the growth of numerous fluid-filled cysts in the kidneys", "An autoimmune disorder causing inflammation of the glomerular capillaries", "An acquired obstruction of the renal pelvis from recurrent kidney stones", "A viral infection causing acute tubular necrosis"],
+    correct: 0,
+    rationale: "Polycystic kidney disease (PKD) is a genetic disorder characterized by the growth of numerous fluid-filled cysts in the kidneys. As the cysts enlarge, they cause progressive loss of renal function."
+  },
+  {
+    stem: "Which clinical manifestations result from polycystic kidney disease (PKD) as the cysts grow?",
+    options: ["Hematuria, polyuria, hypertension, renal calculi with associated UTIs, and proteinuria", "Oliguria, hypotension, bradycardia, and weight loss", "Jaundice, ascites, and asterixis", "Bronze skin pigmentation and exophthalmos"],
+    correct: 0,
+    rationale: "As cysts grow in PKD, kidney damage results in hematuria, polyuria, hypertension, development of renal calculi and associated UTIs, and proteinuria. Patients also report abdominal fullness and flank pain from the enlarging cysts."
+  },
+  {
+    stem: "Which imaging technique is preferred for diagnosing polycystic kidney disease (PKD)?",
+    options: ["Ultrasound imaging of the kidneys", "Intravenous urography with contrast dye", "Renal angiogram", "Cystoscopic examination"],
+    correct: 0,
+    rationale: "Ultrasound imaging of the kidneys is the preferred technique for diagnosing PKD. Palpation of the abdomen often reveals enlarged cystic kidneys, and because PKD is genetic, careful evaluation of family history is also necessary."
+  },
+  {
+    stem: "What is the medical management approach for polycystic kidney disease (PKD)?",
+    options: ["Supportive treatment including blood pressure control, pain control, and antibiotic agents for infections, with renal replacement therapy once the kidneys fail", "Curative gene therapy administered at the time of diagnosis", "Surgical removal of all renal cysts as first-line treatment", "Chemotherapy to shrink the cysts and preserve renal function"],
+    correct: 0,
+    rationale: "PKD has no cure. Treatment is largely supportive: blood pressure control, pain control, and antibiotics to resolve infections. Once the kidneys fail, renal replacement therapy is indicated. Genetic counseling may also be indicated when screening family members for potential kidney donation."
+  },
+  {
+    stem: "What are the two main potential complications following kidney surgery (nephrectomy)?",
+    options: ["Hemorrhage and shock", "Pneumonia and paralytic ileus", "Hyperkalemia and dysrhythmia", "Peritonitis and sepsis"],
+    correct: 0,
+    rationale: "Hemorrhage and shock are the main potential complications of kidney surgery. Fluid and blood component replacement is frequently necessary in the immediate postoperative period to treat intraoperative blood loss."
+  },
+  {
+    stem: "Why do patients commonly develop abdominal distention and paralytic ileus after renal or ureteral surgery?",
+    options: ["Reflex paralysis of intestinal peristalsis from manipulation of the colon or duodenum during surgery", "Direct surgical injury to the small intestine requiring repair", "An allergic reaction to postoperative antibiotics", "Excessive postoperative fluid restriction"],
+    correct: 0,
+    rationale: "Abdominal distention and paralytic ileus are fairly common after renal and ureteral surgery, thought to be due to a reflex paralysis of intestinal peristalsis from manipulation of the colon or duodenum during surgery."
+  },
+  {
+    stem: "When are oral fluids typically permitted following kidney surgery?",
+    options: ["Once the passage of flatus is noted", "Immediately upon return from the operating room", "Only after the surgical incision is fully healed", "Once the urinary catheter is removed"],
+    correct: 0,
+    rationale: "Oral fluids are permitted once the passage of flatus is noted, indicating that normal peristalsis has returned following the reflex paralysis common after renal or ureteral surgery."
   }
 ];

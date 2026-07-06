@@ -118,5 +118,41 @@ window.QUESTIONS = [
     options: ["The weight gain is the more accurate indicator of fluid retention and should be reported to the provider", "The intake and output totals are more reliable than weight and no further action is needed", "The discrepancy is a documentation error and should be corrected by re-averaging the totals", "The weight change is insignificant since it is less than 2 kg over 24 hours"],
     correct: 0,
     rationale: "Weight is the most accurate indicator of fluid loss or gain in acutely ill patients, even when intake and output totals appear balanced, since I&O often underestimates insensible losses or gains. A 1.5 kg increase indicates fluid retention and should be reported to the provider."
+  },
+  {
+    stem: "A patient with a family history of polycystic kidney disease (PKD) reports abdominal fullness, flank pain, and hematuria. Palpation reveals bilateral enlarged, irregular kidneys. What does the nurse anticipate as the diagnostic study of choice?",
+    options: ["Ultrasound imaging of the kidneys", "Immediate renal biopsy", "Intravenous urography with contrast dye", "No further diagnostic workup is needed based on family history alone"],
+    correct: 0,
+    rationale: "Ultrasound imaging of the kidneys is the preferred technique for diagnosing PKD, and the finding of enlarged, irregular kidneys on palpation along with the family history strongly supports this suspicion."
+  },
+  {
+    stem: "A patient with polycystic kidney disease (PKD) develops worsening flank pain, a low-grade fever, and cloudy urine. What is the nurse's priority action?",
+    options: ["Notify the provider and anticipate antibiotic therapy for a urinary tract infection", "Reassure the patient that this is an expected finding in PKD requiring no intervention", "Restrict the patient's fluid intake to reduce cyst growth", "Prepare the patient for immediate dialysis"],
+    correct: 0,
+    rationale: "Flank pain, low-grade fever, and cloudy urine in a patient with PKD suggest a urinary tract infection, a known complication as cysts and renal calculi develop. The nurse notifies the provider and anticipates antibiotic therapy."
+  },
+  {
+    stem: "A patient with polycystic kidney disease (PKD) is being evaluated as a potential kidney transplant recipient from a sibling donor. What does the nurse anticipate regarding the sibling's workup?",
+    options: ["Genetic linkage studies and counseling, since PKD is hereditary", "No special screening beyond standard donor compatibility testing", "Immediate exclusion of all family members as potential donors", "A renal biopsy of the recipient only, with no additional donor screening"],
+    correct: 0,
+    rationale: "Because PKD is a genetic disease, genetic linkage studies and counseling may be indicated when screening family members for potential kidney donation, to determine whether the sibling also carries the disorder before proceeding."
+  },
+  {
+    stem: "A patient is 6 hours post-nephrectomy. The nurse notes a drop in blood pressure, a rising heart rate, and increasing abdominal girth. What does the nurse suspect, and what is the priority action?",
+    options: ["Hemorrhage and shock; notify the provider immediately", "Expected postoperative pain response; administer analgesics and reassess in 2 hours", "Paralytic ileus; insert an NG tube without notifying the provider", "Dialysis disequilibrium; slow any IV fluids currently infusing"],
+    correct: 0,
+    rationale: "Hemorrhage and shock are the main potential complications of kidney surgery. A drop in blood pressure, rising heart rate, and increasing abdominal girth are concerning for internal bleeding, and the nurse notifies the provider immediately."
+  },
+  {
+    stem: "A patient is 2 days post-nephrectomy with absent bowel sounds and abdominal distention. What is the priority nursing action?",
+    options: ["Prepare the patient for NG tube placement for decompression", "Encourage oral fluids to stimulate bowel motility", "Administer a laxative to promote passage of flatus", "Ambulate the patient immediately without further assessment"],
+    correct: 0,
+    rationale: "Abdominal distention and paralytic ileus are common after renal surgery due to reflex paralysis of intestinal peristalsis. The distention is relieved by decompression through an NG tube rather than oral intake or laxatives, which could worsen distention."
+  },
+  {
+    stem: "A patient post-nephrectomy asks the nurse when oral fluids can be resumed. The nurse notes the patient just passed flatus for the first time since surgery. What is the appropriate response?",
+    options: ["Oral fluids are now permitted", "Oral fluids must be withheld for another 48 hours regardless of flatus", "Oral fluids can only resume once the surgical incision is fully healed", "Oral fluids should be withheld until the urinary catheter is removed"],
+    correct: 0,
+    rationale: "Oral fluids are permitted once the passage of flatus is noted, since this indicates that normal intestinal peristalsis has returned following the reflex paralysis common after renal or ureteral surgery."
   }
 ];
