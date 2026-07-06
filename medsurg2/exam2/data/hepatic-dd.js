@@ -54,12 +54,6 @@ window.QUESTIONS = [
     rationale: "Cirrhosis impairs the liver's ability to synthesize clotting factors, prolonging PT/INR and increasing bleeding risk, which explains the new bruising. The nurse implements bleeding precautions, such as avoiding intramuscular injections and using a soft-bristled toothbrush, and monitors closely for further bleeding."
   },
   {
-    stem: "A nurse caring for a patient with hepatic encephalopathy obtains a daily handwriting sample. What is the purpose of this assessment?",
-    options: ["To provide graphic evidence of the progression or reversal of hepatic encephalopathy over time", "To assess for peripheral neuropathy unrelated to liver disease", "To screen for depression as a complication of chronic illness", "To evaluate fine motor recovery following a recent stroke"],
-    correct: 0,
-    rationale: "A daily handwriting or drawing sample, such as a star figure, provides graphic evidence of the progression or reversal of hepatic encephalopathy. Worsening handwriting or inability to reproduce the figure, known as constructional apraxia, signals worsening encephalopathy."
-  },
-  {
     stem: "A patient with massive ascites reports increasing shortness of breath and the nurse notes shallow respirations. What is the priority nursing action?",
     options: ["Position the patient in semi-Fowler's or high Fowler's position and notify the provider", "Encourage the patient to lie flat to reduce abdominal pressure on the diaphragm", "Restrict all oral fluids immediately without provider order", "Apply a tight abdominal binder to reduce the visible distension"],
     correct: 0,

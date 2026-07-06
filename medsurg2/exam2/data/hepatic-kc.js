@@ -6,42 +6,6 @@ window.QUESTIONS = [
     rationale: "Normal serum ammonia is 10 to 80 mcg/dL. Ammonia reflects the liver's ability to break down protein by-products; when the liver cannot adequately clear ammonia, it accumulates and contributes to hepatic encephalopathy."
   },
   {
-    stem: "What do elevated liver enzymes, alanine aminotransferase (ALT) and aspartate aminotransferase (AST), indicate?",
-    options: ["Damaged liver cells releasing these enzymes into the bloodstream", "Increased bile duct obstruction exclusively", "Improved liver regeneration and synthetic function", "Decreased red blood cell destruction"],
-    correct: 0,
-    rationale: "Elevated ALT and AST indicate damaged liver cells, since these enzymes are released into the bloodstream when hepatocytes are injured. They are key liver function tests used to assess for hepatic disorder."
-  },
-  {
-    stem: "Which of the following is part of the classic symptom picture of hepatic dysfunction?",
-    options: ["Jaundice, pruritus, increasing abdominal girth, and easy bruising", "Polyuria, polydipsia, and unexplained weight loss", "Productive cough, hemoptysis, and pleuritic chest pain", "Hematuria, flank pain, and costovertebral angle tenderness"],
-    correct: 0,
-    rationale: "Hepatic dysfunction commonly presents with jaundice, pruritus, increasing abdominal girth from ascites, and easy bruising from impaired clotting factor synthesis, along with malaise, fatigue, and changes in mental acuity."
-  },
-  {
-    stem: "What is jaundice, and what causes it?",
-    options: ["Yellow or greenish-yellow tinging of body tissues, including the sclerae and skin, due to high bilirubin levels", "Pale, dusky discoloration of the skin caused by decreased hemoglobin", "Red, flushed skin caused by excess bile salt deposition", "Blue-tinged skin caused by inadequate oxygenation from liver failure"],
-    correct: 0,
-    rationale: "Jaundice is a condition in which body tissues, including the sclerae and skin, become tinged yellow or greenish-yellow due to high bilirubin levels. It can result from liver disease, impeded bile flow, or excessive red blood cell destruction."
-  },
-  {
-    stem: "Which physical assessment findings are associated with chronic hepatic dysfunction?",
-    options: ["Spider angiomas, palmar erythema, and asterixis", "Barrel chest, clubbing, and pursed-lip breathing", "Bounding pulses, widened pulse pressure, and water-hammer pulse", "Periorbital edema, foamy urine, and hypoalbuminemia exclusively"],
-    correct: 0,
-    rationale: "Chronic hepatic dysfunction is associated with spider angiomas, palmar erythema, petechiae or ecchymotic areas, and asterixis (involuntary flapping movements of the hands). Gynecomastia and testicular atrophy may also be seen in male patients due to hormonal changes."
-  },
-  {
-    stem: "What is asterixis, and what condition is it most associated with?",
-    options: ["Involuntary flapping movements of the hands, associated with hepatic encephalopathy", "A resting tremor of the hands, associated with Parkinson's disease", "Sustained muscle rigidity, associated with neuroleptic malignant syndrome", "Fine, rapid finger tremors, associated with hyperthyroidism"],
-    correct: 0,
-    rationale: "Asterixis is the involuntary flapping movement of the hands, classically tested by having the patient extend the arms with wrists dorsiflexed. It is an important neurologic sign of hepatic encephalopathy and reflects ammonia-related toxicity."
-  },
-  {
-    stem: "What is the epidemiologic significance of chronic liver disease in the United States?",
-    options: ["It is the 12th leading cause of death among young and middle-aged adults, with at least 40% of deaths associated with alcohol use", "It is the leading cause of death among all adults regardless of age", "It accounts for less than 5% of deaths in young and middle-aged adults", "It is more common in women than in men by a 2 to 1 ratio"],
-    correct: 0,
-    rationale: "Chronic liver disease, including cirrhosis, is the 12th leading cause of death in the United States among young and middle-aged adults, with at least 40% of those deaths associated with alcohol use. It is twice as common in men as in women."
-  },
-  {
     stem: "What two major complications result from portal hypertension?",
     options: ["Ascites and esophageal varices", "Hepatic encephalopathy and jaundice exclusively", "Hepatitis and hepatic cirrhosis exclusively", "Hyperammonemia and hypoalbuminemia exclusively"],
     correct: 0,
@@ -82,36 +46,6 @@ window.QUESTIONS = [
     options: ["Endoscopic sclerotherapy and banding therapy", "Laser ablation and cryotherapy", "Balloon dilation and stenting", "Argon plasma coagulation and radiofrequency ablation"],
     correct: 0,
     rationale: "Bleeding esophageal varices are treated endoscopically with sclerotherapy, which injects a sclerosing agent into the varix, or banding therapy, which places elastic bands around the varix to stop the bleeding and prevent rebleeding."
-  },
-  {
-    stem: "What is hepatic encephalopathy, and what causes it?",
-    options: ["A temporary neurological disorder caused by the buildup of toxins, including ammonia, that the diseased liver fails to filter from the bloodstream", "A permanent structural brain injury caused by direct viral invasion of neural tissue", "A seizure disorder caused exclusively by alcohol withdrawal", "A psychiatric condition unrelated to liver function that mimics liver failure symptoms"],
-    correct: 0,
-    rationale: "Hepatic encephalopathy is an often-temporary neurological disorder due to chronic, severe liver disease. The diseased liver struggles to filter toxins, including ammonia from protein breakdown, from the bloodstream, and these toxins travel to the brain and impair function."
-  },
-  {
-    stem: "How does the mental status of a patient with worsening hepatic encephalopathy typically progress?",
-    options: ["Confusion and altered sleep patterns, progressing to difficulty awakening and disorientation, and ultimately to coma and seizures", "Sudden onset of focal weakness followed by rapid full recovery within hours", "Isolated short-term memory loss with no other cognitive or behavioral changes", "Progressive hearing loss followed by visual disturbances"],
-    correct: 0,
-    rationale: "Hepatic encephalopathy progresses from mental status changes and motor disturbances, including confusion, altered mood, and disrupted sleep patterns (sleeping during the day, restless at night), to difficulty awakening and disorientation to time and place, and ultimately to frank coma and seizures."
-  },
-  {
-    stem: "What does the abbreviation AAOx3 assess, and why is it important in a patient with hepatic encephalopathy?",
-    options: ["Alert and oriented to person, place, and time; it tracks the patient's neurologic status as encephalopathy progresses or improves", "Airway, appearance, and oxygenation; it is used to determine the need for intubation", "Ammonia, albumin, and oxygen saturation; it is a panel of lab values monitored in liver disease", "Alertness, agitation, and orientation; it is used only in psychiatric assessment"],
-    correct: 0,
-    rationale: "AAOx3 refers to alert and oriented to person, place, and time. This orientation assessment is a key nursing tool to track the progression or improvement of hepatic encephalopathy, since disorientation to time and place is an early and trackable sign of worsening encephalopathy."
-  },
-  {
-    stem: "Asterixis is most classically associated with which stage of hepatic encephalopathy?",
-    options: ["Stage II", "Stage I", "Stage III", "Stage IV"],
-    correct: 0,
-    rationale: "Asterixis, an involuntary flapping of the hands, may be seen in stage II hepatic encephalopathy. As encephalopathy progresses, simple tasks such as handwriting become difficult, and the inability to reproduce a simple figure is called constructional apraxia."
-  },
-  {
-    stem: "What is constructional apraxia, and how is it assessed at the bedside in a patient with hepatic encephalopathy?",
-    options: ["The inability to reproduce a simple figure, such as a star, in two or three dimensions; assessed with a daily handwriting or drawing sample", "The inability to recognize familiar faces; assessed with a facial recognition test", "The inability to perform calculations; assessed with serial sevens", "The inability to follow a two-step command; assessed with verbal instruction testing"],
-    correct: 0,
-    rationale: "Constructional apraxia is the inability to reproduce a simple figure, such as a star, in two or three dimensions. A handwriting or drawing sample taken daily provides graphic evidence of the progression or reversal of hepatic encephalopathy."
   },
   {
     stem: "What is the purpose of lactulose in the management of hepatic encephalopathy?",
