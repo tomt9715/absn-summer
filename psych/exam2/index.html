@@ -7,6 +7,37 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="../../shared/hub.css">
+<style>
+  .prof-banner {
+    margin-top: 1.8rem;
+    background: linear-gradient(120deg, var(--accent-soft), var(--gold-soft) 60%, var(--teal-soft));
+    border: 1px solid var(--border-strong);
+    border-radius: 16px;
+    padding: 1.6rem 1.7rem 1.8rem;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.06);
+  }
+  .prof-banner-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 1.1rem; flex-wrap: wrap; }
+  .prof-banner-eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--accent); background: var(--surface);
+    padding: 4px 11px; border-radius: 6px; border: 1px solid var(--border-strong);
+  }
+  .prof-banner-title { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 500; color: var(--ink); }
+  .prof-banner-sub { font-size: 14px; color: var(--ink-soft); margin-bottom: 1.2rem; line-height: 1.55; }
+  .prof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .prof-card {
+    background: var(--surface); border: 1px solid var(--border-strong); border-radius: 12px;
+    padding: 1.1rem 1.2rem; text-decoration: none; color: inherit; display: block;
+    transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s; position: relative; overflow: hidden;
+  }
+  .prof-card::after { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform 0.2s ease; }
+  .prof-card:hover { border-color: var(--accent); box-shadow: 0 6px 18px rgba(181,72,46,0.12); transform: translateY(-3px); }
+  .prof-card:hover::after { transform: scaleY(1); }
+  .prof-card-chapter { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-mute); }
+  .prof-card-name { font-family: 'Fraunces', serif; font-size: 1.12rem; font-weight: 500; color: var(--ink); margin: 6px 0 8px; line-height: 1.25; }
+  .prof-card-count { font-size: 13px; color: var(--ink-mute); }
+  @media (max-width: 700px) { .prof-grid { grid-template-columns: 1fr; } }
+</style>
 </head>
 <body>
 <div class="accent-band"></div>
@@ -40,6 +71,31 @@
     </div>
   </header>
 
+  <div class="prof-banner">
+    <div class="prof-banner-head">
+      <span class="prof-banner-eyebrow">Straight from the professor</span>
+      <span class="prof-banner-title">Professor's Practice Questions</span>
+    </div>
+    <p class="prof-banner-sub">Pulled directly from the practice question sets and slide decks the professor handed out, sorted into the same three chapters as everything else on this hub. Select All That Apply questions score partial credit, same as the rest of the site.</p>
+    <div class="prof-grid">
+      <a class="prof-card" href="professor-qs.html">
+        <span class="prof-card-chapter">Ch 19 · Addiction</span>
+        <div class="prof-card-name">Addiction &amp; Substance Use</div>
+        <span class="prof-card-count">23 questions</span>
+      </a>
+      <a class="prof-card" href="mood-prof-qs.html">
+        <span class="prof-card-chapter">Ch 17 · Mood Disorders</span>
+        <div class="prof-card-name">Mood Disorders &amp; Suicide</div>
+        <span class="prof-card-count">55 questions</span>
+      </a>
+      <a class="prof-card" href="schizophrenia-prof-qs.html">
+        <span class="prof-card-chapter">Ch 16 · Schizophrenia</span>
+        <div class="prof-card-name">Schizophrenia &amp; Psychosis</div>
+        <span class="prof-card-count">29 questions</span>
+      </a>
+    </div>
+  </div>
+
   <div id="topics"></div>
 
   <a class="sim-card" href="simulator.html" id="sim-card">
@@ -47,22 +103,6 @@
       <span class="qc-type">Exam Simulator</span>
       <div class="sim-name">Full mixed simulator</div>
       <span class="sim-sub">50 questions · matches the exam blueprint exactly · includes Select All That Apply</span>
-    </div>
-  </a>
-
-  <a class="sim-card" href="professor-qs.html" id="prof-qs-card">
-    <div class="sim-left">
-      <span class="qc-type">Exam Review</span>
-      <div class="sim-name">Professor's Practice Questions (Addiction)</div>
-      <span class="sim-sub">23 questions · pulled from professor-provided practice items · Select All That Apply questions score partial credit</span>
-    </div>
-  </a>
-
-  <a class="sim-card" href="mood-prof-qs.html" id="mood-prof-qs-card">
-    <div class="sim-left">
-      <span class="qc-type">Exam Review</span>
-      <div class="sim-name">Professor's Practice Questions (Mood Disorders &amp; Suicide)</div>
-      <span class="sim-sub">55 questions · pulled from the professor's practice question deck · Select All That Apply questions score partial credit</span>
     </div>
   </a>
 
