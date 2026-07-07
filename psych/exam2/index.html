@@ -10,18 +10,13 @@
 <style>
   .prof-banner {
     margin-top: 1.8rem;
-    background: linear-gradient(120deg, var(--accent-soft), var(--gold-soft) 60%, var(--teal-soft));
+    background: var(--gold-soft);
     border: 1px solid var(--border-strong);
     border-radius: 16px;
     padding: 1.6rem 1.7rem 1.8rem;
     box-shadow: 0 6px 22px rgba(0,0,0,0.06);
   }
   .prof-banner-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 1.1rem; flex-wrap: wrap; }
-  .prof-banner-eyebrow {
-    font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--accent); background: var(--surface);
-    padding: 4px 11px; border-radius: 6px; border: 1px solid var(--border-strong);
-  }
   .prof-banner-title { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 500; color: var(--ink); }
   .prof-banner-sub { font-size: 14px; color: var(--ink-soft); margin-bottom: 1.2rem; line-height: 1.55; }
   .prof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -73,7 +68,6 @@
 
   <div class="prof-banner">
     <div class="prof-banner-head">
-      <span class="prof-banner-eyebrow">Straight from the professor</span>
       <span class="prof-banner-title">Professor's Practice Questions</span>
     </div>
     <p class="prof-banner-sub">Pulled directly from the practice question sets and slide decks the professor handed out, sorted into the same three chapters as everything else on this hub. Select All That Apply questions score partial credit, same as the rest of the site.</p>
