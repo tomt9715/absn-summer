@@ -115,12 +115,72 @@
     });
   }
 
+  // ── In-progress save / resume ─────────────────────────────────
+  function saveProgress() {
+    try {
+      const state = { deck, idx, correctCount, results, streak, onFire, ts: Date.now() };
+      localStorage.setItem(KEY + '_inprogress', JSON.stringify(state));
+    } catch (e) {}
+  }
+  function clearProgress() {
+    try { localStorage.removeItem(KEY + '_inprogress'); } catch (e) {}
+  }
+  function loadProgress() {
+    try {
+      const raw = localStorage.getItem(KEY + '_inprogress');
+      if (!raw) return null;
+      const state = JSON.parse(raw);
+      if (!state || !Array.isArray(state.deck) || typeof state.idx !== 'number') return null;
+      if (state.idx >= state.deck.length) return null;
+      return state;
+    } catch (e) { return null; }
+  }
+
+  function renderResumePrompt(saved) {
+    injectFireStyles();
+    const scoreSoFar = saved.idx > 0 ? Math.round((saved.correctCount / saved.idx) * 100) + '%' : '—';
+    const area = document.getElementById('quiz-area');
+    area.innerHTML = `
+      <div class="results-card">
+        <div class="score-sub" style="font-size:19px;color:var(--ink);font-weight:600;margin-bottom:10px;">Pick up where you left off?</div>
+        <div class="score-msg">You were on question ${saved.idx + 1} of ${saved.deck.length} · ${scoreSoFar} so far</div>
+        <div class="results-actions">
+          <button class="action-btn primary" onclick="__quizResume()">Continue</button>
+          <button class="action-btn ghost" onclick="__quizStartOver()">Start over</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function resumeQuiz(saved) {
+    deck = saved.deck;
+    idx = saved.idx;
+    correctCount = saved.correctCount;
+    results = saved.results || [];
+    streak = saved.streak || 0;
+    onFire = saved.onFire || false;
+    answered = false;
+    renderQuestion();
+  }
+
   function startQuiz() {
     injectFireStyles();
+    clearProgress();
     buildDeck();
     idx = 0; correctCount = 0; answered = false; results = [];
     streak = 0; onFire = false;
     renderQuestion();
+    saveProgress();
+  }
+
+  function init() {
+    injectFireStyles();
+    const saved = loadProgress();
+    if (saved) {
+      renderResumePrompt(saved);
+    } else {
+      startQuiz();
+    }
   }
 
   function renderQuestion() {
@@ -194,6 +254,7 @@
       isPartial: false,
       rationale: q.rationale
     });
+    saveProgress();
 
     const fb = document.getElementById('feedback');
     let verdict, cls;
@@ -278,6 +339,7 @@
       pointsLabel,
       rationale: q.rationale
     });
+    saveProgress();
 
     const fb = document.getElementById('feedback');
     let verdict, cls;
@@ -305,6 +367,7 @@
     if (idx < deck.length - 1) {
       idx++;
       renderQuestion();
+      saveProgress();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       showResults();
@@ -313,6 +376,7 @@
 
   function showResults() {
     streak = 0; onFire = false;
+    clearProgress();
     const pct = Math.round((correctCount / deck.length) * 100);
     const pass = pct >= PASS;
     let historyLine = '';
@@ -421,11 +485,17 @@
   window.__quizNext = next;
   window.__quizTab = setTab;
   window.__quizStart = startQuiz;
+  window.__quizResume = function () {
+    const saved = loadProgress();
+    if (saved) resumeQuiz(saved);
+    else startQuiz();
+  };
+  window.__quizStartOver = startQuiz;
 
   // boot when DOM ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startQuiz);
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    startQuiz();
+    init();
   }
 })();
