@@ -10,7 +10,7 @@
 <style>
   .prof-banner {
     margin-top: 1.8rem;
-    background: var(--gold-soft);
+    background: var(--accent-soft);
     border: 1px solid var(--border-strong);
     border-radius: 16px;
     padding: 1.6rem 1.7rem 1.8rem;
@@ -31,6 +31,12 @@
   .prof-card-chapter { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-mute); }
   .prof-card-name { font-family: 'Fraunces', serif; font-size: 1.12rem; font-weight: 500; color: var(--ink); margin: 6px 0 8px; line-height: 1.25; }
   .prof-card-count { font-size: 13px; color: var(--ink-mute); }
+  .prof-card-score { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12.5px; }
+  .prof-card-score .pcs-fresh { color: var(--ink-mute); }
+  .prof-card-score .pcs-best { color: var(--correct); font-weight: 600; }
+  .prof-card-score .pcs-meta { color: var(--ink-mute); margin-left: 6px; }
+  .prof-card-score .pcs-trend-up { color: var(--correct); }
+  .prof-card-score .pcs-trend-down { color: var(--accent); }
   @media (max-width: 700px) { .prof-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
@@ -76,16 +82,19 @@
         <span class="prof-card-chapter">Ch 19 · Addiction</span>
         <div class="prof-card-name">Addiction &amp; Substance Use</div>
         <span class="prof-card-count">23 questions</span>
+        <div class="prof-card-score" data-key="ps_e2_prof_qs"></div>
       </a>
       <a class="prof-card" href="mood-prof-qs.html">
         <span class="prof-card-chapter">Ch 17 · Mood Disorders</span>
         <div class="prof-card-name">Mood Disorders &amp; Suicide</div>
         <span class="prof-card-count">55 questions</span>
+        <div class="prof-card-score" data-key="ps_e2_mood_prof_qs"></div>
       </a>
       <a class="prof-card" href="schizophrenia-prof-qs.html">
         <span class="prof-card-chapter">Ch 16 · Schizophrenia</span>
         <div class="prof-card-name">Schizophrenia &amp; Psychosis</div>
         <span class="prof-card-count">29 questions</span>
+        <div class="prof-card-score" data-key="ps_e2_schiz_prof_qs"></div>
       </a>
     </div>
   </div>
@@ -153,6 +162,31 @@
   };
 
   (function () {
+    document.querySelectorAll('.prof-card-score').forEach(el => {
+      const key = el.getAttribute('data-key');
+      let best = null, hist = [];
+      try {
+        const b = localStorage.getItem(key + '_best');
+        if (b !== null) best = parseInt(b, 10);
+        const h = localStorage.getItem(key + '_history');
+        if (h) hist = JSON.parse(h);
+        if (!Array.isArray(hist)) hist = [];
+      } catch (e) {}
+      if (best === null || isNaN(best) || hist.length === 0) {
+        el.innerHTML = '<span class="pcs-fresh">Not started yet</span>';
+        return;
+      }
+      const attempts = hist.length;
+      let trendHTML = '';
+      if (attempts > 1) {
+        const diff = hist[attempts - 1].pct - hist[attempts - 2].pct;
+        if (diff > 0) trendHTML = '<span class="pcs-trend-up">&#8593; +' + diff + '</span>';
+        else if (diff < 0) trendHTML = '<span class="pcs-trend-down">&#8595; ' + diff + '</span>';
+        else trendHTML = '<span class="pcs-meta">no change</span>';
+      }
+      el.innerHTML = '<span class="pcs-best">Best ' + best + '%</span><span class="pcs-meta">' + attempts + (attempts === 1 ? ' attempt' : ' attempts') + '</span> ' + trendHTML;
+    });
+
     const wrap = document.getElementById('topics');
     let attempted = 0, total = 0, html = '';
     EXAM.topics.forEach((topic, ti) => {

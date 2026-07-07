@@ -315,10 +315,32 @@
     streak = 0; onFire = false;
     const pct = Math.round((correctCount / deck.length) * 100);
     const pass = pct >= PASS;
+    let historyLine = '';
     try {
       const prev = parseInt(localStorage.getItem(KEY + '_best') || '0', 10);
       if (pct > prev) localStorage.setItem(KEY + '_best', String(pct));
       localStorage.setItem(KEY + '_last', String(pct));
+      const histRaw = localStorage.getItem(KEY + '_history');
+      let hist = [];
+      try { hist = histRaw ? JSON.parse(histRaw) : []; } catch (e2) { hist = []; }
+      if (!Array.isArray(hist)) hist = [];
+      hist.push({ pct, date: Date.now() });
+      if (hist.length > 50) hist = hist.slice(hist.length - 50);
+      localStorage.setItem(KEY + '_history', JSON.stringify(hist));
+
+      const attemptNum = hist.length;
+      const bestNow = Math.max(prev, pct);
+      if (attemptNum > 1) {
+        const priorPct = hist[hist.length - 2].pct;
+        const diff = pct - priorPct;
+        let trendText;
+        if (diff > 0) trendText = `up ${diff} pts from your last try`;
+        else if (diff < 0) trendText = `down ${Math.abs(diff)} pts from your last try`;
+        else trendText = 'same as your last try';
+        historyLine = `Attempt ${attemptNum} · best ${bestNow}% · ${trendText}`;
+      } else {
+        historyLine = `Attempt 1 · first try on the books`;
+      }
     } catch (e) {}
 
     let msg;
@@ -333,6 +355,7 @@
       <div class="results-card">
         <div class="score-big ${pass ? 'pass' : 'fail'}">${pct}%</div>
         <div class="score-sub">${scoreDisplay} / ${deck.length} points · ${cfg.title || ''}</div>
+        ${historyLine ? `<div class="score-history">${historyLine}</div>` : ''}
         <div class="score-msg">${msg}</div>
         <div class="results-tabs">
           <button class="r-tab ${activeTab === 'full' ? 'active' : ''}" onclick="__quizTab('full', this)">Full Review</button>

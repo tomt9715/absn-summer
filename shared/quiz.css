@@ -146,6 +146,7 @@ h1 {
 .score-big.pass { color: var(--correct); }
 .score-big.fail { color: var(--accent); }
 .score-sub { font-size: 16px; color: var(--ink-mute); margin-bottom: 8px; }
+.score-history { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--teal); background: var(--teal-soft); display: inline-block; padding: 4px 12px; border-radius: 6px; margin-bottom: 14px; }
 .score-msg { font-size: 15px; color: var(--ink-soft); margin-bottom: 24px; }
 
 .results-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 22px; flex-wrap: wrap; }
