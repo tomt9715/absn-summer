@@ -5,6 +5,12 @@
      QUESTIONS   = [ { stem, options[], correct, rationale }, ... ]
        - correct as a number = single-select question
        - correct as an array of numbers = Select All That Apply (SATA), partial credit scored
+     A question may instead supply pairs[] for a matching question:
+       { stem, pairs: [ { left, right }, ... ], decoys: [ 'extra right', ... ], rationale }
+       - decoys (optional) are extra right-column choices that match nothing
+       - rendered as a lettered answer key + one dropdown per left item
+       - scored with partial credit: one point per correctly matched pair,
+         normalized to the pair count; counts toward the final score
    Renders into #quiz-area.
    ============================================ */
 (function () {
@@ -13,7 +19,7 @@
   const PASS = cfg.passThreshold || 77;
   const TAG = cfg.tag || '';
   const KEY = cfg.key || 'quiz';
-  const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
+  const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
 
   function shuffle(arr) {
     const a = arr.slice();
@@ -75,6 +81,37 @@
         from { transform: translateX(-50%) scaleX(1)    scaleY(1)    skewX(0deg); }
         to   { transform: translateX(-50%) scaleX(0.85) scaleY(0.9)  skewX(4deg); }
       }
+      .match-key {
+        display: flex; flex-direction: column; gap: 6px;
+        margin: 0 0 16px; padding: 12px 14px;
+        background: var(--surface2, rgba(0,0,0,0.03));
+        border: 1px solid var(--border, #ddd);
+        border-radius: 10px;
+      }
+      .match-key-item { display: flex; gap: 10px; align-items: baseline; font-size: 14.5px; }
+      .match-rows { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+      .match-row {
+        display: flex; align-items: center; gap: 12px;
+        padding: 10px 12px;
+        border: 1.5px solid var(--border, #ddd);
+        border-radius: 10px;
+        background: var(--surface, #fff);
+      }
+      .match-row.correct { border-color: var(--correct, #2e7d32); background: rgba(46,125,50,0.07); }
+      .match-row.wrong   { border-color: var(--wrong, #c62828);   background: rgba(198,40,40,0.07); }
+      .match-left { flex: 1; font-size: 15px; }
+      .match-select {
+        font: inherit; font-size: 15px;
+        padding: 6px 10px; min-width: 64px;
+        border: 1.5px solid var(--border, #ddd);
+        border-radius: 8px;
+        background: var(--surface, #fff);
+        color: inherit;
+      }
+      .match-fix { font-weight: 700; color: var(--correct, #2e7d32); white-space: nowrap; font-size: 14px; }
+      .review-match-list { display: flex; flex-direction: column; gap: 4px; margin: 6px 0; }
+      .review-match-list .good  { color: var(--correct, #2e7d32); }
+      .review-match-list .bad   { color: var(--wrong, #c62828); }
     `;
     document.head.appendChild(style);
   }
@@ -106,6 +143,18 @@
       pool = pool.slice(0, cfg.maxQuestions);
     }
     deck = pool.map(q => {
+      if (Array.isArray(q.pairs)) {
+        const rights = q.pairs.map((p, i) => ({ text: p.right, key: i }));
+        (q.decoys || []).forEach((d, j) => rights.push({ text: d, key: -(j + 1) }));
+        return {
+          stem: q.stem,
+          rationale: q.rationale,
+          image: q.image || null,
+          isMatching: true,
+          lefts: shuffle(q.pairs.map((p, i) => ({ text: p.left, key: i }))),
+          rights: shuffle(rights)
+        };
+      }
       const isSata = Array.isArray(q.correct);
       const optionObjs = q.options.map((text, i) => ({
         text,
@@ -191,14 +240,35 @@
     const pct = Math.round((idx / deck.length) * 100);
     const scoreText = (idx > 0) ? Math.round((correctCount / idx) * 100) + '%' : '—';
 
-    let optsHTML = '';
-    q.opts.forEach((o, i) => {
-      const clickHandler = q.isSata ? `__quizToggle(${i})` : `__quizPick(${i})`;
-      optsHTML += `<button class="opt" data-i="${i}" onclick="${clickHandler}">
-        <span class="opt-letter">${LETTERS[i]}</span>
-        <span class="opt-text">${o.text}</span>
-      </button>`;
-    });
+    let bodyHTML = '';
+    if (q.isMatching) {
+      const keyHTML = q.rights.map((r, ri) => `
+        <div class="match-key-item"><span class="opt-letter">${LETTERS[ri]}</span><span>${r.text}</span></div>`).join('');
+      const rowsHTML = q.lefts.map((l, li) => `
+        <div class="match-row" data-li="${li}">
+          <span class="match-left">${l.text}</span>
+          <select class="match-select" data-li="${li}" onchange="__quizMatchChange()">
+            <option value="">&mdash;</option>
+            ${q.rights.map((r, ri) => `<option value="${r.key}">${LETTERS[ri]}</option>`).join('')}
+          </select>
+        </div>`).join('');
+      bodyHTML = `
+        <div class="match-key">${keyHTML}</div>
+        <div class="match-rows" id="opts">${rowsHTML}</div>
+        <button class="next-btn sata-submit" id="match-submit-btn" onclick="__quizSubmitMatch()" disabled>Submit answer</button>`;
+    } else {
+      let optsHTML = '';
+      q.opts.forEach((o, i) => {
+        const clickHandler = q.isSata ? `__quizToggle(${i})` : `__quizPick(${i})`;
+        optsHTML += `<button class="opt" data-i="${i}" onclick="${clickHandler}">
+          <span class="opt-letter">${LETTERS[i]}</span>
+          <span class="opt-text">${o.text}</span>
+        </button>`;
+      });
+      bodyHTML = `
+        <div class="options" id="opts">${optsHTML}</div>
+        ${q.isSata ? `<button class="next-btn sata-submit" id="sata-submit-btn" onclick="__quizSubmitSata()" disabled>Submit answer</button>` : ''}`;
+    }
 
     area.innerHTML = `
       <div class="progress-row">
@@ -213,14 +283,14 @@
         </div>
         <div class="q-stem">${q.stem}</div>
         ${q.isSata ? `<div class="sata-hint">Select all that apply · partial credit awarded</div>` : ''}
+        ${q.isMatching ? `<div class="sata-hint">Match each item to a letter · partial credit awarded</div>` : ''}
         ${q.image ? `<div class="q-image-wrap">
           <div class="q-image-skeleton" id="img-skeleton"></div>
           <img src="${q.image}" alt="Clinical image" class="q-image" style="display:none" id="q-img"
             onload="this.style.display='block';this.style.opacity=0;var s=document.getElementById('img-skeleton');if(s)s.style.display='none';setTimeout(function(){var el=document.getElementById('q-img');if(el)el.style.opacity=1;},10);"
             onerror="var s=document.getElementById('img-skeleton');if(s){s.textContent='Image unavailable';s.style.background='var(--surface2)';}" />
         </div>` : ''}
-        <div class="options" id="opts">${optsHTML}</div>
-        ${q.isSata ? `<button class="next-btn sata-submit" id="sata-submit-btn" onclick="__quizSubmitSata()" disabled>Submit answer</button>` : ''}
+        ${bodyHTML}
         <div id="feedback"></div>
       </div>
     `;
@@ -363,6 +433,92 @@
     `;
   }
 
+  function matchChange() {
+    if (answered) return;
+    const sels = document.querySelectorAll('.match-select');
+    const allSet = Array.from(sels).every(s => s.value !== '');
+    const btn = document.getElementById('match-submit-btn');
+    if (btn) btn.disabled = !allSet;
+  }
+
+  // Partial-credit matching scoring: one point per correctly matched pair,
+  // normalized to the pair count. No penalty for wrong matches beyond the lost point.
+  function submitMatch() {
+    if (answered) return;
+    const q = deck[idx];
+    const sels = Array.from(document.querySelectorAll('.match-select'));
+    if (!sels.every(s => s.value !== '')) return;
+    answered = true;
+
+    let numCorrect = 0;
+    const matchDetail = [];
+    sels.forEach(s => {
+      const li = parseInt(s.getAttribute('data-li'), 10);
+      const left = q.lefts[li];
+      const chosenKey = parseInt(s.value, 10);
+      const good = chosenKey === left.key;
+      if (good) numCorrect++;
+      const chosenRight = q.rights.find(r => r.key === chosenKey);
+      const correctRightIdx = q.rights.findIndex(r => r.key === left.key);
+      matchDetail.push({
+        left: left.text,
+        chosen: chosenRight ? chosenRight.text : '',
+        correctTxt: q.rights[correctRightIdx].text,
+        good
+      });
+      const row = s.closest('.match-row');
+      row.classList.add(good ? 'correct' : 'wrong');
+      s.setAttribute('disabled', 'true');
+      if (!good) {
+        row.insertAdjacentHTML('beforeend', `<span class="match-fix">${LETTERS[correctRightIdx]}</span>`);
+      }
+    });
+    const submitBtn = document.getElementById('match-submit-btn');
+    if (submitBtn) submitBtn.remove();
+
+    const total = q.lefts.length;
+    const fraction = numCorrect / total;
+    const isFullCredit = fraction === 1;
+    const isPartial = fraction > 0 && fraction < 1;
+    correctCount += fraction;
+    handleStreak(isFullCredit);
+
+    const pointsLabel = `${numCorrect}/${total} pairs matched`;
+    results.push({
+      stem: q.stem,
+      image: q.image || null,
+      isMatching: true,
+      matchDetail,
+      yourLetter: '', yourText: '', correctLetter: '', correctText: '',
+      isCorrect: isFullCredit,
+      isPartial,
+      pointsLabel,
+      rationale: q.rationale
+    });
+    saveProgress();
+
+    const fb = document.getElementById('feedback');
+    let verdict, cls;
+    if (isFullCredit) {
+      verdict = `✓ Correct — all ${total} pairs matched.`;
+      cls = 'r-correct';
+    } else if (isPartial) {
+      verdict = `◐ Partial credit (${pointsLabel}). Correct letters shown in green on the missed rows.`;
+      cls = 'r-partial';
+    } else {
+      verdict = `✗ No credit (${pointsLabel}). Correct letters shown in green on each row.`;
+      cls = 'r-wrong';
+    }
+    const isLast = idx === deck.length - 1;
+    fb.innerHTML = `
+      <div class="rationale ${cls}">
+        <span class="verdict">${verdict}</span>
+        ${q.rationale}
+      </div>
+      <button class="next-btn" onclick="__quizNext()">${isLast ? 'See results →' : 'Next question →'}</button>
+    `;
+  }
+
   function next() {
     if (idx < deck.length - 1) {
       idx++;
@@ -466,12 +622,16 @@
         </div>
         <div class="review-item-q">${r.stem}</div>
         ${r.image ? `<img src="${r.image}" alt="Clinical image" class="q-image" style="max-width:260px;margin:8px 0;border-radius:8px;border:1px solid var(--border);" />` : ''}
-        <div class="review-item-ans">
+        ${r.isMatching
+          ? `<div class="review-match-list">${r.matchDetail.map(d => d.good
+              ? `<span class="good">✓ ${d.left} → ${d.chosen}</span>`
+              : `<span class="bad">✗ ${d.left} → ${d.chosen || '(none)'}${' '}(correct: ${d.correctTxt})</span>`).join('')}</div>`
+          : `<div class="review-item-ans">
           ${r.isCorrect
             ? `<span class="ri-correct-ans">Your answer: ${r.yourLetter} — ${r.yourText} ✓</span>`
             : `<span class="ri-yours">You chose: ${r.yourLetter} — ${r.yourText}</span>
                <span class="ri-correct-ans">Correct: ${r.correctLetter} — ${r.correctText}</span>`}
-        </div>
+        </div>`}
         <div class="ri-rationale">${r.rationale}</div>
       </div>
     `;
@@ -482,6 +642,8 @@
   window.__quizPick = pick;
   window.__quizToggle = toggleSata;
   window.__quizSubmitSata = submitSata;
+  window.__quizMatchChange = matchChange;
+  window.__quizSubmitMatch = submitMatch;
   window.__quizNext = next;
   window.__quizTab = setTab;
   window.__quizStart = startQuiz;

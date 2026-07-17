@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psych — Exam 3 Study Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../../shared/hub.css">
+<style>
+  .prof-banner {
+    margin-top: 1.8rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--border-strong);
+    border-radius: 16px;
+    padding: 1.6rem 1.7rem 1.8rem;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.06);
+  }
+  .prof-banner-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 1.1rem; flex-wrap: wrap; }
+  .prof-banner-title { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 500; color: var(--ink); }
+  .prof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .prof-card {
+    background: var(--surface); border: 1px solid var(--border-strong); border-radius: 12px;
+    padding: 1.1rem 1.2rem; text-decoration: none; color: inherit; display: block;
+    transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s; position: relative; overflow: hidden;
+  }
+  .prof-card::after { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform 0.2s ease; }
+  .prof-card:hover { border-color: var(--accent); box-shadow: 0 6px 18px rgba(181,72,46,0.12); transform: translateY(-3px); }
+  .prof-card:hover::after { transform: scaleY(1); }
+  .prof-card-chapter { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-mute); }
+  .prof-card-name { font-family: 'Fraunces', serif; font-size: 1.12rem; font-weight: 500; color: var(--ink); margin: 6px 0 8px; line-height: 1.25; }
+  .prof-card-count { font-size: 13px; color: var(--ink-mute); }
+  .prof-card-score { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12.5px; }
+  .prof-card-score .pcs-fresh { color: var(--ink-mute); }
+  .prof-card-score .pcs-best { color: var(--correct); font-weight: 600; }
+  .prof-card-score .pcs-meta { color: var(--ink-mute); margin-left: 6px; }
+  .prof-card-score .pcs-trend-up { color: var(--correct); }
+  .prof-card-score .pcs-trend-down { color: var(--accent); }
+  @media (max-width: 700px) { .prof-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="accent-band"></div>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-inner">
+      <a href="../index.html" class="hub-back">← Psych exams</a>
+      <span class="eyebrow">Psychiatric Nursing · Manhattanville</span>
+      <h1 class="hero-title">Exam 3 <em>Study Hub</em></h1>
+
+      <div class="countdown-card">
+        <div class="countdown-num" id="cd-num">—</div>
+        <div class="countdown-meta">
+          <span class="countdown-label">Days until exam</span>
+          <span class="countdown-date" id="cd-date">Tuesday, July 21</span>
+          <span class="countdown-sub" id="cd-sub">&nbsp;</span>
+        </div>
+        <div class="countdown-divider"></div>
+        <div class="progress-overview">
+          <div class="ring-wrap">
+            <svg width="76" height="76" viewBox="0 0 76 76">
+              <circle class="ring-bg" cx="38" cy="38" r="32"></circle>
+              <circle class="ring-fg" id="ring" cx="38" cy="38" r="32" stroke-dasharray="201" stroke-dashoffset="201"></circle>
+            </svg>
+            <div class="ring-label"><span class="ring-pct" id="ring-pct">0%</span></div>
+          </div>
+          <span class="ring-cap">of quizzes attempted</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="prof-banner">
+    <div class="prof-banner-head">
+      <span class="prof-banner-title">Professor's Practice Questions</span>
+    </div>
+    <div class="prof-grid">
+      <a class="prof-card" href="pd-prof-qs.html">
+        <span class="prof-card-chapter">Ch 18 · Personality</span>
+        <div class="prof-card-name">Personality Disorders</div>
+        <span class="prof-card-count">7 items · incl. matching game</span>
+        <div class="prof-card-score" data-key="ps_e3_pd_prof"></div>
+      </a>
+      <a class="prof-card" href="anxiety-prof-qs.html">
+        <span class="prof-card-chapter">Ch 14 · Anxiety</span>
+        <div class="prof-card-name">Anxiety &amp; Anxiolytics</div>
+        <span class="prof-card-count">22 items · incl. benzo matching</span>
+        <div class="prof-card-score" data-key="ps_e3_anxiety_prof"></div>
+      </a>
+      <a class="prof-card" href="ocd-prof-qs.html">
+        <span class="prof-card-chapter">Ch 15 · OCD</span>
+        <div class="prof-card-name">Obsessive-Compulsive Disorders</div>
+        <span class="prof-card-count">9 items</span>
+        <div class="prof-card-score" data-key="ps_e3_ocd_prof"></div>
+      </a>
+      <a class="prof-card" href="trauma-prof-qs.html">
+        <span class="prof-card-chapter">Ch 13 · Trauma</span>
+        <div class="prof-card-name">Trauma &amp; PTSD</div>
+        <span class="prof-card-count">7 items</span>
+        <div class="prof-card-score" data-key="ps_e3_trauma_prof"></div>
+      </a>
+      <a class="prof-card" href="abuse-prof-qs.html">
+        <span class="prof-card-chapter">Ch 12 · Abuse</span>
+        <div class="prof-card-name">Abuse &amp; Violence</div>
+        <span class="prof-card-count">9 items · incl. matching game</span>
+        <div class="prof-card-score" data-key="ps_e3_abuse_prof"></div>
+      </a>
+      <a class="prof-card" href="anger-prof-qs.html">
+        <span class="prof-card-chapter">Ch 11 · Anger</span>
+        <div class="prof-card-name">Anger &amp; Aggression</div>
+        <span class="prof-card-count">14 items</span>
+        <div class="prof-card-score" data-key="ps_e3_anger_prof"></div>
+      </a>
+    </div>
+  </div>
+
+  <div id="topics"></div>
+
+  <div class="howto">
+    <h3>How to get the most out of this</h3>
+    <ul>
+      <li><span class="dot">→</span><span>The <strong>Professor's Practice Questions</strong> are her actual lecture questions — closest thing to the real exam. Start there.</span></li>
+      <li><span class="dot">→</span><span>Study by <strong>comparison pairs</strong> — schizoid vs avoidant, OCD vs OCPD, severe anxiety vs panic, acute stress disorder vs PTSD. That is where the hard questions live.</span></li>
+      <li><span class="dot">→</span><span>For priority questions: <strong>safety beats teaching, de-escalation beats restriction, assessment beats intervention</strong>, and least restrictive always comes first.</span></li>
+      <li><span class="dot">→</span><span>Questions and answer choices <strong>reshuffle every time</strong> — matching and Select All That Apply score partial credit that counts toward your grade.</span></li>
+    </ul>
+  </div>
+
+  <div class="donation-footer">
+    <div class="msg">This started as my own study tool and turned into something I wanted to share with everyone. No catch, no paywall — just hoping it helps. If it did, even a few dollars goes a long way for a tired nursing student trying to keep this thing growing. You know where to find me.</div>
+    <div class="donation-links">
+      <a href="https://venmo.com/Tom_Thomas" target="_blank" rel="noopener" class="donate-btn venmo"><img src="../../shared/assets/venmo.png" alt="Venmo"></a>
+      <a href="#" class="donate-btn zelle"><img src="../../shared/assets/zelle.png" alt="Zelle"><span class="znum">(914) 646-0456</span></a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const EXAM = {
+    date: "2026-07-21",
+    dateLabel: "Tuesday, July 21",
+    topics: [
+      {
+        name: "Personality Disorders",
+        count: "55 questions",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "36 questions", href: "pd-kc.html", key: "ps_e3_pd_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "19 questions", href: "pd-dd.html", key: "ps_e3_pd_dd" }
+        ]
+      },
+      {
+        name: "Anxiety & Anxiety Disorders",
+        count: "Ch 14",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "Coming soon", href: null, key: "ps_e3_anxiety_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "Coming soon", href: null, key: "ps_e3_anxiety_dd" }
+        ]
+      },
+      {
+        name: "Obsessive-Compulsive & Related Disorders",
+        count: "Ch 15",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "Coming soon", href: null, key: "ps_e3_ocd_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "Coming soon", href: null, key: "ps_e3_ocd_dd" }
+        ]
+      },
+      {
+        name: "Trauma & Stressor-Related Disorders",
+        count: "Ch 13",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "Coming soon", href: null, key: "ps_e3_trauma_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "Coming soon", href: null, key: "ps_e3_trauma_dd" }
+        ]
+      },
+      {
+        name: "Abuse & Violence",
+        count: "Ch 12",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "Coming soon", href: null, key: "ps_e3_abuse_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "Coming soon", href: null, key: "ps_e3_abuse_dd" }
+        ]
+      },
+      {
+        name: "Anger, Hostility & Aggression",
+        count: "Ch 11",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "Coming soon", href: null, key: "ps_e3_anger_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "Coming soon", href: null, key: "ps_e3_anger_dd" }
+        ]
+      }
+    ]
+  };
+
+  (function () {
+    document.querySelectorAll('.prof-card-score').forEach(el => {
+      const key = el.getAttribute('data-key');
+      let best = null, hist = [];
+      try {
+        const b = localStorage.getItem(key + '_best');
+        if (b !== null) best = parseInt(b, 10);
+        const h = localStorage.getItem(key + '_history');
+        if (h) hist = JSON.parse(h);
+        if (!Array.isArray(hist)) hist = [];
+      } catch (e) {}
+      if (best === null || isNaN(best) || hist.length === 0) {
+        el.innerHTML = '<span class="pcs-fresh">Not started yet</span>';
+        return;
+      }
+      const attempts = hist.length;
+      let trendHTML = '';
+      if (attempts > 1) {
+        const diff = hist[attempts - 1].pct - hist[attempts - 2].pct;
+        if (diff > 0) trendHTML = '<span class="pcs-trend-up">&#8593; +' + diff + '</span>';
+        else if (diff < 0) trendHTML = '<span class="pcs-trend-down">&#8595; ' + diff + '</span>';
+        else trendHTML = '<span class="pcs-meta">no change</span>';
+      }
+      el.innerHTML = '<span class="pcs-best">Best ' + best + '%</span><span class="pcs-meta">' + attempts + (attempts === 1 ? ' attempt' : ' attempts') + '</span> ' + trendHTML;
+    });
+
+    const wrap = document.getElementById('topics');
+    let attempted = 0, total = 0, html = '';
+    EXAM.topics.forEach((topic, ti) => {
+      html += '<section class="section"><div class="section-head"><span class="section-num">' + (ti+1) + '</span><span class="section-name">' + topic.name + '</span><span class="section-count">' + topic.count + '</span></div><div class="quiz-grid">';
+      topic.quizzes.forEach(q => {
+        total++;
+        let badge = '<span class="score-badge fresh">Soon</span>';
+        if (q.href) {
+          let best = null;
+          try { const v = localStorage.getItem(q.key + '_best'); if (v !== null) best = parseInt(v, 10); } catch (e) {}
+          if (best !== null && !isNaN(best)) { attempted++; badge = '<span class="score-badge ' + (best>=77?'done':'partial') + '">Best ' + best + '%</span>'; }
+          else badge = '<span class="score-badge fresh">Not started</span>';
+        }
+        const cls = q.href ? 'quiz-card' : 'quiz-card sim-locked';
+        html += '<a class="' + cls + '" href="' + (q.href||'#') + '"><div class="qc-top"><span class="qc-type">' + q.type + '</span></div><div class="qc-name">' + q.name + '</div><div class="qc-bottom"><span class="qc-count">' + q.count + '</span>' + badge + '</div></a>';
+      });
+      html += '</div></section>';
+    });
+    wrap.innerHTML = html;
+    const pct = total ? Math.round((attempted/total)*100) : 0;
+    document.getElementById('ring-pct').textContent = pct + '%';
+    setTimeout(() => { document.getElementById('ring').style.strokeDashoffset = 201 - (201*pct/100); }, 200);
+  })();
+
+  (function () {
+    const parts = EXAM.date.split('-').map(Number);
+    const exam = new Date(parts[0], parts[1]-1, parts[2]);
+    const now = new Date();
+    const d0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const diff = Math.round((exam - d0)/86400000);
+    document.getElementById('cd-date').textContent = EXAM.dateLabel;
+    const numEl = document.getElementById('cd-num'), subEl = document.getElementById('cd-sub');
+    if (diff > 1) { numEl.textContent = diff; subEl.textContent = diff + ' days to lock it in'; }
+    else if (diff === 1) { numEl.textContent = '1'; subEl.textContent = 'tomorrow — you got this'; }
+    else if (diff === 0) { numEl.textContent = '0'; subEl.textContent = "it's today — go crush it"; }
+    else { numEl.textContent = '✓'; subEl.textContent = 'exam day has passed'; }
+  })();
+</script>
+<script src="../../shared/footer.js"></script>
+</body>
+</html>
