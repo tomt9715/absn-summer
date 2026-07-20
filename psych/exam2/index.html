@@ -28,8 +28,8 @@
     padding: 1.1rem 1.2rem; text-decoration: none; color: inherit; display: block;
     transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s; position: relative; overflow: hidden;
   }
-  .prof-card::after { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform 0.2s ease; }
-  .prof-card:hover { border-color: var(--accent); box-shadow: 0 6px 18px rgba(181,72,46,0.12); transform: translateY(-3px); }
+  .prof-card::after { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--card-accent, var(--accent)); transform: scaleY(0); transform-origin: top; transition: transform 0.2s ease; }
+  .prof-card:hover { border-color: var(--card-accent, var(--accent)); box-shadow: 0 6px 18px var(--card-accent-soft, rgba(181,72,46,0.12)); transform: translateY(-3px); }
   .prof-card:hover::after { transform: scaleY(1); }
   .prof-card-chapter { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-mute); }
   .prof-card-name { font-family: 'Fraunces', serif; font-size: 1.12rem; font-weight: 500; color: var(--ink); margin: 6px 0 8px; line-height: 1.25; }
@@ -42,6 +42,126 @@
   .prof-card-score .pcs-trend-down { color: var(--accent); }
   @media (max-width: 900px) { .prof-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 600px) { .prof-grid { grid-template-columns: 1fr; } }
+
+  .jump-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.4rem 0 0.4rem; }
+  .jump-chip {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    padding: 7px 14px; border-radius: 20px;
+    border: 1px solid var(--border-strong); color: var(--ink-soft);
+    text-decoration: none; background: var(--surface);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .jump-chip:hover { border-color: var(--accent); color: var(--accent); }
+  #prof-questions, .dark-banner, .topic-pair { scroll-margin-top: 16px; }
+
+  .jc-addiction { border-color: #9c4fb0; color: #9c4fb0; }
+  .jc-addiction:hover { border-color: #9c4fb0; color: #9c4fb0; background: rgba(156,79,176,0.08); }
+  .jc-mood { border-color: #3a72b0; color: #3a72b0; }
+  .jc-mood:hover { border-color: #3a72b0; color: #3a72b0; background: rgba(58,114,176,0.08); }
+  .jc-schiz { border-color: #2f7d70; color: #2f7d70; }
+  .jc-schiz:hover { border-color: #2f7d70; color: #2f7d70; background: rgba(47,125,112,0.08); }
+
+  .jc-addiction.active { background: #9c4fb0; color: #fff; border-color: #9c4fb0; }
+  .jc-mood.active { background: #3a72b0; color: #fff; border-color: #3a72b0; }
+  .jc-schiz.active { background: #2f7d70; color: #fff; border-color: #2f7d70; }
+  .jump-chip.active:not([class*="jc-"]) { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .quiz-card::after { background: var(--card-accent, var(--accent)); }
+  .quiz-card:hover {
+    border-color: var(--card-accent, var(--accent));
+    box-shadow: 0 6px 20px var(--card-accent-soft, rgba(181,72,46,0.12));
+  }
+
+  .topics-banner {
+    width: min(1180px, calc(100vw - 2.4rem));
+    margin-top: 2.2rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem 2rem 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  }
+  .topics-banner-head { margin-bottom: 1.1rem; }
+  .topics-banner-title { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 500; color: var(--ink); }
+  .topics-banner-sub { font-size: 14px; color: var(--ink-mute); margin-top: 4px; }
+  .topics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 900px) { .topics-grid { grid-template-columns: 1fr; } }
+
+  .topic-pair {
+    position: relative;
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 1rem 1rem 1rem;
+    background: var(--surface2);
+    overflow: hidden;
+  }
+  .topic-pair::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--pair-accent, var(--accent));
+  }
+  .topic-pair-chapter {
+    display: block; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--pair-accent, var(--ink-mute));
+    margin: 4px 0 10px;
+  }
+  .topic-pair-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 460px) { .topic-pair-cards { grid-template-columns: 1fr; } }
+  .topic-pair .quiz-card { background: var(--surface); padding: 1rem 1.05rem; }
+
+  .dark-banner {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    width: min(1180px, calc(100vw - 2.4rem));
+    margin-top: 2.6rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding: 1.6rem 2rem;
+    background: #12141a;
+    border: 1px solid #2c3040;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .dark-banner:hover { border-color: #3a3f52; box-shadow: 0 8px 26px rgba(0,0,0,0.3); }
+  .dark-banner:hover .dark-banner-inner,
+  .dark-banner:hover .dark-banner-arrow { transform: translateY(-2px); }
+  .dark-banner-inner, .dark-banner-arrow { transition: transform 0.2s ease; }
+  .dark-banner::before {
+    content: '';
+    position: absolute; top: -60%; left: -8%;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(95,179,173,0.22) 0%, transparent 70%);
+    pointer-events: none;
+    animation: darkBannerGlow 5s ease-in-out infinite;
+  }
+  @keyframes darkBannerGlow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+  .dark-banner-inner { position: relative; z-index: 1; }
+  .dark-banner-eyebrow {
+    display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: #5fb3ad; margin-bottom: 8px;
+  }
+  .dark-banner-title {
+    font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 500;
+    color: #ecebe6; margin: 0 0 6px;
+  }
+  .dark-banner-sub { font-family: 'DM Sans', sans-serif; font-size: 13.5px; color: #9096a8; }
+  .dark-banner-arrow {
+    position: relative; z-index: 1; flex-shrink: 0;
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid #3a3f52; color: #d98e4c;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .dark-banner:hover .dark-banner-arrow { border-color: #d98e4c; background: rgba(217,142,76,0.12); }
+  @media (max-width: 600px) {
+    .dark-banner { flex-direction: column; align-items: flex-start; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -70,30 +190,38 @@
             </svg>
             <div class="ring-label"><span class="ring-pct" id="ring-pct">0%</span></div>
           </div>
-          <span class="ring-cap">of quizzes attempted</span>
+          <span class="ring-cap" id="ring-cap">of quizzes attempted</span>
         </div>
       </div>
     </div>
   </header>
 
-  <div class="prof-banner">
+  <nav class="jump-nav" aria-label="Jump to section">
+    <a class="jump-chip" href="#prof-questions">Prof Qs</a>
+    <a class="jump-chip jc-addiction" href="#topic-addiction">Addiction</a>
+    <a class="jump-chip jc-mood" href="#topic-mood">Mood</a>
+    <a class="jump-chip jc-schiz" href="#topic-schiz">Schizophrenia</a>
+    <a class="jump-chip" href="#exam-simulator">Simulator</a>
+  </nav>
+
+  <div class="prof-banner" id="prof-questions">
     <div class="prof-banner-head">
       <span class="prof-banner-title">Professor's Practice Questions</span>
     </div>
     <div class="prof-grid">
-      <a class="prof-card" href="professor-qs.html">
+      <a class="prof-card" href="professor-qs.html" style="--card-accent:#9c4fb0;--card-accent-soft:rgba(156,79,176,0.18);">
         <span class="prof-card-chapter">Ch 19 · Addiction</span>
         <div class="prof-card-name">Addiction &amp; Substance Use</div>
         <span class="prof-card-count">23 questions</span>
         <div class="prof-card-score" data-key="ps_e2_prof_qs"></div>
       </a>
-      <a class="prof-card" href="mood-prof-qs.html">
+      <a class="prof-card" href="mood-prof-qs.html" style="--card-accent:#3a72b0;--card-accent-soft:rgba(58,114,176,0.18);">
         <span class="prof-card-chapter">Ch 17 · Mood Disorders</span>
         <div class="prof-card-name">Mood Disorders &amp; Suicide</div>
         <span class="prof-card-count">55 questions</span>
         <div class="prof-card-score" data-key="ps_e2_mood_prof_qs"></div>
       </a>
-      <a class="prof-card" href="schizophrenia-prof-qs.html">
+      <a class="prof-card" href="schizophrenia-prof-qs.html" style="--card-accent:#2f7d70;--card-accent-soft:rgba(47,125,112,0.18);">
         <span class="prof-card-chapter">Ch 16 · Schizophrenia</span>
         <div class="prof-card-name">Schizophrenia &amp; Psychosis</div>
         <span class="prof-card-count">29 questions</span>
@@ -102,14 +230,21 @@
     </div>
   </div>
 
-  <div id="topics"></div>
-
-  <a class="sim-card" href="simulator.html" id="sim-card">
-    <div class="sim-left">
-      <span class="qc-type">Exam Simulator</span>
-      <div class="sim-name">Full mixed simulator</div>
-      <span class="sim-sub">50 questions · matches the exam blueprint exactly · includes Select All That Apply</span>
+  <div class="topics-banner">
+    <div class="topics-banner-head">
+      <span class="topics-banner-title">Topic Practice</span>
+      <div class="topics-banner-sub">Knowledge Check + Deep Drill for every cluster</div>
     </div>
+    <div class="topics-grid" id="topics"></div>
+  </div>
+
+  <a class="dark-banner" href="simulator.html" id="exam-simulator">
+    <div class="dark-banner-inner">
+      <span class="dark-banner-eyebrow">Exam Simulator</span>
+      <h3 class="dark-banner-title">Full Mixed Simulator</h3>
+      <span class="dark-banner-sub">50 questions &middot; matches the exam blueprint exactly &middot; includes Select All That Apply</span>
+    </div>
+    <span class="dark-banner-arrow">&rarr;</span>
   </a>
 
   <div class="howto">
@@ -139,6 +274,8 @@
     topics: [
       {
         name: "Addiction & Substance Use",
+        slug: "addiction",
+        chapterLabel: "Ch 19 · Addiction",
         count: "56 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "36 questions", href: "addiction-kc.html", key: "ps_e2_addiction_kc" },
@@ -147,6 +284,8 @@
       },
       {
         name: "Mood Disorders & Suicide",
+        slug: "mood",
+        chapterLabel: "Ch 17 · Mood Disorders",
         count: "52 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "34 questions", href: "mood-kc.html", key: "ps_e2_mood_kc" },
@@ -155,6 +294,8 @@
       },
       {
         name: "Schizophrenia & Psychosis",
+        slug: "schiz",
+        chapterLabel: "Ch 16 · Schizophrenia",
         count: "56 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "36 questions", href: "schizophrenia-kc.html", key: "ps_e2_schiz_kc" },
@@ -191,27 +332,71 @@
     });
 
     const wrap = document.getElementById('topics');
-    let attempted = 0, total = 0, html = '';
-    EXAM.topics.forEach((topic, ti) => {
-      html += '<section class="section"><div class="section-head"><span class="section-num">' + (ti+1) + '</span><span class="section-name">' + topic.name + '</span><span class="section-count">' + topic.count + '</span></div><div class="quiz-grid">';
-      topic.quizzes.forEach(q => {
-        total++;
+    let html = '';
+    const CHAPTER_COLORS = {
+      addiction: { c: '#9c4fb0' },
+      mood:      { c: '#3a72b0' },
+      schiz:     { c: '#2f7d70' }
+    };
+    EXAM.topics.forEach((topic) => {
+      const col = CHAPTER_COLORS[topic.slug];
+      let cardsHTML = '';
+      topic.quizzes.forEach((q) => {
         let badge = '<span class="score-badge fresh">Soon</span>';
         if (q.href) {
           let best = null;
           try { const v = localStorage.getItem(q.key + '_best'); if (v !== null) best = parseInt(v, 10); } catch (e) {}
-          if (best !== null && !isNaN(best)) { attempted++; badge = '<span class="score-badge ' + (best>=77?'done':'partial') + '">Best ' + best + '%</span>'; }
+          if (best !== null && !isNaN(best)) { badge = '<span class="score-badge ' + (best>=77?'done':'partial') + '">Best ' + best + '%</span>'; }
           else badge = '<span class="score-badge fresh">Not started</span>';
         }
         const cls = q.href ? 'quiz-card' : 'quiz-card sim-locked';
-        html += '<a class="' + cls + '" href="' + (q.href||'#') + '"><div class="qc-top"><span class="qc-type">' + q.type + '</span></div><div class="qc-name">' + q.name + '</div><div class="qc-bottom"><span class="qc-count">' + q.count + '</span>' + badge + '</div></a>';
+        cardsHTML += '<a class="' + cls + '" style="--card-accent:' + col.c + ';" href="' + (q.href||'#') + '"><div class="qc-top"><span class="qc-type">' + q.type + '</span></div><div class="qc-name">' + q.name + '</div><div class="qc-bottom"><span class="qc-count">' + q.count + '</span>' + badge + '</div></a>';
       });
-      html += '</div></section>';
+      html += '<div class="topic-pair" id="topic-' + topic.slug + '" style="--pair-accent:' + col.c + ';"><span class="topic-pair-chapter">' + topic.chapterLabel + '</span><div class="topic-pair-cards">' + cardsHTML + '</div></div>';
     });
     wrap.innerHTML = html;
-    const pct = total ? Math.round((attempted/total)*100) : 0;
-    document.getElementById('ring-pct').textContent = pct + '%';
-    setTimeout(() => { document.getElementById('ring').style.strokeDashoffset = 201 - (201*pct/100); }, 200);
+
+    // Readiness ring: average of best scores across topic KC/DDs and
+    // professor banks, only counting ones actually attempted. Simulator
+    // excluded since it draws from the same material rather than adding
+    // new ground.
+    const ALL_KEYS = [
+      'ps_e2_addiction_kc', 'ps_e2_addiction_dd', 'ps_e2_mood_kc', 'ps_e2_mood_dd',
+      'ps_e2_schiz_kc', 'ps_e2_schiz_dd',
+      'ps_e2_prof_qs', 'ps_e2_mood_prof_qs', 'ps_e2_schiz_prof_qs'
+    ];
+    const scores = [];
+    ALL_KEYS.forEach(k => {
+      try {
+        const v = localStorage.getItem(k + '_best');
+        if (v !== null) { const n = parseInt(v, 10); if (!isNaN(n)) scores.push(n); }
+      } catch (e) {}
+    });
+    const avgScore = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
+    document.getElementById('ring-pct').textContent = avgScore + '%';
+    document.getElementById('ring-cap').textContent = scores.length
+      ? `avg best score \u00b7 ${scores.length}/${ALL_KEYS.length} attempted`
+      : 'no attempts yet';
+    setTimeout(() => { document.getElementById('ring').style.strokeDashoffset = 201 - (201 * avgScore / 100); }, 200);
+
+    // Highlight the jump-nav chip for whichever section is in view.
+    const chipMap = {};
+    document.querySelectorAll('.jump-chip').forEach(a => {
+      chipMap[a.getAttribute('href').slice(1)] = a;
+    });
+    const jumpTargets = Object.keys(chipMap).map(id => document.getElementById(id)).filter(Boolean);
+    if ('IntersectionObserver' in window && jumpTargets.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const chip = chipMap[entry.target.id];
+          if (!chip) return;
+          document.querySelectorAll('.jump-chip.active').forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+        });
+      }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+      jumpTargets.forEach(t => observer.observe(t));
+    }
   })();
 
   (function () {

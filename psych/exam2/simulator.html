@@ -4,9 +4,100 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Psych Exam 2 — Full Simulator</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="../../shared/quiz.css">
+<style>
+  /* Scoped dark reskin -- only this page. Overrides the shared quiz.css tokens
+     rather than touching the shared file, so every other quiz on the site
+     keeps its normal light theme. */
+  :root {
+    --bg: #12141a;
+    --surface: #1a1d25;
+    --surface2: #21242e;
+    --border: #2c3040;
+    --border-strong: #3a3f52;
+    --ink: #ecebe6;
+    --ink-soft: #c7c5be;
+    --ink-mute: #9096a8;
+    --accent: #d98e4c;
+    --accent-deep: #c47a3a;
+    --accent-soft: rgba(217,142,76,0.14);
+    --gold: #d9c15c;
+    --gold-soft: rgba(217,193,92,0.14);
+    --teal: #5fb3ad;
+    --teal-soft: rgba(95,179,173,0.14);
+    --correct: #5fbf8a;
+    --correct-soft: rgba(95,191,138,0.12);
+    --correct-border: rgba(95,191,138,0.35);
+    --wrong: #d9707c;
+    --wrong-soft: rgba(217,112,124,0.12);
+    --wrong-border: rgba(217,112,124,0.35);
+  }
+  body { background: var(--bg); }
+
+  .sim-start-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 30px 28px; margin-top: 28px;
+  }
+  .sim-chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 24px; }
+  .sim-chip {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 6px 14px; border-radius: 20px;
+    border: 1px solid currentColor; background: transparent;
+  }
+  .sim-enter-btn {
+    width: 100%; padding: 17px; border: none; border-radius: 12px;
+    background: var(--teal); color: #0d1512; font-family: 'DM Sans', sans-serif; font-weight: 700;
+    font-size: 16px; cursor: pointer; transition: opacity .15s ease, transform .15s ease;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .sim-enter-btn:hover { opacity: .92; }
+  .sim-enter-btn:active { transform: scale(.99); }
+
+  .results-card {
+    border-radius: 16px; padding: 40px 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    position: relative; overflow: hidden;
+  }
+  .results-card::before {
+    content: '';
+    position: absolute; top: -140px; left: 50%; transform: translateX(-50%);
+    width: 340px; height: 340px; border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .score-big {
+    font-family: 'Fraunces', serif; font-weight: 600; line-height: 1;
+    width: 168px; height: 168px; border-radius: 50%; border: 3px solid;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 6px; font-size: 2.5rem; position: relative; z-index: 1;
+  }
+  .score-big.pass { border-color: var(--correct-border); background: var(--correct-soft); }
+  .score-big.fail { border-color: var(--wrong-border); background: var(--wrong-soft); }
+  .score-sub { margin: 18px 0 8px; position: relative; z-index: 1; }
+  .score-history { position: relative; z-index: 1; }
+  .score-msg { margin-bottom: 28px; position: relative; z-index: 1; }
+  .attempt-history { position: relative; z-index: 1; }
+  .results-tabs {
+    display: flex; gap: 4px; justify-content: center; margin: 0 auto 24px; padding: 4px;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    max-width: 320px; position: relative; z-index: 1;
+  }
+  .r-tab {
+    flex: 1; padding: 9px 14px; border-radius: 7px;
+    border: none; background: transparent; color: var(--ink-mute);
+  }
+  .r-tab:hover { color: var(--ink); border-color: transparent; }
+  .r-tab.active { background: var(--surface); color: var(--accent); box-shadow: 0 1px 4px rgba(0,0,0,0.2); border-color: transparent; }
+  .review-list { position: relative; z-index: 1; }
+  .review-item {
+    padding: 17px 17px 17px 19px; border-left: 3px solid var(--border-strong);
+  }
+  .review-item:has(.ri-result.correct) { border-left-color: var(--correct); }
+  .review-item:has(.ri-result.wrong) { border-left-color: var(--wrong); }
+  .review-item:has(.ri-result.partial) { border-left-color: var(--gold); }
+  .results-actions { position: relative; z-index: 1; }
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -16,9 +107,19 @@
   <div class="quiz-title-row">
     <span class="quiz-type-tag">Exam Simulator</span>
     <h1>Psych Exam 2 — Full Simulator</h1>
-    <p class="quiz-sub">50 questions · matches the exam blueprint exactly · includes Select All That Apply</p>
+    <p class="quiz-sub">50 questions &middot; matches the exam blueprint exactly &middot; includes Select All That Apply</p>
   </div>
-  <div id="quiz-area"></div>
+
+  <div class="sim-start-card" id="simStartCard">
+    <div class="sim-chip-row">
+      <span class="sim-chip" style="color:#9c4fb0;">Addiction</span>
+      <span class="sim-chip" style="color:#3a72b0;">Mood</span>
+      <span class="sim-chip" style="color:#2f7d70;">Schizophrenia</span>
+    </div>
+    <button class="sim-enter-btn" id="simEnterBtn">Enter the simulator <i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+
+  <div id="quiz-area" style="display:none;"></div>
 </div>
 <script>
   window.QUIZ_CONFIG = {
@@ -32,5 +133,12 @@
 </script>
 <script src="data/simulator.js"></script>
 <script src="../../shared/engine.js"></script>
+<script>
+  document.getElementById('simEnterBtn').addEventListener('click', function () {
+    document.getElementById('simStartCard').style.display = 'none';
+    document.getElementById('quiz-area').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
 </body>
 </html>

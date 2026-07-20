@@ -7,6 +7,134 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="../../shared/hub.css">
+<style>
+  .jump-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.4rem 0 0.4rem; }
+  .jump-chip {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    padding: 7px 14px; border-radius: 20px;
+    border: 1px solid var(--border-strong); color: var(--ink-soft);
+    text-decoration: none; background: var(--surface);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .jump-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .topics-banner, .dark-banner { scroll-margin-top: 16px; }
+  .topic-pair { scroll-margin-top: 16px; }
+
+  .jc-theories { border-color: #9c4fb0; color: #9c4fb0; }
+  .jc-theories:hover { border-color: #9c4fb0; color: #9c4fb0; background: rgba(156,79,176,0.08); }
+  .jc-mse { border-color: #3a72b0; color: #3a72b0; }
+  .jc-mse:hover { border-color: #3a72b0; color: #3a72b0; background: rgba(58,114,176,0.08); }
+  .jc-comm { border-color: #2f7d70; color: #2f7d70; }
+  .jc-comm:hover { border-color: #2f7d70; color: #2f7d70; background: rgba(47,125,112,0.08); }
+  .jc-legal { border-color: #b5762e; color: #b5762e; }
+  .jc-legal:hover { border-color: #b5762e; color: #b5762e; background: rgba(181,118,46,0.08); }
+  .jc-found { border-color: #a83d5c; color: #a83d5c; }
+  .jc-found:hover { border-color: #a83d5c; color: #a83d5c; background: rgba(168,61,92,0.08); }
+
+  .jc-theories.active { background: #9c4fb0; color: #fff; border-color: #9c4fb0; }
+  .jc-mse.active { background: #3a72b0; color: #fff; border-color: #3a72b0; }
+  .jc-comm.active { background: #2f7d70; color: #fff; border-color: #2f7d70; }
+  .jc-legal.active { background: #b5762e; color: #fff; border-color: #b5762e; }
+  .jc-found.active { background: #a83d5c; color: #fff; border-color: #a83d5c; }
+  .jump-chip.active:not([class*="jc-"]) { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .quiz-card::after { background: var(--card-accent, var(--accent)); }
+  .quiz-card:hover {
+    border-color: var(--card-accent, var(--accent));
+    box-shadow: 0 6px 20px var(--card-accent-soft, rgba(181,72,46,0.12));
+  }
+
+  .topics-banner {
+    width: min(1180px, calc(100vw - 2.4rem));
+    margin-top: 2.2rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem 2rem 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  }
+  .topics-banner-head { margin-bottom: 1.1rem; }
+  .topics-banner-title { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 500; color: var(--ink); }
+  .topics-banner-sub { font-size: 14px; color: var(--ink-mute); margin-top: 4px; }
+  .topics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 700px) { .topics-grid { grid-template-columns: 1fr; } }
+
+  .topic-pair {
+    position: relative;
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 1rem 1rem 1rem;
+    background: var(--surface2);
+    overflow: hidden;
+  }
+  .topic-pair::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--pair-accent, var(--accent));
+  }
+  .topic-pair-chapter {
+    display: block; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--pair-accent, var(--ink-mute));
+    margin: 4px 0 10px;
+  }
+  .topic-pair-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 460px) { .topic-pair-cards { grid-template-columns: 1fr; } }
+  .topic-pair .quiz-card { background: var(--surface); padding: 1rem 1.05rem; }
+
+  .dark-banner {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    width: min(1180px, calc(100vw - 2.4rem));
+    margin-top: 2.6rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding: 1.6rem 2rem;
+    background: #12141a;
+    border: 1px solid #2c3040;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .dark-banner:hover { border-color: #3a3f52; box-shadow: 0 8px 26px rgba(0,0,0,0.3); }
+  .dark-banner:hover .dark-banner-inner,
+  .dark-banner:hover .dark-banner-arrow { transform: translateY(-2px); }
+  .dark-banner-inner, .dark-banner-arrow { transition: transform 0.2s ease; }
+  .dark-banner::before {
+    content: '';
+    position: absolute; top: -60%; left: -8%;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(95,179,173,0.22) 0%, transparent 70%);
+    pointer-events: none;
+    animation: darkBannerGlow 5s ease-in-out infinite;
+  }
+  @keyframes darkBannerGlow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+  .dark-banner-inner { position: relative; z-index: 1; }
+  .dark-banner-eyebrow {
+    display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: #5fb3ad; margin-bottom: 8px;
+  }
+  .dark-banner-title {
+    font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 500;
+    color: #ecebe6; margin: 0 0 6px;
+  }
+  .dark-banner-sub { font-family: 'DM Sans', sans-serif; font-size: 13.5px; color: #9096a8; }
+  .dark-banner-arrow {
+    position: relative; z-index: 1; flex-shrink: 0;
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid #3a3f52; color: #d98e4c;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .dark-banner:hover .dark-banner-arrow { border-color: #d98e4c; background: rgba(217,142,76,0.12); }
+  @media (max-width: 600px) {
+    .dark-banner { flex-direction: column; align-items: flex-start; text-align: left; }
+  }
+</style>
 </head>
 <body>
 <div class="accent-band"></div>
@@ -34,21 +162,36 @@
             </svg>
             <div class="ring-label"><span class="ring-pct" id="ring-pct">0%</span></div>
           </div>
-          <span class="ring-cap">of quizzes attempted</span>
+          <span class="ring-cap" id="ring-cap">of quizzes attempted</span>
         </div>
       </div>
     </div>
   </header>
 
-  <div id="topics"></div>
+  <nav class="jump-nav" aria-label="Jump to section">
+    <a class="jump-chip jc-theories" href="#topic-theories">Theories</a>
+    <a class="jump-chip jc-mse" href="#topic-mse">MSE</a>
+    <a class="jump-chip jc-comm" href="#topic-comm">Comm</a>
+    <a class="jump-chip jc-legal" href="#topic-legal">Legal</a>
+    <a class="jump-chip jc-found" href="#topic-found">Foundations</a>
+    <a class="jump-chip" href="#exam-simulator">Simulator</a>
+  </nav>
 
-  <a class="sim-card" href="simulator.html" id="sim-card">
-    <div class="sim-left">
-      <span class="qc-type">Exam Simulator</span>
-      <div class="sim-name">Full 50-question simulator</div>
-      <span class="sim-sub">Fresh questions · weighted like the real blueprint · reshuffles every attempt</span>
+  <div class="topics-banner">
+    <div class="topics-banner-head">
+      <span class="topics-banner-title">Topic Practice</span>
+      <div class="topics-banner-sub">Knowledge Check + Deep Drill for every cluster</div>
     </div>
-    <span class="sim-go">Start <i class="fa-solid fa-arrow-right"></i></span>
+    <div class="topics-grid" id="topics"></div>
+  </div>
+
+  <a class="dark-banner" href="simulator.html" id="exam-simulator">
+    <div class="dark-banner-inner">
+      <span class="dark-banner-eyebrow">Exam Simulator</span>
+      <h3 class="dark-banner-title">Full 50-Question Simulator</h3>
+      <span class="dark-banner-sub">Fresh questions across all topics &middot; weighted like the real blueprint &middot; reshuffles every attempt</span>
+    </div>
+    <span class="dark-banner-arrow">&rarr;</span>
   </a>
 
   <div class="howto">
@@ -78,6 +221,8 @@
     topics: [
       {
         name: "Theories & Defense Mechanisms",
+        slug: "theories",
+        chapterLabel: "Theories & Defense Mechanisms",
         count: "46 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "31 questions", href: "theories-kc.html", key: "ps_e1_theories_kc" },
@@ -86,6 +231,8 @@
       },
       {
         name: "Mental Status Exam",
+        slug: "mse",
+        chapterLabel: "Mental Status Exam",
         count: "39 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "24 questions", href: "mse-kc.html", key: "ps_e1_mse_kc" },
@@ -94,6 +241,8 @@
       },
       {
         name: "Therapeutic Communication & Relationships",
+        slug: "comm",
+        chapterLabel: "Therapeutic Communication",
         count: "42 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "27 questions", href: "comm-kc.html", key: "ps_e1_comm_kc" },
@@ -102,6 +251,8 @@
       },
       {
         name: "Legal, Ethical & Treatment Settings",
+        slug: "legal",
+        chapterLabel: "Legal & Ethical",
         count: "36 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "21 questions", href: "legal-kc.html", key: "ps_e1_legal_kc" },
@@ -110,6 +261,8 @@
       },
       {
         name: "Foundations & Psychopharm",
+        slug: "found",
+        chapterLabel: "Foundations & Psychopharm",
         count: "49 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "35 questions", href: "found-kc.html", key: "ps_e1_found_kc" },
@@ -121,27 +274,72 @@
 
   (function () {
     const wrap = document.getElementById('topics');
-    let attempted = 0, total = 0, html = '';
-    EXAM.topics.forEach((topic, ti) => {
-      html += '<section class="section"><div class="section-head"><span class="section-num">' + (ti+1) + '</span><span class="section-name">' + topic.name + '</span><span class="section-count">' + topic.count + '</span></div><div class="quiz-grid">';
-      topic.quizzes.forEach(q => {
-        total++;
+    let html = '';
+    const CHAPTER_COLORS = {
+      theories: { c: '#9c4fb0' },
+      mse:      { c: '#3a72b0' },
+      comm:     { c: '#2f7d70' },
+      legal:    { c: '#b5762e' },
+      found:    { c: '#a83d5c' }
+    };
+    EXAM.topics.forEach((topic) => {
+      const col = CHAPTER_COLORS[topic.slug];
+      let cardsHTML = '';
+      topic.quizzes.forEach((q) => {
         let badge = '<span class="score-badge fresh">Soon</span>';
         if (q.href) {
           let best = null;
           try { const v = localStorage.getItem(q.key + '_best'); if (v !== null) best = parseInt(v, 10); } catch (e) {}
-          if (best !== null && !isNaN(best)) { attempted++; badge = '<span class="score-badge ' + (best>=77?'done':'partial') + '">Best ' + best + '%</span>'; }
+          if (best !== null && !isNaN(best)) { badge = '<span class="score-badge ' + (best>=77?'done':'partial') + '">Best ' + best + '%</span>'; }
           else badge = '<span class="score-badge fresh">Not started</span>';
         }
         const cls = q.href ? 'quiz-card' : 'quiz-card sim-locked';
-        html += '<a class="' + cls + '" href="' + (q.href||'#') + '"><div class="qc-top"><span class="qc-type">' + q.type + '</span></div><div class="qc-name">' + q.name + '</div><div class="qc-bottom"><span class="qc-count">' + q.count + '</span>' + badge + '</div></a>';
+        cardsHTML += '<a class="' + cls + '" style="--card-accent:' + col.c + ';" href="' + (q.href||'#') + '"><div class="qc-top"><span class="qc-type">' + q.type + '</span></div><div class="qc-name">' + q.name + '</div><div class="qc-bottom"><span class="qc-count">' + q.count + '</span>' + badge + '</div></a>';
       });
-      html += '</div></section>';
+      html += '<div class="topic-pair" id="topic-' + topic.slug + '" style="--pair-accent:' + col.c + ';"><span class="topic-pair-chapter">' + topic.chapterLabel + '</span><div class="topic-pair-cards">' + cardsHTML + '</div></div>';
     });
     wrap.innerHTML = html;
-    const pct = total ? Math.round((attempted/total)*100) : 0;
-    document.getElementById('ring-pct').textContent = pct + '%';
-    setTimeout(() => { document.getElementById('ring').style.strokeDashoffset = 201 - (201*pct/100); }, 200);
+
+    // Readiness ring: average of best scores across the 10 topic KC/DDs,
+    // only counting ones actually attempted. Simulator excluded since it
+    // draws from the same material rather than adding new ground.
+    const ALL_KEYS = [
+      'ps_e1_theories_kc', 'ps_e1_theories_dd', 'ps_e1_mse_kc', 'ps_e1_mse_dd',
+      'ps_e1_comm_kc', 'ps_e1_comm_dd', 'ps_e1_legal_kc', 'ps_e1_legal_dd',
+      'ps_e1_found_kc', 'ps_e1_found_dd'
+    ];
+    const scores = [];
+    ALL_KEYS.forEach(k => {
+      try {
+        const v = localStorage.getItem(k + '_best');
+        if (v !== null) { const n = parseInt(v, 10); if (!isNaN(n)) scores.push(n); }
+      } catch (e) {}
+    });
+    const avgScore = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
+    document.getElementById('ring-pct').textContent = avgScore + '%';
+    document.getElementById('ring-cap').textContent = scores.length
+      ? `avg best score \u00b7 ${scores.length}/${ALL_KEYS.length} attempted`
+      : 'no attempts yet';
+    setTimeout(() => { document.getElementById('ring').style.strokeDashoffset = 201 - (201 * avgScore / 100); }, 200);
+
+    // Highlight the jump-nav chip for whichever section is in view.
+    const chipMap = {};
+    document.querySelectorAll('.jump-chip').forEach(a => {
+      chipMap[a.getAttribute('href').slice(1)] = a;
+    });
+    const jumpTargets = Object.keys(chipMap).map(id => document.getElementById(id)).filter(Boolean);
+    if ('IntersectionObserver' in window && jumpTargets.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const chip = chipMap[entry.target.id];
+          if (!chip) return;
+          document.querySelectorAll('.jump-chip.active').forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+        });
+      }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+      jumpTargets.forEach(t => observer.observe(t));
+    }
   })();
 
   (function () {
