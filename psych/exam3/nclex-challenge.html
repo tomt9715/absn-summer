@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NCLEX Challenge Round -- Psych Exam 3</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="../../shared/quiz.css">
 <style>
@@ -34,8 +34,109 @@
     --wrong: #d9707c;
     --wrong-soft: rgba(217,112,124,0.12);
     --wrong-border: rgba(217,112,124,0.35);
+
+    --c-personality: #c98bd6;
+    --c-anxiety: #7fa8d9;
+    --c-ocd: #6fc2b4;
+    --c-trauma: #d98e4c;
+    --c-abuse: #d9707c;
+    --c-anger: #d9c15c;
   }
   body { background: var(--bg); }
+
+  .nclex-source-note {
+    margin-top: 16px; font-size: 13px; color: var(--ink-mute); font-family: 'JetBrains Mono', monospace;
+    border-left: 2px solid var(--teal); padding-left: 12px; line-height: 1.65; max-width: 64ch;
+  }
+  .nclex-chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .nclex-chip {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 6px 14px; border-radius: 20px;
+    border: 1px solid currentColor; background: transparent;
+  }
+  .nclex-chip-personality { color: var(--c-personality); }
+  .nclex-chip-anxiety { color: var(--c-anxiety); }
+  .nclex-chip-ocd { color: var(--c-ocd); }
+  .nclex-chip-trauma { color: var(--c-trauma); }
+  .nclex-chip-abuse { color: var(--c-abuse); }
+  .nclex-chip-anger { color: var(--c-anger); }
+
+  .nclex-start-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 30px 28px; margin-top: 28px;
+  }
+  .nclex-chapter-list { list-style: none; margin: 0 0 24px; padding: 0; }
+  .nclex-chapter-list li {
+    display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink);
+    padding: 14px 0; border-bottom: 1px solid var(--border);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .nclex-chapter-list li:last-child { border-bottom: none; }
+  .nclex-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .nclex-dot-personality { background: var(--c-personality); }
+  .nclex-dot-anxiety { background: var(--c-anxiety); }
+  .nclex-dot-ocd { background: var(--c-ocd); }
+  .nclex-dot-trauma { background: var(--c-trauma); }
+  .nclex-dot-abuse { background: var(--c-abuse); }
+  .nclex-dot-anger { background: var(--c-anger); }
+  .nclex-ch-tag { color: var(--ink-mute); font-family: 'JetBrains Mono', monospace; font-size: 12.5px; }
+  .nclex-count { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-mute); white-space: nowrap; }
+
+  .nclex-enter-btn {
+    width: 100%; padding: 17px; border: none; border-radius: 12px;
+    background: var(--teal); color: #0d1512; font-family: 'DM Sans', sans-serif; font-weight: 700;
+    font-size: 16px; cursor: pointer; transition: opacity .15s ease, transform .15s ease;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .nclex-enter-btn:hover { opacity: .92; }
+  .nclex-enter-btn:active { transform: scale(.99); }
+
+  /* Results-page redesign -- scoped to this page only. Same trick as the dark
+     reskin above: these class names come from the shared engine.js output,
+     but redeclaring them here (after quiz.css) only changes how they look
+     on this page, not on any other quiz on the site. */
+  .results-card {
+    border-radius: 16px; padding: 40px 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    position: relative; overflow: hidden;
+  }
+  .results-card::before {
+    content: '';
+    position: absolute; top: -140px; left: 50%; transform: translateX(-50%);
+    width: 340px; height: 340px; border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .score-big {
+    font-family: 'Fraunces', serif; font-weight: 600; line-height: 1;
+    width: 168px; height: 168px; border-radius: 50%; border: 3px solid;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 6px; font-size: 2.5rem; position: relative; z-index: 1;
+  }
+  .score-big.pass { border-color: var(--correct-border); background: var(--correct-soft); }
+  .score-big.fail { border-color: var(--wrong-border); background: var(--wrong-soft); }
+  .score-sub { margin: 18px 0 8px; position: relative; z-index: 1; }
+  .score-history { position: relative; z-index: 1; }
+  .score-msg { margin-bottom: 28px; position: relative; z-index: 1; }
+  .attempt-history { position: relative; z-index: 1; }
+  .results-tabs {
+    display: flex; gap: 4px; justify-content: center; margin: 0 auto 24px; padding: 4px;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    max-width: 320px; position: relative; z-index: 1;
+  }
+  .r-tab {
+    flex: 1; padding: 9px 14px; border-radius: 7px;
+    border: none; background: transparent; color: var(--ink-mute);
+  }
+  .r-tab:hover { color: var(--ink); border-color: transparent; }
+  .r-tab.active { background: var(--surface); color: var(--accent); box-shadow: 0 1px 4px rgba(0,0,0,0.2); border-color: transparent; }
+  .review-list { position: relative; z-index: 1; }
+  .review-item {
+    padding: 17px 17px 17px 19px; border-left: 3px solid var(--border-strong);
+  }
+  .review-item:has(.ri-result.correct) { border-left-color: var(--correct); }
+  .review-item:has(.ri-result.wrong) { border-left-color: var(--wrong); }
+  .review-item:has(.ri-result.partial) { border-left-color: var(--gold); }
+  .results-actions { position: relative; z-index: 1; }
 </style>
 </head>
 <body>
@@ -47,8 +148,30 @@
     <span class="quiz-type-tag">Mixed Review</span>
     <h1>NCLEX Challenge Round</h1>
     <p class="quiz-sub">50 questions, randomly drawn from a bank of 117 covering all six chapters (Personality, Anxiety, OCD, Trauma, Abuse, Anger) &middot; every attempt pulls a different set from the bank &middot; Select All That Apply questions score partial credit</p>
+    <p class="nclex-source-note">Content scope: your uploaded NUR2010 Exam 3 Study Guide only &mdash; nothing here goes beyond what's in that document.</p>
+    <div class="nclex-chip-row">
+      <span class="nclex-chip nclex-chip-personality">Ch 18</span>
+      <span class="nclex-chip nclex-chip-anxiety">Ch 14</span>
+      <span class="nclex-chip nclex-chip-ocd">Ch 15</span>
+      <span class="nclex-chip nclex-chip-trauma">Ch 13</span>
+      <span class="nclex-chip nclex-chip-abuse">Ch 12</span>
+      <span class="nclex-chip nclex-chip-anger">Ch 11</span>
+    </div>
   </div>
-  <div id="quiz-area"></div>
+
+  <div class="nclex-start-card" id="nclexStartCard">
+    <ul class="nclex-chapter-list">
+      <li><span class="nclex-dot nclex-dot-personality"></span>Personality Disorders <span class="nclex-ch-tag">(Ch 18)</span><span class="nclex-count">20 in the bank</span></li>
+      <li><span class="nclex-dot nclex-dot-anxiety"></span>Anxiety <span class="nclex-ch-tag">(Ch 14)</span><span class="nclex-count">22 in the bank</span></li>
+      <li><span class="nclex-dot nclex-dot-ocd"></span>OCD &amp; Related <span class="nclex-ch-tag">(Ch 15)</span><span class="nclex-count">19 in the bank</span></li>
+      <li><span class="nclex-dot nclex-dot-trauma"></span>Trauma &amp; PTSD <span class="nclex-ch-tag">(Ch 13)</span><span class="nclex-count">18 in the bank</span></li>
+      <li><span class="nclex-dot nclex-dot-abuse"></span>Abuse &amp; Violence <span class="nclex-ch-tag">(Ch 12)</span><span class="nclex-count">19 in the bank</span></li>
+      <li><span class="nclex-dot nclex-dot-anger"></span>Anger &amp; Aggression <span class="nclex-ch-tag">(Ch 11)</span><span class="nclex-count">19 in the bank</span></li>
+    </ul>
+    <button class="nclex-enter-btn" id="nclexEnterBtn">Enter the challenge round <i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+
+  <div id="quiz-area" style="display:none;"></div>
 </div>
 <script>
   window.QUIZ_CONFIG = {
@@ -62,5 +185,16 @@
 </script>
 <script src="data/nclex-challenge.js"></script>
 <script src="../../shared/engine.js"></script>
+<script>
+  // engine.js renders the first question into #quiz-area as soon as it loads
+  // (that's how every quiz on this site works). We just keep it hidden behind
+  // this page's own start card until the person clicks in, then reveal it --
+  // no changes to the shared engine needed.
+  document.getElementById('nclexEnterBtn').addEventListener('click', function () {
+    document.getElementById('nclexStartCard').style.display = 'none';
+    document.getElementById('quiz-area').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
 </body>
 </html>
