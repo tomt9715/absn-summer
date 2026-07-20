@@ -94,6 +94,20 @@
   @media (max-width: 600px) {
     .nclex-banner { flex-direction: column; align-items: flex-start; text-align: left; }
   }
+
+  .jump-nav {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin: 0.4rem 0 0.4rem;
+  }
+  .jump-chip {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    padding: 7px 14px; border-radius: 20px;
+    border: 1px solid var(--border-strong); color: var(--ink-soft);
+    text-decoration: none; background: var(--surface);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .jump-chip:hover { border-color: var(--accent); color: var(--accent); }
+  #prof-questions, .nclex-banner, .section { scroll-margin-top: 16px; }
 </style>
 </head>
 <body>
@@ -122,13 +136,24 @@
             </svg>
             <div class="ring-label"><span class="ring-pct" id="ring-pct">0%</span></div>
           </div>
-          <span class="ring-cap">of quizzes attempted</span>
+          <span class="ring-cap" id="ring-cap">of quizzes attempted</span>
         </div>
       </div>
     </div>
   </header>
 
-  <div class="prof-banner">
+  <nav class="jump-nav" aria-label="Jump to section">
+    <a class="jump-chip" href="#prof-questions">Prof Qs</a>
+    <a class="jump-chip" href="#topic-personality">Personality</a>
+    <a class="jump-chip" href="#topic-anxiety">Anxiety</a>
+    <a class="jump-chip" href="#topic-ocd">OCD</a>
+    <a class="jump-chip" href="#topic-trauma">Trauma</a>
+    <a class="jump-chip" href="#topic-abuse">Abuse</a>
+    <a class="jump-chip" href="#topic-anger">Anger</a>
+    <a class="jump-chip" href="#nclex-challenge">Mixed Review</a>
+  </nav>
+
+  <div class="prof-banner" id="prof-questions">
     <div class="prof-banner-head">
       <span class="prof-banner-title">Professor's Practice Questions</span>
     </div>
@@ -174,7 +199,7 @@
 
   <div id="topics"></div>
 
-  <a href="nclex-challenge.html" class="nclex-banner">
+  <a href="nclex-challenge.html" class="nclex-banner" id="nclex-challenge">
     <div class="nclex-banner-inner">
       <span class="nclex-banner-eyebrow">Mixed Review &middot; All 6 Chapters</span>
       <h3 class="nclex-banner-title">NCLEX Challenge Round</h3>
@@ -209,6 +234,7 @@
     topics: [
       {
         name: "Personality Disorders",
+        slug: "personality",
         count: "56 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "37 questions", href: "pd-kc.html", key: "ps_e3_pd_kc" },
@@ -217,6 +243,7 @@
       },
       {
         name: "Anxiety & Anxiety Disorders",
+        slug: "anxiety",
         count: "73 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "49 questions", href: "anxiety-kc.html", key: "ps_e3_anxiety_kc" },
@@ -225,6 +252,7 @@
       },
       {
         name: "Obsessive-Compulsive & Related Disorders",
+        slug: "ocd",
         count: "51 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "33 questions", href: "ocd-kc.html", key: "ps_e3_ocd_kc" },
@@ -233,6 +261,7 @@
       },
       {
         name: "Trauma & Stressor-Related Disorders",
+        slug: "trauma",
         count: "49 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "31 questions", href: "trauma-kc.html", key: "ps_e3_trauma_kc" },
@@ -241,6 +270,7 @@
       },
       {
         name: "Abuse & Violence",
+        slug: "abuse",
         count: "51 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "33 questions", href: "abuse-kc.html", key: "ps_e3_abuse_kc" },
@@ -249,6 +279,7 @@
       },
       {
         name: "Anger, Hostility & Aggression",
+        slug: "anger",
         count: "54 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "35 questions", href: "anger-kc.html", key: "ps_e3_anger_kc" },
@@ -285,16 +316,15 @@
     });
 
     const wrap = document.getElementById('topics');
-    let attempted = 0, total = 0, html = '';
+    let html = '';
     EXAM.topics.forEach((topic, ti) => {
-      html += '<section class="section"><div class="section-head"><span class="section-num">' + (ti+1) + '</span><span class="section-name">' + topic.name + '</span><span class="section-count">' + topic.count + '</span></div><div class="quiz-grid">';
+      html += '<section class="section" id="topic-' + topic.slug + '"><div class="section-head"><span class="section-num">' + (ti+1) + '</span><span class="section-name">' + topic.name + '</span><span class="section-count">' + topic.count + '</span></div><div class="quiz-grid">';
       topic.quizzes.forEach(q => {
-        total++;
         let badge = '<span class="score-badge fresh">Soon</span>';
         if (q.href) {
           let best = null;
           try { const v = localStorage.getItem(q.key + '_best'); if (v !== null) best = parseInt(v, 10); } catch (e) {}
-          if (best !== null && !isNaN(best)) { attempted++; badge = '<span class="score-badge ' + (best>=77?'done':'partial') + '">Best ' + best + '%</span>'; }
+          if (best !== null && !isNaN(best)) { badge = '<span class="score-badge ' + (best>=77?'done':'partial') + '">Best ' + best + '%</span>'; }
           else badge = '<span class="score-badge fresh">Not started</span>';
         }
         const cls = q.href ? 'quiz-card' : 'quiz-card sim-locked';
@@ -303,9 +333,33 @@
       html += '</div></section>';
     });
     wrap.innerHTML = html;
-    const pct = total ? Math.round((attempted/total)*100) : 0;
-    document.getElementById('ring-pct').textContent = pct + '%';
-    setTimeout(() => { document.getElementById('ring').style.strokeDashoffset = 201 - (201*pct/100); }, 200);
+
+    // Readiness ring: average of best scores across the topic KC/DDs and
+    // professor banks (18 quizzes total) -- only counting quizzes actually
+    // attempted, so it reflects how you're doing on what you've covered
+    // rather than just how much you've clicked. The mixed review round is
+    // left out since it draws from the same material rather than adding new
+    // ground to cover.
+    const ALL_KEYS = [
+      'ps_e3_pd_kc', 'ps_e3_pd_dd', 'ps_e3_anxiety_kc', 'ps_e3_anxiety_dd',
+      'ps_e3_ocd_kc', 'ps_e3_ocd_dd', 'ps_e3_trauma_kc', 'ps_e3_trauma_dd',
+      'ps_e3_abuse_kc', 'ps_e3_abuse_dd', 'ps_e3_anger_kc', 'ps_e3_anger_dd',
+      'ps_e3_pd_prof', 'ps_e3_anxiety_prof', 'ps_e3_ocd_prof', 'ps_e3_trauma_prof',
+      'ps_e3_abuse_prof', 'ps_e3_anger_prof'
+    ];
+    const scores = [];
+    ALL_KEYS.forEach(k => {
+      try {
+        const v = localStorage.getItem(k + '_best');
+        if (v !== null) { const n = parseInt(v, 10); if (!isNaN(n)) scores.push(n); }
+      } catch (e) {}
+    });
+    const avgScore = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
+    document.getElementById('ring-pct').textContent = avgScore + '%';
+    document.getElementById('ring-cap').textContent = scores.length
+      ? `avg best score \u00b7 ${scores.length}/${ALL_KEYS.length} attempted`
+      : 'no attempts yet';
+    setTimeout(() => { document.getElementById('ring').style.strokeDashoffset = 201 - (201 * avgScore / 100); }, 200);
   })();
 
   (function () {
