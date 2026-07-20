@@ -536,6 +536,7 @@
     const pct = Math.round((correctCount / deck.length) * 100);
     const pass = pct >= PASS;
     let historyLine = '';
+    let attemptChipsHTML = '';
     try {
       const prev = parseInt(localStorage.getItem(KEY + '_best') || '0', 10);
       if (pct > prev) localStorage.setItem(KEY + '_best', String(pct));
@@ -557,10 +558,19 @@
         if (diff > 0) trendText = `up ${diff} pts from your last try`;
         else if (diff < 0) trendText = `down ${Math.abs(diff)} pts from your last try`;
         else trendText = 'same as your last try';
-        historyLine = `Attempt ${attemptNum} · best ${bestNow}% · ${trendText}`;
+        historyLine = `Attempt ${attemptNum} · ${trendText}`;
       } else {
         historyLine = `Attempt 1 · first try on the books`;
       }
+
+      attemptChipsHTML = hist.map((h, i) => {
+        const isBest = h.pct === bestNow;
+        const isLatest = i === hist.length - 1;
+        const classes = ['attempt-chip'];
+        if (isBest) classes.push('best');
+        if (isLatest) classes.push('latest');
+        return `<span class="${classes.join(' ')}" title="Attempt ${i + 1}">${h.pct}%${isBest ? ' <i class="fa-solid fa-star"></i>' : ''}</span>`;
+      }).join('');
     } catch (e) {}
 
     let msg;
@@ -576,6 +586,7 @@
         <div class="score-big ${pass ? 'pass' : 'fail'}">${pct}%</div>
         <div class="score-sub">${scoreDisplay} / ${deck.length} points · ${cfg.title || ''}</div>
         ${historyLine ? `<div class="score-history">${historyLine}</div>` : ''}
+        ${attemptChipsHTML ? `<div class="attempt-history"><span class="attempt-history-label">Your attempts</span><div class="attempt-chips">${attemptChipsHTML}</div></div>` : ''}
         <div class="score-msg">${msg}</div>
         <div class="results-tabs">
           <button class="r-tab ${activeTab === 'full' ? 'active' : ''}" onclick="__quizTab('full', this)">Full Review</button>
