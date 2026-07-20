@@ -326,18 +326,18 @@
     });
     saveProgress();
 
-    const fb = document.getElementById('feedback');
-    let verdict, cls;
+    // Correct answers advance automatically after a brief confirmation flash;
+    // a miss pauses to show the rationale and waits for a manual Next click.
     if (isCorrect) {
-      verdict = `✓ Correct — ${LETTERS[correctI]} is right.`;
-      cls = 'r-correct';
-    } else {
-      verdict = `✗ You chose ${LETTERS[chosenI]}. The correct answer is ${LETTERS[correctI]}.`;
-      cls = 'r-wrong';
+      setTimeout(next, 700);
+      return;
     }
+
+    const fb = document.getElementById('feedback');
+    const verdict = `✗ You chose ${LETTERS[chosenI]}. The correct answer is ${LETTERS[correctI]}.`;
     const isLast = idx === deck.length - 1;
     fb.innerHTML = `
-      <div class="rationale ${cls}">
+      <div class="rationale r-wrong">
         <span class="verdict">${verdict}</span>
         ${q.rationale}
       </div>
@@ -411,12 +411,16 @@
     });
     saveProgress();
 
+    // Full credit advances automatically; partial or no credit pauses to show
+    // the rationale and waits for a manual Next click.
+    if (isFullCredit) {
+      setTimeout(next, 700);
+      return;
+    }
+
     const fb = document.getElementById('feedback');
     let verdict, cls;
-    if (isFullCredit) {
-      verdict = `✓ Correct — ${correctLetters} ${correctIs.length > 1 ? 'are' : 'is'} right.`;
-      cls = 'r-correct';
-    } else if (isPartial) {
+    if (isPartial) {
       verdict = `◐ Partial credit (${pointsLabel}). Full correct answer: ${correctLetters}.`;
       cls = 'r-partial';
     } else {
@@ -497,12 +501,16 @@
     });
     saveProgress();
 
+    // Full credit advances automatically; partial or no credit pauses to show
+    // the rationale and waits for a manual Next click.
+    if (isFullCredit) {
+      setTimeout(next, 700);
+      return;
+    }
+
     const fb = document.getElementById('feedback');
     let verdict, cls;
-    if (isFullCredit) {
-      verdict = `✓ Correct — all ${total} pairs matched.`;
-      cls = 'r-correct';
-    } else if (isPartial) {
+    if (isPartial) {
       verdict = `◐ Partial credit (${pointsLabel}). Correct letters shown in green on the missed rows.`;
       cls = 'r-partial';
     } else {

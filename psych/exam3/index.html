@@ -45,7 +45,9 @@
   .nclex-banner {
     display: flex; align-items: center; justify-content: space-between; gap: 20px;
     width: min(1180px, calc(100vw - 2.4rem));
-    margin: 2.6rem auto 0;
+    margin-top: 2.6rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
     padding: 1.6rem 2rem;
     background: #12141a;
     border: 1px solid #2c3040;
@@ -53,9 +55,12 @@
     position: relative;
     overflow: hidden;
     text-decoration: none;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
-  .nclex-banner:hover { transform: translateY(-2px); border-color: #3a3f52; }
+  .nclex-banner:hover { border-color: #3a3f52; box-shadow: 0 8px 26px rgba(0,0,0,0.3); }
+  .nclex-banner:hover .nclex-banner-inner,
+  .nclex-banner:hover .nclex-banner-arrow { transform: translateY(-2px); }
+  .nclex-banner-inner, .nclex-banner-arrow { transition: transform 0.2s ease; }
   .nclex-banner::before {
     content: '';
     position: absolute; top: -60%; left: -8%;
