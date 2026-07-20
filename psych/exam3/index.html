@@ -107,7 +107,7 @@
     transition: border-color 0.15s ease, color 0.15s ease;
   }
   .jump-chip:hover { border-color: var(--accent); color: var(--accent); }
-  #prof-questions, .nclex-banner, .quiz-card { scroll-margin-top: 16px; }
+  #prof-questions, .nclex-banner, .topic-pair { scroll-margin-top: 16px; }
 
   .jc-personality { border-color: #9c4fb0; color: #9c4fb0; }
   .jc-personality:hover { border-color: #9c4fb0; color: #9c4fb0; background: rgba(156,79,176,0.08); }
@@ -150,13 +150,29 @@
   .topics-banner-head { margin-bottom: 1.1rem; }
   .topics-banner-title { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 500; color: var(--ink); }
   .topics-banner-sub { font-size: 14px; color: var(--ink-mute); margin-top: 4px; }
-  .topics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  @media (max-width: 900px) { .topics-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .topics-grid { grid-template-columns: 1fr; } }
-  .qc-chapter {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase;
-    letter-spacing: 0.06em; color: var(--card-accent, var(--ink-mute)); display: block; margin-bottom: 8px;
+  .topics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 700px) { .topics-grid { grid-template-columns: 1fr; } }
+
+  .topic-pair {
+    position: relative;
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 1rem 1rem 1rem;
+    background: var(--surface2);
+    overflow: hidden;
   }
+  .topic-pair::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--pair-accent, var(--accent));
+  }
+  .topic-pair-chapter {
+    display: block; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--pair-accent, var(--ink-mute));
+    margin: 4px 0 10px;
+  }
+  .topic-pair-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 460px) { .topic-pair-cards { grid-template-columns: 1fr; } }
+  .topic-pair .quiz-card { background: var(--surface); padding: 1rem 1.05rem; }
 </style>
 </head>
 <body>
@@ -388,7 +404,8 @@
     };
     EXAM.topics.forEach((topic, ti) => {
       const col = CHAPTER_COLORS[topic.slug];
-      topic.quizzes.forEach((q, qi) => {
+      let cardsHTML = '';
+      topic.quizzes.forEach((q) => {
         let badge = '<span class="score-badge fresh">Soon</span>';
         if (q.href) {
           let best = null;
@@ -397,10 +414,9 @@
           else badge = '<span class="score-badge fresh">Not started</span>';
         }
         const cls = q.href ? 'quiz-card' : 'quiz-card sim-locked';
-        const cardStyle = 'style="--card-accent:' + col.c + ';--card-accent-soft:' + col.soft.replace('0.14', '0.18') + ';"';
-        const anchorId = qi === 0 ? ' id="topic-' + topic.slug + '"' : '';
-        html += '<a class="' + cls + '"' + anchorId + ' ' + cardStyle + ' href="' + (q.href||'#') + '"><span class="qc-chapter">' + topic.chapterLabel + '</span><div class="qc-top"><span class="qc-type">' + q.type + '</span></div><div class="qc-name">' + q.name + '</div><div class="qc-bottom"><span class="qc-count">' + q.count + '</span>' + badge + '</div></a>';
+        cardsHTML += '<a class="' + cls + '" href="' + (q.href||'#') + '"><div class="qc-top"><span class="qc-type">' + q.type + '</span></div><div class="qc-name">' + q.name + '</div><div class="qc-bottom"><span class="qc-count">' + q.count + '</span>' + badge + '</div></a>';
       });
+      html += '<div class="topic-pair" id="topic-' + topic.slug + '" style="--pair-accent:' + col.c + ';"><span class="topic-pair-chapter">' + topic.chapterLabel + '</span><div class="topic-pair-cards">' + cardsHTML + '</div></div>';
     });
     wrap.innerHTML = html;
 
