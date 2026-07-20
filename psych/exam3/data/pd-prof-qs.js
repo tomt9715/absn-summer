@@ -28,8 +28,8 @@ window.QUESTIONS = [
       { left: "Antisocial personality disorder", right: "Repeated unlawful actions" },
       { left: "Borderline personality disorder", right: "Fear of being abandoned" }
     ],
-    decoys: ["Seductive and flirtatious"],
-    rationale: "Cluster reminder from lecture: Cluster A (odd, eccentric, related to schizophrenia) is paranoid, schizoid, and schizotypal. Cluster B (dramatic, related to emotions) is antisocial, borderline, histrionic, and narcissistic. Cluster C (anxious, insecure) is avoidant, dependent, and OCPD. The extra characteristic, seductive and flirtatious, also describes histrionic presentation, but attention seeking is its defining feature. The Diagnostic and Statistical Manual of Mental Disorders (DSM-5) hallmark for each disorder is what the exam will target."
+    decoys: ["Recurrent intrusive thoughts"],
+    rationale: "Cluster reminder from lecture: Cluster A (odd, eccentric, related to schizophrenia) is paranoid, schizoid, and schizotypal. Cluster B (dramatic, related to emotions) is antisocial, borderline, histrionic, and narcissistic. Cluster C (anxious, insecure) is avoidant, dependent, and OCPD. The extra characteristic, recurrent intrusive thoughts, belongs to obsessive compulsive disorder (OCD), which is an anxiety-related disorder, not to OCPD. OCPD involves perfectionism and rigidity the person is comfortable with (ego-syntonic) and has no true obsessions or compulsions, so this trait matches none of the ten personality disorders listed. The Diagnostic and Statistical Manual of Mental Disorders (DSM-5) hallmark for each disorder is what the exam will target."
   },
   {
     stem: "A nurse is caring for a client who has borderline personality disorder (BPD). As part of the client's plan of care, the nurse reviews the day's schedule with the client each morning. As the nurse begins to review the schedule with the client, the client says, \"Why don't you shut up already? I can read it myself, you know!\" Which of the following responses should the nurse give the client?",
