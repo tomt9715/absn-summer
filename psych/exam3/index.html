@@ -42,24 +42,23 @@
   @media (max-width: 900px) { .prof-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 600px) { .prof-grid { grid-template-columns: 1fr; } }
 
-  .mystery-card {
-    display: flex; align-items: center; gap: 14px;
-    width: min(460px, calc(100vw - 2.4rem));
+  .mystery-banner {
+    display: block;
+    width: min(1180px, calc(100vw - 2.4rem));
     margin: 2.6rem auto 0;
-    padding: 1rem 1.3rem;
+    height: 60px;
     background: #14161c;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 14px;
-    text-decoration: none;
+    border-radius: 16px;
     position: relative;
     overflow: hidden;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    text-decoration: none;
+    transition: transform 0.2s ease;
   }
-  .mystery-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
-  .mystery-card::before {
+  .mystery-banner:hover { transform: translateY(-2px); }
+  .mystery-banner::before {
     content: '';
-    position: absolute; inset: -60%;
-    background: radial-gradient(circle at 25% 50%, rgba(95,179,173,0.28), transparent 60%);
+    position: absolute; inset: -80%;
+    background: radial-gradient(circle at 50% 50%, rgba(95,179,173,0.25), transparent 65%);
     animation: mysteryPulse 4.5s ease-in-out infinite;
     pointer-events: none;
   }
@@ -67,17 +66,17 @@
     0%, 100% { opacity: 0.45; }
     50% { opacity: 1; }
   }
-  .mystery-mark {
-    font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 700;
-    color: #5fb3ad; width: 34px; height: 34px; border-radius: 50%;
-    border: 1px solid rgba(95,179,173,0.45); display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; position: relative; z-index: 1;
+  .mystery-dot {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #5fb3ad;
+    box-shadow: 0 0 12px 4px rgba(95,179,173,0.5);
+    animation: dotPulse 2.2s ease-in-out infinite;
   }
-  .mystery-copy {
-    font-family: 'DM Sans', sans-serif; font-size: 13.5px; color: rgba(255,255,255,0.55);
-    position: relative; z-index: 1; line-height: 1.4;
+  @keyframes dotPulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%,-50%) scale(1.4); }
   }
-  .mystery-arrow { color: rgba(255,255,255,0.8); margin-left: 2px; }
 </style>
 </head>
 <body>
@@ -158,9 +157,8 @@
 
   <div id="topics"></div>
 
-  <a href="nclex-challenge.html" class="mystery-card">
-    <span class="mystery-mark">?</span>
-    <span class="mystery-copy">you weren't supposed to find this <span class="mystery-arrow">&rarr;</span></span>
+  <a href="nclex-challenge.html" class="mystery-banner">
+    <span class="mystery-dot"></span>
   </a>
 
   <div class="howto">
