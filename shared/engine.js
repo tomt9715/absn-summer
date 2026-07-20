@@ -180,6 +180,9 @@
       if (!raw) return null;
       const state = JSON.parse(raw);
       if (!state || !Array.isArray(state.deck) || typeof state.idx !== 'number') return null;
+      // Question 1 with nothing answered yet isn't real progress -- don't
+      // bother asking to resume until at least one question is behind them.
+      if (state.idx <= 0) return null;
       if (state.idx >= state.deck.length) return null;
       return state;
     } catch (e) { return null; }
