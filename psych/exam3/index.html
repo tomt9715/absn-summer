@@ -42,40 +42,52 @@
   @media (max-width: 900px) { .prof-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 600px) { .prof-grid { grid-template-columns: 1fr; } }
 
-  .mystery-banner {
-    display: block;
+  .nclex-banner {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
     width: min(1180px, calc(100vw - 2.4rem));
     margin: 2.6rem auto 0;
-    height: 60px;
-    background: #14161c;
+    padding: 1.6rem 2rem;
+    background: #12141a;
+    border: 1px solid #2c3040;
     border-radius: 16px;
     position: relative;
     overflow: hidden;
     text-decoration: none;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease;
   }
-  .mystery-banner:hover { transform: translateY(-2px); }
-  .mystery-banner::before {
+  .nclex-banner:hover { transform: translateY(-2px); border-color: #3a3f52; }
+  .nclex-banner::before {
     content: '';
-    position: absolute; inset: -80%;
-    background: radial-gradient(circle at 50% 50%, rgba(95,179,173,0.25), transparent 65%);
-    animation: mysteryPulse 4.5s ease-in-out infinite;
+    position: absolute; top: -60%; left: -8%;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(95,179,173,0.22) 0%, transparent 70%);
     pointer-events: none;
+    animation: nclexGlow 5s ease-in-out infinite;
   }
-  @keyframes mysteryPulse {
-    0%, 100% { opacity: 0.45; }
+  @keyframes nclexGlow {
+    0%, 100% { opacity: 0.5; }
     50% { opacity: 1; }
   }
-  .mystery-dot {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-    width: 8px; height: 8px; border-radius: 50%;
-    background: #5fb3ad;
-    box-shadow: 0 0 12px 4px rgba(95,179,173,0.5);
-    animation: dotPulse 2.2s ease-in-out infinite;
+  .nclex-banner-inner { position: relative; z-index: 1; }
+  .nclex-banner-eyebrow {
+    display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: #5fb3ad; margin-bottom: 8px;
   }
-  @keyframes dotPulse {
-    0%, 100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
-    50% { opacity: 1; transform: translate(-50%,-50%) scale(1.4); }
+  .nclex-banner-title {
+    font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 500;
+    color: #ecebe6; margin: 0 0 6px;
+  }
+  .nclex-banner-sub { font-family: 'DM Sans', sans-serif; font-size: 13.5px; color: #9096a8; }
+  .nclex-banner-arrow {
+    position: relative; z-index: 1; flex-shrink: 0;
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid #3a3f52; color: #d98e4c;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .nclex-banner:hover .nclex-banner-arrow { border-color: #d98e4c; background: rgba(217,142,76,0.12); }
+  @media (max-width: 600px) {
+    .nclex-banner { flex-direction: column; align-items: flex-start; text-align: left; }
   }
 </style>
 </head>
@@ -157,8 +169,13 @@
 
   <div id="topics"></div>
 
-  <a href="nclex-challenge.html" class="mystery-banner">
-    <span class="mystery-dot"></span>
+  <a href="nclex-challenge.html" class="nclex-banner">
+    <div class="nclex-banner-inner">
+      <span class="nclex-banner-eyebrow">Mixed Review &middot; All 6 Chapters</span>
+      <h3 class="nclex-banner-title">NCLEX Challenge Round</h3>
+      <span class="nclex-banner-sub">50 of 117 questions &middot; a different set every attempt</span>
+    </div>
+    <span class="nclex-banner-arrow">&rarr;</span>
   </a>
 
   <div class="howto">
