@@ -107,7 +107,56 @@
     transition: border-color 0.15s ease, color 0.15s ease;
   }
   .jump-chip:hover { border-color: var(--accent); color: var(--accent); }
-  #prof-questions, .nclex-banner, .section { scroll-margin-top: 16px; }
+  #prof-questions, .nclex-banner, .quiz-card { scroll-margin-top: 16px; }
+
+  .jc-personality { border-color: #9c4fb0; color: #9c4fb0; }
+  .jc-personality:hover { border-color: #9c4fb0; color: #9c4fb0; background: rgba(156,79,176,0.08); }
+  .jc-anxiety { border-color: #3a72b0; color: #3a72b0; }
+  .jc-anxiety:hover { border-color: #3a72b0; color: #3a72b0; background: rgba(58,114,176,0.08); }
+  .jc-ocd { border-color: #2f7d70; color: #2f7d70; }
+  .jc-ocd:hover { border-color: #2f7d70; color: #2f7d70; background: rgba(47,125,112,0.08); }
+  .jc-trauma { border-color: #b5762e; color: #b5762e; }
+  .jc-trauma:hover { border-color: #b5762e; color: #b5762e; background: rgba(181,118,46,0.08); }
+  .jc-abuse { border-color: #a83d5c; color: #a83d5c; }
+  .jc-abuse:hover { border-color: #a83d5c; color: #a83d5c; background: rgba(168,61,92,0.08); }
+  .jc-anger { border-color: #9c8a2e; color: #9c8a2e; }
+  .jc-anger:hover { border-color: #9c8a2e; color: #9c8a2e; background: rgba(156,138,46,0.08); }
+
+  .jc-personality.active { background: #9c4fb0; color: #fff; border-color: #9c4fb0; }
+  .jc-anxiety.active { background: #3a72b0; color: #fff; border-color: #3a72b0; }
+  .jc-ocd.active { background: #2f7d70; color: #fff; border-color: #2f7d70; }
+  .jc-trauma.active { background: #b5762e; color: #fff; border-color: #b5762e; }
+  .jc-abuse.active { background: #a83d5c; color: #fff; border-color: #a83d5c; }
+  .jc-anger.active { background: #9c8a2e; color: #fff; border-color: #9c8a2e; }
+  .jump-chip.active:not([class*="jc-"]) { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .quiz-card::after, .prof-card::after { background: var(--card-accent, var(--accent)); }
+  .quiz-card:hover, .prof-card:hover {
+    border-color: var(--card-accent, var(--accent));
+    box-shadow: 0 6px 20px var(--card-accent-soft, rgba(181,72,46,0.12));
+  }
+
+  .topics-banner {
+    width: min(1180px, calc(100vw - 2.4rem));
+    margin-top: 2.2rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem 2rem 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  }
+  .topics-banner-head { margin-bottom: 1.1rem; }
+  .topics-banner-title { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 500; color: var(--ink); }
+  .topics-banner-sub { font-size: 14px; color: var(--ink-mute); margin-top: 4px; }
+  .topics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .topics-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .topics-grid { grid-template-columns: 1fr; } }
+  .qc-chapter {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--card-accent, var(--ink-mute)); display: block; margin-bottom: 8px;
+  }
 </style>
 </head>
 <body>
@@ -144,12 +193,12 @@
 
   <nav class="jump-nav" aria-label="Jump to section">
     <a class="jump-chip" href="#prof-questions">Prof Qs</a>
-    <a class="jump-chip" href="#topic-personality">Personality</a>
-    <a class="jump-chip" href="#topic-anxiety">Anxiety</a>
-    <a class="jump-chip" href="#topic-ocd">OCD</a>
-    <a class="jump-chip" href="#topic-trauma">Trauma</a>
-    <a class="jump-chip" href="#topic-abuse">Abuse</a>
-    <a class="jump-chip" href="#topic-anger">Anger</a>
+    <a class="jump-chip jc-personality" href="#topic-personality">Personality</a>
+    <a class="jump-chip jc-anxiety" href="#topic-anxiety">Anxiety</a>
+    <a class="jump-chip jc-ocd" href="#topic-ocd">OCD</a>
+    <a class="jump-chip jc-trauma" href="#topic-trauma">Trauma</a>
+    <a class="jump-chip jc-abuse" href="#topic-abuse">Abuse</a>
+    <a class="jump-chip jc-anger" href="#topic-anger">Anger</a>
     <a class="jump-chip" href="#nclex-challenge">Mixed Review</a>
   </nav>
 
@@ -158,37 +207,37 @@
       <span class="prof-banner-title">Professor's Practice Questions</span>
     </div>
     <div class="prof-grid">
-      <a class="prof-card" href="pd-prof-qs.html">
+      <a class="prof-card" href="pd-prof-qs.html" style="--card-accent:#9c4fb0;--card-accent-soft:rgba(156,79,176,0.18);">
         <span class="prof-card-chapter">Ch 18 · Personality</span>
         <div class="prof-card-name">Personality Disorders</div>
         <span class="prof-card-count">7 items · incl. matching game</span>
         <div class="prof-card-score" data-key="ps_e3_pd_prof"></div>
       </a>
-      <a class="prof-card" href="anxiety-prof-qs.html">
+      <a class="prof-card" href="anxiety-prof-qs.html" style="--card-accent:#3a72b0;--card-accent-soft:rgba(58,114,176,0.18);">
         <span class="prof-card-chapter">Ch 14 · Anxiety</span>
         <div class="prof-card-name">Anxiety &amp; Anxiolytics</div>
         <span class="prof-card-count">22 items · incl. benzo matching</span>
         <div class="prof-card-score" data-key="ps_e3_anxiety_prof"></div>
       </a>
-      <a class="prof-card" href="ocd-prof-qs.html">
+      <a class="prof-card" href="ocd-prof-qs.html" style="--card-accent:#2f7d70;--card-accent-soft:rgba(47,125,112,0.18);">
         <span class="prof-card-chapter">Ch 15 · OCD</span>
         <div class="prof-card-name">Obsessive-Compulsive Disorders</div>
         <span class="prof-card-count">9 items</span>
         <div class="prof-card-score" data-key="ps_e3_ocd_prof"></div>
       </a>
-      <a class="prof-card" href="trauma-prof-qs.html">
+      <a class="prof-card" href="trauma-prof-qs.html" style="--card-accent:#b5762e;--card-accent-soft:rgba(181,118,46,0.18);">
         <span class="prof-card-chapter">Ch 13 · Trauma</span>
         <div class="prof-card-name">Trauma &amp; PTSD</div>
         <span class="prof-card-count">7 items</span>
         <div class="prof-card-score" data-key="ps_e3_trauma_prof"></div>
       </a>
-      <a class="prof-card" href="abuse-prof-qs.html">
+      <a class="prof-card" href="abuse-prof-qs.html" style="--card-accent:#a83d5c;--card-accent-soft:rgba(168,61,92,0.18);">
         <span class="prof-card-chapter">Ch 12 · Abuse</span>
         <div class="prof-card-name">Abuse &amp; Violence</div>
         <span class="prof-card-count">9 items · incl. matching game</span>
         <div class="prof-card-score" data-key="ps_e3_abuse_prof"></div>
       </a>
-      <a class="prof-card" href="anger-prof-qs.html">
+      <a class="prof-card" href="anger-prof-qs.html" style="--card-accent:#9c8a2e;--card-accent-soft:rgba(156,138,46,0.18);">
         <span class="prof-card-chapter">Ch 11 · Anger</span>
         <div class="prof-card-name">Anger &amp; Aggression</div>
         <span class="prof-card-count">14 items</span>
@@ -197,7 +246,13 @@
     </div>
   </div>
 
-  <div id="topics"></div>
+  <div class="topics-banner">
+    <div class="topics-banner-head">
+      <span class="topics-banner-title">Topic Practice</span>
+      <div class="topics-banner-sub">Knowledge Check + Deep Drill for every chapter</div>
+    </div>
+    <div class="topics-grid" id="topics"></div>
+  </div>
 
   <a href="nclex-challenge.html" class="nclex-banner" id="nclex-challenge">
     <div class="nclex-banner-inner">
@@ -235,6 +290,7 @@
       {
         name: "Personality Disorders",
         slug: "personality",
+        chapterLabel: "Ch 18 · Personality",
         count: "56 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "37 questions", href: "pd-kc.html", key: "ps_e3_pd_kc" },
@@ -244,6 +300,7 @@
       {
         name: "Anxiety & Anxiety Disorders",
         slug: "anxiety",
+        chapterLabel: "Ch 14 · Anxiety",
         count: "73 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "49 questions", href: "anxiety-kc.html", key: "ps_e3_anxiety_kc" },
@@ -253,6 +310,7 @@
       {
         name: "Obsessive-Compulsive & Related Disorders",
         slug: "ocd",
+        chapterLabel: "Ch 15 · OCD",
         count: "51 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "33 questions", href: "ocd-kc.html", key: "ps_e3_ocd_kc" },
@@ -262,6 +320,7 @@
       {
         name: "Trauma & Stressor-Related Disorders",
         slug: "trauma",
+        chapterLabel: "Ch 13 · Trauma",
         count: "49 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "31 questions", href: "trauma-kc.html", key: "ps_e3_trauma_kc" },
@@ -271,6 +330,7 @@
       {
         name: "Abuse & Violence",
         slug: "abuse",
+        chapterLabel: "Ch 12 · Abuse",
         count: "51 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "33 questions", href: "abuse-kc.html", key: "ps_e3_abuse_kc" },
@@ -280,6 +340,7 @@
       {
         name: "Anger, Hostility & Aggression",
         slug: "anger",
+        chapterLabel: "Ch 11 · Anger",
         count: "54 questions",
         quizzes: [
           { type: "Knowledge Check", name: "Know it cold", count: "35 questions", href: "anger-kc.html", key: "ps_e3_anger_kc" },
@@ -317,9 +378,17 @@
 
     const wrap = document.getElementById('topics');
     let html = '';
+    const CHAPTER_COLORS = {
+      personality: { c: '#9c4fb0', soft: 'rgba(156,79,176,0.14)' },
+      anxiety:     { c: '#3a72b0', soft: 'rgba(58,114,176,0.14)' },
+      ocd:         { c: '#2f7d70', soft: 'rgba(47,125,112,0.14)' },
+      trauma:      { c: '#b5762e', soft: 'rgba(181,118,46,0.14)' },
+      abuse:       { c: '#a83d5c', soft: 'rgba(168,61,92,0.14)' },
+      anger:       { c: '#9c8a2e', soft: 'rgba(156,138,46,0.14)' }
+    };
     EXAM.topics.forEach((topic, ti) => {
-      html += '<section class="section" id="topic-' + topic.slug + '"><div class="section-head"><span class="section-num">' + (ti+1) + '</span><span class="section-name">' + topic.name + '</span><span class="section-count">' + topic.count + '</span></div><div class="quiz-grid">';
-      topic.quizzes.forEach(q => {
+      const col = CHAPTER_COLORS[topic.slug];
+      topic.quizzes.forEach((q, qi) => {
         let badge = '<span class="score-badge fresh">Soon</span>';
         if (q.href) {
           let best = null;
@@ -328,9 +397,10 @@
           else badge = '<span class="score-badge fresh">Not started</span>';
         }
         const cls = q.href ? 'quiz-card' : 'quiz-card sim-locked';
-        html += '<a class="' + cls + '" href="' + (q.href||'#') + '"><div class="qc-top"><span class="qc-type">' + q.type + '</span></div><div class="qc-name">' + q.name + '</div><div class="qc-bottom"><span class="qc-count">' + q.count + '</span>' + badge + '</div></a>';
+        const cardStyle = 'style="--card-accent:' + col.c + ';--card-accent-soft:' + col.soft.replace('0.14', '0.18') + ';"';
+        const anchorId = qi === 0 ? ' id="topic-' + topic.slug + '"' : '';
+        html += '<a class="' + cls + '"' + anchorId + ' ' + cardStyle + ' href="' + (q.href||'#') + '"><span class="qc-chapter">' + topic.chapterLabel + '</span><div class="qc-top"><span class="qc-type">' + q.type + '</span></div><div class="qc-name">' + q.name + '</div><div class="qc-bottom"><span class="qc-count">' + q.count + '</span>' + badge + '</div></a>';
       });
-      html += '</div></section>';
     });
     wrap.innerHTML = html;
 
@@ -360,6 +430,26 @@
       ? `avg best score \u00b7 ${scores.length}/${ALL_KEYS.length} attempted`
       : 'no attempts yet';
     setTimeout(() => { document.getElementById('ring').style.strokeDashoffset = 201 - (201 * avgScore / 100); }, 200);
+
+    // Highlight whichever jump-nav chip corresponds to the section currently
+    // in view, purely visual -- doesn't read or write any score data.
+    const chipMap = {};
+    document.querySelectorAll('.jump-chip').forEach(a => {
+      chipMap[a.getAttribute('href').slice(1)] = a;
+    });
+    const jumpTargets = Object.keys(chipMap).map(id => document.getElementById(id)).filter(Boolean);
+    if ('IntersectionObserver' in window && jumpTargets.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const chip = chipMap[entry.target.id];
+          if (!chip) return;
+          document.querySelectorAll('.jump-chip.active').forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+        });
+      }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+      jumpTargets.forEach(t => observer.observe(t));
+    }
   })();
 
   (function () {
