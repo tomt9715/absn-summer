@@ -7,6 +7,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="../../shared/quiz.css">
+<style>
+  /* Scoped dark reskin -- only this page. Overrides the shared quiz.css tokens
+     rather than touching the shared file, so every other quiz on the site
+     keeps its normal light theme. Every rule in quiz.css reads these same
+     custom properties, so redefining them here re-skins the whole page. */
+  :root {
+    --bg: #12141a;
+    --surface: #1a1d25;
+    --surface2: #21242e;
+    --border: #2c3040;
+    --border-strong: #3a3f52;
+    --ink: #ecebe6;
+    --ink-soft: #c7c5be;
+    --ink-mute: #9096a8;
+    --accent: #d98e4c;
+    --accent-deep: #c47a3a;
+    --accent-soft: rgba(217,142,76,0.14);
+    --gold: #d9c15c;
+    --gold-soft: rgba(217,193,92,0.14);
+    --teal: #5fb3ad;
+    --teal-soft: rgba(95,179,173,0.14);
+    --correct: #5fbf8a;
+    --correct-soft: rgba(95,191,138,0.12);
+    --correct-border: rgba(95,191,138,0.35);
+    --wrong: #d9707c;
+    --wrong-soft: rgba(217,112,124,0.12);
+    --wrong-border: rgba(217,112,124,0.35);
+  }
+  body { background: var(--bg); }
+</style>
 </head>
 <body>
 <div class="wrap">
