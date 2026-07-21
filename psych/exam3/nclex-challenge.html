@@ -116,6 +116,26 @@
     border: 1px solid var(--gold); border-radius: 10px; padding: 1px 7px; margin-left: 6px;
   }
 
+  /* Stats row above the attempts list: count / average / trend */
+  .nclex-stats-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border);
+  }
+  .nclex-stat { text-align: center; padding: 0 6px; border-right: 1px solid var(--border); }
+  .nclex-stat:last-child { border-right: none; }
+  .nclex-stat-value {
+    display: block; font-family: 'JetBrains Mono', monospace; font-size: 19px; font-weight: 700;
+    color: var(--ink); line-height: 1.2; white-space: nowrap;
+  }
+  .nclex-stat-value .trend-icon { font-size: 12px; margin-right: 2px; }
+  .nclex-stat-value.trend-up { color: var(--correct); }
+  .nclex-stat-value.trend-down { color: var(--wrong); }
+  .nclex-stat-value.trend-flat { color: var(--ink-mute); }
+  .nclex-stat-label {
+    display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-mute); margin-top: 4px;
+  }
+
   /* Extra action row injected at the top of the results card */
   .nclex-top-actions {
     display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
@@ -202,6 +222,7 @@
   <div class="nclex-start-card" id="nclexStartCard">
     <div class="nclex-history" id="nclexHistory" style="display:none;">
       <span class="nclex-history-label">Your attempts</span>
+      <div class="nclex-stats-row" id="nclexStatsRow"></div>
       <div class="nclex-history-list" id="nclexHistoryList"></div>
     </div>
     <ul class="nclex-chapter-list">
@@ -249,6 +270,39 @@
       const hist = raw ? JSON.parse(raw) : [];
       if (!Array.isArray(hist) || hist.length === 0) return;
       const best = Math.max(...hist.map(h => h.pct));
+
+      // Stats row: attempt count, average score, and trend (latest attempt vs
+      // the average of every attempt before it). Trend is hidden (shown as a
+      // dash) until there are at least two attempts to compare.
+      const count = hist.length;
+      const avg = Math.round(hist.reduce((s, h) => s + h.pct, 0) / count);
+      let trendHtml = '<span class="nclex-stat-value trend-flat">&mdash;</span>';
+      if (count > 1) {
+        const latest = hist[hist.length - 1].pct;
+        const priorAvg = hist.slice(0, -1).reduce((s, h) => s + h.pct, 0) / (count - 1);
+        const diff = Math.round(latest - priorAvg);
+        if (diff > 0) {
+          trendHtml = `<span class="nclex-stat-value trend-up"><i class="fa-solid fa-arrow-up trend-icon"></i>+${diff}%</span>`;
+        } else if (diff < 0) {
+          trendHtml = `<span class="nclex-stat-value trend-down"><i class="fa-solid fa-arrow-down trend-icon"></i>${diff}%</span>`;
+        } else {
+          trendHtml = `<span class="nclex-stat-value trend-flat"><i class="fa-solid fa-minus trend-icon"></i>0%</span>`;
+        }
+      }
+      document.getElementById('nclexStatsRow').innerHTML = `
+        <div class="nclex-stat">
+          <span class="nclex-stat-value">${count}</span>
+          <span class="nclex-stat-label">${count === 1 ? 'Attempt' : 'Attempts'}</span>
+        </div>
+        <div class="nclex-stat">
+          <span class="nclex-stat-value">${avg}%</span>
+          <span class="nclex-stat-label">Average</span>
+        </div>
+        <div class="nclex-stat">
+          ${trendHtml}
+          <span class="nclex-stat-label">Trend</span>
+        </div>`;
+
       const rows = hist.slice().reverse().map(h => {
         const d = new Date(h.date);
         const dateStr = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
