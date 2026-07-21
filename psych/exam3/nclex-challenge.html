@@ -90,6 +90,46 @@
   .nclex-enter-btn:hover { opacity: .92; }
   .nclex-enter-btn:active { transform: scale(.99); }
 
+  /* Past-attempts list on the start screen */
+  .nclex-history {
+    margin: 0 0 24px; padding: 16px 18px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 12px;
+  }
+  .nclex-history-label {
+    display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-mute); margin-bottom: 10px;
+  }
+  .nclex-history-list { max-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 2px; }
+  .nclex-history-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 8px 4px; border-bottom: 1px solid var(--border); font-size: 13.5px;
+  }
+  .nclex-history-row:last-child { border-bottom: none; }
+  .nclex-history-score {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700; min-width: 48px;
+  }
+  .nclex-history-score.pass { color: var(--correct); }
+  .nclex-history-score.fail { color: var(--wrong); }
+  .nclex-history-date { color: var(--ink-mute); font-size: 12.5px; text-align: right; }
+  .nclex-history-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold);
+    border: 1px solid var(--gold); border-radius: 10px; padding: 1px 7px; margin-left: 6px;
+  }
+
+  /* Extra action row injected at the top of the results card */
+  .nclex-top-actions {
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+    margin: 16px 0 26px; position: relative; z-index: 1;
+  }
+  .nclex-top-btn {
+    padding: 12px 20px; border-radius: 10px; font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 14.5px; cursor: pointer; transition: all .15s ease; border: none;
+  }
+  .nclex-top-btn.primary { background: var(--teal); color: #0d1512; }
+  .nclex-top-btn.primary:hover { opacity: .92; }
+  .nclex-top-btn.ghost { background: transparent; border: 1px solid var(--border-strong); color: var(--ink-soft); }
+  .nclex-top-btn.ghost:hover { border-color: var(--teal); color: var(--teal); }
+
   /* Results-page redesign -- scoped to this page only. Same trick as the dark
      reskin above: these class names come from the shared engine.js output,
      but redeclaring them here (after quiz.css) only changes how they look
@@ -116,7 +156,7 @@
   .score-big.fail { border-color: var(--wrong-border); background: var(--wrong-soft); }
   .score-sub { margin: 18px 0 8px; position: relative; z-index: 1; }
   .score-history { position: relative; z-index: 1; }
-  .score-msg { margin-bottom: 28px; position: relative; z-index: 1; }
+  .score-msg { margin-bottom: 12px; position: relative; z-index: 1; }
   .attempt-history { position: relative; z-index: 1; }
   .results-tabs {
     display: flex; gap: 4px; justify-content: center; margin: 0 auto 24px; padding: 4px;
@@ -150,23 +190,27 @@
     <p class="quiz-sub">50 questions, randomly drawn from a bank of 117 covering all six chapters (Personality, Anxiety, OCD, Trauma, Abuse, Anger) &middot; every attempt pulls a different set from the bank &middot; Select All That Apply questions score partial credit</p>
     <p class="nclex-source-note">Content scope: your uploaded NUR2010 Exam 3 Study Guide only &mdash; nothing here goes beyond what's in that document.</p>
     <div class="nclex-chip-row">
-      <span class="nclex-chip nclex-chip-personality">Ch 18</span>
+      <span class="nclex-chip nclex-chip-anger">Ch 11</span>
+      <span class="nclex-chip nclex-chip-abuse">Ch 12</span>
+      <span class="nclex-chip nclex-chip-trauma">Ch 13</span>
       <span class="nclex-chip nclex-chip-anxiety">Ch 14</span>
       <span class="nclex-chip nclex-chip-ocd">Ch 15</span>
-      <span class="nclex-chip nclex-chip-trauma">Ch 13</span>
-      <span class="nclex-chip nclex-chip-abuse">Ch 12</span>
-      <span class="nclex-chip nclex-chip-anger">Ch 11</span>
+      <span class="nclex-chip nclex-chip-personality">Ch 18</span>
     </div>
   </div>
 
   <div class="nclex-start-card" id="nclexStartCard">
+    <div class="nclex-history" id="nclexHistory" style="display:none;">
+      <span class="nclex-history-label">Your attempts</span>
+      <div class="nclex-history-list" id="nclexHistoryList"></div>
+    </div>
     <ul class="nclex-chapter-list">
-      <li><span class="nclex-dot nclex-dot-personality"></span>Personality Disorders <span class="nclex-ch-tag">(Ch 18)</span><span class="nclex-count">20 in the bank</span></li>
+      <li><span class="nclex-dot nclex-dot-anger"></span>Anger &amp; Aggression <span class="nclex-ch-tag">(Ch 11)</span><span class="nclex-count">19 in the bank</span></li>
+      <li><span class="nclex-dot nclex-dot-abuse"></span>Abuse &amp; Violence <span class="nclex-ch-tag">(Ch 12)</span><span class="nclex-count">19 in the bank</span></li>
+      <li><span class="nclex-dot nclex-dot-trauma"></span>Trauma &amp; PTSD <span class="nclex-ch-tag">(Ch 13)</span><span class="nclex-count">18 in the bank</span></li>
       <li><span class="nclex-dot nclex-dot-anxiety"></span>Anxiety <span class="nclex-ch-tag">(Ch 14)</span><span class="nclex-count">22 in the bank</span></li>
       <li><span class="nclex-dot nclex-dot-ocd"></span>OCD &amp; Related <span class="nclex-ch-tag">(Ch 15)</span><span class="nclex-count">19 in the bank</span></li>
-      <li><span class="nclex-dot nclex-dot-trauma"></span>Trauma &amp; PTSD <span class="nclex-ch-tag">(Ch 13)</span><span class="nclex-count">18 in the bank</span></li>
-      <li><span class="nclex-dot nclex-dot-abuse"></span>Abuse &amp; Violence <span class="nclex-ch-tag">(Ch 12)</span><span class="nclex-count">19 in the bank</span></li>
-      <li><span class="nclex-dot nclex-dot-anger"></span>Anger &amp; Aggression <span class="nclex-ch-tag">(Ch 11)</span><span class="nclex-count">19 in the bank</span></li>
+      <li><span class="nclex-dot nclex-dot-personality"></span>Personality Disorders <span class="nclex-ch-tag">(Ch 18)</span><span class="nclex-count">20 in the bank</span></li>
     </ul>
     <button class="nclex-enter-btn" id="nclexEnterBtn">Enter the challenge round <i class="fa-solid fa-arrow-right"></i></button>
   </div>
@@ -195,6 +239,59 @@
     document.getElementById('quiz-area').style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  // Past-attempts list on the start screen. Reads the same "_history" array
+  // the shared engine already writes on every completed attempt -- read-only,
+  // doesn't touch scoring or storage in any new way.
+  (function () {
+    try {
+      const raw = localStorage.getItem('ps_e3_mixed_nclex_history');
+      const hist = raw ? JSON.parse(raw) : [];
+      if (!Array.isArray(hist) || hist.length === 0) return;
+      const best = Math.max(...hist.map(h => h.pct));
+      const rows = hist.slice().reverse().map(h => {
+        const d = new Date(h.date);
+        const dateStr = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+        const timeStr = d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+        const passed = h.pct >= 77;
+        const isBest = h.pct === best;
+        return `
+          <div class="nclex-history-row">
+            <span class="nclex-history-score ${passed ? 'pass' : 'fail'}">${h.pct}%${isBest ? '<span class="nclex-history-badge">BEST</span>' : ''}</span>
+            <span class="nclex-history-date">${dateStr} &middot; ${timeStr}</span>
+          </div>`;
+      }).join('');
+      document.getElementById('nclexHistoryList').innerHTML = rows;
+      document.getElementById('nclexHistory').style.display = 'block';
+    } catch (e) {}
+  })();
+
+  // Extra action row injected at the top of the results card, once it renders --
+  // gives quick access to "try again" / "back to this start screen" without
+  // scrolling past a full 50-question review to reach the buttons at the bottom.
+  (function () {
+    const observer = new MutationObserver(function () {
+      const scoreMsg = document.querySelector('.results-card .score-msg');
+      if (scoreMsg && !document.getElementById('nclexTopActions')) {
+        const row = document.createElement('div');
+        row.id = 'nclexTopActions';
+        row.className = 'nclex-top-actions';
+        row.innerHTML = `
+          <button class="nclex-top-btn primary" id="nclexTryAgainBtn">Try another 50 questions</button>
+          <button class="nclex-top-btn ghost" id="nclexBackToStartBtn">Back to challenge round start</button>
+        `;
+        scoreMsg.insertAdjacentElement('afterend', row);
+        document.getElementById('nclexTryAgainBtn').addEventListener('click', function () {
+          if (window.__quizStart) window.__quizStart();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        document.getElementById('nclexBackToStartBtn').addEventListener('click', function () {
+          location.reload();
+        });
+      }
+    });
+    observer.observe(document.getElementById('quiz-area'), { childList: true, subtree: true });
+  })();
 </script>
 </body>
 </html>

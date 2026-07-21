@@ -606,7 +606,7 @@
         <div class="review-list" id="review-list"></div>
         <div class="results-actions">
           <button class="action-btn primary" onclick="__quizStart()">Retake quiz</button>
-          <a class="action-btn ghost" href="../index.html">Back to hub</a>
+          <a class="action-btn ghost" href="index.html">Back to hub</a>
         </div>
       </div>
     `;
