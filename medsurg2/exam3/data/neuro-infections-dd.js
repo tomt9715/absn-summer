@@ -54,36 +54,6 @@ window.QUESTIONS = [
     rationale: "Swimming and water activities are recommended for MS because the water supports the body and helps avoid overheating, and heat worsens MS symptoms. Outdoor running in warm afternoons and hot yoga both add heat, and complete avoidance of activity over-restricts a patient who benefits from appropriate exercise."
   },
   {
-    stem: "A patient reports that by evening they develop double vision and drooping eyelids that improve after rest. Which condition is most consistent?",
-    options: ["Myasthenia gravis", "Multiple sclerosis", "Guillain-Barre Syndrome", "Meningitis"],
-    correct: 0,
-    rationale: "Double vision and drooping eyelids that worsen by evening and improve with rest describe the fatigable ocular weakness of myasthenia gravis, which affects the neuromuscular junction. MS is relapsing CNS disease, GBS is ascending peripheral weakness, and meningitis is an acute infection, none of which produce this rest-responsive fatigable pattern."
-  },
-  {
-    stem: "A patient with myasthenia gravis asks whether the disease will cause numbness or loss of coordination. Best response?",
-    options: ["MG is purely a motor disorder and does not affect sensation or coordination", "MG causes sensory loss along with the muscle weakness", "MG mainly impairs coordination while sparing muscle strength", "MG causes numbness that comes and goes with activity"],
-    correct: 0,
-    rationale: "MG is purely a motor disorder and does not affect sensation or coordination, so the patient will experience muscle weakness but intact sensation and coordination. The options describing sensory loss, primary coordination impairment, or intermittent numbness misrepresent the disease."
-  },
-  {
-    stem: "A patient with myasthenia gravis develops severe generalized weakness and difficulty breathing. What is the nurse's priority?",
-    options: ["Ensure airway and respiratory support", "Administer a sedative to reduce anxiety and oxygen demand", "Encourage active range of motion to maintain strength", "Restrict fluids to prevent aspiration"],
-    correct: 0,
-    rationale: "In myasthenic crisis with severe weakness and difficulty breathing, the priority is ensuring airway and respiratory support, because the weakness can compromise the muscles of respiration. A sedative would further depress respiration, range of motion does not address the emergency, and fluid restriction is not the priority."
-  },
-  {
-    stem: "A patient in myasthenic crisis is anxious and restless. Which consideration is most important when the team selects medications?",
-    options: ["Sedatives and tranquilizers are avoided because they can worsen respiratory depression", "Sedatives are given liberally to reduce oxygen consumption", "Opioids are preferred to sedatives for controlling anxiety", "Any anxiolytic is safe as long as the patient is on oxygen"],
-    correct: 0,
-    rationale: "Sedatives and tranquilizers are avoided in myasthenic crisis because they can worsen respiratory depression in a patient already at risk of respiratory failure. Giving sedatives liberally, substituting opioids, or assuming any anxiolytic is safe on oxygen all endanger the airway."
-  },
-  {
-    stem: "A patient in myasthenic crisis is unable to swallow safely. Which intervention does the nurse anticipate?",
-    options: ["Nasogastric feeding to provide nutrition while protecting the airway", "Offering solid foods to strengthen the swallowing muscles", "Rapid oral fluid boluses to stimulate the swallow reflex", "Withholding all nutrition until the crisis fully resolves"],
-    correct: 0,
-    rationale: "When a patient in myasthenic crisis cannot swallow safely, nasogastric feeding is anticipated to provide nutrition while protecting the airway from aspiration. Offering solids, giving rapid oral boluses, or withholding all nutrition are unsafe or inadequate responses."
-  },
-  {
     stem: "Which complications should the nurse monitor for in a patient with Guillain-Barre Syndrome?",
     options: ["Respiratory failure, autonomic dysfunction, DVT, and urinary retention", "Cirrhosis, ascites, and esophageal varices", "Glaucoma, cataracts, and macular degeneration", "Gout, bursitis, and osteoarthritis"],
     correct: 0,

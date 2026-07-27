@@ -130,41 +130,5 @@ window.QUESTIONS = [
     options: ["Brain exercises such as board games, sudoku, and mahjong", "Avoiding all mental activity to conserve energy", "Watching television passively for most of the day", "Memorizing long lists under time pressure only"],
     correct: 0,
     rationale: "Brain exercises such as board games, sudoku, and mahjong are encouraged for patients with MS. These activities stimulate cognitive function and provide engagement, supporting the patient's mental sharpness and quality of life alongside physical measures like swimming."
-  },
-  {
-    stem: "How is myasthenia gravis (MG) defined?",
-    options: ["An autoimmune disorder affecting the myoneural junction", "A demyelinating disease of the central nervous system", "An inflammation of the meninges of the brain and spinal cord", "A degenerative loss of motor neurons of unknown cause"],
-    correct: 0,
-    rationale: "Myasthenia gravis is an autoimmune disorder affecting the myoneural junction -- the point where the nerve meets the muscle. The disrupted transmission at this junction produces the characteristic muscle weakness of the disease, which worsens with activity."
-  },
-  {
-    stem: "Which symptoms typically appear first in myasthenia gravis?",
-    options: ["Ocular symptoms, including diplopia (double vision) and ptosis (drooping eyelid)", "Ascending weakness beginning in the legs", "A sudden severe headache with neck stiffness", "Loss of coordination and balance while walking"],
-    correct: 0,
-    rationale: "The initial symptoms of myasthenia gravis usually involve the ocular muscles, producing diplopia (double vision) and ptosis (drooping eyelid). As the disease progresses it can cause weakness of the facial muscles, swallowing and voice impairment (dysphonia), and generalized weakness."
-  },
-  {
-    stem: "Which statement accurately characterizes myasthenia gravis?",
-    options: ["It is purely a motor disorder with no effect on sensation or coordination", "It causes profound sensory loss with preserved motor strength", "It primarily impairs coordination while sparing muscle strength", "It affects only the autonomic nervous system"],
-    correct: 0,
-    rationale: "Myasthenia gravis is purely a motor disorder with no effect on sensation or coordination. This is an important distinguishing feature: the patient experiences muscle weakness, but sensory function and coordination remain intact, which helps differentiate MG from other neurologic conditions."
-  },
-  {
-    stem: "What is the priority in managing a patient experiencing a myasthenic crisis?",
-    options: ["Ensuring airway and respiratory support", "Encouraging vigorous physical exercise", "Administering sedatives to promote rest", "Restricting all fluids and nutrition"],
-    correct: 0,
-    rationale: "Management of a myasthenic crisis prioritizes measures to ensure airway and respiratory support, because the severe muscle weakness can compromise the muscles of breathing. Monitoring includes ABGs, serum electrolytes, intake and output, and daily weight to guide care during the crisis."
-  },
-  {
-    stem: "If a patient in myasthenic crisis is unable to swallow, which intervention may be required?",
-    options: ["Nasogastric feeding", "Oral solid foods to strengthen the swallowing muscles", "Complete withholding of all nutrition until the crisis resolves", "Rapid oral fluid boluses to stimulate swallowing"],
-    correct: 0,
-    rationale: "If the patient in myasthenic crisis cannot swallow, nasogastric feeding may be required to provide nutrition safely. Attempting oral intake when swallowing is impaired would risk aspiration, so the feeding route is adjusted to protect the airway while meeting nutritional needs."
-  },
-  {
-    stem: "Which medications should be avoided in a patient with myasthenia gravis, and why?",
-    options: ["Sedatives and tranquilizers, because they could exacerbate the disease process", "Antibiotics, because they cure the underlying autoimmune disorder", "Analgesics, because they have no role in neurologic care", "Antipyretics, because they mask the ocular symptoms"],
-    correct: 0,
-    rationale: "Sedatives and tranquilizers should be avoided in myasthenia gravis because they can exacerbate the disease process, further depressing respiratory and muscle function in a patient already vulnerable to respiratory failure. Avoiding these agents is an important safety consideration in MG care."
   }
 ];
