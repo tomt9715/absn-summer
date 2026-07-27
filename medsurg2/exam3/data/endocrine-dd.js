@@ -82,12 +82,6 @@ window.QUESTIONS = [
     rationale: "Beta blockers manage the cardiovascular and neurologic symptoms of excess thyroid hormone, tachycardia, tremors, and anxiety, providing symptom relief while PTU works more slowly to reduce hormone production at its source. Beta blockers do not replace hormone, treat calcium levels, or eliminate the possible need for surgery."
   },
   {
-    stem: "Two patients present with excess growth hormone. Patient A is 8 years old with proportional overgrowth of all body tissue. Patient B is 45 years old with enlarged hands, feet, and jaw but normal height. Which conditions do these represent respectively?",
-    options: ["Patient A has gigantism and Patient B has acromegaly", "Patient A has acromegaly and Patient B has gigantism", "Both patients have acromegaly at different ages", "Both patients have dwarfism with different presentations"],
-    correct: 0,
-    rationale: "Patient A's proportional overgrowth before the growth plates close is gigantism. Patient B's disproportionate growth of hands, feet, and jaw without a height change, since the growth plates are already closed in adulthood, is acromegaly. Both share the same underlying hormone excess but differ based on timing relative to growth plate closure."
-  },
-  {
     stem: "A patient completes a fluid deprivation test. Which finding confirms a diagnosis of diabetes insipidus rather than a normal response?",
     options: ["Urine specific gravity remains low despite fluid restriction and continued weight loss", "Urine specific gravity rises above 1.020 during the test", "Serum sodium decreases to below normal during the test", "Urine output decreases to less than 30 mL/hr during the test"],
     correct: 0,
@@ -98,11 +92,5 @@ window.QUESTIONS = [
     options: ["Notify the provider immediately and prepare for possible hypertonic saline administration", "Encourage the patient to drink more water to dilute excess sodium", "Restrict the patient to bedrest and reassess in four hours", "Administer the next scheduled dose of desmopressin"],
     correct: 0,
     rationale: "A sodium of 116 with confusion and seizure reflects severe, symptomatic hyponatremia, a medical emergency requiring immediate provider notification and likely hypertonic saline to correct sodium safely. Encouraging more water would worsen the dilutional hyponatremia, and desmopressin would only make SIADH worse since it increases water retention."
-  },
-  {
-    stem: "A patient with primary aldosteronism has a potassium level of 2.9 mEq/L and reports muscle weakness and numbness. What is the nurse's priority concern?",
-    options: ["Cardiac dysrhythmias related to severe hypokalemia", "Hyperglycemia related to excess aldosterone", "Respiratory depression related to hypernatremia", "Hypocalcemia related to parathyroid suppression"],
-    correct: 0,
-    rationale: "A potassium of 2.9 with muscle weakness is significant hypokalemia, which places the patient at risk for life-threatening cardiac dysrhythmias -- this is the priority concern requiring close cardiac monitoring. Aldosteronism does not directly cause hyperglycemia or affect calcium and parathyroid function, and hypernatremia alone does not cause respiratory depression."
   }
 ];

@@ -1,56 +1,20 @@
 // MedSurg II Exam 3 -- Endocrine Disorders (Ch 46) -- Knowledge Check
-// Covers: pituitary gland (anterior/posterior, tumors, acromegaly, gigantism, dwarfism,
-// diabetes insipidus, SIADH), thyroid gland (hypothyroidism, hyperthyroidism, thyroidectomy),
-// adrenal glands (Addison disease, Cushing syndrome, primary aldosteronism).
+// Scoped to the professor's focused Exam 3 review topics: Addison's disease, Cushing's syndrome,
+// diabetes insipidus, SIADH, Graves' disease, thyroidectomy, hypothyroidism, thyroid storm,
+// and acromegaly. Posterior pituitary hormones retained as necessary background for DI/SIADH.
 // correct: 0 always -- engine shuffles option order at runtime.
 window.QUESTIONS = [
-  {
-    stem: "Which hormones are secreted by the anterior pituitary gland? Select all that apply.",
-    options: ["Follicle-stimulating hormone (FSH)", "Luteinizing hormone (LH)", "Prolactin (PRL)", "Adrenocorticotropic hormone (ACTH)", "Thyroid-stimulating hormone (TSH)", "Growth hormone (GH)", "Vasopressin (ADH)", "Oxytocin"],
-    correct: [0, 1, 2, 3, 4, 5],
-    rationale: "The anterior pituitary secretes FSH, LH, prolactin, ACTH, TSH, and growth hormone (also called somatotropin). Vasopressin (ADH) and oxytocin are stored and released by the posterior pituitary, not produced by the anterior lobe."
-  },
   {
     stem: "Which two hormones are stored and released by the posterior pituitary gland?",
     options: ["Vasopressin (ADH) and oxytocin", "FSH and LH", "ACTH and TSH", "Growth hormone and prolactin"],
     correct: 0,
-    rationale: "The posterior pituitary releases vasopressin (ADH) and oxytocin -- an easy way to remember it is 'PEE PEE.' The other hormone pairs listed are all anterior pituitary hormones."
-  },
-  {
-    stem: "Total destruction of the pituitary gland removes stimulation to which three target glands?",
-    options: ["The thyroid, gonads, and adrenal glands", "The thyroid, pancreas, and kidneys", "The gonads, pancreas, and parathyroid glands", "The adrenal glands, liver, and thyroid"],
-    correct: 0,
-    rationale: "Panhypopituitarism removes stimuli normally received by the thyroid, gonads, and adrenal glands, leading to extreme weight loss, atrophy of endocrine organs, hair loss, impotence, amenorrhea, hypometabolism, and hypoglycemia. Coma and death occur if the missing hormones are not replaced."
-  },
-  {
-    stem: "What is true about the majority of pituitary tumors?",
-    options: ["They are benign but can still cause life-threatening effects depending on location and hormone impact", "They are almost always malignant and metastasize early", "They never affect hormone production", "They are exclusively found in children"],
-    correct: 0,
-    rationale: "Almost all pituitary tumors are benign, but their location and effects on hormone production by target organs can still have life-threatening effects, which is why they are taken seriously despite not being cancerous."
-  },
-  {
-    stem: "Which diagnostic tools are used to determine the presence and extent of a pituitary tumor?",
-    options: ["CT and MRI scans along with assessment of visual acuity and visual fields", "Chest x-ray and pulmonary function tests", "Colonoscopy and abdominal ultrasound", "EEG and lumbar puncture only"],
-    correct: 0,
-    rationale: "Workup for a pituitary tumor includes history and physical exam, assessment of visual acuity and visual fields (since the optic chiasm sits near the pituitary), CT and MRI scans, and serum pituitary hormone levels."
+    rationale: "The posterior pituitary releases vasopressin (ADH) and oxytocin -- an easy way to remember it is 'PEE PEE.' ADH is the hormone directly involved in diabetes insipidus and SIADH."
   },
   {
     stem: "Acromegaly results from hypersecretion of growth hormone occurring during which period of life?",
     options: ["After puberty, once the growth plates have closed", "Before puberty, while growth plates are still open", "During fetal development only", "During menopause"],
     correct: 0,
     rationale: "Acromegaly is hypersecretion of GH after puberty, once the growth plates have already closed, so growth is seen as thickening of bone and soft tissue rather than an increase in height. First-choice treatment is surgical removal of the pituitary gland."
-  },
-  {
-    stem: "Gigantism results from hypersecretion of growth hormone occurring during which period of life?",
-    options: ["Childhood, prior to closure of the growth plates", "Adulthood, after growth plates have closed", "The neonatal period only", "Late adolescence, after puberty is complete"],
-    correct: 0,
-    rationale: "Gigantism is hypersecretion of GH in childhood, before the growth plates close, causing proportional overgrowth in all body tissue. Treatment and care are the same as for acromegaly."
-  },
-  {
-    stem: "Dwarfism results from which pituitary hormone abnormality?",
-    options: ["Hyposecretion of growth hormone during fetal development or childhood", "Hypersecretion of growth hormone during childhood", "Hyposecretion of ADH from the posterior pituitary", "Hypersecretion of ACTH from the anterior pituitary"],
-    correct: 0,
-    rationale: "Dwarfism results from hyposecretion of GH during fetal development or childhood, which may be congenital or result from damage to the pituitary gland. It presents with disproportionate head and extremities relative to the torso, short stature, and delayed puberty."
   },
   {
     stem: "Diabetes insipidus is caused by which hormonal abnormality?",
@@ -279,17 +243,5 @@ window.QUESTIONS = [
     options: ["Monitoring for infection, protecting from falls, and monitoring and treating hyperglycemia", "Encouraging a high-sodium, high-carbohydrate diet", "Restricting protein intake", "Applying heat to edematous extremities"],
     correct: 0,
     rationale: "Because Cushing syndrome causes fragile skin, osteoporosis, and hyperglycemia, priority nursing care includes monitoring for infection, protecting the patient from falls, and monitoring and treating hyperglycemia, along with a high-protein, high-calcium, low-carbohydrate, low-sodium diet."
-  },
-  {
-    stem: "Primary aldosteronism results from hypersecretion of aldosterone, usually caused by what?",
-    options: ["A tumor of the adrenal cortex", "A pituitary tumor secreting excess ACTH", "Autoimmune destruction of the adrenal cortex", "Chronic hyponatremia"],
-    correct: 0,
-    rationale: "Primary aldosteronism is the hypersecretion of aldosterone from the adrenal cortex, usually due to a tumor. Aldosterone regulates blood pressure by managing sodium and potassium levels, so excess aldosterone disrupts that balance."
-  },
-  {
-    stem: "Which findings are consistent with primary aldosteronism?",
-    options: ["Hypertension, hypokalemia, and hypernatremia", "Hypotension, hyperkalemia, and hyponatremia", "Weight loss and hyperpigmentation", "Bradycardia and cold intolerance"],
-    correct: 0,
-    rationale: "Primary aldosteronism presents with hypertension, headache, polyuria, polydipsia, hypokalemia, hypernatremia, and muscle weakness or numbness -- too much aldosterone drives sodium and water retention while potassium is lost."
   }
 ];

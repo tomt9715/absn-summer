@@ -13,9 +13,9 @@ window.QUESTIONS = [
   },
   {
     stem: "Which foods are good dietary sources of iron?",
-    options: ["Meat, fish, grain, legumes, and vegetables", "Citrus fruits and green leafy vegetables only", "Dairy products and egg yolks only", "Seafood and iodized salt"],
+    options: ["Legumes, organ meats, and spinach", "Citrus fruits and green leafy vegetables only", "Dairy products and egg yolks only", "Seafood and iodized salt"],
     correct: 0,
-    rationale: "Iron is found in meat, fish, grain, legumes (beans), and vegetables. Iron-fortified foods and whole grains are also good sources for patients who need to increase intake."
+    rationale: "Iron sources include legumes, organ meats, and spinach. Iron-fortified grains are also a source, and pairing iron-rich foods with a vitamin C source increases absorption."
   },
   {
     stem: "What nutrient increases the absorption of dietary iron?",
@@ -52,6 +52,12 @@ window.QUESTIONS = [
     options: ["Hummus and beans", "White bread and pasta", "Butter and cream", "Soda and fruit juice"],
     correct: 0,
     rationale: "Protein diet recommendations include foods such as hummus and beans, which provide protein without relying on animal sources."
+  },
+  {
+    stem: "Are soybeans and soybean products considered a complete or incomplete source of protein?",
+    options: ["Complete, since they contain all 9 essential amino acids required for growth and maintenance of the body", "Incomplete, since they are a plant-based food", "Neither complete nor incomplete, since soy contains no amino acids", "Complete, but only when combined with a grain"],
+    correct: 0,
+    rationale: "Soybeans and soybean products are a high-quality, complete source of protein -- one of the few plant foods that contains all 9 essential amino acids on its own, which is why soy is grouped with animal sources when teaching complete vs. incomplete protein."
   },
   {
     stem: "Which condition is caused by protein deficiency with adequate calorie intake, presenting with edema and a fatty liver despite the body not appearing emaciated?",
@@ -198,6 +204,18 @@ window.QUESTIONS = [
     rationale: "Laryngectomy patients should be taught to lower the chin down toward the chest when eating, which helps protect the airway and facilitates safer swallowing."
   },
   {
+    stem: "After a total laryngectomy, how does a patient typically receive nutrition in the early post-operative period?",
+    options: ["Via a feeding tube for at least 7 to 10 days while the throat heals, since the patient will not eat by mouth during this time", "A regular diet is resumed within 24 hours of surgery", "Only IV fluids are used, with no enteral nutrition until hospital discharge", "Oral intake begins immediately with thin liquids"],
+    correct: 0,
+    rationale: "After a total laryngectomy, the patient will not eat by mouth for at least 7 to 10 days while the throat heals, receiving nutrition via a feeding tube instead. Oral intake is then reintroduced gradually rather than resumed all at once."
+  },
+  {
+    stem: "Once oral intake resumes after a total laryngectomy, how is the diet typically advanced?",
+    options: ["Gradually from liquids to soft foods, such as mashed potatoes and smoothies, before returning to a normal diet", "Directly to a regular diet with no intermediate steps", "Liquids only, permanently, with no advancement to solid food", "Pureed food only, skipping a liquid phase entirely"],
+    correct: 0,
+    rationale: "Once the feeding-tube period ends, the diet is advanced gradually, starting with liquids and progressing to soft foods like mashed potatoes and smoothies, before the patient returns to a normal diet."
+  },
+  {
     stem: "For a patient with hypertension, the DASH diet recommends sodium intake below what amount for maximum benefit?",
     options: ["Less than 1500 mg/day", "Less than 3000 mg/day", "Less than 500 mg/day", "There is no specific sodium target for maximum benefit"],
     correct: 0,
@@ -292,5 +310,35 @@ window.QUESTIONS = [
     options: ["Small, frequent meals made up of high-protein, high-calorie, nutrient-dense foods", "Large infrequent meals to reduce mealtime fatigue", "A low-protein, low-calorie diet to reduce GI burden", "Fluid restriction to manage weight loss"],
     correct: 0,
     rationale: "HIV wasting syndrome is managed with small, frequent meals made up of high-protein, high-calorie, nutrient-dense foods, similar to the approach used for other patients with significantly increased nutritional needs and reduced appetite."
+  },
+  {
+    stem: "For a patient recovering from surgery, roughly how much protein per meal is recommended to support tissue repair?",
+    options: ["25 to 40 grams per meal, from sources such as chicken, fish, eggs, tofu, and legumes", "5 to 10 grams per meal, from any protein source", "100 grams per meal, primarily from red meat", "There is no specific protein target for post-operative healing"],
+    correct: 0,
+    rationale: "Post-operative healing teaching targets about 25-40 grams of protein per meal from sources such as chicken, fish, eggs, tofu, and legumes, to provide the building blocks needed for tissue repair."
+  },
+  {
+    stem: "Which nutrients are specifically emphasized post-operatively to support collagen formation and immune function during wound healing?",
+    options: ["Vitamin C, vitamin A, and zinc", "Vitamin K and calcium", "Vitamin B12 and folate", "Sodium and potassium"],
+    correct: 0,
+    rationale: "Vitamin C (citrus, bell peppers) and vitamin A (sweet potatoes, leafy greens) support collagen formation, while zinc (meat, nuts) supports immune function -- all three are emphasized in post-operative healing nutrition."
+  },
+  {
+    stem: "What hydration guideline is recommended for a patient recovering from surgery to prevent dehydration and support cellular function?",
+    options: ["Drink half of body weight in ounces of water daily", "Drink exactly 8 cups of water daily regardless of body size", "Fluid intake should be restricted until healing is complete", "Drink one full body weight in ounces of water daily"],
+    correct: 0,
+    rationale: "Post-operative hydration teaching recommends drinking about half of body weight in ounces of water daily to prevent dehydration and support cellular function during healing."
+  },
+  {
+    stem: "Why is fiber intake emphasized for a patient recovering from surgery, particularly one taking opioid pain medication?",
+    options: ["Fiber from whole grains, fruits, and vegetables helps counteract the constipation caused by pain medications", "Fiber directly speeds wound closure", "Fiber prevents infection at the surgical site", "Fiber intake has no relevance to post-operative recovery"],
+    correct: 0,
+    rationale: "Opioid pain medications commonly cause constipation, so fiber from whole grains, fruits, and vegetables is emphasized post-operatively to support gut motility and counteract this side effect."
+  },
+  {
+    stem: "Why should a post-operative patient avoid refined sugars while healing?",
+    options: ["Unstable blood sugar can hinder wound healing and increase infection risk", "Refined sugar directly causes surgical site infections through bacterial contamination", "Refined sugar interferes with protein absorption only", "There is no relationship between blood sugar and wound healing"],
+    correct: 0,
+    rationale: "Keeping blood sugar stable by avoiding refined sugars supports wound healing, since unstable blood glucose can impair healing and increase the risk of infection at the surgical site."
   }
 ];

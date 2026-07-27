@@ -117,5 +117,17 @@ window.QUESTIONS = [
     options: ["Eat more on days the appetite is better, and add high-calorie, high-protein additions like yogurt or peanut butter to foods already being tolerated", "Restrict intake until appetite fully normalizes", "Eat only three large meals a day at fixed times", "Avoid nutritional supplements between meals since they may reduce appetite further"],
     correct: 0,
     rationale: "For a cancer patient with fluctuating appetite, teaching focuses on eating more on better days and boosting the calorie and protein density of foods already tolerated, such as adding yogurt, cheese, or peanut butter, rather than forcing large meals or restricting intake."
+  },
+  {
+    stem: "A patient is 2 days post-total-laryngectomy and asks the nurse when they can start eating regular food again. What is the nurse's best response?",
+    options: ["Nutrition will be provided through a feeding tube for at least 7 to 10 days while the throat heals, then oral intake will be reintroduced gradually starting with liquids", "The patient can begin a regular diet by mouth today", "The patient will remain NPO with no nutrition support until the throat fully heals in several weeks", "Oral intake can resume as soon as the patient feels hungry"],
+    correct: 0,
+    rationale: "After a total laryngectomy, the patient will not eat by mouth for at least 7 to 10 days while the throat heals, receiving nutrition via a feeding tube instead. Oral intake is then reintroduced gradually, progressing from liquids to soft foods before a normal diet -- the patient is not left without nutrition support, and oral intake does not resume based on hunger alone."
+  },
+  {
+    stem: "A patient recovering from major abdominal surgery is on opioid pain medication and has not had a bowel movement in 3 days. Which dietary adjustment is most appropriate?",
+    options: ["Increase intake of whole grains, fruits, and vegetables to support gut motility", "Restrict fiber intake until bowel sounds fully return", "Increase protein intake only, since fiber will not help with opioid-induced constipation", "Restrict fluid intake to reduce bowel workload"],
+    correct: 0,
+    rationale: "Opioid pain medications commonly cause constipation, and increasing fiber from whole grains, fruits, and vegetables helps counteract this by supporting gut motility -- restricting fiber or fluids would worsen the problem rather than help it."
   }
 ];
