@@ -350,13 +350,13 @@ To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browse
 - Psych Exam 2 is now fully built out (3 topics + simulator, confirmed exam date July 7). Next major content push would be Psych Exam 3 once that course material exists.
 - MedSurg II Final Exam hub is built (`medsurg2/final/`) but still on the old hub layout, same as exam1-3 — retrofit to the new jump-nav/readiness-ring layout whenever the older MedSurg hubs get retrofitted.
 
-## MedSurg II Final Exam Simulator (built July 2026)
+## MedSurg II Final Exam Simulator (built July-August 2026)
 
 Source: Obsidian "Final Exam Blueprint" note (2026-07-28) — the professor's exact cumulative breakdown by chapter. The
 companion "Final Exam Review" note was empty, so the blueprint was the only source used, per Tom's instruction to build
 purely from what's written in the Obsidian files.
 
-`medsurg2/final/` — new folder, `index.html` (hub with blueprint table + links back to Exam 1/2/3 hubs for review) and
+`medsurg2/final/` — `index.html` (hub with blueprint table + links back to Exam 1/2/3 hubs for review) and
 `simulator.html` + `data/simulator.js`. Fixed 75-question bank matching the blueprint exactly (not a subsample), key
 `ms2_final_sim`. Distribution: Ch 22 Arrhythmias (15), Ch 19 Resp (6), Ch 10 F&E (6), Ch 11 Shock/MODS (6), Ch 48 Kidney
 (6), Ch 57 Burns (5), Ch 43 Hepatic (5), Ch 44 Biliary (5), Ch 62 Stroke (5), ATI Nutrition (5), Ch 45 Endocrine (4, 1
@@ -370,7 +370,30 @@ Interpreter tool on the Exam 1 hub. Flagged to Tom so he knows to drill strips s
 
 Parent list (`medsurg2/index.html`) flipped to `ready: true` with `href: "final/index.html"`.
 
-Not live until committed and pushed.
+### Per-topic review system (added August 2026, in progress)
+
+Tom asked for two more layers on top of the simulator: (1) a condensed review sheet per topic, on the site AND
+mirrored into the Obsidian vault, and (2) a 10-20 question Deep Drill per topic, all NEW questions distinct from the
+Exam 1/2/3 DD banks AND from the final simulator's own 75 questions. Explicitly going one topic at a time in batches
+("this is the final, worth 37% of my grade") — do not skip ahead or batch multiple topics without checking in.
+
+Pattern per topic, all in the same pass:
+1. Read the relevant Exam 1/2/3 DD data file(s) for that topic first, to know exactly what's already been asked and avoid overlap
+2. `medsurg2/final/review-{slug}.html` — condensed review sheet, styled with new shared `shared/review.css` (extends `hub.css` variables: callout boxes, comparison tables, CTA card linking to the DD quiz)
+3. `medsurg2/final/data/{slug}-dd.js` + `medsurg2/final/{slug}-dd.html` — new DD quiz, same engine.js/quiz.css pattern as every other DD quiz on the site, key format `ms2_final_{slug}_dd`
+4. Wire the new review-sheet card into the "Topic review" grid on `medsurg2/final/index.html`
+5. Mirror the review sheet into the Obsidian vault at `Manhattanville Courses/MedSurg II/Final Exam/2026-08-03 {Topic}.md`, matching the vault's actual house style exactly (info-callout header table with emoji, danger/warning/info callouts, tables, "NCLEX Angle" blockquote summary, "Site Reference" footer pointing back to the original lecture note + the site) — new `Final Exam` subfolder, parallel to Exam 1/2/3/Lab
+
+Completed so far: **Arrhythmias** (Ch22, 16 DD), **Respiratory** (Ch19, 14 DD), **Fluid & Electrolytes** (Ch10, 14 DD),
+**Shock/Sepsis/MODS** (Ch11, 14 DD), **Kidney** (Ch48, 14 DD).
+Remaining: Burns, Hepatic, Biliary, Stroke, ATI Nutrition, Endocrine, Neuro Assessment, Eye, Hearing.
+After all topics are done, Tom wants one more layer: a large NEW simulator bank styled like the Psych Exam 3 NCLEX
+Challenge Round (dark reskin, gated start screen, subsample per attempt) built from hard DD-style questions not used
+anywhere else on the site — build this LAST so it can be checked against every topic DD bank too.
+
+Note: mid-session the user's Filesystem MCP connector dropped and had to be reconnected via tool_search once user
+confirmed it was back up. If tools 'not found' errors appear, that's the likely cause — ask the user to check the
+connector rather than assuming file paths are wrong.
 
 ---
 
