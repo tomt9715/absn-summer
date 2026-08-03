@@ -109,6 +109,7 @@ absn-summer/
 - No EKG reading/identification questions in the simulator or DD files — those belong exclusively to the EKG Interpreter
 - When source material flags content with explicit emphasis (Obsidian `[!danger]`/`[!warning]` callouts, "TEST NOTE" language, or a professor study guide's red/highlighted/bolded text), that content gets heavier question coverage relative to its share of the material
 - Simulator questions are always brand-new, NCLEX-style application/priority questions distinct from the KC/DD bank for that topic — never reused verbatim
+- This applies to EKG strip questions too: answer options must be plain and parallel (e.g. "Regularly irregular", "Indeterminate") with no embedded "why" explanation tacked onto the correct answer via a dash or clause. The explanation belongs in the rationale field only. Fixed retroactively in both `medsurg2/exam1/ekg-interpreter.html` and `medsurg2/final/ekg-practice.html` on Tom's feedback (Aug 2026) after several strip options gave away the answer by being the only option with elaboration attached.
 
 ---
 
@@ -418,6 +419,30 @@ grid:
 
 The "how to get the most out of this" section on the final hub was updated to point at the new EKG Strip Practice
 tool instead of sending people to the Exam 1 hub for it.
+
+### NCLEX Challenge Round (added August 2026) -- THIS BUILD IS NOW COMPLETE
+
+`medsurg2/final/nclex-challenge.html` + `data/nclex-challenge.js`. Same architecture as `psych/exam3/nclex-challenge.html`:
+dark reskin scoped to this page only (redeclares the `:root` custom properties that `shared/quiz.css` reads, so no
+other quiz on the site is affected), gated start card showing per-chapter bank counts, past-attempts history with
+stats row (count/average/trend) read from the shared engine's `_history` localStorage array, and a top-actions row
+injected into the results card via MutationObserver. Simplified from the Psych version by using a single accent dot
+color for all 14 chapters instead of 14 unique hues (14 chapters was too many for the six-color chip/dot system Psych
+Exam 3 used with its 6 chapters).
+
+Bank: 69 new questions, `maxQuestions: 45` drawn randomly per attempt. Distribution: Arrhythmias (10), Respiratory (5),
+F&E (5), Shock/Sepsis/MODS (5), Kidney (5), Burns (5), Hepatic (5), Biliary (5), Stroke (5), Nutrition (5), Endocrine
+(5, incl. 1 SATA on Addisonian crisis findings), Neuro Assessment (3), Eye (3), Hearing (3). Checked against the
+Exam 1/2/3 KC/DD banks, all 14 per-topic Final Deep Drill banks, and the fixed 75-Q Final Exam Simulator -- every
+layer of MedSurg II content that existed by the time this was built. Key `ms2_final_mixed_nclex`.
+
+Wired onto the final hub as its own featured card (reusing the `.sim-card` class) directly below the fixed-blueprint
+simulator card, so the hub now has two big entry points at the top: the exact-blueprint 75-Q simulator, and this
+randomized 45-of-69 mixed review.
+
+**This closes out the entire MedSurg II Final Exam build requested this session**: 14 topic review sheets + Deep
+Drills (175 Q) mirrored into Obsidian, the fixed 75-Q blueprint simulator, EKG Strip Practice, ABG Quick Practice,
+and the NCLEX Challenge Round (69 Q pool). Nothing pending on this feature as of this write-up.
 
 Note: mid-session the user's Filesystem MCP connector dropped and had to be reconnected via tool_search once user
 confirmed it was back up. If tools 'not found' errors appear, that's the likely cause — ask the user to check the
