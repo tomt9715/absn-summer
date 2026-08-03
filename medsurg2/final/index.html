@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedSurg II — Final Exam Study Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../shared/hub.css">
+<style>
+  .blueprint-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-family: 'DM Sans', sans-serif; }
+  .blueprint-table th, .blueprint-table td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid rgba(0,0,0,0.08); font-size: 0.92rem; }
+  .blueprint-table th { font-weight: 600; opacity: 0.7; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.04em; }
+  .blueprint-table td.qcount { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+  .blueprint-section { width: min(1180px, calc(100vw - 2.4rem)); margin-left: 50%; transform: translateX(-50%); margin-top: 2rem; margin-bottom: 2rem; }
+  .blueprint-card { background: var(--card-bg, #fff); border-radius: 16px; padding: 1.6rem 1.8rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .blueprint-card h2 { font-family: 'Fraunces', serif; font-size: 1.4rem; margin: 0 0 0.3rem; }
+  .blueprint-card .sub { opacity: 0.65; font-size: 0.9rem; margin-bottom: 0.5rem; }
+  .review-links { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.4rem; }
+  .review-links a { padding: 0.55rem 1rem; border-radius: 10px; background: rgba(0,0,0,0.04); text-decoration: none; color: inherit; font-size: 0.88rem; font-weight: 500; }
+  .review-links a:hover { background: rgba(0,0,0,0.08); }
+</style>
+</head>
+<body>
+<div class="accent-band"></div>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-inner">
+      <a href="../index.html" class="hub-back">← MedSurg II exams</a>
+      <span class="eyebrow">MedSurg II · Manhattanville</span>
+      <h1 class="hero-title">Final Exam <em>Study Hub</em></h1>
+
+      <div class="countdown-card">
+        <div class="countdown-num" id="cd-num">—</div>
+        <div class="countdown-meta">
+          <span class="countdown-label">Days until exam</span>
+          <span class="countdown-date" id="cd-date">Tuesday, August 11</span>
+          <span class="countdown-sub" id="cd-sub">&nbsp;</span>
+        </div>
+        <div class="countdown-divider"></div>
+        <div class="progress-overview">
+          <div class="ring-wrap">
+            <svg width="76" height="76" viewBox="0 0 76 76">
+              <circle class="ring-bg" cx="38" cy="38" r="32"></circle>
+              <circle class="ring-fg" id="ring" cx="38" cy="38" r="32" stroke-dasharray="201" stroke-dashoffset="201"></circle>
+            </svg>
+            <div class="ring-label"><span class="ring-pct" id="ring-pct">0%</span></div>
+          </div>
+          <span class="ring-cap">simulator best score</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <a class="sim-card" href="simulator.html" id="sim-card">
+    <div class="sim-left">
+      <span class="qc-type">Exam Simulator</span>
+      <div class="sim-name">Full Final Exam simulator</div>
+      <span class="sim-sub">75 questions · cumulative, matches the exact blueprint by chapter · includes Select All That Apply</span>
+    </div>
+  </a>
+
+  <div class="blueprint-section">
+    <div class="blueprint-card">
+      <h2>Exam blueprint</h2>
+      <div class="sub">75 questions total, all multiple choice except one Endocrine SATA. Cumulative — pulls from across the whole course, not just Exam 3 content.</div>
+      <table class="blueprint-table">
+        <thead><tr><th>Chapter</th><th>Topic</th><th>Questions</th></tr></thead>
+        <tbody>
+          <tr><td>22</td><td>Arrhythmias and Conduction Problems</td><td class="qcount">15</td></tr>
+          <tr><td>19</td><td>Chest and Lower Respiratory Disorders</td><td class="qcount">6</td></tr>
+          <tr><td>10</td><td>Fluid and Electrolytes</td><td class="qcount">6</td></tr>
+          <tr><td>11</td><td>Shock and Multi-Organ Dysfunction Syndrome</td><td class="qcount">6</td></tr>
+          <tr><td>48</td><td>Kidney Disorders</td><td class="qcount">6</td></tr>
+          <tr><td>57</td><td>Burn Injury</td><td class="qcount">5</td></tr>
+          <tr><td>43</td><td>Hepatic Disorders</td><td class="qcount">5</td></tr>
+          <tr><td>44</td><td>Biliary Disorders</td><td class="qcount">5</td></tr>
+          <tr><td>62</td><td>Cerebrovascular Disorders (Stroke)</td><td class="qcount">5</td></tr>
+          <tr><td>—</td><td>ATI Nutrition</td><td class="qcount">5</td></tr>
+          <tr><td>45</td><td>Endocrine Disorders (incl. 1 SATA)</td><td class="qcount">4</td></tr>
+          <tr><td>60</td><td>Neuro Assessment / Neurologic Dysfunction</td><td class="qcount">3</td></tr>
+          <tr><td>58</td><td>Eye and Vision Disorders</td><td class="qcount">2</td></tr>
+          <tr><td>59</td><td>Hearing and Balance Disorders</td><td class="qcount">2</td></tr>
+        </tbody>
+      </table>
+      <div class="review-links">
+        <a href="../exam1/index.html">Review Exam 1 topics ↗</a>
+        <a href="../exam2/index.html">Review Exam 2 topics ↗</a>
+        <a href="../exam3/index.html">Review Exam 3 topics ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="howto">
+    <h3>How to get the most out of this</h3>
+    <ul>
+      <li><span class="dot">→</span><span>This exam is cumulative — if a chapter above feels shaky, go back to that exam's hub for the full <strong>Knowledge Check</strong> and <strong>Deep Drill</strong> banks before running the simulator.</span></li>
+      <li><span class="dot">→</span><span>The 6 EKG strips on the real exam are their own skill — practice those separately with the <strong>EKG Interpreter</strong> on the Exam 1 hub. This simulator tests rhythm recognition and next-action through clinical scenarios instead of strip images.</span></li>
+      <li><span class="dot">→</span><span>Questions and answer choices <strong>reshuffle every time</strong> — so you're learning the material, not memorizing where the answer sits.</span></li>
+      <li><span class="dot">→</span><span>Retake as many times as you want — your best score is saved.</span></li>
+    </ul>
+  </div>
+
+  <div class="donation-footer">
+    <div class="msg">This started as my own study tool and turned into something I wanted to share with everyone. No catch, no paywall — just hoping it helps. If it did, even a few dollars goes a long way for a tired nursing student trying to keep this thing growing. You know where to find me.</div>
+    <div class="donation-links">
+      <a href="https://venmo.com/Tom_Thomas" target="_blank" rel="noopener" class="donate-btn venmo"><img src="../shared/assets/venmo.png" alt="Venmo"></a>
+      <a href="#" class="donate-btn zelle"><img src="../shared/assets/zelle.png" alt="Zelle"><span class="znum">(914) 646-0456</span></a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  (function () {
+    let best = null;
+    try { const v = localStorage.getItem('ms2_final_sim_best'); if (v !== null) best = parseInt(v, 10); } catch (e) {}
+    const pct = (best !== null && !isNaN(best)) ? best : 0;
+    const circ = 201;
+    document.getElementById('ring-pct').textContent = pct + '%';
+    setTimeout(() => { document.getElementById('ring').style.strokeDashoffset = circ - (circ * pct / 100); }, 200);
+  })();
+
+  (function () {
+    const exam = new Date(2026, 7, 11); // August 11, 2026
+    const now = new Date();
+    const d0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const diff = Math.round((exam - d0) / 86400000);
+    const numEl = document.getElementById('cd-num'), subEl = document.getElementById('cd-sub');
+    if (diff > 1) { numEl.textContent = diff; subEl.textContent = diff + ' days to lock it in'; }
+    else if (diff === 1) { numEl.textContent = '1'; subEl.textContent = 'tomorrow — you got this'; }
+    else if (diff === 0) { numEl.textContent = '0'; subEl.textContent = "it's today — go crush it"; }
+    else { numEl.textContent = '✓'; subEl.textContent = 'exam day has passed'; }
+  })();
+</script>
+<script src="../shared/footer.js"></script>
+</body>
+</html>

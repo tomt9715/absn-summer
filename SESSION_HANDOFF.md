@@ -347,8 +347,30 @@ To reset welcome modal: `localStorage.removeItem('absn_welcome_seen')` in browse
 - ROME method: consider adding "leans acid / leans base" pH option for fully compensated ABG cases
 - Psych Exam 1 simulator DD answer choices audit — same embedded-definition issue as MedSurg DD files, not yet fixed
 - TNC platform Phase 4 (UI/UX redesign) and Phase 5 — separate product at thenursingcollective.pro
-- MedSurg Exam 3 once that course material/Obsidian notes exist
 - Psych Exam 2 is now fully built out (3 topics + simulator, confirmed exam date July 7). Next major content push would be Psych Exam 3 once that course material exists.
+- MedSurg II Final Exam hub is built (`medsurg2/final/`) but still on the old hub layout, same as exam1-3 — retrofit to the new jump-nav/readiness-ring layout whenever the older MedSurg hubs get retrofitted.
+
+## MedSurg II Final Exam Simulator (built July 2026)
+
+Source: Obsidian "Final Exam Blueprint" note (2026-07-28) — the professor's exact cumulative breakdown by chapter. The
+companion "Final Exam Review" note was empty, so the blueprint was the only source used, per Tom's instruction to build
+purely from what's written in the Obsidian files.
+
+`medsurg2/final/` — new folder, `index.html` (hub with blueprint table + links back to Exam 1/2/3 hubs for review) and
+`simulator.html` + `data/simulator.js`. Fixed 75-question bank matching the blueprint exactly (not a subsample), key
+`ms2_final_sim`. Distribution: Ch 22 Arrhythmias (15), Ch 19 Resp (6), Ch 10 F&E (6), Ch 11 Shock/MODS (6), Ch 48 Kidney
+(6), Ch 57 Burns (5), Ch 43 Hepatic (5), Ch 44 Biliary (5), Ch 62 Stroke (5), ATI Nutrition (5), Ch 45 Endocrine (4, 1
+SATA), Ch 60 Neuro Assessment (3), Ch 58 Eye (2), Ch 59 Hearing (2) = 75. All new NCLEX-style application questions,
+distinct from the Exam 1/2/3 KC/DD/simulator banks that already cover these same chapters individually.
+
+**Standing rule applied:** per "No EKG reading/identification questions in the simulator or DD files," the professor's
+blueprint calls for 6 EKG strips on the real exam, but this simulator's Ch 22 questions test rhythm recognition and
+next-action through clinical description/vignette instead of strip images — strip reading stays exclusive to the EKG
+Interpreter tool on the Exam 1 hub. Flagged to Tom so he knows to drill strips separately there.
+
+Parent list (`medsurg2/index.html`) flipped to `ready: true` with `href: "final/index.html"`.
+
+Not live until committed and pushed.
 
 ---
 
