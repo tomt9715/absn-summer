@@ -385,8 +385,9 @@ Pattern per topic, all in the same pass:
 5. Mirror the review sheet into the Obsidian vault at `Manhattanville Courses/MedSurg II/Final Exam/2026-08-03 {Topic}.md`, matching the vault's actual house style exactly (info-callout header table with emoji, danger/warning/info callouts, tables, "NCLEX Angle" blockquote summary, "Site Reference" footer pointing back to the original lecture note + the site) — new `Final Exam` subfolder, parallel to Exam 1/2/3/Lab
 
 Completed so far: **Arrhythmias** (Ch22, 16 DD), **Respiratory** (Ch19, 14 DD), **Fluid & Electrolytes** (Ch10, 14 DD),
-**Shock/Sepsis/MODS** (Ch11, 14 DD), **Kidney** (Ch48, 14 DD).
-Remaining: Burns, Hepatic, Biliary, Stroke, ATI Nutrition, Endocrine, Neuro Assessment, Eye, Hearing.
+**Shock/Sepsis/MODS** (Ch11, 14 DD), **Kidney** (Ch48, 14 DD), **Burns** (Ch57, 12 DD), **Hepatic** (Ch43, 14 DD),
+**Biliary** (Ch44, 14 DD), **Stroke** (Ch62, 12 DD). This closes out everything sourced from Exam 1 and Exam 2.
+Remaining (all from Exam 3): ATI Nutrition, Endocrine, Neuro Assessment, Eye, Hearing.
 After all topics are done, Tom wants one more layer: a large NEW simulator bank styled like the Psych Exam 3 NCLEX
 Challenge Round (dark reskin, gated start screen, subsample per attempt) built from hard DD-style questions not used
 anywhere else on the site — build this LAST so it can be checked against every topic DD bank too.
