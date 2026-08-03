@@ -386,11 +386,19 @@ Pattern per topic, all in the same pass:
 
 Completed so far: **Arrhythmias** (Ch22, 16 DD), **Respiratory** (Ch19, 14 DD), **Fluid & Electrolytes** (Ch10, 14 DD),
 **Shock/Sepsis/MODS** (Ch11, 14 DD), **Kidney** (Ch48, 14 DD), **Burns** (Ch57, 12 DD), **Hepatic** (Ch43, 14 DD),
-**Biliary** (Ch44, 14 DD), **Stroke** (Ch62, 12 DD), **Nutrition** (ATI, 14 DD), **Endocrine** (Ch45, 13 DD).
-Remaining (all from Exam 3): Neuro Assessment, Eye, Hearing.
-After all topics are done, Tom wants one more layer: a large NEW simulator bank styled like the Psych Exam 3 NCLEX
-Challenge Round (dark reskin, gated start screen, subsample per attempt) built from hard DD-style questions not used
-anywhere else on the site — build this LAST so it can be checked against every topic DD bank too.
+**Biliary** (Ch44, 14 DD), **Stroke** (Ch62, 12 DD), **Nutrition** (ATI, 14 DD), **Endocrine** (Ch45, 13 DD),
+**Neuro Assessment** (Ch60, 10 DD), **Eye** (Ch58, 10 DD), **Hearing** (Ch59, 10 DD).
+
+**ALL 14 TOPIC REVIEW SHEETS + DD QUIZZES ARE COMPLETE.** Total new DD questions written across the 14 topics: 175.
+Every topic has a review-{slug}.html + data/{slug}-dd.js + {slug}-dd.html on the site, wired into the "Topic review"
+grid on medsurg2/final/index.html, plus a matching Obsidian note in `Final Exam/2026-08-03 {Topic}.md`.
+
+Next (and final) piece of this build: the big NEW simulator bank styled like the Psych Exam 3 NCLEX Challenge Round
+(dark reskin, gated start screen, subsample per attempt) built from hard DD-style questions not used anywhere else on
+the site. Build this checking against all 14 new topic DD banks above, the original Exam 1/2/3 DD banks, AND the
+existing `medsurg2/final/data/simulator.js` 75-question bank, since all of those now exist. This is a separate,
+additional bank from the fixed 75-Q simulator already live — Tom wants both to coexist (fixed blueprint simulator +
+a larger randomized NCLEX Challenge pool).
 
 Note: mid-session the user's Filesystem MCP connector dropped and had to be reconnected via tool_search once user
 confirmed it was back up. If tools 'not found' errors appear, that's the likely cause — ask the user to check the
