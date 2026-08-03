@@ -400,6 +400,25 @@ existing `medsurg2/final/data/simulator.js` 75-question bank, since all of those
 additional bank from the fixed 75-Q simulator already live — Tom wants both to coexist (fixed blueprint simulator +
 a larger randomized NCLEX Challenge pool).
 
+### Skills practice section (added August 2026)
+
+Before starting the NCLEX Challenge build, Tom asked for two more standalone tools on the final hub, separate from
+the topic Deep Drills, added in a new "Skills practice" blueprint-section between the sim card and the Topic review
+grid:
+
+- `medsurg2/final/ekg-practice.html` — standalone self-contained HTML (same architecture as `medsurg2/exam1/ekg-interpreter.html`,
+  not the shared engine.js pattern), reusing the SAME 9 verified strip images via relative path `../exam1/images/{file}.jpg`
+  rather than duplicating image files. Same 5-step-per-strip framework (rate/rhythm/P waves/QRS/identify), same visual
+  style. localStorage key `ms2_final_ekg`.
+- `medsurg2/final/abg-practice.html` + `data/abg-practice.js` — uses the normal shared engine.js/quiz.css DD-quiz pattern,
+  NOT the interactive ROME/Tic-Tac-Toe tool from `medsurg2/exam1/abg-interpreter.html`. Tom explicitly asked for
+  "simple questions with multiple choice" this time. 16 new patient scenarios with new ABG values, checked against
+  the Exam 1 interpreter's 20 existing scenarios to avoid duplicate values/patients. Covers all 4 primary disturbances
+  across uncompensated/partially/fully compensated plus one normal ABG. Key `ms2_final_abg_practice`.
+
+The "how to get the most out of this" section on the final hub was updated to point at the new EKG Strip Practice
+tool instead of sending people to the Exam 1 hub for it.
+
 Note: mid-session the user's Filesystem MCP connector dropped and had to be reconnected via tool_search once user
 confirmed it was back up. If tools 'not found' errors appear, that's the likely cause — ask the user to check the
 connector rather than assuming file paths are wrong.
