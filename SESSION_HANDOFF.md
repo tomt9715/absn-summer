@@ -450,6 +450,18 @@ connector rather than assuming file paths are wrong.
 
 ---
 
+## Psych Final Exam (started August 2026)
+
+`psych/final/` — new hub, built August 6, 2026. Exam date: **Tuesday, August 11**. Source material is Tom's own "Psych Final Gameplan" study guide (uploaded HTML doc), covering five new units plus a cumulative review: Ch 24 Neurocognitive, Ch 22 Neurodevelopmental, Ch 23 Disruptive Behavior, Ch 20 Eating Disorders, Ch 21 Somatic Symptom, plus cumulative/ATI content. Building one topic at a time per Tom's established Exam 2 preference, starting with the densest new unit.
+
+**Neurocognitive Disorders (Ch 24)** — KC complete (58 questions), DD not yet built.
+
+`psych/final/neurocognitive-kc.html` + `data/neurocognitive-kc.js`, key `ps_final_neuro_kc`. Standard shared-engine/quiz.css pattern, same as every other KC quiz on the site. Coverage: delirium vs. dementia (onset/course/consciousness/reversibility/priority), delirium risk factors (incl. the obesity/coping-style non-risk-factor distractor), all 7 dementia types with vignette-ID questions for the commonly confused pairs (Alzheimer's vs. frontotemporal, Lewy body antipsychotic sensitivity as a safety item), core vocabulary (amnesia/aphasia/apraxia/agnosia/confabulation/sundowning/executive functioning/palilalia) including a discriminating vignette for each confusable pair, assessment tools (MMSE bands, CAM vs. dementia-staging tools, MSE components), nursing care (consistency principle, wandering redirection, caregiver role strain vs. healthy coping, normal grief), and meds (cholinesterase inhibitors' mechanism/indications/side effects/taper, memantine's mechanism and combination rationale, antipsychotic/benzo risk in dementia).
+
+`psych/final/index.html` built on the newer jump-nav/readiness-ring hub layout (same as `exam3/index.html`), not the older layout `exam1`/`exam2` still use. Single topic-pair card so far (Neurocognitive KC live, DD slot shown as "coming soon"/locked); more topic-pairs get appended to the `EXAM.topics` array as chapters are built. No prof-questions banner yet since no professor-supplied question set exists for the final the way Exam 3 had one; can add later if that surfaces. Parent list (`psych/index.html`) flipped Final to `ready: true` with `href: "final/index.html"` so Tom can navigate and test as the hub grows, topics text flagged "(in progress)".
+
+Next: Ch 24 Deep Drill, then repeat the KC+DD pattern for Ch 22, 23, 20, 21, then a cumulative simulator once all five topics exist.
+
 ## Donation Footer
 
 Full-width banner on all hub pages. Text: "This started as my own study tool and turned into something I wanted to share with everyone. No catch, no paywall — just hoping it helps. If it did, even a few dollars goes a long way for a tired nursing student trying to keep this thing growing. You know where to find me."  

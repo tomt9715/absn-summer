@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psych — Final Exam Study Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../../shared/hub.css">
+<style>
+  .jump-nav {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin: 0.4rem 0 0.4rem;
+  }
+  .jump-chip {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    padding: 7px 14px; border-radius: 20px;
+    border: 1px solid var(--border-strong); color: var(--ink-soft);
+    text-decoration: none; background: var(--surface);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .jump-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .topic-pair { scroll-margin-top: 16px; }
+
+  .jc-neuro { border-color: #5a6fa8; color: #5a6fa8; }
+  .jc-neuro:hover { border-color: #5a6fa8; color: #5a6fa8; background: rgba(90,111,168,0.08); }
+  .jc-neuro.active { background: #5a6fa8; color: #fff; border-color: #5a6fa8; }
+
+  .quiz-card::after { background: var(--card-accent, var(--accent)); }
+  .quiz-card:hover {
+    border-color: var(--card-accent, var(--accent));
+    box-shadow: 0 6px 20px var(--card-accent-soft, rgba(181,72,46,0.12));
+  }
+
+  .topics-banner {
+    width: min(1180px, calc(100vw - 2.4rem));
+    margin-top: 2.2rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem 2rem 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  }
+  .topics-banner-head { margin-bottom: 1.1rem; }
+  .topics-banner-title { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 500; color: var(--ink); }
+  .topics-banner-sub { font-size: 14px; color: var(--ink-mute); margin-top: 4px; }
+  .topics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 700px) { .topics-grid { grid-template-columns: 1fr; } }
+
+  .topic-pair {
+    position: relative;
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 1rem 1rem 1rem;
+    background: var(--surface2);
+    overflow: hidden;
+  }
+  .topic-pair::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--pair-accent, var(--accent));
+  }
+  .topic-pair-chapter {
+    display: block; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--pair-accent, var(--ink-mute));
+    margin: 4px 0 10px;
+  }
+  .topic-pair-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 460px) { .topic-pair-cards { grid-template-columns: 1fr; } }
+  .topic-pair .quiz-card { background: var(--surface); padding: 1rem 1.05rem; }
+
+  .building-note {
+    width: min(1180px, calc(100vw - 2.4rem));
+    margin: 1.6rem auto 0;
+    padding: 1rem 1.4rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+<div class="accent-band"></div>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-inner">
+      <a href="../index.html" class="hub-back">← Psych exams</a>
+      <span class="eyebrow">Psychiatric Nursing · Manhattanville</span>
+      <h1 class="hero-title">Final Exam <em>Study Hub</em></h1>
+
+      <div class="countdown-card">
+        <div class="countdown-num" id="cd-num">—</div>
+        <div class="countdown-meta">
+          <span class="countdown-label">Days until exam</span>
+          <span class="countdown-date" id="cd-date">Tuesday, August 11</span>
+          <span class="countdown-sub" id="cd-sub">&nbsp;</span>
+        </div>
+        <div class="countdown-divider"></div>
+        <div class="progress-overview">
+          <div class="ring-wrap">
+            <svg width="76" height="76" viewBox="0 0 76 76">
+              <circle class="ring-bg" cx="38" cy="38" r="32"></circle>
+              <circle class="ring-fg" id="ring" cx="38" cy="38" r="32" stroke-dasharray="201" stroke-dashoffset="201"></circle>
+            </svg>
+            <div class="ring-label"><span class="ring-pct" id="ring-pct">0%</span></div>
+          </div>
+          <span class="ring-cap" id="ring-cap">of quizzes attempted</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="jump-nav" aria-label="Jump to section">
+    <a class="jump-chip jc-neuro" href="#topic-neuro">Neurocognitive</a>
+  </nav>
+
+  <div class="building-note">
+    This hub is being built one chapter at a time. Neurocognitive Disorders (Ch 24) is up first with its Knowledge Check live — Deep Drill, then Ch 22 Neurodevelopmental, Ch 23 Disruptive Behavior, Ch 20 Eating Disorders, Ch 21 Somatic Symptom, and a cumulative simulator are coming next.
+  </div>
+
+  <div class="topics-banner">
+    <div class="topics-banner-head">
+      <span class="topics-banner-title">Topic Practice</span>
+      <div class="topics-banner-sub">Knowledge Check + Deep Drill for every chapter</div>
+    </div>
+    <div class="topics-grid" id="topics"></div>
+  </div>
+
+  <div class="donation-footer">
+    <div class="msg">This started as my own study tool and turned into something I wanted to share with everyone. No catch, no paywall — just hoping it helps. If it did, even a few dollars goes a long way for a tired nursing student trying to keep this thing growing. You know where to find me.</div>
+    <div class="donation-links">
+      <a href="https://venmo.com/Tom_Thomas" target="_blank" rel="noopener" class="donate-btn venmo"><img src="../../shared/assets/venmo.png" alt="Venmo"></a>
+      <a href="#" class="donate-btn zelle"><img src="../../shared/assets/zelle.png" alt="Zelle"><span class="znum">(914) 646-0456</span></a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ── Add topics here as they're built ──
+  const EXAM = {
+    date: "2026-08-11",
+    dateLabel: "Tuesday, August 11",
+    topics: [
+      {
+        name: "Neurocognitive Disorders",
+        slug: "neuro",
+        chapterLabel: "Ch 24 · Neurocognitive",
+        count: "58 questions",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "58 questions", href: "neurocognitive-kc.html", key: "ps_final_neuro_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "coming soon", href: null, key: "ps_final_neuro_dd" }
+        ]
+      }
+    ]
+  };
+
+  (function () {
+    const wrap = document.getElementById('topics');
+    let html = '';
+    const CHAPTER_COLORS = {
+      neuro: { c: '#5a6fa8', soft: 'rgba(90,111,168,0.14)' }
+    };
+    EXAM.topics.forEach((topic) => {
+      const col = CHAPTER_COLORS[topic.slug];
+      let cardsHTML = '';
+      topic.quizzes.forEach((q) => {
+        let badge = '<span class="score-badge fresh">Soon</span>';
+        if (q.href) {
+          let best = null;
+          try { const v = localStorage.getItem(q.key + '_best'); if (v !== null) best = parseInt(v, 10); } catch (e) {}
+          if (best !== null && !isNaN(best)) { badge = '<span class="score-badge ' + (best>=77?'done':'partial') + '">Best ' + best + '%</span>'; }
+          else badge = '<span class="score-badge fresh">Not started</span>';
+        }
+        const cls = q.href ? 'quiz-card' : 'quiz-card sim-locked';
+        cardsHTML += '<a class="' + cls + '" href="' + (q.href||'#') + '"><div class="qc-top"><span class="qc-type">' + q.type + '</span></div><div class="qc-name">' + q.name + '</div><div class="qc-bottom"><span class="qc-count">' + q.count + '</span>' + badge + '</div></a>';
+      });
+      html += '<div class="topic-pair" id="topic-' + topic.slug + '" style="--pair-accent:' + col.c + ';"><span class="topic-pair-chapter">' + topic.chapterLabel + '</span><div class="topic-pair-cards">' + cardsHTML + '</div></div>';
+    });
+    wrap.innerHTML = html;
+
+    // Readiness ring: average of best scores across quizzes actually attempted.
+    const ALL_KEYS = ['ps_final_neuro_kc', 'ps_final_neuro_dd'];
+    const scores = [];
+    ALL_KEYS.forEach(k => {
+      try {
+        const v = localStorage.getItem(k + '_best');
+        if (v !== null) { const n = parseInt(v, 10); if (!isNaN(n)) scores.push(n); }
+      } catch (e) {}
+    });
+    const avgScore = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
+    document.getElementById('ring-pct').textContent = avgScore + '%';
+    document.getElementById('ring-cap').textContent = scores.length
+      ? `avg best score \u00b7 ${scores.length}/${ALL_KEYS.length} attempted`
+      : 'no attempts yet';
+    setTimeout(() => { document.getElementById('ring').style.strokeDashoffset = 201 - (201 * avgScore / 100); }, 200);
+
+    const chipMap = {};
+    document.querySelectorAll('.jump-chip').forEach(a => {
+      chipMap[a.getAttribute('href').slice(1)] = a;
+    });
+    const jumpTargets = Object.keys(chipMap).map(id => document.getElementById(id)).filter(Boolean);
+    if ('IntersectionObserver' in window && jumpTargets.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const chip = chipMap[entry.target.id];
+          if (!chip) return;
+          document.querySelectorAll('.jump-chip.active').forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+        });
+      }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+      jumpTargets.forEach(t => observer.observe(t));
+    }
+  })();
+
+  (function () {
+    const parts = EXAM.date.split('-').map(Number);
+    const exam = new Date(parts[0], parts[1]-1, parts[2]);
+    const now = new Date();
+    const d0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const diff = Math.round((exam - d0)/86400000);
+    document.getElementById('cd-date').textContent = EXAM.dateLabel;
+    const numEl = document.getElementById('cd-num'), subEl = document.getElementById('cd-sub');
+    if (diff > 1) { numEl.textContent = diff; subEl.textContent = diff + ' days to lock it in'; }
+    else if (diff === 1) { numEl.textContent = '1'; subEl.textContent = 'tomorrow — you got this'; }
+    else if (diff === 0) { numEl.textContent = '0'; subEl.textContent = "it's today — go crush it"; }
+    else { numEl.textContent = '✓'; subEl.textContent = 'exam day has passed'; }
+  })();
+</script>
+<script src="../../shared/footer.js"></script>
+</body>
+</html>
