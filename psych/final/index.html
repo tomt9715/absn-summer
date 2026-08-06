@@ -26,6 +26,10 @@
   .jc-neuro:hover { border-color: #5a6fa8; color: #5a6fa8; background: rgba(90,111,168,0.08); }
   .jc-neuro.active { background: #5a6fa8; color: #fff; border-color: #5a6fa8; }
 
+  .jc-neurodev { border-color: #7a8f4a; color: #7a8f4a; }
+  .jc-neurodev:hover { border-color: #7a8f4a; color: #7a8f4a; background: rgba(122,143,74,0.08); }
+  .jc-neurodev.active { background: #7a8f4a; color: #fff; border-color: #7a8f4a; }
+
   .quiz-card::after { background: var(--card-accent, var(--accent)); }
   .quiz-card:hover {
     border-color: var(--card-accent, var(--accent));
@@ -105,6 +109,7 @@
 
   <nav class="jump-nav" aria-label="Jump to section">
     <a class="jump-chip jc-neuro" href="#topic-neuro">Neurocognitive</a>
+    <a class="jump-chip jc-neurodev" href="#topic-neurodev">Neurodevelopmental</a>
   </nav>
 
   <div class="topics-banner">
@@ -140,6 +145,16 @@
           { type: "Knowledge Check", name: "Know it cold", count: "58 questions", href: "neurocognitive-kc.html", key: "ps_final_neuro_kc" },
           { type: "Deep Drill",     name: "Apply it",     count: "23 questions", href: "neurocognitive-dd.html", key: "ps_final_neuro_dd" }
         ]
+      },
+      {
+        name: "Neurodevelopmental Disorders",
+        slug: "neurodev",
+        chapterLabel: "Ch 22 · Neurodevelopmental",
+        count: "36 questions",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "36 questions", href: "neurodevelopmental-kc.html", key: "ps_final_neurodev_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "coming soon", href: null, key: "ps_final_neurodev_dd" }
+        ]
       }
     ]
   };
@@ -148,7 +163,8 @@
     const wrap = document.getElementById('topics');
     let html = '';
     const CHAPTER_COLORS = {
-      neuro: { c: '#5a6fa8', soft: 'rgba(90,111,168,0.14)' }
+      neuro: { c: '#5a6fa8', soft: 'rgba(90,111,168,0.14)' },
+      neurodev: { c: '#7a8f4a', soft: 'rgba(122,143,74,0.14)' }
     };
     EXAM.topics.forEach((topic) => {
       const col = CHAPTER_COLORS[topic.slug];
@@ -169,7 +185,7 @@
     wrap.innerHTML = html;
 
     // Readiness ring: average of best scores across quizzes actually attempted.
-    const ALL_KEYS = ['ps_final_neuro_kc', 'ps_final_neuro_dd'];
+    const ALL_KEYS = ['ps_final_neuro_kc', 'ps_final_neuro_dd', 'ps_final_neurodev_kc', 'ps_final_neurodev_dd'];
     const scores = [];
     ALL_KEYS.forEach(k => {
       try {
