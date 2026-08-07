@@ -472,6 +472,10 @@ Hub color-coded green (`#7a8f4a`) for this topic-pair, separate from Ch 24's blu
 
 Next: repeat the KC+DD pattern for Ch 23, 20, 21, then a cumulative simulator once all five topics exist.
 
+**Deploy note (Aug 7, 2026):** Pages runs #115 and #116 (Aug 6, ~3 PM) both failed with "job was not acquired by Runner of type hosted" / "Internal server error" -- a transient GitHub Actions infrastructure issue, not a code problem. Everything from the Ch 24 DD build onward (banner removal, all of Ch 22) never made it to the live site as a result. Re-triggering via a fresh commit to confirm the next run goes through.
+
+**Ch 24 review session (Aug 7, 2026):** Tom did a full-chapter refresh a day after first covering the material. First pass (10 mixed-format questions) surfaced a pattern, not a knowledge gap: on compound questions asking for two things (e.g. "which dementia type, and what's the key differentiator"), he was answering only the first half. Also missed the MMSE band cutoffs twice (16 called severe instead of moderate; 22 called moderate instead of mild) and initially over-called a merely-tired-but-still-functioning caregiver as "role strain" rather than normal fatigue, echoing the normal-grief distinction from the earlier session. Second pass (10 single-answer MCQs, no repeated correct-letter pattern, explicitly targeting the "answer both halves" habit) went 10/10. Chapter considered solid; no further drilling needed unless something specific resurfaces.
+
 ## Donation Footer
 
 Full-width banner on all hub pages. Text: "This started as my own study tool and turned into something I wanted to share with everyone. No catch, no paywall — just hoping it helps. If it did, even a few dollars goes a long way for a tired nursing student trying to keep this thing growing. You know where to find me."  
