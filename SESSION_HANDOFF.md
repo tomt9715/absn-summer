@@ -470,7 +470,13 @@ connector rather than assuming file paths are wrong.
 
 Hub color-coded green (`#7a8f4a`) for this topic-pair, separate from Ch 24's blue-purple, with its own jump-nav chip. Readiness-ring `ALL_KEYS` and `CHAPTER_COLORS` both updated to include the Ch 22 keys/slug.
 
-Next: repeat the KC+DD pattern for Ch 23, 20, 21, then a cumulative simulator once all five topics exist.
+**Disruptive Behavior Disorders (Ch 23)** — KC complete (31 questions), DD not yet built.
+
+`psych/final/disruptive-behavior-kc.html` + `data/disruptive-behavior-kc.js`, key `ps_final_disruptive_kc`. Standard shared-engine/quiz.css pattern. Source is a compact comparison table (ODD/CD/IED/DMDD by core picture and treatment) rather than long-form notes, so coverage is dense on discrimination: each disorder's core diagnostic picture and first-line treatment individually, plus the four explicit discrimination facts from the source (ODD defies authority without a rights violation; CD violates rights/norms including animal aggression, with "repeated fighting + vandalism = CD not ODD" as a direct vignette; IED is episodic with an unremarkable baseline between episodes; DMDD is a depressive disorder with chronic irritability persisting between outbursts, added to DSM-5 specifically to curb pediatric bipolar overdiagnosis), DMDD's age/onset/gender epidemiology (6-18 diagnosis window, onset before 10, more common in school-age boys), IED's specific medication list (fluoxetine plus lithium/carbamazepine/oxcarbazepine/phenytoin as a SATA), and the ADHD-impulsivity-without-intent-to-harm and ASD-ritualistic/communication-impaired contrasts the source calls out against this whole disorder cluster.
+
+Hub color-coded terracotta (`#b5482e`, matching the site's main accent color since this is a smaller topic and the palette was starting to run low on distinct hues) with its own jump-nav chip. Readiness-ring `ALL_KEYS` and `CHAPTER_COLORS` both updated to include the Ch 23 keys/slug.
+
+Next: Ch 23 Deep Drill, then repeat the KC+DD pattern for Ch 20, 21, then a cumulative simulator once all five topics exist.
 
 **Deploy note (Aug 7, 2026):** Pages runs #115 and #116 (Aug 6, ~3 PM) both failed with "job was not acquired by Runner of type hosted" / "Internal server error" -- a transient GitHub Actions infrastructure issue, not a code problem. Everything from the Ch 24 DD build onward (banner removal, all of Ch 22) never made it to the live site as a result. Re-triggering via a fresh commit to confirm the next run goes through.
 

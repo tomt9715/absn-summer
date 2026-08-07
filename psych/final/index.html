@@ -30,6 +30,10 @@
   .jc-neurodev:hover { border-color: #7a8f4a; color: #7a8f4a; background: rgba(122,143,74,0.08); }
   .jc-neurodev.active { background: #7a8f4a; color: #fff; border-color: #7a8f4a; }
 
+  .jc-disruptive { border-color: #b5482e; color: #b5482e; }
+  .jc-disruptive:hover { border-color: #b5482e; color: #b5482e; background: rgba(181,72,46,0.08); }
+  .jc-disruptive.active { background: #b5482e; color: #fff; border-color: #b5482e; }
+
   .quiz-card::after { background: var(--card-accent, var(--accent)); }
   .quiz-card:hover {
     border-color: var(--card-accent, var(--accent));
@@ -110,6 +114,7 @@
   <nav class="jump-nav" aria-label="Jump to section">
     <a class="jump-chip jc-neuro" href="#topic-neuro">Neurocognitive</a>
     <a class="jump-chip jc-neurodev" href="#topic-neurodev">Neurodevelopmental</a>
+    <a class="jump-chip jc-disruptive" href="#topic-disruptive">Disruptive Behavior</a>
   </nav>
 
   <div class="topics-banner">
@@ -155,6 +160,16 @@
           { type: "Knowledge Check", name: "Know it cold", count: "36 questions", href: "neurodevelopmental-kc.html", key: "ps_final_neurodev_kc" },
           { type: "Deep Drill",     name: "Apply it",     count: "21 questions", href: "neurodevelopmental-dd.html", key: "ps_final_neurodev_dd" }
         ]
+      },
+      {
+        name: "Disruptive Behavior Disorders",
+        slug: "disruptive",
+        chapterLabel: "Ch 23 · Disruptive Behavior",
+        count: "31 questions",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "31 questions", href: "disruptive-behavior-kc.html", key: "ps_final_disruptive_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "coming soon", href: null, key: "ps_final_disruptive_dd" }
+        ]
       }
     ]
   };
@@ -164,7 +179,8 @@
     let html = '';
     const CHAPTER_COLORS = {
       neuro: { c: '#5a6fa8', soft: 'rgba(90,111,168,0.14)' },
-      neurodev: { c: '#7a8f4a', soft: 'rgba(122,143,74,0.14)' }
+      neurodev: { c: '#7a8f4a', soft: 'rgba(122,143,74,0.14)' },
+      disruptive: { c: '#b5482e', soft: 'rgba(181,72,46,0.14)' }
     };
     EXAM.topics.forEach((topic) => {
       const col = CHAPTER_COLORS[topic.slug];
@@ -185,7 +201,7 @@
     wrap.innerHTML = html;
 
     // Readiness ring: average of best scores across quizzes actually attempted.
-    const ALL_KEYS = ['ps_final_neuro_kc', 'ps_final_neuro_dd', 'ps_final_neurodev_kc', 'ps_final_neurodev_dd'];
+    const ALL_KEYS = ['ps_final_neuro_kc', 'ps_final_neuro_dd', 'ps_final_neurodev_kc', 'ps_final_neurodev_dd', 'ps_final_disruptive_kc', 'ps_final_disruptive_dd'];
     const scores = [];
     ALL_KEYS.forEach(k => {
       try {
