@@ -6,7 +6,8 @@
    Do not rebuild -- append new sections at the bottom, each marked with its
    own comment header.
    Sources so far: exam3/data/anxiety-kc.js + anxiety-dd.js (Section 7),
-   exam3/data/ocd-kc.js + ocd-dd.js (Section 8).
+   exam3/data/ocd-kc.js + ocd-dd.js (Section 8),
+   exam3/data/trauma-kc.js + trauma-dd.js (Section 9).
    Verbatim except minor rationale wording tightened where noted.
    KC convention: correct is always index 0 for single-select; engine shuffles. */
 window.QUESTIONS = [
@@ -174,5 +175,85 @@ window.QUESTIONS = [
     options: ["Selective serotonin reuptake inhibitors", "Benzodiazepines", "Beta blockers", "Mood stabilizers"],
     correct: 0,
     rationale: "SSRIs are first-line for OCD, as they are for generalized anxiety disorder, panic disorder, social anxiety, and posttraumatic stress disorder. Full effect takes several weeks."
+  },
+
+  // ── Section 9: Trauma & PTSD (source: exam3 Trauma) ──
+  {
+    stem: "How many symptom clusters define posttraumatic stress disorder, and what are they?",
+    options: ["Four: intrusion, avoidance, negative alterations in cognition and mood, and arousal and reactivity", "Three: intrusion, avoidance, and depression", "Five: intrusion, avoidance, mania, arousal, and dissociation", "Two: re-experiencing and hypervigilance"],
+    correct: 0,
+    rationale: "PTSD is defined by four symptom clusters: intrusion, avoidance, negative alterations in cognition and mood, and arousal and reactivity. Being able to file every symptom into its cluster is a core skill the exam tests."
+  },
+  {
+    stem: "A client with posttraumatic stress disorder has recurring nightmares of the event. Which symptom cluster does this represent?",
+    options: ["Intrusion", "Avoidance", "Negative cognition and mood", "Arousal and reactivity"],
+    correct: 0,
+    rationale: "Recurring nightmares of the event are an intrusion symptom, along with flashbacks, intrusive memories, and dissociative re-experiencing."
+  },
+  {
+    stem: "A client with posttraumatic stress disorder refuses to drive past the intersection where the crash occurred. Which symptom cluster does this represent?",
+    options: ["Avoidance", "Intrusion", "Arousal and reactivity", "Negative cognition and mood"],
+    correct: 0,
+    rationale: "Refusing to drive past the crash site is an avoidance symptom, the cluster defined by steering clear of reminders, places, and conversations connected to the trauma."
+  },
+  {
+    stem: "A client with posttraumatic stress disorder states, \"I am permanently broken and it was all my fault.\" Which symptom cluster does this represent?",
+    options: ["Negative alterations in cognition and mood", "Intrusion", "Avoidance", "Arousal and reactivity"],
+    correct: 0,
+    rationale: "A negative self-image and distorted, self-directed blame fall in the negative alterations in cognition and mood cluster."
+  },
+  {
+    stem: "A client with posttraumatic stress disorder checks every room upon entering it. Which symptom cluster does this represent?",
+    options: ["Arousal and reactivity", "Avoidance", "Intrusion", "Negative cognition and mood"],
+    correct: 0,
+    rationale: "Checking every room on entering is hypervigilance, part of the arousal and reactivity cluster along with exaggerated startle, irritability, poor concentration, and insomnia."
+  },
+  {
+    stem: "Which medication is used specifically for the trauma nightmares of posttraumatic stress disorder?",
+    options: ["Prazosin", "Buspirone", "Lithium", "Haloperidol"],
+    correct: 0,
+    rationale: "Prazosin is sometimes used specifically to reduce trauma nightmares in PTSD. Buspirone is an anxiolytic for generalized anxiety, lithium is a mood stabilizer, and haloperidol is an antipsychotic."
+  },
+  {
+    stem: "A veteran who has posttraumatic stress disorder is startled when a meal tray crashes to the floor, drops into a crouch, and rapidly scans the dayroom. Which action should the nurse take?",
+    options: ["Approach calmly, speak in a low steady voice, and help orient him to the present surroundings", "Place a reassuring hand on his shoulder and tell him there is nothing to be afraid of", "Step back and leave him alone in the dayroom until he recovers on his own", "Ask him to describe what the noise reminded him of while the reaction is happening"],
+    correct: 0,
+    rationale: "A hyperarousal or flashback reaction is managed by approaching calmly, using a low steady voice, and grounding the client in the present. Unexpected touch can escalate a startled, hypervigilant client, and telling him there is nothing to fear dismisses the reaction."
+  },
+  {
+    stem: "A client who has posttraumatic stress disorder refuses to attend a group that meets in a room resembling where her assault occurred. Which response should the nurse make?",
+    options: ["Acknowledge her distress and reintroduce the setting gradually rather than requiring immediate attendance", "Require her to attend the group so she learns the room is safe", "Excuse her from all group therapy for the remainder of the admission", "Tell her that avoiding the room will keep her from ever recovering"],
+    correct: 0,
+    rationale: "Avoidance is a core PTSD symptom, and it is addressed through gradual, client-paced exposure with support, not by forcing immediate attendance, which can retraumatize."
+  },
+  {
+    stem: "A client with posttraumatic stress disorder tells the nurse he has not slept more than two hours a night for weeks because of nightmares and lies awake scanning for danger. Which response by the nurse is most therapeutic?",
+    options: ["Acknowledge the exhaustion and explore sleep-supporting strategies, noting prazosin may be ordered for nightmares", "Reassure him that the nightmares will stop on their own within a few days", "Advise him to avoid sleeping until he feels genuinely tired at night", "Tell him that dwelling on the dreams is what keeps him from sleeping"],
+    correct: 0,
+    rationale: "Validating the exhaustion and exploring sleep strategies, including the possibility that prazosin may be ordered for trauma nightmares, addresses a real hyperarousal symptom therapeutically rather than offering false reassurance or dismissing the fear."
+  },
+  {
+    stem: "Which nursing interventions are appropriate for a client who has posttraumatic stress disorder? Select all that apply.",
+    options: ["Provide a safe, low-stimulation environment", "Let the client control the pace of discussing the trauma", "Teach grounding techniques for flashbacks", "Require the client to describe the trauma in detail to desensitize her", "Encourage the client to avoid all reminders of the event"],
+    correct: [0, 1, 2],
+    rationale: "Appropriate PTSD care includes a safe, low-stimulation environment, letting the client control the pace of trauma discussion, and teaching grounding techniques. Forcing detailed recounting can retraumatize, and encouraging avoidance of all reminders reinforces a core symptom rather than treating it."
+  },
+  {
+    stem: "A client who has posttraumatic stress disorder suddenly appears to be reliving the traumatic event, staring past the nurse and unresponsive to normal conversation. Which action should the nurse take first?",
+    options: ["Speak calmly, state the client's name and location, and help ground her in the present", "Administer the ordered PRN benzodiazepine before attempting to communicate", "Gently hold the client's arms to keep her from moving during the episode", "Leave the room quietly and allow the flashback to run its course"],
+    correct: 0,
+    rationale: "During a flashback the priority is grounding: a calm voice, the client's name, and orientation to time and place reconnect her to the present and ensure safety. Reaching for medication first skips the least invasive effective step."
+  },
+  {
+    stem: "A nurse is caring for four clients on a trauma unit. Which client should the nurse assess first?",
+    options: ["The client with PTSD who states she sees no point in going on and has stopped answering questions", "The client with PTSD requesting a room change to avoid a triggering view", "The client with acute stress disorder asking how long the symptoms will last", "The client with an adjustment disorder tearful about a recent job loss"],
+    correct: 0,
+    rationale: "Hopeless statements with withdrawal raise concern for suicide risk, a safety priority requiring immediate assessment, ahead of the room-change request, the prognosis question, and situational tearfulness."
+  },
+  {
+    stem: "Which statement by a combat veteran is LEAST consistent with posttraumatic stress disorder?",
+    options: ["\"I single-handedly took out an enemy squad and saved my entire unit that day.\"", "\"In my dreams the wounded keep reaching out and trying to grab me.\"", "\"I scan every room I walk into because I can't stop watching for danger.\"", "\"I can't drive past the base entrance without turning the other way.\""],
+    correct: 0,
+    rationale: "Grandiose boasting is not a PTSD symptom. Recurrent distressing dreams are intrusion, scanning every room is hypervigilance in the arousal cluster, and avoiding a reminder is avoidance."
   }
 ];
