@@ -1,8 +1,10 @@
 /* Psych Final - Cumulative Review - curated from Exam 1-3 question banks,
    selecting only the questions that test what Unit 6 of the gameplan asks for.
-   Built section by section, matching Unit 6's own structure.
-   Source: exam1/data/comm-kc.js, exam1/data/comm-dd.js (verbatim, minor
-   rationale wording tightened where noted).
+   Built section by section, matching Unit 6's own structure. Do not rebuild --
+   append new sections at the bottom, each marked with its own comment header.
+   Sources so far: exam1/data/comm-kc.js + comm-dd.js (Section 1),
+   exam1/data/theories-kc.js + theories-dd.js (Section 2). Verbatim except
+   minor rationale wording tightened where noted.
    KC convention: correct is always index 0 for single-select; engine shuffles. */
 window.QUESTIONS = [
   // ── Section 1: Therapeutic Communication (source: exam1 Comm) ──
@@ -71,5 +73,79 @@ window.QUESTIONS = [
     options: ["'Losing a pet you loved can be really hard. What was your pet like?'", "'Oh, that's so sad, I feel terrible for you.'", "'I know exactly how you feel, I cried for weeks when mine died.'", "'It was just a pet -- you'll feel better soon.'"],
     correct: 0,
     rationale: "Validating the difficulty and inviting the client to share is empathy. Expressing how bad the nurse feels is sympathy, sharing the nurse's own grief projects, and minimizing the loss is dismissive."
+  },
+
+  // ── Section 2: Defense Mechanisms (source: exam1 Theories) ──
+  {
+    stem: "A client just diagnosed with cancer says, 'The test results must be wrong, I feel perfectly fine.' Which defense mechanism is this?",
+    options: ["Denial", "Projection", "Rationalization", "Displacement"],
+    correct: 0,
+    rationale: "Denial is refusing to acknowledge a distressing reality. The client rejects the diagnosis outright. Projection attributes one's feelings to others, and rationalization substitutes acceptable reasons for real ones."
+  },
+  {
+    stem: "An angry client states, 'Everyone on this unit hates me.' Which defense mechanism is the client using?",
+    options: ["Projection", "Denial", "Regression", "Sublimation"],
+    correct: 0,
+    rationale: "Projection is attributing one's own unacceptable feelings to others -- the client's own anger is projected onto everyone else. Denial rejects reality, regression reverts to earlier behavior, and sublimation channels impulses into acceptable acts."
+  },
+  {
+    stem: "A client who lost their job says, 'It's the economy's fault -- my boss had no choice.' Which defense mechanism is this?",
+    options: ["Rationalization", "Displacement", "Repression", "Splitting"],
+    correct: 0,
+    rationale: "Rationalization substitutes acceptable reasons for the real, unacceptable ones. Displacement shifts feelings to a safer target, repression blocks painful memories, and splitting sees things as all-good or all-bad."
+  },
+  {
+    stem: "A client who is angry at their physician instead yells at the nurse. Which defense mechanism is this?",
+    options: ["Displacement", "Projection", "Rationalization", "Regression"],
+    correct: 0,
+    rationale: "Displacement shifts feelings from an unacceptable or threatening target (the physician) to a safer one (the nurse). Projection would involve attributing the client's own feelings to others."
+  },
+  {
+    stem: "A teenager who was just grounded slams the door and screams at a younger sibling who had nothing to do with it. Which defense mechanism should the nurse identify?",
+    options: ["Displacement", "Sublimation", "Denial", "Repression"],
+    correct: 0,
+    rationale: "Displacement shifts feelings from the real source (the parent who grounded them) to a safer target (the sibling). Sublimation would channel the anger into something constructive."
+  },
+  {
+    stem: "Under stress, an adult client becomes clingy and refuses to eat alone. Which defense mechanism is this?",
+    options: ["Regression", "Sublimation", "Denial", "Splitting"],
+    correct: 0,
+    rationale: "Regression is reverting to earlier developmental behaviors under stress. Sublimation channels impulses into acceptable activities, denial rejects reality, and splitting is all-good/all-bad thinking."
+  },
+  {
+    stem: "A client channels aggressive urges into becoming a competitive boxer. Which defense mechanism is this?",
+    options: ["Sublimation", "Displacement", "Projection", "Repression"],
+    correct: 0,
+    rationale: "Sublimation redirects unacceptable impulses into socially acceptable activities -- a mature, healthy defense. Displacement just shifts the target without making it constructive."
+  },
+  {
+    stem: "An abuse survivor has no conscious memory of the traumatic events. Which defense mechanism is this?",
+    options: ["Repression", "Denial", "Rationalization", "Regression"],
+    correct: 0,
+    rationale: "Repression is unconsciously blocking painful memories from awareness. Denial is consciously refusing to accept a known reality, which is different from having no memory at all."
+  },
+  {
+    stem: "A client adores a nurse one day and despises the same nurse the next, seeing people as all-good or all-bad. Which defense mechanism is this, and which disorder is it commonly associated with?",
+    options: ["Splitting; borderline personality disorder", "Transference; the client is projecting past relationship experiences onto the nurse", "Projection; the client is attributing their own negative feelings to external people", "Reaction formation; the client is expressing the opposite of their true underlying feelings"],
+    correct: 0,
+    rationale: "Splitting is seeing things as all-good or all-bad, and it is common in borderline personality disorder (BPD). The nurse should expect rapid shifts and respond with consistent structure, not take it personally."
+  },
+  {
+    stem: "A nurse caring for a client with borderline personality disorder is praised as 'the best nurse here' while another nurse is called 'terrible.' How should the nurse interpret and respond to this?",
+    options: ["Recognize splitting and respond with consistent, team-coordinated limits", "Accept the praise and agree the other nurse is difficult", "Document that the client prefers this nurse and assign them exclusively", "Confront the client for being manipulative"],
+    correct: 0,
+    rationale: "Splitting (all-good/all-bad thinking) is common in borderline personality disorder (BPD). The team should recognize it, avoid being drawn into it, and maintain consistent, coordinated limits. Agreeing with the split or labeling the client 'manipulative' is non-therapeutic."
+  },
+  {
+    stem: "Which group represents the healthy (mature) defense mechanisms remembered by the mnemonic SASH?",
+    options: ["Sublimation, Altruism, Suppression, Humor", "Splitting, Anger, Sympathy, Hostility", "Suppression, Anxiety, Sadness, Hope", "Sublimation, Avoidance, Sympathy, Honesty"],
+    correct: 0,
+    rationale: "SASH stands for the mature defenses: Sublimation, Altruism, Suppression, and Humor. These are considered healthy ways of coping, unlike denial, projection, or splitting."
+  },
+  {
+    stem: "Which client statement is the BEST example of a healthy (mature) defense mechanism?",
+    options: ["'After my diagnosis, I started volunteering to help others with the same illness.'", "'My doctor must have the wrong chart -- I don't have any illness.'", "'Everyone in my family is the one with the real problem, not me.'", "'I don't remember anything about what happened that night.'"],
+    correct: 0,
+    rationale: "Turning a personal struggle into helping others is altruism/sublimation -- a mature SASH defense. The other options are denial, projection, and repression, which are less adaptive."
   }
 ];
