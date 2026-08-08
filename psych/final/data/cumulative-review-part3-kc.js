@@ -9,7 +9,9 @@
    exam3/data/ocd-kc.js + ocd-dd.js (Section 8),
    exam3/data/trauma-kc.js + trauma-dd.js (Section 9),
    exam3/data/pd-kc.js + pd-dd.js (Section 10),
-   exam3/data/abuse-kc.js + abuse-dd.js (Section 11).
+   exam3/data/abuse-kc.js + abuse-dd.js (Section 11),
+   exam3/data/anger-kc.js + anger-dd.js (Section 12).
+   Part 3 is now COMPLETE -- all six rapid-refresher topics built.
    Verbatim except minor rationale wording tightened where noted.
    KC convention: correct is always index 0 for single-select; engine shuffles. */
 window.QUESTIONS = [
@@ -423,5 +425,91 @@ window.QUESTIONS = [
     options: ["Neglect", "Physical abuse", "Emotional abuse", "Economic abuse"],
     correct: 0,
     rationale: "Failure to meet a child's educational, supervisory, and medical needs is neglect, the most common form of child maltreatment. Physical and emotional abuse involve inflicted harm."
+  },
+
+  // ── Section 12: Anger & Aggression (source: exam3 Anger) ──
+  {
+    stem: "What are the five phases of the aggression cycle, in order?",
+    options: ["Triggering, escalation, crisis, recovery, and post-crisis", "Tension-building, acute battering, honeymoon, recovery, and relapse", "Escalation, triggering, crisis, post-crisis, and recovery", "Denial, anger, bargaining, depression, and acceptance"],
+    correct: 0,
+    rationale: "The aggression cycle runs triggering, escalation, crisis, recovery, and post-crisis. Tension-building, acute battering, and honeymoon are the cycle of violence, a different framework."
+  },
+  {
+    stem: "A nurse notices a client pacing the hallway with clenched fists and a rising voice, muttering threats under his breath. Which action should the nurse take?",
+    options: ["Move him to a quiet space, use a calm voice, and offer a PRN medication", "Call for backup and clear the surrounding area of other clients", "Explore in detail the original stressor that set off his anger", "Give him space alone to re-regulate in a low-stimulation environment"],
+    correct: 0,
+    rationale: "Pacing, clenched fists, a rising voice, and early threats mark the escalation phase, managed with a quiet space, a calm voice, and an offer of PRN medication before the behavior reaches crisis."
+  },
+  {
+    stem: "A client in the dayroom has lost control, is swinging at anyone who comes near, and can no longer be reached verbally. Which action is the priority?",
+    options: ["Ensure everyone's safety by calling for backup and clearing the area", "Continue attempting verbal de-escalation until he responds", "Explore what triggered the outburst once he makes eye contact", "Offer a PRN medication and wait for it to take effect"],
+    correct: 0,
+    rationale: "This is the crisis phase: the client has lost control and poses immediate danger, so safety of everyone comes first through backup and clearing the area, with seclusion or restraint only if necessary."
+  },
+  {
+    stem: "During a busy lunch, a client suddenly throws a chair across the dining room but has not struck anyone. Which action should the nurse take first?",
+    options: ["Attempt to talk the client down while ensuring the others are safe", "Place the client in a monitored seclusion room until he is calm", "Administer a PRN antianxiety medication", "Apply restraints to prevent injury to himself or others"],
+    correct: 0,
+    rationale: "De-escalation beats restriction and the least restrictive intervention comes first. Throwing furniture without injuring anyone still calls for de-escalation and a quiet space before seclusion, medication, or restraints."
+  },
+  {
+    stem: "A manic client who threw a chair but injured no one refuses PRN medication, and the provider has ordered four-point restraints. What is the nurse's best action?",
+    options: ["Attempt verbal de-escalation and offer a quiet space before applying restraints", "Apply the four-point restraints immediately as ordered", "Request an IM medication instead as the less restrictive option", "Apply the restraints and reassess for release every 4 hours"],
+    correct: 0,
+    rationale: "With no one harmed, the least restrictive analysis requires attempting verbal de-escalation and a quiet space before restraints, even with an order in hand, because the nurse's judgment governs whether restraint is truly indicated."
+  },
+  {
+    stem: "How should the nurse regard a forced intramuscular medication given to control behavior?",
+    options: ["As a chemical restraint that still requires the least-restrictive analysis", "As a gentler alternative that bypasses restraint rules", "As a routine medication with no restraint implications", "As always preferable to any other intervention"],
+    correct: 0,
+    rationale: "Chemical restraint, meaning forced IM medication to control behavior, is still a restraint. It is not a gentler substitute that skips the least-restrictive analysis and its associated monitoring and documentation requirements."
+  },
+  {
+    stem: "What is the correct order of the least-restrictive intervention hierarchy?",
+    options: ["Verbal de-escalation, then PRN medication, then seclusion, then physical restraint", "Physical restraint, then seclusion, then PRN medication, then verbal de-escalation", "Seclusion, then physical restraint, then verbal de-escalation, then PRN medication", "PRN medication, then physical restraint, then verbal de-escalation, then seclusion"],
+    correct: 0,
+    rationale: "The hierarchy is always verbal de-escalation, then PRN medication, then seclusion, then physical restraint. Restraint is a last resort used only for immediate danger to self or others."
+  },
+  {
+    stem: "A provider orders restraints for an agitated client, but by the time the nurse reaches him he is calm, cooperative, and responding to conversation. What should the nurse do?",
+    options: ["Withhold the restraints, since the order does not override her assessment that they are not indicated", "Apply the restraints because the provider ordered them", "Apply the restraints but release them right away", "Obtain a second provider order before deciding"],
+    correct: 0,
+    rationale: "A provider's order does not override the nurse's independent judgment about whether restraint is truly indicated at that moment. Restraint is reserved for immediate danger, and this client no longer meets that threshold."
+  },
+  {
+    stem: "Within what time frame must a provider's order be obtained after restraints are applied in an emergency?",
+    options: ["Within 1 hour, with a face-to-face provider assessment in that hour", "Within 4 hours, with assessment by telephone", "Within 8 hours, with no assessment required", "Within 24 hours, at the next scheduled rounds"],
+    correct: 0,
+    rationale: "In an emergency application, a provider's order must be obtained within 1 hour, along with a face-to-face provider assessment within that hour."
+  },
+  {
+    stem: "A charge nurse observes a newly licensed nurse caring for a restrained adult client. Which action indicates a need for further teaching?",
+    options: ["Reassessing readiness for release every 4 hours", "Monitoring circulation and skin integrity every 15 minutes", "Confirming the provider's order was obtained within 1 hour", "Attempting less restrictive measures before applying restraints"],
+    correct: 0,
+    rationale: "Adults must be reassessed for readiness to discontinue restraints at least every 2 hours, so a 4-hour interval violates the standard and needs correction. Monitoring every 15 minutes and obtaining the order within 1 hour are both correct."
+  },
+  {
+    stem: "Which pair correctly states the two restraint timelines for an adult?",
+    options: ["Renew the order every 4 hours; reassess for release every 2 hours", "Renew the order every 2 hours; reassess for release every 4 hours", "Renew the order every 8 hours; reassess for release every 4 hours", "Renew the order every 1 hour; reassess for release every 1 hour"],
+    correct: 0,
+    rationale: "The two timelines are distinct and commonly confused: the order is renewed every 4 hours, while readiness for release is reassessed every 2 hours."
+  },
+  {
+    stem: "Is patient consent required to apply restraints?",
+    options: ["No, consent is not required in a true emergency", "Yes, written consent is always required first", "Yes, verbal consent from the patient is always required", "Yes, family consent is required before application"],
+    correct: 0,
+    rationale: "Consent is not required in a true emergency. Otherwise, patients retain the right to refuse medication and treatment unless a court has ordered otherwise."
+  },
+  {
+    stem: "Which items are legally required elements of restraint documentation? Select all that apply.",
+    options: ["The behavior that necessitated the restraint", "The type of restraint used", "The duration of the restraint", "The patient's consent to the restraint", "The family's opinion of the restraint"],
+    correct: [0, 1, 2],
+    rationale: "Required documentation includes the behavior that justified restraint, the type used, the duration, the patient's response, and every monitoring check. Patient consent and family opinion are not required elements."
+  },
+  {
+    stem: "After being restrained during a violent outburst, a client is now calm, tearful, and expressing shame. Which nursing action is appropriate?",
+    options: ["Process the episode with the client and problem-solve the triggers together", "Remind the client that the behavior will not be tolerated again", "Avoid discussing the episode at all to spare the client embarrassment", "Restrict the client's privileges as a consequence of the outburst"],
+    correct: 0,
+    rationale: "In the post-crisis phase the client feels shame, remorse, and exhaustion, and the nurse processes the episode therapeutically and problem-solves triggers, never punishing."
   }
 ];
