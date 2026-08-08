@@ -73,12 +73,33 @@ h1 {
   border-radius: 12px; padding: 28px; margin-bottom: 1rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
-.q-meta { display: flex; align-items: center; gap: 9px; margin-bottom: 16px; }
+.q-meta { display: flex; align-items: center; gap: 9px; margin-bottom: 16px; flex-wrap: wrap; }
 .q-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-mute); }
 .q-tag {
   font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 3px 9px;
   border-radius: 4px; text-transform: uppercase; letter-spacing: 0.04em;
   background: var(--teal-soft); color: var(--teal);
+}
+
+.rationale-toggle {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 3px 9px; border-radius: 5px;
+  border: 1px solid var(--border-strong); background: var(--surface); color: var(--ink-mute);
+  cursor: pointer; white-space: nowrap; transition: all 0.12s;
+}
+.rationale-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.rationale-toggle.on { background: var(--teal-soft); border-color: var(--teal); color: var(--teal); font-weight: 600; }
+
+.flag-btn {
+  margin-left: auto; background: none; border: none; cursor: pointer;
+  color: var(--ink-mute); font-size: 14px; padding: 4px 6px; border-radius: 6px;
+  line-height: 1; transition: all 0.12s;
+}
+.flag-btn:hover { color: var(--gold); }
+.flag-btn.on { color: var(--gold); }
+
+.timer-pill {
+  font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-mute);
+  background: var(--surface2); padding: 3px 10px; border-radius: 5px; white-space: nowrap;
 }
 .q-stem { font-size: 18px; line-height: 1.6; color: var(--ink); margin-bottom: 22px; font-weight: 500; }
 

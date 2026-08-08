@@ -34,7 +34,65 @@
   let streak = 0, onFire = false;
   let selected = new Set();
   let retryMode = false, missedRaw = [];
-  let resumePromptActive = false;
+  let resumePromptActive = false, resultsScreenActive = false;
+  let lastQuestionRenderTs = 0;
+  let flaggedThisRound = new Set();
+  let elapsedMs = 0, segmentStartTs = 0, timerInterval = null;
+
+  // ── Per-browser preference: always show the rationale, even on a correct answer
+  function loadRationalePref() {
+    try { return localStorage.getItem('absn_show_rationale_on_correct') === '1'; } catch (e) { return false; }
+  }
+  function saveRationalePref(v) {
+    try { localStorage.setItem('absn_show_rationale_on_correct', v ? '1' : '0'); } catch (e) {}
+  }
+  let alwaysShowRationale = loadRationalePref();
+  function toggleRationalePref() {
+    alwaysShowRationale = !alwaysShowRationale;
+    saveRationalePref(alwaysShowRationale);
+    const btn = document.querySelector('.rationale-toggle');
+    if (btn) {
+      btn.classList.toggle('on', alwaysShowRationale);
+      btn.textContent = alwaysShowRationale ? 'Explain ✓' : 'Explain';
+    }
+  }
+
+  // ── Flag for review, independent of right or wrong ────────────
+  function toggleFlag() {
+    if (flaggedThisRound.has(idx)) flaggedThisRound.delete(idx);
+    else flaggedThisRound.add(idx);
+    const btn = document.querySelector('.flag-btn');
+    if (btn) btn.classList.toggle('on', flaggedThisRound.has(idx));
+    saveProgress();
+  }
+
+  // ── Elapsed-time tracking for showTimer pages ────────────
+  function currentElapsedMs() {
+    return elapsedMs + (segmentStartTs ? Date.now() - segmentStartTs : 0);
+  }
+  function formatElapsed(ms) {
+    const totalSec = Math.floor(ms / 1000);
+    const m = Math.floor(totalSec / 60);
+    const s = totalSec % 60;
+    return `${m}:${String(s).padStart(2, '0')}`;
+  }
+  function formatTimerLabel() {
+    const ms = currentElapsedMs();
+    const avgLabel = idx > 0 ? ` · ${Math.round(ms / 1000 / idx)}s/q avg` : '';
+    return `${formatElapsed(ms)}${avgLabel}`;
+  }
+  function tickTimer() {
+    const pill = document.getElementById('timer-pill');
+    if (pill) pill.textContent = formatTimerLabel();
+  }
+  function startTimerInterval() {
+    stopTimerInterval();
+    if (!cfg.showTimer) return;
+    timerInterval = setInterval(tickTimer, 1000);
+  }
+  function stopTimerInterval() {
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+  }
 
   // ── Streak / Fire system ──────────────────────────────────────
   function injectFireStyles() {
@@ -169,7 +227,10 @@
   // ── In-progress save / resume ─────────────────────────────────
   function saveProgress() {
     try {
-      const state = { deck, idx, correctCount, results, streak, onFire, missedRaw, ts: Date.now() };
+      const state = {
+        deck, idx, correctCount, results, streak, onFire, missedRaw,
+        flagged: Array.from(flaggedThisRound), elapsedMs: currentElapsedMs(), ts: Date.now()
+      };
       localStorage.setItem(KEY + '_inprogress', JSON.stringify(state));
     } catch (e) {}
   }
@@ -211,6 +272,7 @@
   function resumeQuiz(saved) {
     resumePromptActive = false;
     retryMode = false;
+    resultsScreenActive = false;
     deck = saved.deck;
     idx = saved.idx;
     correctCount = saved.correctCount;
@@ -218,20 +280,27 @@
     streak = saved.streak || 0;
     onFire = saved.onFire || false;
     missedRaw = saved.missedRaw || [];
+    flaggedThisRound = new Set(saved.flagged || []);
+    elapsedMs = saved.elapsedMs || 0;
+    segmentStartTs = Date.now();
     answered = false;
     renderQuestion();
+    startTimerInterval();
   }
 
   function startQuiz() {
     injectFireStyles();
     resumePromptActive = false;
     retryMode = false;
+    resultsScreenActive = false;
     clearProgress();
     buildDeck();
     idx = 0; correctCount = 0; answered = false; results = [];
-    streak = 0; onFire = false; missedRaw = [];
+    streak = 0; onFire = false; missedRaw = []; flaggedThisRound = new Set();
+    elapsedMs = 0; segmentStartTs = Date.now();
     renderQuestion();
     saveProgress();
+    startTimerInterval();
   }
 
   function reshuffleQuestion(q) {
@@ -245,14 +314,17 @@
     if (missedRaw.length === 0) return;
     injectFireStyles();
     resumePromptActive = false;
+    resultsScreenActive = false;
     clearProgress();
     const source = missedRaw;
     missedRaw = [];
     retryMode = true;
     deck = shuffle(source).map(reshuffleQuestion);
     idx = 0; correctCount = 0; answered = false; results = [];
-    streak = 0; onFire = false;
+    streak = 0; onFire = false; flaggedThisRound = new Set();
+    elapsedMs = 0; segmentStartTs = Date.now();
     renderQuestion();
+    startTimerInterval();
   }
 
   function init() {
@@ -269,6 +341,7 @@
   function renderQuestion() {
     answered = false;
     selected = new Set();
+    lastQuestionRenderTs = Date.now();
     const q = deck[idx];
     const area = document.getElementById('quiz-area');
     const pct = Math.round((idx / deck.length) * 100);
@@ -311,11 +384,14 @@
         <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
         <span class="progress-label">${idx + 1} / ${deck.length}</span>
         <span class="score-pill">${scoreText}</span>
+        ${cfg.showTimer ? `<span class="timer-pill" id="timer-pill">${formatTimerLabel()}</span>` : ''}
       </div>
       <div class="question-card">
         <div class="q-meta">
           <span class="q-num">Q${idx + 1}</span>
           ${TAG ? `<span class="q-tag">${TAG}</span>` : ''}
+          <button class="rationale-toggle ${alwaysShowRationale ? 'on' : ''}" onclick="__quizToggleRationale()" title="Show rationale on correct answers too">Explain${alwaysShowRationale ? ' ✓' : ''}</button>
+          <button class="flag-btn ${flaggedThisRound.has(idx) ? 'on' : ''}" onclick="__quizToggleFlag()" title="Flag for review (F)"><i class="fa-solid fa-flag"></i></button>
         </div>
         <div class="q-stem">${q.stem}</div>
         ${q.isSata ? `<div class="sata-hint">Select all that apply · partial credit awarded · press 1-9 to select, Enter to submit</div>` : ''}
@@ -363,12 +439,24 @@
     });
     saveProgress();
 
-    // Correct answers show a quick confirmation, then advance; a miss pauses
-    // to show the rationale and waits for a manual Next click.
+    // Correct answers show a quick confirmation and advance, unless the
+    // "Explain" preference is on, in which case they pause on the rationale
+    // like a miss does. Either way a miss always pauses.
     if (isCorrect) {
       const fb = document.getElementById('feedback');
-      fb.innerHTML = `<div class="quick-correct"><i class="fa-solid fa-check"></i> Correct</div>`;
-      setTimeout(next, 450);
+      if (alwaysShowRationale) {
+        const isLastQ = idx === deck.length - 1;
+        fb.innerHTML = `
+          <div class="rationale r-correct">
+            <span class="verdict">✓ Correct.</span>
+            ${q.rationale}
+          </div>
+          <button class="next-btn" onclick="__quizNext()">${isLastQ ? 'See results →' : 'Next question →'}</button>
+        `;
+      } else {
+        fb.innerHTML = `<div class="quick-correct"><i class="fa-solid fa-check"></i> Correct</div>`;
+        setTimeout(next, 450);
+      }
       return;
     }
 
@@ -451,12 +539,23 @@
     });
     saveProgress();
 
-    // Full credit shows a quick confirmation, then advances; partial or no
-    // credit pauses to show the rationale and waits for a manual Next click.
+    // Full credit shows a quick confirmation and advances, unless the
+    // "Explain" preference is on; partial or no credit always pauses.
     if (isFullCredit) {
       const fb = document.getElementById('feedback');
-      fb.innerHTML = `<div class="quick-correct"><i class="fa-solid fa-check"></i> Correct</div>`;
-      setTimeout(next, 450);
+      if (alwaysShowRationale) {
+        const isLastQ = idx === deck.length - 1;
+        fb.innerHTML = `
+          <div class="rationale r-correct">
+            <span class="verdict">✓ Correct (${pointsLabel}).</span>
+            ${q.rationale}
+          </div>
+          <button class="next-btn" onclick="__quizNext()">${isLastQ ? 'See results →' : 'Next question →'}</button>
+        `;
+      } else {
+        fb.innerHTML = `<div class="quick-correct"><i class="fa-solid fa-check"></i> Correct</div>`;
+        setTimeout(next, 450);
+      }
       return;
     }
 
@@ -496,11 +595,28 @@
       return;
     }
 
+    if (resultsScreenActive) {
+      if (e.key === 'r' || e.key === 'R') { e.preventDefault(); window.__quizStart(); }
+      else if ((e.key === 'm' || e.key === 'M') && missedRaw.length > 0) { e.preventDefault(); window.__quizRetryMissed(); }
+      else if (e.key === 'c' || e.key === 'C') { e.preventDefault(); window.__quizCopyMissed(); }
+      return;
+    }
+
     const q = deck[idx];
     if (!q) return;
 
-    // Number keys 1-9 pick (single-select) or toggle (SATA) the matching option
+    // Flag toggle works regardless of answered state or question type
+    if (e.key === 'f' || e.key === 'F') {
+      e.preventDefault();
+      toggleFlag();
+      return;
+    }
+
+    // Number keys 1-9 pick (single-select) or toggle (SATA) the matching option.
+    // Ignored for a brief window after a new question renders, so a held-down
+    // key repeating from the last question can't bleed into this one.
     if (!answered && !q.isMatching && /^[1-9]$/.test(e.key)) {
+      if (Date.now() - lastQuestionRenderTs < 150) return;
       const i = parseInt(e.key, 10) - 1;
       if (q.opts && i < q.opts.length) {
         e.preventDefault();
@@ -592,12 +708,23 @@
     });
     saveProgress();
 
-    // Full credit shows a quick confirmation, then advances; partial or no
-    // credit pauses to show the rationale and waits for a manual Next click.
+    // Full credit shows a quick confirmation and advances, unless the
+    // "Explain" preference is on; partial or no credit always pauses.
     if (isFullCredit) {
       const fb = document.getElementById('feedback');
-      fb.innerHTML = `<div class="quick-correct"><i class="fa-solid fa-check"></i> Correct</div>`;
-      setTimeout(next, 450);
+      if (alwaysShowRationale) {
+        const isLastQ = idx === deck.length - 1;
+        fb.innerHTML = `
+          <div class="rationale r-correct">
+            <span class="verdict">✓ Correct (${pointsLabel}).</span>
+            ${q.rationale}
+          </div>
+          <button class="next-btn" onclick="__quizNext()">${isLastQ ? 'See results →' : 'Next question →'}</button>
+        `;
+      } else {
+        fb.innerHTML = `<div class="quick-correct"><i class="fa-solid fa-check"></i> Correct</div>`;
+        setTimeout(next, 450);
+      }
       return;
     }
 
@@ -633,6 +760,9 @@
 
   function showResults() {
     streak = 0; onFire = false;
+    resultsScreenActive = true;
+    const finalElapsedMs = currentElapsedMs();
+    stopTimerInterval();
     clearProgress();
     const pct = Math.round((correctCount / deck.length) * 100);
     const pass = pct >= PASS;
@@ -691,13 +821,19 @@
 
     const scoreDisplay = Number.isInteger(correctCount) ? correctCount : correctCount.toFixed(1);
     const subLabel = retryMode ? 'Retry round' : (cfg.title || '');
+    const timeLine = cfg.showTimer
+      ? `<div class="score-history">Finished in ${formatElapsed(finalElapsedMs)} · avg ${Math.round(finalElapsedMs / 1000 / deck.length)}s/question</div>`
+      : '';
 
     let actionsHTML = `<button class="action-btn primary" onclick="__quizStart()">${retryMode ? 'Retake full quiz' : 'Retake quiz'}</button>`;
+    let hintParts = ['R retake'];
     if (missedRaw.length > 0) {
       actionsHTML += `<button class="action-btn ghost" onclick="__quizRetryMissed()">Retry missed (${missedRaw.length})</button>`;
+      hintParts.push('M retry missed');
     }
     if (results.some(r => !r.isCorrect)) {
       actionsHTML += `<button class="action-btn ghost" onclick="__quizCopyMissed()">Copy missed (Markdown)</button>`;
+      hintParts.push('C copy missed');
     }
     actionsHTML += `<a class="action-btn ghost" href="index.html">Back to hub</a>`;
 
@@ -707,14 +843,17 @@
         <div class="score-big ${pass ? 'pass' : 'fail'}">${pct}%</div>
         <div class="score-sub">${scoreDisplay} / ${deck.length} points · ${subLabel}</div>
         ${historyLine ? `<div class="score-history">${historyLine}</div>` : ''}
+        ${timeLine}
         ${attemptChipsHTML ? `<div class="attempt-history"><span class="attempt-history-label">Your attempts</span><div class="attempt-chips">${attemptChipsHTML}</div></div>` : ''}
         <div class="score-msg">${msg}</div>
         <div class="results-tabs">
           <button class="r-tab ${activeTab === 'full' ? 'active' : ''}" onclick="__quizTab('full', this)">Full Review</button>
           <button class="r-tab ${activeTab === 'missed' ? 'active' : ''}" onclick="__quizTab('missed', this)">Missed Only</button>
+          <button class="r-tab ${activeTab === 'flagged' ? 'active' : ''}" onclick="__quizTab('flagged', this)">Flagged</button>
         </div>
         <div class="review-list" id="review-list"></div>
         <div class="results-actions">${actionsHTML}</div>
+        <div class="kbd-hint">${hintParts.join(' · ')}</div>
       </div>
     `;
     renderReview();
@@ -729,13 +868,16 @@
 
   function renderReview() {
     const list = document.getElementById('review-list');
-    let items = results.map((r, i) => ({ ...r, n: i + 1 }));
+    let items = results.map((r, i) => ({ ...r, n: i + 1, flagged: flaggedThisRound.has(i) }));
     if (activeTab === 'missed') items = items.filter(r => !r.isCorrect);
+    else if (activeTab === 'flagged') items = items.filter(r => r.flagged);
 
     if (items.length === 0) {
       const emptyMsg = (activeTab === 'missed')
         ? '<i class="fa-solid fa-circle-check" style="color:var(--correct)"></i> No missed questions — perfect score!'
-        : 'Nothing here.';
+        : (activeTab === 'flagged')
+          ? 'No flagged questions.'
+          : 'Nothing here.';
       list.innerHTML = `<div class="empty-msg">${emptyMsg}</div>`;
       return;
     }
@@ -748,6 +890,7 @@
         <div class="ri-meta">
           <span class="q-num">Q${r.n}</span>
           <span class="ri-result ${resultCls}">${resultLabel}</span>
+          ${r.flagged ? '<i class="fa-solid fa-flag" style="color:var(--gold);font-size:12px;" title="Flagged"></i>' : ''}
         </div>
         <div class="review-item-q">${r.stem}</div>
         ${r.image ? `<img src="${r.image}" alt="Clinical image" class="q-image" style="max-width:260px;margin:8px 0;border-radius:8px;border:1px solid var(--border);" />` : ''}
@@ -847,6 +990,8 @@
   window.__quizStart = startQuiz;
   window.__quizRetryMissed = startRetryQuiz;
   window.__quizCopyMissed = copyMissedMarkdown;
+  window.__quizToggleRationale = toggleRationalePref;
+  window.__quizToggleFlag = toggleFlag;
   window.__quizResume = function () {
     const saved = loadProgress();
     if (saved) resumeQuiz(saved);
