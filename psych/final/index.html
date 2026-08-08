@@ -94,17 +94,24 @@
   @media (max-width: 460px) { .topic-pair-cards { grid-template-columns: 1fr; } }
   .topic-pair .quiz-card { background: var(--surface); padding: 1rem 1.05rem; }
 
-  .cumulative-note {
+  .unit6-banner {
     width: min(1180px, calc(100vw - 2.4rem));
-    margin: 1.4rem auto 0;
-    padding: 1rem 1.4rem;
-    background: var(--accent-soft);
-    border: 1px solid var(--border-strong);
-    border-radius: 12px;
-    font-size: 13.5px;
-    color: var(--ink-soft);
-    line-height: 1.55;
+    margin-top: 1.6rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem 2rem 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    scroll-margin-top: 16px;
   }
+  .unit6-banner-head { margin-bottom: 0.5rem; }
+  .unit6-banner-title { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 500; color: var(--ink); }
+  .unit6-banner-sub { font-size: 13.5px; color: var(--ink-mute); margin: 6px 0 1.2rem; line-height: 1.55; max-width: 760px; }
+  .unit6-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 800px) { .unit6-grid { grid-template-columns: 1fr; } }
+  .unit6-grid .quiz-card { background: var(--surface2); padding: 1.1rem 1.15rem; }
 </style>
 </head>
 <body>
@@ -145,11 +152,9 @@
     <a class="jump-chip jc-disruptive" href="#topic-disruptive">Disruptive Behavior</a>
     <a class="jump-chip jc-eating" href="#topic-eating">Eating Disorders</a>
     <a class="jump-chip jc-somatic" href="#topic-somatic">Somatic Symptom</a>
-    <a class="jump-chip jc-cumreview" href="#topic-cumreview">Cumulative Review</a>
     <a class="jump-chip jc-selfcheck" href="#topic-selfcheck">Self-Check</a>
+    <a class="jump-chip jc-cumreview" href="#unit6-review">Unit 6 Cumulative Review</a>
   </nav>
-
-  <div class="cumulative-note">Unit 6 of your gameplan isn't new material, it's Exam 1&ndash;3 content re-sharpened. Rather than link out or rebuild it, the Cumulative Review quiz below is curated straight from your existing Exam 1&ndash;3 question banks, section by section, matching Unit 6's own structure.</div>
 
   <div class="topics-banner">
     <div class="topics-banner-head">
@@ -157,6 +162,14 @@
       <div class="topics-banner-sub">Knowledge Check + Deep Drill for every chapter</div>
     </div>
     <div class="topics-grid" id="topics"></div>
+  </div>
+
+  <div class="unit6-banner" id="unit6-review">
+    <div class="unit6-banner-head">
+      <span class="unit6-banner-title">Unit 6: Cumulative Review</span>
+      <div class="unit6-banner-sub">Unit 6 of your gameplan isn't new material, it's Exam 1&ndash;3 content re-sharpened. Curated straight from your existing Exam 1&ndash;3 question banks, section by section, matching Unit 6's own structure &mdash; 155 questions across three parts.</div>
+    </div>
+    <div class="unit6-grid" id="unit6-cards"></div>
   </div>
 
   <div class="donation-footer">
@@ -226,17 +239,6 @@
         ]
       },
       {
-        name: "Cumulative Review",
-        slug: "cumreview",
-        chapterLabel: "Unit 6 · Curated from Exam 1-3",
-        count: "155 questions",
-        quizzes: [
-          { type: "Cumulative Review", name: "Part 1: Foundations & Psychosis", count: "46 questions", href: "cumulative-review-part1-kc.html", key: "ps_final_cumreview_p1_kc" },
-          { type: "Cumulative Review", name: "Part 2: Mood & Substance Use",    count: "26 questions",  href: "cumulative-review-part2-kc.html", key: "ps_final_cumreview_p2_kc" },
-          { type: "Cumulative Review", name: "Part 3: Exam 3 Rapid Refresher",  count: "83 questions", href: "cumulative-review-part3-kc.html", key: "ps_final_cumreview_p3_kc" }
-        ]
-      },
-      {
         name: "Cumulative Self-Check",
         slug: "selfcheck",
         chapterLabel: "Guide's Never-Cut List",
@@ -249,6 +251,16 @@
     ]
   };
 
+  // Unit 6 lives in its own dedicated section, separate from the per-chapter
+  // topic grid, since it spans all chapters rather than belonging to one.
+  const UNIT6 = {
+    quizzes: [
+      { type: "Cumulative Review", name: "Part 1: Foundations & Psychosis", count: "46 questions", href: "cumulative-review-part1-kc.html", key: "ps_final_cumreview_p1_kc" },
+      { type: "Cumulative Review", name: "Part 2: Mood & Substance Use",    count: "26 questions", href: "cumulative-review-part2-kc.html", key: "ps_final_cumreview_p2_kc" },
+      { type: "Cumulative Review", name: "Part 3: Exam 3 Rapid Refresher",  count: "83 questions", href: "cumulative-review-part3-kc.html", key: "ps_final_cumreview_p3_kc" }
+    ]
+  };
+
   (function () {
     const wrap = document.getElementById('topics');
     let html = '';
@@ -258,7 +270,6 @@
       disruptive: { c: '#b5482e', soft: 'rgba(181,72,46,0.14)' },
       eating: { c: '#b08534', soft: 'rgba(176,133,52,0.14)' },
       somatic: { c: '#2f6f6b', soft: 'rgba(47,111,107,0.14)' },
-      cumreview: { c: '#6b5a8a', soft: 'rgba(107,90,138,0.14)' },
       selfcheck: { c: '#4a3f35', soft: 'rgba(74,63,53,0.14)' }
     };
     EXAM.topics.forEach((topic) => {
@@ -278,6 +289,22 @@
       html += '<div class="topic-pair" id="topic-' + topic.slug + '" style="--pair-accent:' + col.c + ';"><span class="topic-pair-chapter">' + topic.chapterLabel + '</span><div class="topic-pair-cards">' + cardsHTML + '</div></div>';
     });
     wrap.innerHTML = html;
+
+    // Render Unit 6's own dedicated card grid (separate from the topic loop above).
+    const unit6Wrap = document.getElementById('unit6-cards');
+    let unit6HTML = '';
+    UNIT6.quizzes.forEach((q) => {
+      let badge = '<span class="score-badge fresh">Soon</span>';
+      if (q.href) {
+        let best = null;
+        try { const v = localStorage.getItem(q.key + '_best'); if (v !== null) best = parseInt(v, 10); } catch (e) {}
+        if (best !== null && !isNaN(best)) { badge = '<span class="score-badge ' + (best>=77?'done':'partial') + '">Best ' + best + '%</span>'; }
+        else badge = '<span class="score-badge fresh">Not started</span>';
+      }
+      const cls = q.href ? 'quiz-card' : 'quiz-card sim-locked';
+      unit6HTML += '<a class="' + cls + '" style="--card-accent:#6b5a8a;--card-accent-soft:rgba(107,90,138,0.18);" href="' + (q.href||'#') + '"><div class="qc-top"><span class="qc-type">' + q.type + '</span></div><div class="qc-name">' + q.name + '</div><div class="qc-bottom"><span class="qc-count">' + q.count + '</span>' + badge + '</div></a>';
+    });
+    unit6Wrap.innerHTML = unit6HTML;
 
     // Readiness ring: average of best scores across quizzes actually attempted.
     const ALL_KEYS = ['ps_final_neuro_kc', 'ps_final_neuro_dd', 'ps_final_neurodev_kc', 'ps_final_neurodev_dd', 'ps_final_disruptive_kc', 'ps_final_disruptive_dd', 'ps_final_eating_kc', 'ps_final_eating_dd', 'ps_final_somatic_kc', 'ps_final_somatic_dd', 'ps_final_cumreview_p1_kc', 'ps_final_cumreview_p2_kc', 'ps_final_cumreview_p3_kc', 'ps_final_selfcheck_kc', 'ps_final_ati_kc'];
