@@ -7,7 +7,8 @@
    own comment header.
    Sources so far: exam3/data/anxiety-kc.js + anxiety-dd.js (Section 7),
    exam3/data/ocd-kc.js + ocd-dd.js (Section 8),
-   exam3/data/trauma-kc.js + trauma-dd.js (Section 9).
+   exam3/data/trauma-kc.js + trauma-dd.js (Section 9),
+   exam3/data/pd-kc.js + pd-dd.js (Section 10).
    Verbatim except minor rationale wording tightened where noted.
    KC convention: correct is always index 0 for single-select; engine shuffles. */
 window.QUESTIONS = [
@@ -255,5 +256,91 @@ window.QUESTIONS = [
     options: ["\"I single-handedly took out an enemy squad and saved my entire unit that day.\"", "\"In my dreams the wounded keep reaching out and trying to grab me.\"", "\"I scan every room I walk into because I can't stop watching for danger.\"", "\"I can't drive past the base entrance without turning the other way.\""],
     correct: 0,
     rationale: "Grandiose boasting is not a PTSD symptom. Recurrent distressing dreams are intrusion, scanning every room is hypervigilance in the arousal cluster, and avoiding a reminder is avoidance."
+  },
+
+  // ── Section 10: Personality Disorders (source: exam3 Personality) ──
+  {
+    stem: "Which personality disorders belong to Cluster A? Select all that apply.",
+    options: ["Paranoid", "Schizoid", "Schizotypal", "Borderline", "Avoidant"],
+    correct: [0, 1, 2],
+    rationale: "Cluster A, the odd and eccentric cluster related to schizophrenia, contains paranoid, schizoid, and schizotypal personality disorders. Borderline belongs to Cluster B and avoidant belongs to Cluster C."
+  },
+  {
+    stem: "Which personality disorders belong to Cluster B? Select all that apply.",
+    options: ["Antisocial", "Borderline", "Histrionic", "Narcissistic", "Dependent", "Paranoid"],
+    correct: [0, 1, 2, 3],
+    rationale: "Cluster B, the dramatic, emotional, and erratic cluster, contains antisocial, borderline, histrionic, and narcissistic personality disorders. Dependent belongs to Cluster C and paranoid belongs to Cluster A."
+  },
+  {
+    stem: "Which personality disorders belong to Cluster C? Select all that apply.",
+    options: ["Avoidant", "Dependent", "Obsessive compulsive personality disorder (OCPD)", "Schizotypal", "Histrionic"],
+    correct: [0, 1, 2],
+    rationale: "Cluster C, the anxious and insecure cluster, contains avoidant, dependent, and obsessive compulsive personality disorders. Schizotypal belongs to Cluster A and histrionic belongs to Cluster B."
+  },
+  {
+    stem: "A client who has borderline personality disorder tells the day nurse, \"The evening nurse is the only one here who understands me. You are the meanest nurse on this unit.\" Which action should the nurse take?",
+    options: ["Discuss the client's statement with the team and confirm that all staff are enforcing the same limits", "Ask the evening nurse to review her interactions with the client for boundary concerns", "Assign the evening nurse as the client's consistent primary nurse", "Meet with the client to repair the relationship before the next scheduled interaction"],
+    correct: 0,
+    rationale: "The statement is splitting, the signature defense of borderline personality disorder. The intervention that neutralizes splitting is team consistency: every staff member communicating and enforcing identical limits."
+  },
+  {
+    stem: "A nurse finds a client who has borderline personality disorder in her room with several fresh superficial cuts on her forearm shortly after learning her therapist is going on leave. Which action should the nurse take first?",
+    options: ["Assess the injuries and the client's current risk for further self-harm", "Encourage the client to describe her feelings about the therapist's leave", "Review the coping skills the client has learned in dialectical behavior therapy", "Ask the client to agree to a no-self-harm contract for the rest of the shift"],
+    correct: 0,
+    rationale: "Safety assessment comes first. The nurse must evaluate the injuries and determine current risk for further self-harm before any psychosocial intervention. The trigger, a perceived abandonment, is classic for borderline personality disorder."
+  },
+  {
+    stem: "A nurse is teaching a newly licensed nurse about caring for a client who has borderline personality disorder. Which statement by the newly licensed nurse indicates a need for further teaching?",
+    options: ["\"I will adjust the unit rules for her when she is having an emotionally difficult day.\"", "\"I will communicate her behavior patterns to the oncoming shift at handoff.\"", "\"I will check on her at regular intervals rather than only when she requests it.\"", "\"I will tell her directly when her behavior toward staff is not acceptable.\""],
+    correct: 0,
+    rationale: "Adjusting rules based on the client's emotional state is inconsistency, and inconsistency is exactly what allows splitting and limit testing to take hold. Consistency across staff and across days is the foundation of borderline care."
+  },
+  {
+    stem: "A nurse is assessing a client who has borderline personality disorder. Which findings should the nurse expect? Select all that apply.",
+    options: ["Frantic efforts to avoid being left by others", "Impulsive spending and unsafe sexual activity", "Chronic feelings of emptiness", "Indifference to praise or criticism from others", "A stable, consistent sense of identity"],
+    correct: [0, 1, 2],
+    rationale: "Borderline personality disorder features intense fear of abandonment, impulsivity in areas such as spending and sex, and chronic emptiness, along with unstable relationships and identity disturbance. Indifference to praise belongs to schizoid personality disorder, and identity is disturbed rather than stable."
+  },
+  {
+    stem: "Which fear is central to borderline personality disorder?",
+    options: ["Abandonment", "Contamination", "Public embarrassment", "Loss of control over orderliness"],
+    correct: 0,
+    rationale: "An intense fear of abandonment drives the unstable relationships, frantic efforts to avoid being left, and mood shifts of borderline personality disorder."
+  },
+  {
+    stem: "Which therapy is the evidence based treatment most associated with borderline personality disorder?",
+    options: ["Dialectical behavior therapy", "Electroconvulsive therapy", "Aversion therapy", "Light therapy"],
+    correct: 0,
+    rationale: "Dialectical behavior therapy (DBT) is the evidence based treatment for borderline personality disorder, teaching emotion regulation, distress tolerance, and interpersonal effectiveness."
+  },
+  {
+    stem: "Which finding is the hallmark of antisocial personality disorder?",
+    options: ["Disregard for and violation of the rights of others without remorse", "Pervasive suspicion that others intend harm", "Chronic feelings of emptiness with fear of abandonment", "Preoccupation with orderliness, rules, and control"],
+    correct: 0,
+    rationale: "Antisocial personality disorder is defined by disregard for and violation of others' rights: deceit, manipulation, repeated unlawful actions, aggression, impulsivity, and lack of remorse."
+  },
+  {
+    stem: "A client who has antisocial personality disorder tells the nurse, \"You are the only one on this unit who actually gets it. Just let me make my phone call ten minutes past phone hours tonight.\" Which response should the nurse make?",
+    options: ["\"Phone hours end at nine. That applies to everyone on the unit, including you.\"", "\"I will allow it this one time since you have followed the rules all week.\"", "\"Tell me more about why this phone call matters so much to you.\"", "\"I will bring your request to the treatment team and see what they decide.\""],
+    correct: 0,
+    rationale: "Flattery followed by a request for an exception is manipulation, and the response is matter-of-fact restatement and enforcement of the limit. A single exception teaches that manipulation works."
+  },
+  {
+    stem: "A client who has antisocial personality disorder has twice taken snacks from a peer's bedside table. Which statement by the nurse demonstrates appropriate limit setting?",
+    options: ["\"Taking other clients' belongings is not acceptable. If it happens again, you will lose dayroom time.\"", "\"You need to think carefully about how your choices are affecting the people around you.\"", "\"If you keep this up, I will have no choice but to involve security next time.\"", "\"Taking things from peers makes it hard for staff to trust anything you say.\""],
+    correct: 0,
+    rationale: "Effective limit setting names the specific unacceptable behavior and states the concrete consequence in a matter-of-fact tone. Vague appeals to reflection set no limit, and invoking security is a threat rather than a consequence tied to the behavior."
+  },
+  {
+    stem: "Which personality disorder cannot be formally diagnosed before age 18?",
+    options: ["Antisocial", "Borderline", "Histrionic", "Paranoid"],
+    correct: 0,
+    rationale: "Antisocial personality disorder is the only personality disorder that cannot be formally diagnosed before age 18. The equivalent pattern in a minor is diagnosed as conduct disorder."
+  },
+  {
+    stem: "A nurse receives handoff report on four clients on a personality disorders unit. Which client should the nurse assess first?",
+    options: ["The client who has antisocial personality disorder standing over a peer and blocking the dayroom exit", "The client who has borderline personality disorder requesting an as needed anxiety medication", "The client who has paranoid personality disorder refusing to attend the morning group", "The client who has avoidant personality disorder who skipped breakfast in the dining room"],
+    correct: 0,
+    rationale: "Physically blocking and looming over a peer is an active escalation toward violence, an immediate safety threat to another person, and safety is the priority across this chapter."
   }
 ];
