@@ -8,7 +8,8 @@
    Sources so far: exam3/data/anxiety-kc.js + anxiety-dd.js (Section 7),
    exam3/data/ocd-kc.js + ocd-dd.js (Section 8),
    exam3/data/trauma-kc.js + trauma-dd.js (Section 9),
-   exam3/data/pd-kc.js + pd-dd.js (Section 10).
+   exam3/data/pd-kc.js + pd-dd.js (Section 10),
+   exam3/data/abuse-kc.js + abuse-dd.js (Section 11).
    Verbatim except minor rationale wording tightened where noted.
    KC convention: correct is always index 0 for single-select; engine shuffles. */
 window.QUESTIONS = [
@@ -342,5 +343,85 @@ window.QUESTIONS = [
     options: ["The client who has antisocial personality disorder standing over a peer and blocking the dayroom exit", "The client who has borderline personality disorder requesting an as needed anxiety medication", "The client who has paranoid personality disorder refusing to attend the morning group", "The client who has avoidant personality disorder who skipped breakfast in the dining room"],
     correct: 0,
     rationale: "Physically blocking and looming over a peer is an active escalation toward violence, an immediate safety threat to another person, and safety is the priority across this chapter."
+  },
+
+  // ── Section 11: Abuse & Violence (source: exam3 Abuse) ──
+  {
+    stem: "What are the three phases of the cycle of violence, in order?",
+    options: ["Tension-building, acute battering, and honeymoon", "Honeymoon, tension-building, and acute battering", "Acute battering, honeymoon, and tension-building", "Triggering, escalation, and crisis"],
+    correct: 0,
+    rationale: "The cycle of violence runs tension-building, then acute battering, then honeymoon, and then repeats, typically escalating each time. Triggering, escalation, and crisis are phases of the aggression cycle, a different framework."
+  },
+  {
+    stem: "A client describes that her partner has grown increasingly critical, snaps over small things, and she spends her days trying to keep him calm so he does not explode. Which phase of the cycle of violence does this describe?",
+    options: ["Tension-building", "Acute battering", "Honeymoon", "Reconciliation"],
+    correct: 0,
+    rationale: "Minor incidents, criticism, and the victim walking on eggshells to keep everything calm describe the tension-building phase. Acute battering is the violent explosion, and the honeymoon phase follows it with apologies and gifts."
+  },
+  {
+    stem: "The acute battering phase is often triggered by which event?",
+    options: ["The victim announcing that she intends to leave", "The abuser receiving a promotion at work", "The victim cooking the abuser's favorite meal", "The couple attending a social gathering together"],
+    correct: 0,
+    rationale: "The explosion of the acute battering phase is often triggered by something such as the victim announcing she will leave, which is one reason leaving is statistically the most dangerous time for a victim."
+  },
+  {
+    stem: "A woman in a shelter tells the nurse her partner has been bringing her flowers, apologizing, and swearing it will never happen again, and she is thinking about going home. Which phase of the cycle of violence does this represent, and what is the concern?",
+    options: ["The honeymoon phase, which is the phase most likely to draw her back into the cycle", "The tension-building phase, which signals that a beating is imminent", "The acute battering phase, which is the most physically dangerous phase", "A genuine change, since the apologies indicate the abuse has ended"],
+    correct: 0,
+    rationale: "Apologies, gifts, and promises to change are the honeymoon phase, which gives the victim hope and is precisely what keeps her from leaving before the cycle repeats and escalates."
+  },
+  {
+    stem: "What is the nurse's legal duty regarding suspected child abuse?",
+    options: ["The nurse is a mandated reporter and must report reasonable suspicion", "The nurse may report only after obtaining proof of the abuse", "The nurse must obtain parental permission before reporting", "The nurse reports only if the child directly discloses the abuse"],
+    correct: 0,
+    rationale: "Nurses are mandated reporters of child abuse. The duty is triggered by reasonable suspicion; proof, parental permission, and a direct disclosure are not required, and investigators, not the nurse, establish proof."
+  },
+  {
+    stem: "A mother tells the emergency department nurse that during an argument her partner threw a lamp that struck their 4-year-old, who now has a facial bruise, and she begs the nurse not to report it. Which action should the nurse take?",
+    options: ["Report the suspected abuse, since a child harmed by home violence is reportable regardless of intent or the mother's wishes", "Honor the mother's request, since the child was not the intended target", "Report only if the mother consents after further discussion", "Document the injury and plan to reassess the child at a follow-up visit"],
+    correct: 0,
+    rationale: "A child exposed to or endangered by violence in the home is reportable even when not the direct target, and the nurse is a mandated reporter. Neither the mother's wishes nor the lack of intent removes the duty to report reasonable suspicion."
+  },
+  {
+    stem: "A nurse suspects a child is being abused, but the parent promises it will not happen again and there is no definitive proof. Which action should the nurse take?",
+    options: ["Report the reasonable suspicion, since proof and the parent's promise do not change the duty", "Delay the report until proof of the abuse can be gathered", "Accept the parent's assurance and forgo the report this time", "Refer the family to counseling services in place of reporting"],
+    correct: 0,
+    rationale: "Mandated reporting is triggered by reasonable suspicion; proof is the investigators' job, not the nurse's. A promise from the potential abuser does not remove the duty, and delaying for proof endangers the child."
+  },
+  {
+    stem: "A nurse hesitates to report suspected abuse out of fear the report will escalate the violence. How does this fear affect the duty to report?",
+    options: ["It does not remove the duty; the nurse must still report the suspicion", "It justifies delaying the report until the situation is safer", "It transfers the duty to report to the client's family", "It removes the duty as long as the nurse documents the fear"],
+    correct: 0,
+    rationale: "Fear that reporting will escalate the violence does not remove the mandated reporter's duty. The nurse must still report reasonable suspicion; safety planning is addressed separately."
+  },
+  {
+    stem: "A competent adult client discloses intimate partner violence but tells the nurse she plans to return home to her partner. Which response by the nurse is most appropriate?",
+    options: ["Work with her on a safety plan and provide resources while respecting her decision", "Explain that she must not return home given the danger she is in", "Report the abuse to the authorities on her behalf", "Withhold community resources until she agrees to stay elsewhere"],
+    correct: 0,
+    rationale: "A competent adult victim makes her own decisions, so the nurse assesses safety, helps build a safety plan, provides resources, and respects her autonomy. Leaving is statistically the most dangerous time, making the timing her decision."
+  },
+  {
+    stem: "A nurse educator reviews the characteristics of people who abuse their partners. Which statement by a staff nurse requires correction?",
+    options: ["\"Abusers usually have high self-esteem and see themselves as important.\"", "\"Abusers often try to isolate their partners from friends and family.\"", "\"Abusers use intimidation as a way to gain power and control.\"", "\"Abuse occurs across every socioeconomic level.\""],
+    correct: 0,
+    rationale: "Abusers typically have low self-esteem and use power, control, and intimidation to compensate, so the statement about high self-esteem needs correction. Isolating the partner and using intimidation for power are both accurate."
+  },
+  {
+    stem: "A nurse assesses a 2-year-old brought in after a reported fall. Which finding is most concerning for abuse?",
+    options: ["Bruises on the buttocks and lower back in several stages of healing", "A scraped knee with a matching scab from the reported tumble", "A bruise on the shin the parent attributes to climbing stairs", "A shirt on backward and two mismatched socks"],
+    correct: 0,
+    rationale: "Bruising on protected areas such as the buttocks and back, especially in several stages of healing, is a strong abuse red flag pointing to repeated trauma. Play-area injuries such as a scraped knee or shin bruise are expected."
+  },
+  {
+    stem: "Parents report that their 3-month-old rolled off a couch, producing a spiral fracture of the femur. Which nursing conclusion is appropriate?",
+    options: ["The injury is inconsistent with the infant's developmental stage and the history, so abuse is suspected and a report is warranted", "The explanation is plausible, since infants can roll off furniture on their own", "The fracture is a common accidental injury that requires no report", "The report should wait until the parents revise their explanation"],
+    correct: 0,
+    rationale: "A 3-month-old cannot roll independently, and a spiral femur fracture requires a twisting force inconsistent with a simple fall, a classic abuse red flag requiring a report."
+  },
+  {
+    stem: "A home health nurse finds a 5-year-old who is not enrolled in school, is often left without adult supervision, and has untreated dental decay. Which type of maltreatment do these findings most reflect?",
+    options: ["Neglect", "Physical abuse", "Emotional abuse", "Economic abuse"],
+    correct: 0,
+    rationale: "Failure to meet a child's educational, supervisory, and medical needs is neglect, the most common form of child maltreatment. Physical and emotional abuse involve inflicted harm."
   }
 ];
