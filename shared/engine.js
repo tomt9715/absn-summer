@@ -33,6 +33,8 @@
   let deck = [], idx = 0, correctCount = 0, answered = false, results = [], activeTab = 'full';
   let streak = 0, onFire = false;
   let selected = new Set();
+  let retryMode = false, missedRaw = [];
+  let resumePromptActive = false;
 
   // ── Streak / Fire system ──────────────────────────────────────
   function injectFireStyles() {
@@ -167,7 +169,7 @@
   // ── In-progress save / resume ─────────────────────────────────
   function saveProgress() {
     try {
-      const state = { deck, idx, correctCount, results, streak, onFire, ts: Date.now() };
+      const state = { deck, idx, correctCount, results, streak, onFire, missedRaw, ts: Date.now() };
       localStorage.setItem(KEY + '_inprogress', JSON.stringify(state));
     } catch (e) {}
   }
@@ -190,6 +192,7 @@
 
   function renderResumePrompt(saved) {
     injectFireStyles();
+    resumePromptActive = true;
     const scoreSoFar = saved.idx > 0 ? Math.round((saved.correctCount / saved.idx) * 100) + '%' : '—';
     const area = document.getElementById('quiz-area');
     area.innerHTML = `
@@ -200,29 +203,56 @@
           <button class="action-btn primary" onclick="__quizResume()">Continue</button>
           <button class="action-btn ghost" onclick="__quizStartOver()">Start over</button>
         </div>
+        <div class="kbd-hint">Enter to continue · Esc to start over</div>
       </div>
     `;
   }
 
   function resumeQuiz(saved) {
+    resumePromptActive = false;
+    retryMode = false;
     deck = saved.deck;
     idx = saved.idx;
     correctCount = saved.correctCount;
     results = saved.results || [];
     streak = saved.streak || 0;
     onFire = saved.onFire || false;
+    missedRaw = saved.missedRaw || [];
     answered = false;
     renderQuestion();
   }
 
   function startQuiz() {
     injectFireStyles();
+    resumePromptActive = false;
+    retryMode = false;
     clearProgress();
     buildDeck();
     idx = 0; correctCount = 0; answered = false; results = [];
-    streak = 0; onFire = false;
+    streak = 0; onFire = false; missedRaw = [];
     renderQuestion();
     saveProgress();
+  }
+
+  function reshuffleQuestion(q) {
+    if (q.isMatching) return { ...q, lefts: shuffle(q.lefts), rights: shuffle(q.rights) };
+    return { ...q, opts: shuffle(q.opts) };
+  }
+
+  // Pulls the questions missed in the round that just finished into a fresh,
+  // reshuffled mini-deck. Scored separately -- doesn't touch best/history.
+  function startRetryQuiz() {
+    if (missedRaw.length === 0) return;
+    injectFireStyles();
+    resumePromptActive = false;
+    clearProgress();
+    const source = missedRaw;
+    missedRaw = [];
+    retryMode = true;
+    deck = shuffle(source).map(reshuffleQuestion);
+    idx = 0; correctCount = 0; answered = false; results = [];
+    streak = 0; onFire = false;
+    renderQuestion();
   }
 
   function init() {
@@ -310,6 +340,7 @@
     const correctI = q.opts.findIndex(o => o.isCorrect);
     const isCorrect = chosenI === correctI;
     if (isCorrect) correctCount += 1;
+    else missedRaw.push(q);
     handleStreak(isCorrect);
 
     document.querySelectorAll('.opt').forEach((b, i) => {
@@ -332,10 +363,12 @@
     });
     saveProgress();
 
-    // Correct answers advance automatically after a brief confirmation flash;
-    // a miss pauses to show the rationale and waits for a manual Next click.
+    // Correct answers show a quick confirmation, then advance; a miss pauses
+    // to show the rationale and waits for a manual Next click.
     if (isCorrect) {
-      setTimeout(next, 700);
+      const fb = document.getElementById('feedback');
+      fb.innerHTML = `<div class="quick-correct"><i class="fa-solid fa-check"></i> Correct</div>`;
+      setTimeout(next, 450);
       return;
     }
 
@@ -384,6 +417,7 @@
     const isPartial = fraction > 0 && fraction < 1;
 
     correctCount += fraction;
+    if (!isFullCredit) missedRaw.push(q);
     handleStreak(isFullCredit);
 
     document.querySelectorAll('.opt').forEach((b, i) => {
@@ -417,10 +451,12 @@
     });
     saveProgress();
 
-    // Full credit advances automatically; partial or no credit pauses to show
-    // the rationale and waits for a manual Next click.
+    // Full credit shows a quick confirmation, then advances; partial or no
+    // credit pauses to show the rationale and waits for a manual Next click.
     if (isFullCredit) {
-      setTimeout(next, 700);
+      const fb = document.getElementById('feedback');
+      fb.innerHTML = `<div class="quick-correct"><i class="fa-solid fa-check"></i> Correct</div>`;
+      setTimeout(next, 450);
       return;
     }
 
@@ -453,6 +489,13 @@
   function handleKeydown(e) {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (isTypingTarget(document.activeElement)) return;
+
+    if (resumePromptActive) {
+      if (e.key === 'Enter') { e.preventDefault(); window.__quizResume(); }
+      else if (e.key === 'Escape') { e.preventDefault(); window.__quizStartOver(); }
+      return;
+    }
+
     const q = deck[idx];
     if (!q) return;
 
@@ -532,6 +575,7 @@
     const isFullCredit = fraction === 1;
     const isPartial = fraction > 0 && fraction < 1;
     correctCount += fraction;
+    if (!isFullCredit) missedRaw.push(q);
     handleStreak(isFullCredit);
 
     const pointsLabel = `${numCorrect}/${total} pairs matched`;
@@ -548,10 +592,12 @@
     });
     saveProgress();
 
-    // Full credit advances automatically; partial or no credit pauses to show
-    // the rationale and waits for a manual Next click.
+    // Full credit shows a quick confirmation, then advances; partial or no
+    // credit pauses to show the rationale and waits for a manual Next click.
     if (isFullCredit) {
-      setTimeout(next, 700);
+      const fb = document.getElementById('feedback');
+      fb.innerHTML = `<div class="quick-correct"><i class="fa-solid fa-check"></i> Correct</div>`;
+      setTimeout(next, 450);
       return;
     }
 
@@ -592,54 +638,74 @@
     const pass = pct >= PASS;
     let historyLine = '';
     let attemptChipsHTML = '';
-    try {
-      const prev = parseInt(localStorage.getItem(KEY + '_best') || '0', 10);
-      if (pct > prev) localStorage.setItem(KEY + '_best', String(pct));
-      localStorage.setItem(KEY + '_last', String(pct));
-      const histRaw = localStorage.getItem(KEY + '_history');
-      let hist = [];
-      try { hist = histRaw ? JSON.parse(histRaw) : []; } catch (e2) { hist = []; }
-      if (!Array.isArray(hist)) hist = [];
-      hist.push({ pct, date: Date.now() });
-      if (hist.length > 50) hist = hist.slice(hist.length - 50);
-      localStorage.setItem(KEY + '_history', JSON.stringify(hist));
+    if (!retryMode) {
+      try {
+        const prev = parseInt(localStorage.getItem(KEY + '_best') || '0', 10);
+        if (pct > prev) localStorage.setItem(KEY + '_best', String(pct));
+        localStorage.setItem(KEY + '_last', String(pct));
+        const histRaw = localStorage.getItem(KEY + '_history');
+        let hist = [];
+        try { hist = histRaw ? JSON.parse(histRaw) : []; } catch (e2) { hist = []; }
+        if (!Array.isArray(hist)) hist = [];
+        hist.push({ pct, date: Date.now() });
+        if (hist.length > 50) hist = hist.slice(hist.length - 50);
+        localStorage.setItem(KEY + '_history', JSON.stringify(hist));
 
-      const attemptNum = hist.length;
-      const bestNow = Math.max(prev, pct);
-      if (attemptNum > 1) {
-        const priorPct = hist[hist.length - 2].pct;
-        const diff = pct - priorPct;
-        let trendText;
-        if (diff > 0) trendText = `up ${diff} pts from your last try`;
-        else if (diff < 0) trendText = `down ${Math.abs(diff)} pts from your last try`;
-        else trendText = 'same as your last try';
-        historyLine = `Attempt ${attemptNum} · ${trendText}`;
-      } else {
-        historyLine = `Attempt 1 · first try on the books`;
-      }
+        const attemptNum = hist.length;
+        const bestNow = Math.max(prev, pct);
+        if (attemptNum > 1) {
+          const priorPct = hist[hist.length - 2].pct;
+          const diff = pct - priorPct;
+          let trendText;
+          if (diff > 0) trendText = `up ${diff} pts from your last try`;
+          else if (diff < 0) trendText = `down ${Math.abs(diff)} pts from your last try`;
+          else trendText = 'same as your last try';
+          historyLine = `Attempt ${attemptNum} · ${trendText}`;
+        } else {
+          historyLine = `Attempt 1 · first try on the books`;
+        }
 
-      attemptChipsHTML = hist.map((h, i) => {
-        const isBest = h.pct === bestNow;
-        const isLatest = i === hist.length - 1;
-        const classes = ['attempt-chip'];
-        if (isBest) classes.push('best');
-        if (isLatest) classes.push('latest');
-        return `<span class="${classes.join(' ')}" title="Attempt ${i + 1}">${h.pct}%${isBest ? ' <i class="fa-solid fa-star"></i>' : ''}</span>`;
-      }).join('');
-    } catch (e) {}
+        attemptChipsHTML = hist.map((h, i) => {
+          const isBest = h.pct === bestNow;
+          const isLatest = i === hist.length - 1;
+          const classes = ['attempt-chip'];
+          if (isBest) classes.push('best');
+          if (isLatest) classes.push('latest');
+          return `<span class="${classes.join(' ')}" title="Attempt ${i + 1}">${h.pct}%${isBest ? ' <i class="fa-solid fa-star"></i>' : ''}</span>`;
+        }).join('');
+      } catch (e) {}
+    }
 
     let msg;
-    if (pct >= 90) msg = "You've got this cold. Maybe one more pass to keep it sharp.";
-    else if (pct >= PASS) msg = "Solid pass. Review the ones you missed and you're in good shape.";
-    else msg = "Below passing — run through the missed questions and take it again.";
+    if (retryMode) {
+      msg = missedRaw.length > 0
+        ? `Still ${missedRaw.length} to lock in -- run it back.`
+        : "All caught up on these. Nice work.";
+    } else if (pct >= 90) {
+      msg = "You've got this cold. Maybe one more pass to keep it sharp.";
+    } else if (pct >= PASS) {
+      msg = "Solid pass. Review the ones you missed and you're in good shape.";
+    } else {
+      msg = "Below passing -- run through the missed questions and take it again.";
+    }
 
     const scoreDisplay = Number.isInteger(correctCount) ? correctCount : correctCount.toFixed(1);
+    const subLabel = retryMode ? 'Retry round' : (cfg.title || '');
+
+    let actionsHTML = `<button class="action-btn primary" onclick="__quizStart()">${retryMode ? 'Retake full quiz' : 'Retake quiz'}</button>`;
+    if (missedRaw.length > 0) {
+      actionsHTML += `<button class="action-btn ghost" onclick="__quizRetryMissed()">Retry missed (${missedRaw.length})</button>`;
+    }
+    if (results.some(r => !r.isCorrect)) {
+      actionsHTML += `<button class="action-btn ghost" onclick="__quizCopyMissed()">Copy missed (Markdown)</button>`;
+    }
+    actionsHTML += `<a class="action-btn ghost" href="index.html">Back to hub</a>`;
 
     const area = document.getElementById('quiz-area');
     area.innerHTML = `
       <div class="results-card">
         <div class="score-big ${pass ? 'pass' : 'fail'}">${pct}%</div>
-        <div class="score-sub">${scoreDisplay} / ${deck.length} points · ${cfg.title || ''}</div>
+        <div class="score-sub">${scoreDisplay} / ${deck.length} points · ${subLabel}</div>
         ${historyLine ? `<div class="score-history">${historyLine}</div>` : ''}
         ${attemptChipsHTML ? `<div class="attempt-history"><span class="attempt-history-label">Your attempts</span><div class="attempt-chips">${attemptChipsHTML}</div></div>` : ''}
         <div class="score-msg">${msg}</div>
@@ -648,10 +714,7 @@
           <button class="r-tab ${activeTab === 'missed' ? 'active' : ''}" onclick="__quizTab('missed', this)">Missed Only</button>
         </div>
         <div class="review-list" id="review-list"></div>
-        <div class="results-actions">
-          <button class="action-btn primary" onclick="__quizStart()">Retake quiz</button>
-          <a class="action-btn ghost" href="index.html">Back to hub</a>
-        </div>
+        <div class="results-actions">${actionsHTML}</div>
       </div>
     `;
     renderReview();
@@ -704,6 +767,75 @@
     }).join('');
   }
 
+  // ── Missed-question export ───────────────────────────
+  function htmlToMd(html) {
+    if (!html) return '';
+    return String(html)
+      .replace(/<strong>(.*?)<\/strong>/gi, '**$1**')
+      .replace(/<em>(.*?)<\/em>/gi, '*$1*')
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<[^>]+>/g, '')
+      .trim();
+  }
+
+  function buildMissedMarkdown() {
+    const missed = results.filter(r => !r.isCorrect);
+    if (missed.length === 0) return '';
+    const lines = [`## Missed questions -- ${cfg.title || KEY}`, ''];
+    missed.forEach((r, i) => {
+      lines.push(`### ${i + 1}. ${htmlToMd(r.stem)}`, '');
+      if (r.isMatching) {
+        lines.push('**Your matches:**');
+        r.matchDetail.forEach(d => {
+          lines.push(`- ${d.left} -> ${d.chosen || '(none)'}${d.good ? '' : ` (correct: ${d.correctTxt})`}`);
+        });
+      } else {
+        lines.push(`**Your answer:** ${r.yourLetter} -- ${r.yourText}`);
+        lines.push(`**Correct answer:** ${r.correctLetter} -- ${r.correctText}`);
+      }
+      lines.push('', `**Rationale:** ${htmlToMd(r.rationale)}`, '');
+    });
+    return lines.join('\n');
+  }
+
+  function showToast(msg) {
+    let toast = document.getElementById('quiz-copy-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'quiz-copy-toast';
+      toast.className = 'copy-toast';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => toast.classList.remove('show'), 1800);
+  }
+
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  function copyMissedMarkdown() {
+    const md = buildMissedMarkdown();
+    if (!md) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(md)
+        .then(() => showToast('Missed questions copied as Markdown'))
+        .catch(() => { fallbackCopy(md); showToast('Missed questions copied as Markdown'); });
+    } else {
+      fallbackCopy(md);
+      showToast('Missed questions copied as Markdown');
+    }
+  }
+
   // expose handlers for inline onclick
   window.__quizPick = pick;
   window.__quizToggle = toggleSata;
@@ -713,6 +845,8 @@
   window.__quizNext = next;
   window.__quizTab = setTab;
   window.__quizStart = startQuiz;
+  window.__quizRetryMissed = startRetryQuiz;
+  window.__quizCopyMissed = copyMissedMarkdown;
   window.__quizResume = function () {
     const saved = loadProgress();
     if (saved) resumeQuiz(saved);

@@ -122,6 +122,17 @@ h1 {
 .next-btn[disabled] { opacity: 0.4; cursor: not-allowed; }
 .next-btn[disabled]:hover { background: var(--accent); transform: none; }
 
+.quick-correct {
+  margin-top: 16px; display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700;
+  color: var(--correct); animation: fadeIn 0.15s ease;
+}
+
+.kbd-hint {
+  margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  color: var(--ink-mute); text-align: center;
+}
+
 .rationale {
   margin-top: 16px; padding: 16px 18px; border-radius: 9px;
   font-size: 15px; line-height: 1.65; animation: fadeIn 0.2s ease;
