@@ -4,8 +4,9 @@
    append new sections at the bottom, each marked with its own comment header.
    Sources so far: exam1/data/comm-kc.js + comm-dd.js (Section 1),
    exam1/data/theories-kc.js + theories-dd.js (Section 2),
-   exam1/data/mse-kc.js (Section 3). Verbatim except
-   minor rationale wording tightened where noted.
+   exam1/data/mse-kc.js (Section 3),
+   exam2/data/schizophrenia-kc.js + schizophrenia-dd.js (Section 4). Verbatim
+   except minor rationale wording tightened where noted.
    KC convention: correct is always index 0 for single-select; engine shuffles. */
 window.QUESTIONS = [
   // ── Section 1: Therapeutic Communication (source: exam1 Comm) ──
@@ -198,5 +199,91 @@ window.QUESTIONS = [
     options: ["Circumstantial eventually answers the question after a detour; tangential wanders off and never returns", "Circumstantial never reaches an answer; tangential always returns to the original topic eventually", "Circumstantial is seen in psychosis; tangential is a normal variant of anxious or pressured speech", "Circumstantial involves loose word associations; tangential involves complete absence of any connection"],
     correct: 0,
     rationale: "Circumstantial thinking gets to the answer eventually after unnecessary detail. Tangential thinking wanders off topic and never returns to the point. A useful memory hook: circumstantial 'gets there,' tangential 'never gets there.'"
+  },
+
+  // ── Section 4: Schizophrenia & Psychosis (source: exam2 Schizophrenia) ──
+  {
+    stem: "A client with schizophrenia tells the nurse, 'The voices are telling me to hurt my doctor when he comes in for rounds.' What is the nurse's priority action?",
+    options: ["Implement one-to-one observation immediately, before notifying the provider", "Notify the provider first, then implement one-to-one observation once orders are received", "Document the statement and continue routine care without escalation", "Tell the client the voices are not real and encourage them to ignore them"],
+    correct: 0,
+    rationale: "When a client reports command hallucinations instructing harm to another person, safety takes priority over notification protocols. The nurse implements one-to-one observation immediately, then notifies the provider as soon as possible after safety measures are in place."
+  },
+  {
+    stem: "Which type of hallucination is most common in schizophrenia, and what behavior might the nurse observe that suggests its presence?",
+    options: ["Auditory hallucinations; the nurse may observe the client pause mid-sentence and appear to be listening to something unseen", "Visual hallucinations; the nurse may observe the client reaching out repeatedly to touch something not present", "Olfactory hallucinations; the nurse may observe the client wrinkling their nose and sniffing repeatedly at nothing", "Gustatory hallucinations; the nurse may observe the client consistently refusing all food and fluid intake"],
+    correct: 0,
+    rationale: "Auditory hallucinations are the most common type of hallucination in schizophrenia. A client experiencing them may pause mid-conversation, tilt their head, or appear to be listening intently to something not present, which should prompt the nurse to assess directly about the content of what the client is hearing."
+  },
+  {
+    stem: "A nurse is assessing a client who reports, 'I can taste poison in my food, that's why I won't eat the hospital meals.' What type of disturbance does this represent, and what is the priority nursing consideration?",
+    options: ["A gustatory hallucination linked to a paranoid delusion about poisoning; assess nutritional intake and safety while avoiding direct confrontation of the belief", "A somatic delusion exclusively, unrelated to any perceptual disturbance", "An auditory hallucination, since the client describes a sensory experience", "A normal taste preference requiring no further psychiatric assessment"],
+    correct: 0,
+    rationale: "This reflects a gustatory hallucination linked to an underlying paranoid belief about poisoning. The nurse should monitor nutritional intake closely, since the client may continue refusing food, while avoiding direct confrontation of the belief and instead working collaboratively on food choices the client trusts."
+  },
+  {
+    stem: "Which therapeutic communication principles are appropriate when caring for a client with paranoid schizophrenia?",
+    options: ["Use consistent staff assignments, speak in simple short sentences, avoid challenging delusions, and avoid touch", "Rotate staff assignments frequently to build trust with multiple caregivers", "Directly challenge the client's delusions to help reorient them to reality", "Use touch generously to convey warmth and build therapeutic rapport"],
+    correct: 0,
+    rationale: "Nursing care for paranoid schizophrenia includes using consistent staff assignments, since rotating staff increases paranoia, speaking in simple, short sentences, never directly challenging delusions, since this escalates paranoia and damages trust, and avoiding touch, which paranoid clients often perceive as threatening."
+  },
+  {
+    stem: "Why does a nurse check a paranoid client's mouth after medication administration?",
+    options: ["Paranoid clients frequently cheek (hide) medications rather than swallowing them, due to mistrust of the treatment team", "To assess for early signs of tardive dyskinesia after every single dose", "To check for signs of agranulocytosis after every medication administration", "To assess for dry mouth as a routine anticholinergic side effect check"],
+    correct: 0,
+    rationale: "Paranoid clients, due to their underlying mistrust, frequently cheek medications, hiding them in the mouth rather than swallowing them, in an attempt to avoid taking medication they may believe is harmful or part of a conspiracy. The nurse checks the mouth after administration to confirm the medication was actually swallowed."
+  },
+  {
+    stem: "A client newly started on haloperidol develops sudden, severe neck spasms and the eyes rolling upward, and is also reporting difficulty breathing. What does the nurse recognize, and what is the priority action?",
+    options: ["Acute dystonia with possible laryngospasm, an airway emergency; administer IM or IV benztropine or diphenhydramine immediately and notify the provider", "Tardive dyskinesia, a chronic condition requiring only outpatient follow-up", "An expected, benign side effect of haloperidol requiring no intervention", "Neuroleptic malignant syndrome requiring dantrolene as the priority intervention"],
+    correct: 0,
+    rationale: "Sudden neck spasms, oculogyric crisis (eyes rolling upward), and difficulty breathing indicate acute dystonia with possible laryngospasm, an airway emergency. The nurse administers IM or IV benztropine or diphenhydramine immediately and notifies the provider promptly."
+  },
+  {
+    stem: "A client on antipsychotic therapy is observed constantly pacing the hallway, rocking back and forth, and stating, 'I just can't sit still, something feels wrong.' What does the nurse suspect, and how should this be distinguished from anxiety?",
+    options: ["Akathisia, a medication-induced restlessness; unlike primary anxiety, this symptom developed in the context of recent antipsychotic initiation or dose change and should prompt medication review", "Tardive dyskinesia, requiring an immediate dose increase of the antipsychotic", "Pseudoparkinsonism, requiring an anticholinergic medication", "A normal anxiety response unrelated to the antipsychotic medication"],
+    correct: 0,
+    rationale: "Constant pacing, rocking, and an inability to sit still in a client on antipsychotic therapy suggest akathisia, a medication-induced movement disorder frequently mistaken for anxiety. The nurse should consider the temporal relationship to recent antipsychotic initiation or dose changes and report the finding."
+  },
+  {
+    stem: "A client who has taken an antipsychotic for several years develops repetitive lip smacking, tongue thrusting, and facial grimacing. What does the nurse recognize, and what is the anticipated management approach?",
+    options: ["Tardive dyskinesia; the provider will likely reduce the antipsychotic dose or switch to clozapine, since this condition is often irreversible", "Acute dystonia; the nurse should administer benztropine immediately", "Pseudoparkinsonism; the nurse should administer benztropine and expect full resolution within hours", "An expected and reversible finding requiring no specific intervention"],
+    correct: 0,
+    rationale: "Repetitive orofacial movements developing after long-term antipsychotic use indicate tardive dyskinesia, which is often irreversible. The nurse anticipates that the provider will reduce the antipsychotic dose or switch to clozapine. Benztropine is not effective for tardive dyskinesia, distinguishing it from acute dystonia or pseudoparkinsonism."
+  },
+  {
+    stem: "What is benztropine used for, what does it NOT treat, and what is the antidote for anticholinergic toxicity?",
+    options: ["An anticholinergic used for EPS like dystonia, but NOT tardive dyskinesia; physostigmine is the toxicity antidote", "A dopamine agonist medication used to treat tardive dyskinesia specifically and exclusively", "A medication specifically used to treat agranulocytosis resulting from clozapine therapy", "A benzodiazepine medication used primarily for acute agitation management on the unit"],
+    correct: 0,
+    rationale: "Benztropine (Cogentin) is an anticholinergic medication used to treat extrapyramidal symptoms (EPS) such as acute dystonia and pseudoparkinsonism. It does NOT treat tardive dyskinesia, which requires a different approach. The antidote for anticholinergic toxicity is physostigmine."
+  },
+  {
+    stem: "A nurse is caring for a client newly started on clozapine. Three weeks into treatment, the client reports a sore throat, fatigue, and a fever of 38.7 degrees Celsius. What is the nurse's priority action?",
+    options: ["Notify the provider immediately and obtain a CBC, since these symptoms may indicate agranulocytosis", "Administer an over-the-counter analgesic and instruct the client to follow up if symptoms persist beyond 48 hours", "Reassure the client that flu-like symptoms are an expected, benign effect of clozapine", "Increase the clozapine dose to compensate for the breakthrough symptoms"],
+    correct: 0,
+    rationale: "Flu-like symptoms in a client on clozapine are a critical warning sign for agranulocytosis, a potentially fatal black box warning. The nurse must notify the provider immediately and obtain a CBC without delay, since waiting even 24 hours can be dangerous."
+  },
+  {
+    stem: "A client's most recent CBC while on clozapine shows a white blood cell count of 2,800 cells/mm3. What is the nurse's priority action?",
+    options: ["Hold the clozapine and notify the provider immediately", "Administer the clozapine as scheduled and recheck the CBC in 1 week", "Increase the clozapine dose to boost the immune response", "Document the finding and continue routine weekly monitoring with no other action"],
+    correct: 0,
+    rationale: "A white blood cell count of 2,800 cells/mm3 is significantly low and concerning for agranulocytosis. The nurse holds the clozapine dose and notifies the provider immediately, since continuing the medication risks severe, potentially fatal infection."
+  },
+  {
+    stem: "Besides agranulocytosis, which other black box warnings are associated with clozapine?",
+    options: ["Myocarditis, cardiopulmonary suppression, increased dementia-related mortality, and seizures", "Hepatotoxicity, nephrotoxicity, and pancreatitis occurring as a direct result of therapy", "QT prolongation, Torsades de pointes, and sudden cardiac death occurring exclusively", "Tardive dyskinesia, akathisia, and pseudoparkinsonism occurring exclusively with long-term use"],
+    correct: 0,
+    rationale: "Clozapine carries five black box warnings total: agranulocytosis (the most frequently tested), myocarditis, cardiopulmonary suppression, increased mortality in patients with dementia-related psychosis, and seizures."
+  },
+  {
+    stem: "What does the PINEs group of atypical antipsychotics include, and what side effect profile characterizes this group?",
+    options: ["Quetiapine, olanzapine, and clozapine; high sedation, high weight gain, high hyperglycemia risk, and low EPS", "Risperidone, ziprasidone, and lurasidone; this group causes more EPS but noticeably less sedation overall", "Aripiprazole exclusively; this group is characterized by minimal weight gain and a low EPS risk", "Haloperidol and chlorpromazine; this group is characterized by high EPS risk and low sedation"],
+    correct: 0,
+    rationale: "The PINEs group includes quetiapine (Seroquel), olanzapine (Zyprexa), and clozapine (Clozaril). This group is characterized by high sedation, high weight gain, high hyperglycemia risk, significant anticholinergic effects, and orthostatic hypotension, but relatively low EPS."
+  },
+  {
+    stem: "A client on haloperidol develops a fever of 40.1 degrees Celsius, severe muscle rigidity described as 'lead-pipe,' and a blood pressure of 168/112 over the past 2 days. What is the nurse's priority action?",
+    options: ["Notify the provider immediately, anticipate stopping the haloperidol, and prepare for administration of dantrolene", "Administer an antipyretic and reassess in 4 hours before any further action", "Administer an additional dose of haloperidol to manage the agitation contributing to the fever", "Recognize this as an expected, benign reaction requiring only comfort measures"],
+    correct: 0,
+    rationale: "Fever, lead-pipe rigidity, and hypertension developing over days in a client on an antipsychotic indicate neuroleptic malignant syndrome (NMS), a life-threatening emergency. The nurse notifies the provider immediately, anticipates discontinuation of the haloperidol, and prepares for treatment with dantrolene and possibly bromocriptine."
   }
 ];
