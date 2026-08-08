@@ -34,6 +34,10 @@
   .jc-disruptive:hover { border-color: #b5482e; color: #b5482e; background: rgba(181,72,46,0.08); }
   .jc-disruptive.active { background: #b5482e; color: #fff; border-color: #b5482e; }
 
+  .jc-eating { border-color: #b08534; color: #b08534; }
+  .jc-eating:hover { border-color: #b08534; color: #b08534; background: rgba(176,133,52,0.08); }
+  .jc-eating.active { background: #b08534; color: #fff; border-color: #b08534; }
+
   .quiz-card::after { background: var(--card-accent, var(--accent)); }
   .quiz-card:hover {
     border-color: var(--card-accent, var(--accent));
@@ -115,6 +119,7 @@
     <a class="jump-chip jc-neuro" href="#topic-neuro">Neurocognitive</a>
     <a class="jump-chip jc-neurodev" href="#topic-neurodev">Neurodevelopmental</a>
     <a class="jump-chip jc-disruptive" href="#topic-disruptive">Disruptive Behavior</a>
+    <a class="jump-chip jc-eating" href="#topic-eating">Eating Disorders</a>
   </nav>
 
   <div class="topics-banner">
@@ -170,6 +175,16 @@
           { type: "Knowledge Check", name: "Know it cold", count: "31 questions", href: "disruptive-behavior-kc.html", key: "ps_final_disruptive_kc" },
           { type: "Deep Drill",     name: "Apply it",     count: "18 questions", href: "disruptive-behavior-dd.html", key: "ps_final_disruptive_dd" }
         ]
+      },
+      {
+        name: "Eating Disorders",
+        slug: "eating",
+        chapterLabel: "Ch 20 · Eating Disorders",
+        count: "42 questions",
+        quizzes: [
+          { type: "Knowledge Check", name: "Know it cold", count: "42 questions", href: "eating-disorders-kc.html", key: "ps_final_eating_kc" },
+          { type: "Deep Drill",     name: "Apply it",     count: "coming soon", href: null, key: "ps_final_eating_dd" }
+        ]
       }
     ]
   };
@@ -180,7 +195,8 @@
     const CHAPTER_COLORS = {
       neuro: { c: '#5a6fa8', soft: 'rgba(90,111,168,0.14)' },
       neurodev: { c: '#7a8f4a', soft: 'rgba(122,143,74,0.14)' },
-      disruptive: { c: '#b5482e', soft: 'rgba(181,72,46,0.14)' }
+      disruptive: { c: '#b5482e', soft: 'rgba(181,72,46,0.14)' },
+      eating: { c: '#b08534', soft: 'rgba(176,133,52,0.14)' }
     };
     EXAM.topics.forEach((topic) => {
       const col = CHAPTER_COLORS[topic.slug];
@@ -201,7 +217,7 @@
     wrap.innerHTML = html;
 
     // Readiness ring: average of best scores across quizzes actually attempted.
-    const ALL_KEYS = ['ps_final_neuro_kc', 'ps_final_neuro_dd', 'ps_final_neurodev_kc', 'ps_final_neurodev_dd', 'ps_final_disruptive_kc', 'ps_final_disruptive_dd'];
+    const ALL_KEYS = ['ps_final_neuro_kc', 'ps_final_neuro_dd', 'ps_final_neurodev_kc', 'ps_final_neurodev_dd', 'ps_final_disruptive_kc', 'ps_final_disruptive_dd', 'ps_final_eating_kc', 'ps_final_eating_dd'];
     const scores = [];
     ALL_KEYS.forEach(k => {
       try {
