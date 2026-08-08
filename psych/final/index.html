@@ -42,6 +42,10 @@
   .jc-somatic:hover { border-color: #2f6f6b; color: #2f6f6b; background: rgba(47,111,107,0.08); }
   .jc-somatic.active { background: #2f6f6b; color: #fff; border-color: #2f6f6b; }
 
+  .jc-selfcheck { border-color: #4a3f35; color: #4a3f35; }
+  .jc-selfcheck:hover { border-color: #4a3f35; color: #4a3f35; background: rgba(74,63,53,0.08); }
+  .jc-selfcheck.active { background: #4a3f35; color: #fff; border-color: #4a3f35; }
+
   .quiz-card::after { background: var(--card-accent, var(--accent)); }
   .quiz-card:hover {
     border-color: var(--card-accent, var(--accent));
@@ -125,6 +129,7 @@
     <a class="jump-chip jc-disruptive" href="#topic-disruptive">Disruptive Behavior</a>
     <a class="jump-chip jc-eating" href="#topic-eating">Eating Disorders</a>
     <a class="jump-chip jc-somatic" href="#topic-somatic">Somatic Symptom</a>
+    <a class="jump-chip jc-selfcheck" href="#topic-selfcheck">Self-Check</a>
   </nav>
 
   <div class="topics-banner">
@@ -200,6 +205,16 @@
           { type: "Knowledge Check", name: "Know it cold", count: "36 questions", href: "somatic-symptom-kc.html", key: "ps_final_somatic_kc" },
           { type: "Deep Drill",     name: "Apply it",     count: "18 questions", href: "somatic-symptom-dd.html", key: "ps_final_somatic_dd" }
         ]
+      },
+      {
+        name: "Cumulative Self-Check",
+        slug: "selfcheck",
+        chapterLabel: "Guide's Never-Cut List",
+        count: "58 questions",
+        quizzes: [
+          { type: "Self-Check", name: "Self-check review", count: "55 questions", href: "self-check-kc.html", key: "ps_final_selfcheck_kc" },
+          { type: "ATI Pearls", name: "Debrief pearls",     count: "3 questions",  href: "ati-pearls-kc.html",  key: "ps_final_ati_kc" }
+        ]
       }
     ]
   };
@@ -212,7 +227,8 @@
       neurodev: { c: '#7a8f4a', soft: 'rgba(122,143,74,0.14)' },
       disruptive: { c: '#b5482e', soft: 'rgba(181,72,46,0.14)' },
       eating: { c: '#b08534', soft: 'rgba(176,133,52,0.14)' },
-      somatic: { c: '#2f6f6b', soft: 'rgba(47,111,107,0.14)' }
+      somatic: { c: '#2f6f6b', soft: 'rgba(47,111,107,0.14)' },
+      selfcheck: { c: '#4a3f35', soft: 'rgba(74,63,53,0.14)' }
     };
     EXAM.topics.forEach((topic) => {
       const col = CHAPTER_COLORS[topic.slug];
@@ -233,7 +249,7 @@
     wrap.innerHTML = html;
 
     // Readiness ring: average of best scores across quizzes actually attempted.
-    const ALL_KEYS = ['ps_final_neuro_kc', 'ps_final_neuro_dd', 'ps_final_neurodev_kc', 'ps_final_neurodev_dd', 'ps_final_disruptive_kc', 'ps_final_disruptive_dd', 'ps_final_eating_kc', 'ps_final_eating_dd', 'ps_final_somatic_kc', 'ps_final_somatic_dd'];
+    const ALL_KEYS = ['ps_final_neuro_kc', 'ps_final_neuro_dd', 'ps_final_neurodev_kc', 'ps_final_neurodev_dd', 'ps_final_disruptive_kc', 'ps_final_disruptive_dd', 'ps_final_eating_kc', 'ps_final_eating_dd', 'ps_final_somatic_kc', 'ps_final_somatic_dd', 'ps_final_selfcheck_kc', 'ps_final_ati_kc'];
     const scores = [];
     ALL_KEYS.forEach(k => {
       try {
