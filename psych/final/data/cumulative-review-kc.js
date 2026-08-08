@@ -3,7 +3,8 @@
    Built section by section, matching Unit 6's own structure. Do not rebuild --
    append new sections at the bottom, each marked with its own comment header.
    Sources so far: exam1/data/comm-kc.js + comm-dd.js (Section 1),
-   exam1/data/theories-kc.js + theories-dd.js (Section 2). Verbatim except
+   exam1/data/theories-kc.js + theories-dd.js (Section 2),
+   exam1/data/mse-kc.js (Section 3). Verbatim except
    minor rationale wording tightened where noted.
    KC convention: correct is always index 0 for single-select; engine shuffles. */
 window.QUESTIONS = [
@@ -147,5 +148,55 @@ window.QUESTIONS = [
     options: ["'After my diagnosis, I started volunteering to help others with the same illness.'", "'My doctor must have the wrong chart -- I don't have any illness.'", "'Everyone in my family is the one with the real problem, not me.'", "'I don't remember anything about what happened that night.'"],
     correct: 0,
     rationale: "Turning a personal struggle into helping others is altruism/sublimation -- a mature SASH defense. The other options are denial, projection, and repression, which are less adaptive."
+  },
+
+  // ── Section 3: Assessment/Crisis/MSE Vocabulary (source: exam1 MSE) ──
+  {
+    stem: "A delusion (a fixed, false belief held despite evidence) represents a disturbance in which area of the mental status exam?",
+    options: ["Thought content", "Perception", "Mood and affect", "Speech"],
+    correct: 0,
+    rationale: "A delusion is a disturbance in thought CONTENT -- what the person is thinking. This is a flagged exam distinction: delusion = thought content."
+  },
+  {
+    stem: "A hallucination is a disturbance in which area of the mental status exam?",
+    options: ["Perception", "Thought content", "Thought process", "Cognition"],
+    correct: 0,
+    rationale: "A hallucination is a false sensory perception -- a disturbance in PERCEPTION, not thought content. Delusion = thought content; hallucination = perception is a key exam distinction."
+  },
+  {
+    stem: "What is the difference between a hallucination and a delusion?",
+    options: ["A hallucination is a false sensory perception; a delusion is a fixed false belief", "A hallucination is a false belief held despite evidence; a delusion is a distorted sensory experience", "A hallucination occurs only in psychosis; a delusion can occur in any mood disorder", "A hallucination is always auditory; a delusion is always a grandiose or persecutory belief"],
+    correct: 0,
+    rationale: "A hallucination is a false sensory perception (hearing/seeing things that aren't there). A delusion is a fixed false belief held despite contrary evidence."
+  },
+  {
+    stem: "A client shows no facial expression and speaks in a dull, monotone voice with no emotional change at all. How should the nurse document this affect?",
+    options: ["Flat affect", "Blunted affect", "Labile affect", "Euphoric affect"],
+    correct: 0,
+    rationale: "Flat affect is the complete absence of emotional expression. Blunted affect is reduced but not absent. Labile is rapidly shifting, and euphoric is an exaggerated elevated mood."
+  },
+  {
+    stem: "What distinguishes a blunted affect from a flat affect?",
+    options: ["Blunted is reduced/slow emotional expression; flat is completely absent expression", "Blunted affect is appropriate to the situation but subdued; flat affect is exaggerated and inappropriate", "Blunted affect indicates psychosis; flat affect is a normal variant seen in introverted individuals", "Blunted is observed during mania with pressured speech; flat is specific to depressive disorders"],
+    correct: 0,
+    rationale: "Blunted affect shows reduced, slow-to-respond emotional expression -- some emotion is present but diminished. Flat affect shows no emotional expression at all."
+  },
+  {
+    stem: "A client's speech jumps from one unrelated idea to another with no logical connection. What is this called?",
+    options: ["Loose associations", "Circumstantial thinking", "Thought blocking", "Flight of ideas"],
+    correct: 0,
+    rationale: "Loose associations are disorganized thinking that jumps between ideas with no logical link, part of the schizophrenia cluster. Flight of ideas is rapid but the ideas are at least fragmentarily connected, and is tied to mania."
+  },
+  {
+    stem: "A client stops abruptly in the middle of a sentence and cannot recall what they were saying. What is this called?",
+    options: ["Thought blocking", "Flight of ideas", "Circumstantial thinking", "Echolalia"],
+    correct: 0,
+    rationale: "Thought blocking is stopping abruptly mid-sentence, associated with schizophrenia. Flight of ideas is rapid fragmented speech (mania); echolalia is repeating others' speech."
+  },
+  {
+    stem: "What is the difference between circumstantial and tangential thinking?",
+    options: ["Circumstantial eventually answers the question after a detour; tangential wanders off and never returns", "Circumstantial never reaches an answer; tangential always returns to the original topic eventually", "Circumstantial is seen in psychosis; tangential is a normal variant of anxious or pressured speech", "Circumstantial involves loose word associations; tangential involves complete absence of any connection"],
+    correct: 0,
+    rationale: "Circumstantial thinking gets to the answer eventually after unnecessary detail. Tangential thinking wanders off topic and never returns to the point. A useful memory hook: circumstantial 'gets there,' tangential 'never gets there.'"
   }
 ];
