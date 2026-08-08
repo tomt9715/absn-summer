@@ -105,6 +105,14 @@ h1 {
 .opt.selected .opt-letter { color: var(--teal); }
 .opt.selected .opt-text { color: var(--teal); font-weight: 600; }
 
+.opt-key {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-mute);
+  border: 1px solid var(--border-strong); border-radius: 4px; padding: 1px 6px;
+  margin-left: auto; align-self: center; opacity: 0.5; flex-shrink: 0;
+}
+.opt:hover:not([disabled]) .opt-key { opacity: 0.9; border-color: var(--accent); color: var(--accent); }
+.opt.selected .opt-key { border-color: var(--teal); color: var(--teal); opacity: 0.9; }
+
 .sata-hint {
   font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase;
   letter-spacing: 0.05em; color: var(--teal); background: var(--teal-soft);

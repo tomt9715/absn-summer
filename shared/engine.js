@@ -227,6 +227,7 @@
 
   function init() {
     injectFireStyles();
+    document.addEventListener('keydown', handleKeydown);
     const saved = loadProgress();
     if (saved) {
       renderResumePrompt(saved);
@@ -263,9 +264,11 @@
       let optsHTML = '';
       q.opts.forEach((o, i) => {
         const clickHandler = q.isSata ? `__quizToggle(${i})` : `__quizPick(${i})`;
+        const keyHint = i < 9 ? `<span class="opt-key">${i + 1}</span>` : '';
         optsHTML += `<button class="opt" data-i="${i}" onclick="${clickHandler}">
           <span class="opt-letter">${LETTERS[i]}</span>
           <span class="opt-text">${o.text}</span>
+          ${keyHint}
         </button>`;
       });
       bodyHTML = `
@@ -285,7 +288,7 @@
           ${TAG ? `<span class="q-tag">${TAG}</span>` : ''}
         </div>
         <div class="q-stem">${q.stem}</div>
-        ${q.isSata ? `<div class="sata-hint">Select all that apply · partial credit awarded</div>` : ''}
+        ${q.isSata ? `<div class="sata-hint">Select all that apply · partial credit awarded · press 1-9 to select, Enter to submit</div>` : ''}
         ${q.isMatching ? `<div class="sata-hint">Match each item to a letter · partial credit awarded</div>` : ''}
         ${q.image ? `<div class="q-image-wrap">
           <div class="q-image-skeleton" id="img-skeleton"></div>
@@ -438,6 +441,47 @@
       </div>
       <button class="next-btn" onclick="__quizNext()">${isLast ? 'See results →' : 'Next question →'}</button>
     `;
+  }
+
+  // ── Keyboard shortcuts ────────────────────────────────────────
+  function isTypingTarget(el) {
+    if (!el) return false;
+    const tag = el.tagName;
+    return tag === 'SELECT' || tag === 'INPUT' || tag === 'TEXTAREA' || el.isContentEditable;
+  }
+
+  function handleKeydown(e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (isTypingTarget(document.activeElement)) return;
+    const q = deck[idx];
+    if (!q) return;
+
+    // Number keys 1-9 pick (single-select) or toggle (SATA) the matching option
+    if (!answered && !q.isMatching && /^[1-9]$/.test(e.key)) {
+      const i = parseInt(e.key, 10) - 1;
+      if (q.opts && i < q.opts.length) {
+        e.preventDefault();
+        if (q.isSata) toggleSata(i);
+        else pick(i);
+      }
+      return;
+    }
+
+    // Enter submits a SATA answer once at least one option is selected
+    if (!answered && q.isSata && e.key === 'Enter' && selected.size > 0) {
+      e.preventDefault();
+      submitSata();
+      return;
+    }
+
+    // Enter advances past a rationale that's waiting on a manual Next click
+    if (answered && e.key === 'Enter') {
+      const nextBtn = document.querySelector('.next-btn:not(.sata-submit)');
+      if (nextBtn) {
+        e.preventDefault();
+        next();
+      }
+    }
   }
 
   function matchChange() {
