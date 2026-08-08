@@ -2,7 +2,8 @@
    selecting only the questions that test what Unit 6 of the gameplan asks for.
    Continues from Part 1 (Comm, Defenses, MSE, Schizophrenia). Do not rebuild --
    append new sections at the bottom, each marked with its own comment header.
-   Sources so far: exam2/data/mood-kc.js + mood-dd.js (Section 5).
+   Sources so far: exam2/data/mood-kc.js + mood-dd.js (Section 5),
+   exam2/data/addiction-kc.js + addiction-dd.js (Section 6).
    Verbatim except minor rationale wording tightened where noted.
    KC convention: correct is always index 0 for single-select; engine shuffles. */
 window.QUESTIONS = [
@@ -78,5 +79,97 @@ window.QUESTIONS = [
     options: ["A mnemonic for manic symptoms: Distractibility, Impulsivity, Grandiosity, Flight of ideas, increased Activity, decreased Sleep, and Talkativeness", "A mnemonic for depressive symptoms used specifically to screen for major depressive disorder in adults", "A mnemonic describing the specific stages and timeline of alcohol withdrawal syndrome", "A mnemonic listing the extrapyramidal side effects caused by antipsychotic medications"],
     correct: 0,
     rationale: "DIGFAST stands for Distractibility, Impulsivity/Indiscretion, Grandiosity, Flight of ideas/pressured speech, increased Activity, decreased Sleep, and Talkativeness. It is used to assess for manic or hypomanic symptoms in bipolar spectrum disorders."
+  },
+
+  // ── Section 6: Substance Use & Withdrawal (source: exam2 Addiction) ──
+  {
+    stem: "A client who reports drinking daily for the past 5 years had their last drink 18 hours ago. The nurse notes anxiety, fine hand tremors, palpitations, and mild insomnia. What does the nurse recognize, and what is the priority action?",
+    options: ["Early alcohol withdrawal; notify the provider and anticipate a benzodiazepine per protocol", "Delirium tremens; prepare for emergent intubation", "Normal anxiety unrelated to alcohol cessation; no specific action needed", "Opioid withdrawal; administer clonidine per standing order"],
+    correct: 0,
+    rationale: "Anxiety, mild tremors, palpitations, and insomnia within 6 to 24 hours of the last drink are classic early signs of alcohol withdrawal. The nurse notifies the provider and anticipates a benzodiazepine to prevent progression to more severe withdrawal."
+  },
+  {
+    stem: "A client with a history of heavy alcohol use has not had a drink in 60 hours. The nurse notes hyperreflexia, visual hallucinations, a temperature of 38.9 degrees Celsius, BP 168/100, and HR 128. What does the nurse recognize, and what is the priority action?",
+    options: ["Delirium tremens; notify the provider immediately and anticipate IV benzodiazepine therapy with escalated monitoring", "Expected, mild alcohol withdrawal requiring no escalation in care", "Opioid overdose; administer naloxone immediately", "Serotonin syndrome; stop all serotonergic medications immediately"],
+    correct: 0,
+    rationale: "Hyperreflexia, hallucinations, fever, hypertension, and tachycardia occurring 48 to 72 hours after the last drink indicate delirium tremens, a medical emergency. The nurse notifies the provider immediately and anticipates IV benzodiazepine therapy along with escalated monitoring given the significant mortality risk if untreated."
+  },
+  {
+    stem: "A nurse is caring for a client in alcohol withdrawal who suddenly develops tonic-clonic seizure activity. What is the priority nursing action?",
+    options: ["Position the client side-lying, protect from injury, and do not restrain the client during the seizure", "Restrain the client's extremities to prevent injury during the seizure", "Position the client supine and insert an oral airway during the active seizure", "Leave the room to retrieve emergency medications before addressing positioning"],
+    correct: 0,
+    rationale: "During an active seizure, the nurse positions the client side-lying to protect the airway and prevent aspiration, and protects the client from injury without restraining them, since restraint during a seizure can cause injury."
+  },
+  {
+    stem: "A client with chronic alcohol use disorder presents with ataxia, nystagmus, and acute confusion. The nurse anticipates an order for IV dextrose. What is the priority nursing consideration before administering the dextrose?",
+    options: ["Verify that thiamine has been given first, since glucose administered before thiamine can precipitate or worsen Wernicke's encephalopathy", "No specific sequencing is required between thiamine and dextrose administration", "Administer the dextrose first to address the client's confusion, then give thiamine afterward", "Hold both thiamine and dextrose until a neurology consult is obtained"],
+    correct: 0,
+    rationale: "Ataxia, nystagmus, and confusion in a client with chronic alcohol use suggest Wernicke's encephalopathy from thiamine deficiency. The nurse must verify that thiamine is given before glucose, since administering glucose first can precipitate or worsen Wernicke's encephalopathy."
+  },
+  {
+    stem: "A client in alcohol withdrawal becomes acutely agitated, reporting that insects are crawling on their arms. The nurse observes the client repeatedly brushing at their skin. What is the most therapeutic nursing response?",
+    options: ["'I don't see any bugs, but you seem very frightened. I'm here with you.'", "'There's nothing there, you need to stop doing that.'", "'The bugs are part of your withdrawal and will not hurt you.'", "'Let's talk about something else to take your mind off it.'"],
+    correct: 0,
+    rationale: "Acknowledging the client's fear while gently orienting them to reality, without dismissing the experience or validating the hallucination as real, is the therapeutic approach."
+  },
+  {
+    stem: "What is Wernicke-Korsakoff syndrome, and what is its classic symptom triad?",
+    options: ["A brain disorder caused by chronic alcohol use and thiamine deficiency, presenting with ataxia, nystagmus, and confusion", "A withdrawal syndrome caused by abrupt benzodiazepine discontinuation, presenting with seizures and tachycardia", "A liver disorder caused by chronic alcohol metabolism, presenting with jaundice and ascites", "A cardiac disorder caused by chronic alcohol use, presenting with dilated cardiomyopathy"],
+    correct: 0,
+    rationale: "Wernicke-Korsakoff syndrome is a brain disorder resulting from chronic alcohol use and the resulting thiamine (vitamin B1) deficiency. The classic triad is ataxia, nystagmus, and confusion. Thiamine must always be administered before glucose."
+  },
+  {
+    stem: "Which benzodiazepine is considered the gold standard for alcohol withdrawal and is the most frequently tested on the NCLEX?",
+    options: ["Chlordiazepoxide (Librium)", "Lorazepam (Ativan)", "Diazepam (Valium)", "Alprazolam (Xanax)"],
+    correct: 0,
+    rationale: "Chlordiazepoxide (Librium) is considered the gold standard, long-acting benzodiazepine for alcohol withdrawal. Lorazepam is preferred in liver disease due to extrahepatic metabolism, and diazepam is noted for better seizure prevention and self-tapering properties."
+  },
+  {
+    stem: "Why is lorazepam often preferred over diazepam for a client with alcohol withdrawal and significant liver disease?",
+    options: ["Lorazepam is metabolized extrahepatically and has a shorter half-life, making it safer in impaired liver function", "Lorazepam has a longer half-life than diazepam, so it is always preferred regardless of liver function", "Lorazepam is the only benzodiazepine that is effective for preventing withdrawal seizures", "Lorazepam requires hepatic metabolism, making it ideal for stimulating liver regeneration"],
+    correct: 0,
+    rationale: "Lorazepam is metabolized extrahepatically and has a shorter half-life, making it the preferred benzodiazepine in clients with significant liver disease."
+  },
+  {
+    stem: "What physiologic mechanism explains why alcohol withdrawal produces hypertension and tachycardia rather than hypotension?",
+    options: ["Chronic alcohol use causes vasodilation; when alcohol is removed, the body vasoconstricts, producing hypertension and tachycardia", "Chronic alcohol use causes vasoconstriction; when alcohol is removed, the body vasodilates, producing hypotension and bradycardia", "Alcohol withdrawal directly damages the cardiac conduction system, producing arrhythmias unrelated to any change in vascular tone", "Alcohol withdrawal causes adrenal insufficiency, producing hypotension as the primary cardiovascular finding"],
+    correct: 0,
+    rationale: "Alcohol causes vasodilation during chronic use. When the client stops drinking, the body rebounds into vasoconstriction, which produces hypertension, tachycardia, and increased respiratory rate -- the hallmark findings to monitor in withdrawal."
+  },
+  {
+    stem: "A client is found unresponsive with shallow respirations of 4 breaths per minute and pinpoint pupils. Empty pill bottles labeled oxycodone are found nearby. What is the nurse's priority action?",
+    options: ["Administer naloxone immediately and prepare to repeat dosing as needed", "Administer activated charcoal to bind the remaining medication", "Position the client supine and reassess respiratory status in 15 minutes", "Administer flumazenil to reverse the suspected sedative overdose"],
+    correct: 0,
+    rationale: "Pinpoint pupils, severe respiratory depression, and unresponsiveness with evidence of opioid use indicate an opioid overdose. Naloxone must be administered immediately, with repeat dosing anticipated since its duration may be shorter than that of the opioid causing the overdose."
+  },
+  {
+    stem: "A client received naloxone in the emergency department for an opioid overdose and now appears alert with respirations of 16 breaths per minute. The client requests to leave against medical advice. What is the nurse's priority teaching point?",
+    options: ["The client must remain for observation, since naloxone's effects can wear off before the opioid clears, allowing respiratory depression to recur", "The client may safely leave since the naloxone has fully reversed the overdose", "The client should be discharged with a prescription for methadone to prevent further overdose", "The client's vital signs confirm no further monitoring is needed at this time"],
+    correct: 0,
+    rationale: "Naloxone's duration of action can be shorter than that of the opioid involved, meaning respiratory depression can recur after the naloxone wears off. The client requires continued observation despite the temporary improvement in symptoms."
+  },
+  {
+    stem: "A client in early recovery from substance use disorder tells the nurse, 'I just need willpower this time, that's why I failed before.' What is the nurse's best response reflecting an understanding of addiction as a chronic disease?",
+    options: ["'Addiction involves changes in brain chemistry, not just willpower. Building a strong support system and coping strategies will help more than willpower alone.'", "'You're right, you just need to try harder this time.'", "'Relapse means you weren't really committed to recovery the first time.'", "'Willpower is the single most important factor in preventing relapse.'"],
+    correct: 0,
+    rationale: "The nurse should reframe addiction as a neurobiological, chronic disease rather than a failure of willpower. Relapse is part of the chronic disease model, not a personal failure, and medication-assisted treatment is a legitimate part of recovery, not a sign of weakness."
+  },
+  {
+    stem: "A client on methadone maintenance therapy has an ECG showing a prolonged QT interval. What is the nurse's priority action?",
+    options: ["Notify the provider of the QT prolongation, since methadone carries a risk of QT prolongation and Torsades de pointes", "Discontinue the methadone immediately without provider notification", "Recognize this as an expected, clinically insignificant finding requiring no action", "Administer naloxone to reverse the cardiac effects of methadone"],
+    correct: 0,
+    rationale: "Methadone carries a known risk of QT prolongation and the potentially fatal arrhythmia Torsades de pointes. The nurse notifies the provider of this ECG finding so that dosing or an alternative such as buprenorphine, which carries lower cardiac risk, can be considered."
+  },
+  {
+    stem: "A nurse assesses a client with agitation, severe coughing, and notes the client has broken, brown-stained teeth. The client's pupils are dilated and heart rate is 132. What substance does the nurse suspect, and what is the priority focus of assessment?",
+    options: ["Methamphetamine use; assess for cardiovascular complications such as hypertension and arrhythmias", "Opioid use; assess for respiratory depression and pinpoint pupils", "Alcohol use; assess for ataxia and slurred speech", "Cannabis use; assess for increased appetite and conjunctival injection"],
+    correct: 0,
+    rationale: "Severe coughing, agitation, and 'meth mouth' along with dilated pupils and tachycardia are classic findings of methamphetamine use. The nurse prioritizes assessment for cardiovascular complications, since chronic use causes hypertension, arrhythmias, and other cardiac damage."
+  },
+  {
+    stem: "What are the expected findings of cannabis (THC) intoxication and withdrawal?",
+    options: ["Intoxication includes relaxation and increased appetite; withdrawal includes irritability and decreased appetite", "Intoxication includes severe, life-threatening respiratory depression requiring emergency intervention", "Intoxication includes pinpoint pupils with bradycardia; withdrawal includes dilated pupils with tachycardia", "Intoxication and withdrawal present in a clinically indistinguishable manner"],
+    correct: 0,
+    rationale: "Cannabis intoxication produces relaxation, elevated mood, increased appetite ('munchies'), red eyes, and paranoia at high potency. Withdrawal produces irritability, anxiety, insomnia, and decreased appetite."
   }
 ];
